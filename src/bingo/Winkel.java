@@ -10,13 +10,13 @@ package bingo;
  */
 public class Winkel 
 {
-    private String naam;
+    private String winkelNaam;
     
     public Winkel(){
         
     }
     
     public Winkel(String naam){
-        this.naam = naam;
+        this.winkelNaam = naam;
     }
 }
