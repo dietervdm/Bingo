@@ -4,6 +4,8 @@
  */
 package bingo;
 
+import java.awt.Image;
+
 /**
  *
  * @author djvdrmee
@@ -13,6 +15,9 @@ public class Particulier
     private String klantNaam;
     private String emailAdres;
     private Datum geboorteDatum;
+    
+    private Image pasfoto;
+        //http://wiki.gxtechnical.com/commwiki/servlet/hwiki?Image+Data+Type,
     
     public Particulier(){
         
