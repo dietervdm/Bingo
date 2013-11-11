@@ -8,6 +8,7 @@ package bingo;
 public class Account 
 {
     protected String klantenNummer;
+    protected double aantalPunten;
     protected Adres adres;
     protected boolean vip;
     protected boolean bigSpender;
@@ -21,6 +22,8 @@ public class Account
         this.adres.setGemeente("<Gemeente>");
         this.adres.setPostcode("0000");
         this.adres.setBus('0');
+        
+        this.aantalPunten = 0.0;
         
         this.vip = false;
         this.bigSpender = false;
@@ -37,6 +40,8 @@ public class Account
     public Account(String nummer, Adres adres){
         this.klantenNummer = nummer;
         this.adres = adres;
+        
+        this.aantalPunten = 0.0;
         
         this.vip = false;
         this.bigSpender = false;
