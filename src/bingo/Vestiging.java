@@ -20,7 +20,8 @@ public class Vestiging
         this.adres = adres;
     }
     
-    public Vestiging(String straat, int nummer, String gemeente, String postcode, char bus){
+    public Vestiging(String straat, int nummer, String gemeente,
+                     String postcode, char bus){
         this(new Adres(straat, nummer, gemeente, postcode, bus));
     }
 }
