@@ -10,7 +10,7 @@ import java.awt.Image;
  *
  * @author djvdrmee
  */
-public class Particulier 
+public class Particulier extends Account
 {
     private String klantNaam;
     private String emailAdres;
