@@ -1,7 +1,5 @@
-Bingo
+BINGO
 =====
-
-Spaarkaartensysteem
 
 Je opdrachtgever is de onderneming Bingo. Deze onderneming maakt spaarkaartsystemen die
 ze verkoopt aan horeca en kruidenierszaken. Hun nieuwste product is een spaarkaart die je in
@@ -79,19 +77,17 @@ gemerkt wordt dat een VIP-klant in de laatste 12 maanden minder dan 10.000 punte
 verzamelde, wordt zijn VIP-status verwijderd). Als VIP-klant maak je deel uit van het award
 systeem en kan je specifiek sparen voor drie awards (als gewone klant gaat dit niet).
 
-•BigSpender: wanneer je voor minstens 5.000€
-kocht in de laatste 12 maanden, krijg je
-deze award (*), welke je meteen ook 500 extra spaarpunten oplevert.
+  BigSpender: wanneer je voor minstens 5.000€ kocht in de laatste 12 maanden, krijg je
+              deze award (*), welke je meteen ook 500 extra spaarpunten oplevert.
 
-•Wolverene: wanneer je in minstens 20 verschillende winkels (niet vestigingen) punten
-spaarde in de laatste 12 maanden, krijg je deze award (*), welke je meteen ook 600
-extra spaarpunten oplevert.
+  Wolverene: wanneer je in minstens 20 verschillende winkels (niet vestigingen) punten
+             spaarde in de laatste 12 maanden, krijg je deze award (*), welke je meteen ook 600
+             extra spaarpunten oplevert.
 
-•Major: voor iedere winkel (niet vestiging) kan iemand major zijn: dit is de klant die in de
-laatste 12 maanden het meeste geld uitgaf in de bet
-reffende winkel. Wanneer je major
-wordt, krijg je de award (*) en verliest de vorige major de award;
-en ontvang je ook 100 extra spaarpunten.
+  Major: voor iedere winkel (niet vestiging) kan iemand major zijn: dit is de klant die in de
+         laatste 12 maanden het meeste geld uitgaf in de betreffende winkel. Wanneer je major
+         wordt, krijg je de award (*) en verliest de vorige major de award en ontvang je ook 100
+         extra spaarpunten.
 
 (*) de award ontvangen, wil zeggen dat je een mail krijgt met het goede nieuws en je nieuwe
 puntensaldo, maar ook
