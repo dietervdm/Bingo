@@ -1,10 +1,5 @@
-
 package bingo;
 
-/**
- *
- * @author djvdrmee
- */
 public class Artikel 
 {
     private int artikelNummer;
@@ -12,11 +7,11 @@ public class Artikel
     private float prijs;
     private boolean systeem;
     
-    public Artikel(){
-        
-    }
+    public Artikel()
+    {}
     
-    public Artikel(int nummer, String naam, float prijs, boolean systeem){
+    public Artikel(int nummer, String naam, float prijs, boolean systeem)
+    {
         this.artikelNummer = nummer;
         this.artikelNaam = naam;
         this.prijs = prijs;
