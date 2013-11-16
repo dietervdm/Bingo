@@ -1,10 +1,5 @@
-
 package bingo;
 
-/**
- *
- * @author djvdrmee
- */
 public class Account 
 {
     protected String klantenNummer;
@@ -15,7 +10,8 @@ public class Account
     protected boolean wolverine;
     protected boolean major;
     
-    public Account(){
+    public Account()
+    {
         this.klantenNummer = "000000";
         this.adres.setStraat("<Straat>");
         this.adres.setNummer(-1);
@@ -37,7 +33,8 @@ public class Account
         this(AccountNummer, new Adres(straat, nummer, gemeente, postcode, bus));
     }
     
-    public Account(String nummer, Adres adres){
+    public Account(String nummer, Adres adres)
+    {
         this.klantenNummer = nummer;
         this.adres = adres;
         
@@ -47,7 +44,5 @@ public class Account
         this.bigSpender = false;
         this.wolverine = false;
         this.major = false;
-    }
-    
-    
+    }  
 }
