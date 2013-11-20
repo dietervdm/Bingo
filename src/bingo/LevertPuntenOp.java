@@ -1,4 +1,5 @@
 package bingo;
+// Gaat verwijderd worden
 
 public class LevertPuntenOp extends Artikel
 {

@@ -2,19 +2,35 @@ package bingo;
 
 public class Artikel 
 {
-    private int artikelNummer;
+    private String artikelNummer;
     private String artikelNaam;
-    private float prijs;
+    private double prijs;
     private boolean systeem;
+   
+    private int aantalPuntenPlus;
+    private int aantalPuntenMin;
     
     public Artikel()
-    {}
+    {
+        this.artikelNummer = "<nummer>";
+        this.artikelNaam = "<naam>";
+        this.prijs = -1.0;
+        this.systeem = systeem;
+        
+        this.aantalPuntenPlus = 0;
+        this.aantalPuntenMin = 0;
+    }
     
-    public Artikel(int nummer, String naam, float prijs, boolean systeem)
+    public Artikel(String nummer, String naam, double prijs, boolean systeem, int pl, int min)
     {
         this.artikelNummer = nummer;
         this.artikelNaam = naam;
         this.prijs = prijs;
         this.systeem = systeem;
+        
+        this.aantalPuntenPlus = pl;
+        this.aantalPuntenMin = min;
     }
+    
+    
 }
