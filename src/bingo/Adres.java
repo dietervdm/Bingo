@@ -28,6 +28,10 @@ public class Adres
         this.postcode = postcode;
         this.bus = '0';
     }
+    
+    public void wijzigAdres(){
+        
+    }
 
     public String getStraat()
     {

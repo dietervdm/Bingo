@@ -16,4 +16,16 @@ public class Spaarkaart
         this.qrCode = qr;
         this.spaarkaartHouder = spaarkaartHouder;
     }
+    
+    public void toevoegenSpaarkaart(){
+        
+    }
+    
+    public void verwijderenSpaarkaart(){
+        
+    }
+    
+    public void wijzigAccountSpaarkaart(){
+        
+    }
 }

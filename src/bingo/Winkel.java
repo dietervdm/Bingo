@@ -13,4 +13,16 @@ public class Winkel
         this.winkelNaam = naam;
         this.paswoord = pw;
     }
+    
+    public void toevoegenWinkel(){
+        
+    }
+    
+    public void verwijderenWinkel(){
+        
+    }
+    
+    public void wijzigAccountWinkel(){
+        
+    }
 }
