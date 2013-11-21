@@ -1,4 +1,4 @@
-package Logica;
+package logica;
 // Gaat verwijderd worden
 
 public class LevertEnKostPunten 

@@ -1,4 +1,4 @@
-package Logica;
+package logica;
 
 public class Vestiging 
 {

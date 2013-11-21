@@ -1,4 +1,5 @@
-package Logica;
+
+package logica;
 
 public class Artikel 
 {
