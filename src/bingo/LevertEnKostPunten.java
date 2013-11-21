@@ -1,4 +1,4 @@
-package bingo;
+package Logica;
 // Gaat verwijderd worden
 
 public class LevertEnKostPunten 

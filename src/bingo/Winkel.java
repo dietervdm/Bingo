@@ -1,4 +1,4 @@
-package bingo;
+package Logica;
 
 public class Winkel 
 {

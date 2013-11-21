@@ -1,5 +1,5 @@
 
-package bingo;
+package Logica;
 
 public class Spaarkaart 
 {

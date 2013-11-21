@@ -1,4 +1,4 @@
-package bingo;
+package Logica;
 
 import java.awt.Image;
 
