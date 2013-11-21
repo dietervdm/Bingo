@@ -3,14 +3,13 @@ package DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class DB 
 {
     private static final String db = "BINFG31";
     private static final String user = "BINFG31";
     private static final String pass = "aeCahqu3";
+    
     public static Connection getConnection() 
     {
         Connection dbConnection = null;
