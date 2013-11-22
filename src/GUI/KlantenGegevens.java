@@ -5,15 +5,15 @@ import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
 
-public class Framework extends javax.swing.JFrame {
+public class KlantenGegevens extends javax.swing.JFrame {
     
     public JFrame myCaller;
     
-    public Framework() {
+    public KlantenGegevens() {
         initComponents();
     }
     
-    public Framework(JFrame caller) {
+    public KlantenGegevens(JFrame caller) {
         initComponents();
         myCaller = caller;
     }
@@ -45,6 +45,7 @@ public class Framework extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Klantengegevens");
 
         knopTerug.setText("Terug");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
@@ -275,20 +276,20 @@ public class Framework extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Framework().setVisible(true);
+                new KlantenGegevens().setVisible(true);
             }
         });
     }
