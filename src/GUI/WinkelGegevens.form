@@ -136,7 +136,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopToevoegenKlantActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuknopToevoegenProduct">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuknopToevoegenAtikel">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Artikel.png"/>
@@ -144,7 +144,7 @@
                 <Property name="text" type="java.lang.String" value="Artikel"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopToevoegenProductActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopToevoegenAtikelActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

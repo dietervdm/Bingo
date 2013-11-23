@@ -39,7 +39,7 @@ public class Framework extends javax.swing.JFrame {
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
-        MenuknopToevoegenProduct = new javax.swing.JMenuItem();
+        MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
         menuknopUitloggen = new javax.swing.JMenu();
 
         jMenu7.setText("jMenu7");
@@ -151,14 +151,14 @@ public class Framework extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(menuknopToevoegenKlant);
 
-        MenuknopToevoegenProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
-        MenuknopToevoegenProduct.setText("Artikel");
-        MenuknopToevoegenProduct.addActionListener(new java.awt.event.ActionListener() {
+        MenuknopToevoegenArtikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopToevoegenArtikel.setText("Artikel");
+        MenuknopToevoegenArtikel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuknopToevoegenProductActionPerformed(evt);
+                MenuknopToevoegenArtikelActionPerformed(evt);
             }
         });
-        menuknopToevoegen.add(MenuknopToevoegenProduct);
+        menuknopToevoegen.add(MenuknopToevoegenArtikel);
 
         jMenuBar1.add(menuknopToevoegen);
 
@@ -239,11 +239,11 @@ public class Framework extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
 
-    private void MenuknopToevoegenProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenProductActionPerformed
+    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
         ToevoegenProduct s = new ToevoegenProduct(this);
                 s.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenProductActionPerformed
+    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
 
     private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
         InlogScherm s = new InlogScherm();
@@ -302,7 +302,7 @@ public class Framework extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MenuknopToevoegenProduct;
+    private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton knopTerug;
