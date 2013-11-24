@@ -7,8 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 public class Database {
@@ -74,39 +73,32 @@ public class Database {
         }
         catch(ClassNotFoundException | SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
-            try{
-                dbConnection.close();
-                return srs;
-            } 
-            catch (Exception e){ return srs; }
+            this.closeConnection();
+            return srs;
         }
     }
     
-//    //    Voorbeeld van een functie waarmee een vestiging kan gecreerd/opgeroepen worden uit database via getData().
-//    
-//    public Vestiging getVestiging(){
-//        
-//        Vestiging v = new Vestiging();
-//        
-//        try {
-//            String sql = "SELECT vestigingid, winkelnaam, adres FROM vestiging;";
-//            ResultSet srs = getData(sql);
-//            srs.next();
-//            int id = srs.getInt("vestigingid");
-//            String winkelnaam = srs.getString("winkelnaam");
-//            String adres = srs.getString("adres");
-//            v = new Vestiging(id,winkelnaam,adres);
-//            dbConnection.close();
-//            return v;
-//        } catch (SQLException sqle) {
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            System.out.println("Troubles");
-//            try{
-//                dbConnection.close();
-//            } 
-//            catch (Exception e){}
-//            return v;
-//            
-//        }
-//    }
+    //    Voorbeeld van een functie waarmee een vestiging kan gecreerd/opgeroepen worden uit database via getData().
+    
+    public Vestiging getVestiging(){
+        
+        Vestiging v = new Vestiging();
+        
+        try {
+            String sql = "SELECT vestigingid, winkelnaam, adres FROM vestiging;";
+            ResultSet srs = getData(sql);
+            srs.next();
+            int id = srs.getInt("vestigingid");
+            String winkelnaam = srs.getString("winkelnaam");
+            String adres = srs.getString("adres");
+            v = new Vestiging(adres);
+            this.closeConnection();
+            return v;
+        } catch (SQLException sqle) {
+            System.out.println("SQLException: " + sqle.getMessage());
+            System.out.println("Troubles");
+            this.closeConnection();
+            return v;
+        }
+    }
 }
