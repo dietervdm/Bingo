@@ -25,153 +25,47 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuknopHome = new javax.swing.JMenu();
-        menuknopVerkopen = new javax.swing.JMenu();
-        menuknopWinkelRapport = new javax.swing.JMenu();
-        menuknopWinkelrapport = new javax.swing.JMenuItem();
-        menuknopVestigingsrapport = new javax.swing.JMenuItem();
-        menuknopKlantenrapport = new javax.swing.JMenuItem();
-        menuknopAanpassen = new javax.swing.JMenu();
-        menuknopWinkelgegevens = new javax.swing.JMenuItem();
-        menuknopVestigingsgegevens = new javax.swing.JMenuItem();
-        menuknopKlantengegevens = new javax.swing.JMenuItem();
-        menuknopToevoegen = new javax.swing.JMenu();
-        menuknopToevoegenVestiging = new javax.swing.JMenuItem();
-        menuknopToevoegenKlant = new javax.swing.JMenuItem();
-        MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
-        menuknopUitloggen = new javax.swing.JMenu();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        knopGaVerder = new javax.swing.JButton();
 
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Klantengegevens");
 
-        knopTerug.setText("Terug");
+        knopTerug.setText("Annuleren");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 knopTerugActionPerformed(evt);
             }
         });
 
-        menuknopHome.setText("Home");
-        menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuknopHomeMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(menuknopHome);
+        jLabel1.setText("Vul uw gegevens in.");
 
-        menuknopVerkopen.setText("Verkopen");
-        menuknopVerkopen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuknopVerkopenMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(menuknopVerkopen);
+        jLabel2.setText("Naam:");
 
-        menuknopWinkelRapport.setText("Rapporten");
+        jLabel3.setText("Wachtwoord:");
 
-        menuknopWinkelrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Winkel.png"))); // NOI18N
-        menuknopWinkelrapport.setText("Winkelrapport");
-        menuknopWinkelrapport.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopWinkelrapportActionPerformed(evt);
+                jPasswordField1ActionPerformed(evt);
             }
         });
-        menuknopWinkelRapport.add(menuknopWinkelrapport);
 
-        menuknopVestigingsrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Vestiging.png"))); // NOI18N
-        menuknopVestigingsrapport.setText("Vestigingsrapport");
-        menuknopVestigingsrapport.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setText("Herhaal wachtwoord:");
+
+        knopGaVerder.setText("Ga verder");
+        knopGaVerder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopVestigingsrapportActionPerformed(evt);
+                knopGaVerderActionPerformed(evt);
             }
         });
-        menuknopWinkelRapport.add(menuknopVestigingsrapport);
-
-        menuknopKlantenrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
-        menuknopKlantenrapport.setText("Klantenrapport");
-        menuknopKlantenrapport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopKlantenrapportActionPerformed(evt);
-            }
-        });
-        menuknopWinkelRapport.add(menuknopKlantenrapport);
-
-        jMenuBar1.add(menuknopWinkelRapport);
-
-        menuknopAanpassen.setText("Aanpassen");
-
-        menuknopWinkelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Winkel.png"))); // NOI18N
-        menuknopWinkelgegevens.setText("Winkelgegevens");
-        menuknopWinkelgegevens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopWinkelgegevensActionPerformed(evt);
-            }
-        });
-        menuknopAanpassen.add(menuknopWinkelgegevens);
-
-        menuknopVestigingsgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Vestiging.png"))); // NOI18N
-        menuknopVestigingsgegevens.setText("Vestigingsgegevens");
-        menuknopVestigingsgegevens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopVestigingsgegevensActionPerformed(evt);
-            }
-        });
-        menuknopAanpassen.add(menuknopVestigingsgegevens);
-
-        menuknopKlantengegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
-        menuknopKlantengegevens.setText("Klantengegevens");
-        menuknopKlantengegevens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopKlantengegevensActionPerformed(evt);
-            }
-        });
-        menuknopAanpassen.add(menuknopKlantengegevens);
-
-        jMenuBar1.add(menuknopAanpassen);
-
-        menuknopToevoegen.setText("Toevoegen");
-
-        menuknopToevoegenVestiging.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Vestiging.png"))); // NOI18N
-        menuknopToevoegenVestiging.setText("Vestiging");
-        menuknopToevoegenVestiging.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopToevoegenVestigingActionPerformed(evt);
-            }
-        });
-        menuknopToevoegen.add(menuknopToevoegenVestiging);
-
-        menuknopToevoegenKlant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
-        menuknopToevoegenKlant.setText("Klant");
-        menuknopToevoegenKlant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopToevoegenKlantActionPerformed(evt);
-            }
-        });
-        menuknopToevoegen.add(menuknopToevoegenKlant);
-
-        MenuknopToevoegenArtikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
-        MenuknopToevoegenArtikel.setText("Artikel");
-        MenuknopToevoegenArtikel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuknopToevoegenArtikelActionPerformed(evt);
-            }
-        });
-        menuknopToevoegen.add(MenuknopToevoegenArtikel);
-
-        jMenuBar1.add(menuknopToevoegen);
-
-        menuknopUitloggen.setText("Uitloggen");
-        menuknopUitloggen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuknopUitloggenMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(menuknopUitloggen);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,14 +73,46 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knopTerug)
-                .addContainerGap(727, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knopTerug, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPasswordField2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
+                .addComponent(knopGaVerder)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(545, Short.MAX_VALUE)
-                .addComponent(knopTerug)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(knopTerug)
+                    .addComponent(knopGaVerder))
                 .addContainerGap())
         );
 
@@ -198,77 +124,13 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_knopTerugActionPerformed
 
-    private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        WinkelRapport s = new WinkelRapport(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopWinkelrapportActionPerformed
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void menuknopVestigingsrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsrapportActionPerformed
-        VestigingsRapport s = new VestigingsRapport(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopVestigingsrapportActionPerformed
-
-    private void menuknopKlantenrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantenrapportActionPerformed
-        KlantenRapport s = new KlantenRapport(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopKlantenrapportActionPerformed
-
-    private void menuknopWinkelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelgegevensActionPerformed
-        WinkelGegevens s = new WinkelGegevens(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopWinkelgegevensActionPerformed
-
-    private void menuknopVestigingsgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsgegevensActionPerformed
-        VestigingsGegevens s = new VestigingsGegevens(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopVestigingsgegevensActionPerformed
-
-    private void menuknopKlantengegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantengegevensActionPerformed
-        ToevoegenWinkel s = new ToevoegenWinkel(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopKlantengegevensActionPerformed
-
-    private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
-        ToevoegenVestiging s = new ToevoegenVestiging(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
-
-    private void menuknopToevoegenKlantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenKlantActionPerformed
-        ToevoegenKlant s = new ToevoegenKlant(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopToevoegenKlantActionPerformed
-
-    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
-        ToevoegenProduct s = new ToevoegenProduct(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
-
-    private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
-        InlogScherm s = new InlogScherm();
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopUitloggenMouseClicked
-
-    private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
-        Home s = new Home(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopHomeMouseClicked
-
-    private void menuknopVerkopenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopVerkopenMouseClicked
-        Verkopen s = new Verkopen(this);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_menuknopVerkopenMouseClicked
+    private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_knopGaVerderActionPerformed
 
     
     public static void main(String args[]) {
@@ -303,23 +165,15 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton knopGaVerder;
     private javax.swing.JButton knopTerug;
-    private javax.swing.JMenu menuknopAanpassen;
-    private javax.swing.JMenu menuknopHome;
-    private javax.swing.JMenuItem menuknopKlantengegevens;
-    private javax.swing.JMenuItem menuknopKlantenrapport;
-    private javax.swing.JMenu menuknopToevoegen;
-    private javax.swing.JMenuItem menuknopToevoegenKlant;
-    private javax.swing.JMenuItem menuknopToevoegenVestiging;
-    private javax.swing.JMenu menuknopUitloggen;
-    private javax.swing.JMenu menuknopVerkopen;
-    private javax.swing.JMenuItem menuknopVestigingsgegevens;
-    private javax.swing.JMenuItem menuknopVestigingsrapport;
-    private javax.swing.JMenu menuknopWinkelRapport;
-    private javax.swing.JMenuItem menuknopWinkelgegevens;
-    private javax.swing.JMenuItem menuknopWinkelrapport;
     // End of variables declaration//GEN-END:variables
 }
