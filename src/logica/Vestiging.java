@@ -1,20 +1,15 @@
-package logica;
+package Logica;
 
 public class Vestiging 
 {
-    private Adres adres;
+    private String adres;
     
     public Vestiging()
     {}
     
-    public Vestiging(Adres adres)
+    public Vestiging(String adres)
     {
         this.adres = adres;
-    }
-    
-    public Vestiging(String straat, int nummer, String gemeente, String postcode, char bus)
-    {
-        this(new Adres(straat, nummer, gemeente, postcode, bus));
     }
     
     public void toevoegenVestiging(){

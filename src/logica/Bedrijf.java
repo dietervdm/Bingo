@@ -1,5 +1,5 @@
 
-package logica;
+package Logica;
 
 import java.awt.Image;
 

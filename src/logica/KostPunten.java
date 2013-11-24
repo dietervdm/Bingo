@@ -1,4 +1,4 @@
-package logica;
+package Logica;
 // Gaat verwijderd worden
 
 public class KostPunten extends Artikel
