@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://mysqlha2.ugent.be:3306/BINFG31?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">BINFG31</property>
+    <property name="hibernate.connection.password">aeCahqu3</property>
+    <mapping resource="bingo_test/Account.hbm.xml"/>
+    <mapping resource="bingo_test/Vestiging.hbm.xml"/>
+    <mapping resource="bingo_test/Artikelaankoop.hbm.xml"/>
+    <mapping resource="bingo_test/Spaarkaart.hbm.xml"/>
+    <mapping resource="bingo_test/Artikel.hbm.xml"/>
+    <mapping resource="bingo_test/Winkel.hbm.xml"/>
+    <mapping resource="bingo_test/Aankoop.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,6 +1,8 @@
 
 package logica;
 
+import java.util.ArrayList;
+
 public class Account 
 {
     protected String accountNummer;
@@ -48,4 +50,20 @@ public class Account
         this.major = false;
     }
     
+    public Datum setDatumLower(Datum dat){
+        dat.setYear(dat.getYear()-1);
+        return dat;
+    }
+    
+    public void controleerBigSpender(ArrayList<Aankoop> ak){
+        
+    }
+    
+    public void controleerWoverine(){
+        
+    }
+    
+    public void controleerMajor(){
+        
+    }
 }

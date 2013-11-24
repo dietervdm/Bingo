@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-nov-2013 23:28:09 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="bingo_test.Artikel" table="artikel" catalog="BINFG31">
+        <composite-id name="id" class="bingo_test.ArtikelId">
+            <key-property name="artikelnr" type="int">
+                <column name="artikelnr" />
+            </key-property>
+            <key-property name="winkelnaam" type="string">
+                <column name="winkelnaam" length="32" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="winkel" class="bingo_test.Winkel" update="false" insert="false" fetch="select">
+            <column name="winkelnaam" length="32" not-null="true" />
+        </many-to-one>
+        <property name="artikelnaam" type="string">
+            <column name="artikelnaam" length="128" />
+        </property>
+        <property name="prijs" type="java.lang.Integer">
+            <column name="prijs" />
+        </property>
+        <property name="ptnwinst" type="java.lang.Integer">
+            <column name="ptnwinst" />
+        </property>
+        <property name="minimumaantal" type="java.lang.Integer">
+            <column name="minimumaantal" />
+        </property>
+        <property name="ptnkost" type="java.lang.Integer">
+            <column name="ptnkost" />
+        </property>
+        <property name="minimumbedrag" type="java.lang.Integer">
+            <column name="minimumbedrag" />
+        </property>
+        <set name="artikelaankoops" inverse="true">
+            <key>
+                <column name="artikelnr" not-null="true" />
+                <column name="winkelnaam" length="32" not-null="true" />
+            </key>
+            <one-to-many class="bingo_test.Artikelaankoop" />
+        </set>
+    </class>
+</hibernate-mapping>

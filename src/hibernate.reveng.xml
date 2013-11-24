@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="BINFG31"/>
+  <table-filter match-name="artikelaankoop"/>
+  <table-filter match-name="winkel"/>
+  <table-filter match-name="spaarkaart"/>
+  <table-filter match-name="artikel"/>
+  <table-filter match-name="aankoop"/>
+  <table-filter match-name="account"/>
+  <table-filter match-name="vestiging"/>
+</hibernate-reverse-engineering>

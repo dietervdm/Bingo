@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-nov-2013 23:28:09 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="bingo_test.Winkel" table="winkel" catalog="BINFG31">
+        <id name="winkelnaam" type="string">
+            <column name="winkelnaam" length="32" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="account" class="bingo_test.Account" fetch="select">
+            <column name="accountnr" />
+        </many-to-one>
+        <property name="paswoord" type="string">
+            <column name="paswoord" length="32" />
+        </property>
+        <set name="artikels" inverse="true">
+            <key>
+                <column name="winkelnaam" length="32" not-null="true" />
+            </key>
+            <one-to-many class="bingo_test.Artikel" />
+        </set>
+        <set name="vestigings" inverse="true">
+            <key>
+                <column name="winkelnaam" length="32" not-null="true" />
+            </key>
+            <one-to-many class="bingo_test.Vestiging" />
+        </set>
+    </class>
+</hibernate-mapping>

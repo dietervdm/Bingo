@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-nov-2013 23:28:09 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="bingo_test.Vestiging" table="vestiging" catalog="BINFG31">
+        <composite-id name="id" class="bingo_test.VestigingId">
+            <key-property name="vestigingid" type="int">
+                <column name="vestigingid" />
+            </key-property>
+            <key-property name="winkelnaam" type="string">
+                <column name="winkelnaam" length="32" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="winkel" class="bingo_test.Winkel" update="false" insert="false" fetch="select">
+            <column name="winkelnaam" length="32" not-null="true" />
+        </many-to-one>
+        <property name="adres" type="string">
+            <column name="adres" length="128" />
+        </property>
+        <set name="aankoops" inverse="true">
+            <key>
+                <column name="vestigingid" not-null="true" />
+                <column name="winkelnaam" length="32" not-null="true" />
+            </key>
+            <one-to-many class="bingo_test.Aankoop" />
+        </set>
+    </class>
+</hibernate-mapping>
