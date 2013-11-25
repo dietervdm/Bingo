@@ -49,6 +49,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         jLabel12.setForeground(new java.awt.Color(255, 0, 0));
         jLabel12.setText("Er moet minstens 1 artikel zijn dat punten oplevert");
@@ -63,7 +64,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Voeg minstens 1artikel toe.");
+        jLabel1.setText("Voeg minstens 1 artikel toe.");
 
         jLabel2.setText("Artikelnummer");
 
@@ -142,6 +143,8 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Opgepast! Er moet minstens 1 artikel zijn dat punten oplevert en 1 artikel dat punten kost");
 
+        jButton3.setText("Toevoegen");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,6 +207,11 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 206, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(325, 325, 325)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(326, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,6 +256,11 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                     .addComponent(knopTerug)
                     .addComponent(knopVoegToe))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(288, 288, 288)
+                    .addComponent(jButton3)
+                    .addContainerGap(289, Short.MAX_VALUE)))
         );
 
         pack();
@@ -304,6 +317,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;

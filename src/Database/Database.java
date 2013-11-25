@@ -80,25 +80,25 @@ public class Database {
     
     //    Voorbeeld van een functie waarmee een vestiging kan gecreerd/opgeroepen worden uit database via getData().
     
-    public Vestiging getVestiging(){
-        
-        Vestiging v = new Vestiging();
-        
-        try {
-            String sql = "SELECT vestigingid, winkelnaam, adres FROM vestiging;";
-            ResultSet srs = getData(sql);
-            srs.next();
-            int id = srs.getInt("vestigingid");
-            String winkelnaam = srs.getString("winkelnaam");
-            String adres = srs.getString("adres");
-            v = new Vestiging();
-            this.closeConnection();
-            return v;
-        } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("Troubles");
-            this.closeConnection();
-            return v;
-        }
-    }
+//    public Vestiging getVestiging(){
+//        
+//        Vestiging v = new Vestiging();
+//        
+//        try {
+//            String sql = "SELECT vestigingid, winkelnaam, adres FROM vestiging;";
+//            ResultSet srs = getData(sql);
+//            srs.next();
+//            int id = srs.getInt("vestigingid");
+//            String winkelnaam = srs.getString("winkelnaam");
+//            String adres = srs.getString("adres");
+//            v = new Vestiging();
+//            this.closeConnection();
+//            return v;
+//        } catch (SQLException sqle) {
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            System.out.println("Troubles");
+//            this.closeConnection();
+//            return v;
+//        }
+//    }
 }
