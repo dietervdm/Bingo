@@ -24,7 +24,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu7 = new javax.swing.JMenu();
-        knopTerug = new javax.swing.JButton();
+        knopAnnuleren = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -39,10 +39,10 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Klantengegevens");
 
-        knopTerug.setText("Annuleren");
-        knopTerug.addActionListener(new java.awt.event.ActionListener() {
+        knopAnnuleren.setText("Annuleren");
+        knopAnnuleren.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopTerugActionPerformed(evt);
+                knopAnnulerenActionPerformed(evt);
             }
         });
 
@@ -75,7 +75,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(knopTerug, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knopAnnuleren, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,7 +111,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(knopTerug)
+                    .addComponent(knopAnnuleren)
                     .addComponent(knopGaVerder))
                 .addContainerGap())
         );
@@ -119,17 +119,19 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed
+    private void knopAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnulerenActionPerformed
         myCaller.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_knopTerugActionPerformed
+    }//GEN-LAST:event_knopAnnulerenActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
-        // TODO add your handling code here:
+        ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
+                s.setVisible(true);
+                setVisible(false);
     }//GEN-LAST:event_knopGaVerderActionPerformed
 
     
@@ -173,7 +175,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton knopAnnuleren;
     private javax.swing.JButton knopGaVerder;
-    private javax.swing.JButton knopTerug;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,13 +3,21 @@ package GUI;
 
 
 public class InlogScherm extends javax.swing.JFrame {
-
+    
+    public String actief = null;
+    
+    private static final InlogScherm inlogscherm = new InlogScherm();
+    
+    public static InlogScherm getInstance(){
+        return inlogscherm;
+    }
+        
     public InlogScherm() {
         initComponents();
     }
 
    
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -17,9 +25,9 @@ public class InlogScherm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        knopLogIn = new javax.swing.JButton();
+        knopNieuweWinkel = new javax.swing.JButton();
+        keuzeWinkel = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Log in");
@@ -30,21 +38,26 @@ public class InlogScherm extends javax.swing.JFrame {
 
         jLabel3.setText("Gelieve in te loggen of een nieuwe winkel toe te voegen.");
 
-        jButton1.setText("Log in");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        knopLogIn.setText("Log in");
+        knopLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                knopLogInActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Nieuwe winkel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        knopNieuweWinkel.setText("Nieuwe winkel");
+        knopNieuweWinkel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                knopNieuweWinkelActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "winkel 1", "winkel 2", "winkel 3", "winkel 4" }));
+        keuzeWinkel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "winkel 1", "winkel 2", "winkel 3", "winkel 4" }));
+        keuzeWinkel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keuzeWinkelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,9 +70,9 @@ public class InlogScherm extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                        .addComponent(knopNieuweWinkel, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(knopLogIn)
                         .addContainerGap(213, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,7 +81,7 @@ public class InlogScherm extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 272, Short.MAX_VALUE))
+                            .addComponent(keuzeWinkel, javax.swing.GroupLayout.Alignment.TRAILING, 0, 272, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -79,38 +92,42 @@ public class InlogScherm extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(keuzeWinkel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(knopLogIn)
+                    .addComponent(knopNieuweWinkel))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void knopLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopLogInActionPerformed
+        inlogscherm.setActief(keuzeWinkel.getSelectedItem().toString());
+        
         Home s = new Home(this);
                 s.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_knopLogInActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void knopNieuweWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopNieuweWinkelActionPerformed
         ToevoegenWinkel s = new ToevoegenWinkel(this);
                 s.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_knopNieuweWinkelActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void keuzeWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keuzeWinkelActionPerformed
+        
+    }//GEN-LAST:event_keuzeWinkelActionPerformed
+
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -133,7 +150,7 @@ public class InlogScherm extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InlogScherm().setVisible(true);
@@ -141,12 +158,26 @@ public class InlogScherm extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JComboBox keuzeWinkel;
+    private javax.swing.JButton knopLogIn;
+    private javax.swing.JButton knopNieuweWinkel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the actief
+     */
+    public String getActief() {
+        return actief;
+    }
+
+    /**
+     * @param actief the actief to set
+     */
+    public void setActief(String actief) {
+        this.actief = actief;
+    }
 }

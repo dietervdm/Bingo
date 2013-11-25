@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-nov-2013 23:28:09 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="BINFG31" name="Logica.Artikelaankoop" table="artikelaankoop">
+    <id name="transactienr" type="int">
+      <column name="transactienr"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Logica.Artikel" fetch="select" name="artikel">
+      <column name="artikelnr" not-null="true"/>
+      <column length="32" name="winkelnaam" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Logica.Aankoop" fetch="select" insert="false" name="aankoop" update="false">
+      <column name="transactienr" not-null="true" unique="true"/>
+    </many-to-one>
+    <property name="aantal" type="java.lang.Integer">
+      <column name="aantal"/>
+    </property>
+  </class>
+</hibernate-mapping>

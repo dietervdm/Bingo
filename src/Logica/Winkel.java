@@ -1,4 +1,4 @@
-package bingo_test;
+package Logica;
 // Generated 24-nov-2013 23:28:08 by Hibernate Tools 3.2.1.GA
 
 

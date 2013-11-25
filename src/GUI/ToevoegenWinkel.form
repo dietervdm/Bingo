@@ -39,7 +39,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" min="-2" pref="210" max="-2" attributes="0"/>
-                  <Component id="knopTerug" min="-2" pref="124" max="-2" attributes="0"/>
+                  <Component id="knopAnnuleren" min="-2" pref="124" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
@@ -85,7 +85,7 @@
               </Group>
               <EmptySpace pref="427" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="knopTerug" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="knopAnnuleren" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="knopGaVerder" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -94,12 +94,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="knopTerug">
+    <Component class="javax.swing.JButton" name="knopAnnuleren">
       <Properties>
         <Property name="text" type="java.lang.String" value="Annuleren"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopTerugActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopAnnulerenActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

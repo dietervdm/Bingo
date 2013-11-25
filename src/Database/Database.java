@@ -91,7 +91,7 @@ public class Database {
             int id = srs.getInt("vestigingid");
             String winkelnaam = srs.getString("winkelnaam");
             String adres = srs.getString("adres");
-            v = new Vestiging(adres);
+            v = new Vestiging();
             this.closeConnection();
             return v;
         } catch (SQLException sqle) {

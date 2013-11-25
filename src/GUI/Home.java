@@ -8,14 +8,19 @@ import Logica.*;
 public class Home extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public String actief;
     
     public Home() {
         initComponents();
+        actief = InlogScherm.getInstance().actief;
+        txtNaam.setText(actief);
     }
     
     public Home(JFrame caller) {
         initComponents();
         myCaller = caller;
+        actief = InlogScherm.getInstance().actief;
+        txtNaam.setText(actief);
     }
 
     
@@ -25,6 +30,7 @@ public class Home extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
+        txtNaam = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -53,6 +59,8 @@ public class Home extends javax.swing.JFrame {
                 knopTerugActionPerformed(evt);
             }
         });
+
+        txtNaam.setText("<naam>");
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,13 +187,17 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knopTerug)
-                .addContainerGap(727, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(knopTerug)
+                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(709, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(545, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(txtNaam)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 520, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -321,5 +333,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JLabel txtNaam;
     // End of variables declaration//GEN-END:variables
 }
