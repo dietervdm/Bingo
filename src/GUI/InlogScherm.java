@@ -1,10 +1,13 @@
 
 package GUI;
 
+import Database.*;
+
 
 public class InlogScherm extends javax.swing.JFrame {
     
     public String actief = null;
+    public Database d;
     
     private static final InlogScherm inlogscherm = new InlogScherm();
     
@@ -116,7 +119,9 @@ public class InlogScherm extends javax.swing.JFrame {
     }//GEN-LAST:event_knopLogInActionPerformed
 
     private void knopNieuweWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopNieuweWinkelActionPerformed
-        ToevoegenWinkel s = new ToevoegenWinkel(this);
+
+       
+                ToevoegenWinkel s = new ToevoegenWinkel(this);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopNieuweWinkelActionPerformed

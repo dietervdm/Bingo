@@ -78,6 +78,25 @@ public class Database {
         }
     }
     
+//    public void AddWinkel(String naamwinkel, String paswoord, String major){
+//        
+//       
+//        
+//        try{
+//            dbConnection = getConnection();
+//            Statement stmt = dbConnection.createStatement();
+//            stmt.executeUpdate("INSERT INTO winkel " + "VALUES (naamwinkel, paswoord, major");
+//            this.closeConnection();
+//        }
+//        catch(ClassNotFoundException | SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//            
+//        }
+//    }
+    
+//    public setVestiging
+    
     //    Voorbeeld van een functie waarmee een vestiging kan gecreerd/opgeroepen worden uit database via getData().
     
 //    public Vestiging getVestiging(){

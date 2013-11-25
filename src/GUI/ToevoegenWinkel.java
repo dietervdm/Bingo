@@ -8,6 +8,7 @@ import Logica.*;
 public class ToevoegenWinkel extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Database d;
     
     public ToevoegenWinkel() {
         initComponents();
@@ -27,11 +28,11 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         knopAnnuleren = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNaam = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtWachtwoord = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtWachtwoord2 = new javax.swing.JPasswordField();
         knopGaVerder = new javax.swing.JButton();
 
         jMenu7.setText("jMenu7");
@@ -52,9 +53,9 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
 
         jLabel3.setText("Wachtwoord:");
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtWachtwoord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtWachtwoordActionPerformed(evt);
             }
         });
 
@@ -82,12 +83,12 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jPasswordField2)))
+                        .addComponent(txtWachtwoord2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
                 .addComponent(knopGaVerder)
                 .addContainerGap())
@@ -100,15 +101,15 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWachtwoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 427, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(knopAnnuleren)
@@ -124,11 +125,12 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_knopAnnulerenActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtWachtwoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWachtwoordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_txtWachtwoordActionPerformed
 
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
+        
         ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
                 s.setVisible(true);
                 setVisible(false);
@@ -172,10 +174,10 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton knopAnnuleren;
     private javax.swing.JButton knopGaVerder;
+    private javax.swing.JTextField txtNaam;
+    private javax.swing.JPasswordField txtWachtwoord;
+    private javax.swing.JPasswordField txtWachtwoord2;
     // End of variables declaration//GEN-END:variables
 }
