@@ -4,6 +4,7 @@ package GUI;
 import Database.Database;
 import Logica.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class ToevoegenWinkel2 extends javax.swing.JFrame {
@@ -165,17 +166,18 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
         
         String winkelnaam = ToevoegenWinkel.getInstance().getW().getWinkelnaam();
-        
         Winkel w = d.getWinkel(winkelnaam);
         int vestigingid = Integer.parseInt(txtVestigingid.getText());
-        
         Vestiging v = new Vestiging(vestigingid, w , txtAdres.getText());
-            
-        d.addVestiging(v);
-        
-        ToevoegenWinkel3 s = new ToevoegenWinkel3(this);
+        if(d.checkVestiging(vestigingid, winkelnaam)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addVestiging(v);
+            ToevoegenWinkel3 s = new ToevoegenWinkel3(this);
                 s.setVisible(true);
                 setVisible(false);
+        }
     }//GEN-LAST:event_knopGaVerderActionPerformed
 
     private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed

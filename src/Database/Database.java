@@ -102,17 +102,36 @@ public class Database {
         }
     }
     
+    public Boolean checkWinkel(String winkelnaam){
+        try{
+            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                return true;
+            }
+            else return false;
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
     public Winkel getWinkel(String winkelnaam){
         try{
             String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "'";
             ResultSet srs = getData(sql);
-            srs.next();
-            int id = srs.getInt("accountnr");
-            String naam = srs.getString("winkelnaam");
-            String paswoord = srs.getString("paswoord");
-            Winkel w = new Winkel(naam,paswoord);
-            this.closeConnection();
-            return w;
+            if(srs.next()){
+                int id = srs.getInt("accountnr");
+                String naam = srs.getString("winkelnaam");
+                String paswoord = srs.getString("paswoord");
+                Winkel w = new Winkel(naam,paswoord);
+                this.closeConnection();
+                return w;
+            }
+            else return null;
+            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -133,6 +152,22 @@ public class Database {
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
+        }
+    }
+    
+    public Boolean checkVestiging(int vestigingnummer, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM vestiging WHERE vestigingid='" + vestigingnummer + "' and winkelnaam='" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                return true;
+            }
+            else return false;
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
         }
     }
 //    public void getAccount(String accountnr){

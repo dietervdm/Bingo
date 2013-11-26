@@ -153,11 +153,15 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
             w = new Winkel(txtNaam.getText(), txtPaswoord.getText());
             getInstance().setW(w);
-            d.addWinkel(getW());
-            
-            ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
+            if(d.checkWinkel(getW().getWinkelnaam())){
+                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+            }
+            else {
+                d.addWinkel(getW());
+                ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
                 s.setVisible(true);
                 setVisible(false);
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
