@@ -17,6 +17,13 @@ public class Winkel
         this.winkelnaam = winkelnaam;
     }
     
+    public Winkel(String winkelnaam, String paswoord)
+    {
+        this.winkelnaam = winkelnaam;
+        this.paswoord = paswoord;
+        account = null;
+    }
+    
     public Winkel(String winkelnaam, Account account, String paswoord)
     {
         this.winkelnaam = winkelnaam;
@@ -54,9 +61,5 @@ public class Winkel
         this.paswoord = paswoord;
     }
     
-    public void toevoegenWinkel(String naam, int accnr, String pasw)
-    {
-        winkelDB = wdb = new WinkelDB();
-        wdb.toevoegenWinkel(naam, accnr, pasw);
-    }
+    
 }

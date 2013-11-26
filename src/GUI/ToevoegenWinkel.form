@@ -47,19 +47,28 @@
                       </Group>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtWachtwoord" min="-2" pref="153" max="-2" attributes="0"/>
+                          <Component id="txtPaswoord" min="-2" pref="153" max="-2" attributes="0"/>
                           <Component id="txtNaam" min="-2" pref="153" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtWachtwoord2" max="32767" attributes="0"/>
+                      <Component id="txtPaswoord2" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="423" max="32767" attributes="0"/>
-              <Component id="knopGaVerder" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="423" max="32767" attributes="0"/>
+                      <Component id="knopGaVerder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelPaswoord" min="-2" pref="242" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,12 +85,13 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtWachtwoord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPaswoord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtWachtwoord2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPaswoord2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelPaswoord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="427" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -119,9 +129,9 @@
         <Property name="text" type="java.lang.String" value="Wachtwoord:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtWachtwoord">
+    <Component class="javax.swing.JPasswordField" name="txtPaswoord">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtWachtwoordActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPaswoordActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -129,7 +139,7 @@
         <Property name="text" type="java.lang.String" value="Herhaal wachtwoord:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtWachtwoord2">
+    <Component class="javax.swing.JPasswordField" name="txtPaswoord2">
     </Component>
     <Component class="javax.swing.JButton" name="knopGaVerder">
       <Properties>
@@ -138,6 +148,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopGaVerderActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelPaswoord">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="De 2 paswoorden moeten gelijk zijn!"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -7,6 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -18,7 +21,7 @@ public class Database {
     
     private Connection dbConnection = null;
     
-    public Connection getConnection() throws ClassNotFoundException{
+    public Connection getConnection(){
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -35,8 +38,15 @@ public class Database {
             
             return dbConnection;
         }
-        catch(ClassNotFoundException | SQLException sqle){
+        catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
+            try{
+                dbConnection.close();
+            } 
+            catch (Exception e){}
+            return null;
+        } catch (ClassNotFoundException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
             try{
                 dbConnection.close();
             } 
@@ -71,29 +81,27 @@ public class Database {
 
             return srs;
         }
-        catch(ClassNotFoundException | SQLException sqle){
+        catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
             return srs;
         }
     }
     
-//    public void AddWinkel(String naamwinkel, String paswoord, String major){
-//        
-//       
-//        
-//        try{
-//            dbConnection = getConnection();
-//            Statement stmt = dbConnection.createStatement();
-//            stmt.executeUpdate("INSERT INTO winkel " + "VALUES (naamwinkel, paswoord, major");
-//            this.closeConnection();
-//        }
-//        catch(ClassNotFoundException | SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            
-//        }
-//    }
+    public void AddWinkel(Winkel w){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO winkel(winkelnaam,accountnr,paswoord) " + "VALUES ( '" + w.getWinkelnaam() + "', 0, '" + w.getPaswoord() + "')");
+            this.closeConnection();
+            JOptionPane.showMessageDialog(null, "Winkel toegevoegd!");
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
     
 //    public setVestiging
     
