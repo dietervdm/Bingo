@@ -68,9 +68,8 @@ public class Winkel  implements java.io.Serializable {
         this.vestigings = vestigings;
     }
 
-
-
-
+    public void toevoegenWinkel(String naam, int accnr, String pasw) {
+        winkelDB = wdb = new WinkelDB();
+        wdb.toevoegenWinkel(naam, accnr, pasw);
+    }
 }
-
-
