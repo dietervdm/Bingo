@@ -8,8 +8,15 @@ import javax.swing.JOptionPane;
 
 public class ToevoegenWinkel extends javax.swing.JFrame {
     
-    public JFrame myCaller;
+    private JFrame myCaller;
     public Database d = new Database();
+    private Winkel w;
+    
+    private static final ToevoegenWinkel toevoegenWinkel = new ToevoegenWinkel();
+    
+    public static ToevoegenWinkel getInstance(){
+        return toevoegenWinkel;
+    }
     
     public ToevoegenWinkel() {
         initComponents();
@@ -133,7 +140,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnulerenActionPerformed
-        myCaller.setVisible(true);
+        getMyCaller().setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopAnnulerenActionPerformed
 
@@ -144,8 +151,9 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
         
         if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
-            Winkel w = new Winkel(txtNaam.getText(), txtPaswoord.getText());
-            d.AddWinkel(w);
+            w = new Winkel(txtNaam.getText(), txtPaswoord.getText());
+            getInstance().setW(w);
+            d.addWinkel(getW());
             
             ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
                 s.setVisible(true);
@@ -201,4 +209,25 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPaswoord;
     private javax.swing.JPasswordField txtPaswoord2;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the myCaller
+     */
+    public JFrame getMyCaller() {
+        return myCaller;
+    }
+
+    /**
+     * @return the w
+     */
+    public Winkel getW() {
+        return w;
+    }
+
+    /**
+     * @param w the w to set
+     */
+    public void setW(Winkel w) {
+        this.w = w;
+    }
 }

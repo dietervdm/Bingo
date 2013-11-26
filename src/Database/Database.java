@@ -88,19 +88,71 @@ public class Database {
         }
     }
     
-    public void AddWinkel(Winkel w){
+    public void addWinkel(Winkel w){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             stmt.executeUpdate("INSERT INTO winkel(winkelnaam,accountnr,paswoord) " + "VALUES ( '" + w.getWinkelnaam() + "', 0, '" + w.getPaswoord() + "')");
             this.closeConnection();
-            JOptionPane.showMessageDialog(null, "Winkel toegevoegd!");
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
         }
+    }
+    
+    public Winkel getWinkel(String winkelnaam){
+        try{
+            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            srs.next();
+            int id = srs.getInt("accountnr");
+            String naam = srs.getString("winkelnaam");
+            String paswoord = srs.getString("paswoord");
+            Winkel w = new Winkel(naam,paswoord);
+            this.closeConnection();
+            return w;
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    
+    public void addVestiging(Vestiging v){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO vestiging (vestigingid,winkelnaam,adres) " + "VALUES ( '" + v.getVestigingId() + "', '" + v.getWinkel().getWinkelnaam() + "', '" + v.getAdres() + "')");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+//    public void getAccount(String accountnr){
+//        try{
+//            String sql = "SELECT * FROM account WHERE accountnr='" + accountnr + "'";
+//            ResultSet srs = getData(sql);
+//            srs.next();
+//            int id = srs.getInt("accountnr");
+//            String naam = srs.getString("winkelnaam");
+//            String paswoord = srs.getString("paswoord");
+//            String paswoord = srs.getString("paswoord");
+//            Winkel w = new Winkel(naam,paswoord);
+//            this.closeConnection();
+//            return w;
+//            JOptionPane.showMessageDialog(null, "gelukt");
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//        }
     }
     
 //    public setVestiging
@@ -128,4 +180,3 @@ public class Database {
 //            return v;
 //        }
 //    }
-}
