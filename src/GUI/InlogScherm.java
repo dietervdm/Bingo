@@ -115,6 +115,7 @@ public class InlogScherm extends javax.swing.JFrame {
             if(naam.equals(paswoord)){
                 w = d.getWinkel(naam);
                 inlogscherm.setActief(w);
+                inlogscherm.setLocationRelativeTo(null);
                 Home s = new Home(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
