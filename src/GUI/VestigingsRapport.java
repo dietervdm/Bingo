@@ -31,10 +31,9 @@ public class VestigingsRapport extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
         knopAfdrukvoorbeeld = new javax.swing.JButton();
         knopPrint = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -73,16 +72,11 @@ public class VestigingsRapport extends javax.swing.JFrame {
 
         jLabel2.setText("Print vestiging");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "vestiging 1", "vestiging 2", "vestiging 3", "vestiging 4", "vestiging 5", "vestiging 6", "vestiging 7", "vestiging 8", "vestiging 9", "vestiging 10" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
-
         knopAfdrukvoorbeeld.setText("Afdrukvoorbeeld");
 
         knopPrint.setText("Print");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,8 +214,8 @@ public class VestigingsRapport extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(knopAfdrukvoorbeeld)
                                 .addGap(60, 60, 60)
@@ -246,7 +240,7 @@ public class VestigingsRapport extends javax.swing.JFrame {
                         .addGap(96, 96, 96)
                         .addComponent(knopTerug))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -378,13 +372,12 @@ public class VestigingsRapport extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jList1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton knopAfdrukvoorbeeld;
     private javax.swing.JButton knopPrint;
