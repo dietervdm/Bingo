@@ -499,7 +499,6 @@ public class ToevoegenProduct extends javax.swing.JFrame {
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-        Winkel w = d.getWinkel(winkelnaam);
         
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
         int prijs = Integer.parseInt(txtPrijs.getText());
@@ -509,7 +508,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         int minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText());
         String artikelnaam = txtArtikelnaam.getText();
         
-        Artikel p = new Artikel(artikelnr, w, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
+        Artikel p = new Artikel(artikelnr, winkelnaam, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
         if(d.checkArtikel(artikelnr, winkelnaam)){
             JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
         }
