@@ -172,6 +172,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         
         
             ToevoegenWinkel3 s = new ToevoegenWinkel3(this);
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
         
@@ -179,6 +180,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
 
     private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed
         myCaller.setVisible(true);
+        myCaller.setLocationRelativeTo(null);
                 setVisible(false);
     }//GEN-LAST:event_knopTerugActionPerformed
 

@@ -258,6 +258,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
         VerkopenKlant s = new VerkopenKlant();
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
@@ -268,6 +269,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
         VerkopenKlant s = new VerkopenKlant();
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopAnnuleerActionPerformed

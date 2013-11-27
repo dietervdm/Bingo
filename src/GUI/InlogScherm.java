@@ -116,6 +116,7 @@ public class InlogScherm extends javax.swing.JFrame {
                 w = d.getWinkel(naam);
                 inlogscherm.setActief(w);
                 Home s = new Home(this);
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
             }
@@ -135,6 +136,7 @@ public class InlogScherm extends javax.swing.JFrame {
 
        
                 ToevoegenWinkel s = new ToevoegenWinkel(this);
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopNieuweWinkelActionPerformed
