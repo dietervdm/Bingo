@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.ArrayList;
+import java.util.Date;
 
 
 
@@ -244,16 +244,16 @@ public class Database {
             String sql = "SELECT * FROM aankoop WHERE winkelnaam='" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             while(srs.next()){
-                String transactienr = srs.getString("transactienr");
+                int transactienr = srs.getInt("transactienr");
                 int vestigingsid = srs.getInt("vestigingsid");
                 String naam = srs.getString("winkelnaam");
                 int kaartnr = srs.getInt("kaartnr");
-                int datum = srs.getInt("datum");
+                Date datum = srs.getDate("datum");
                 int ptnplus = srs.getInt("ptnplus");
                 int ptnmin = srs.getInt("ptnmin");
                 int totprijs = srs.getInt("totprijs");
                 
-                Aankoop ak = new Aankoop(transactienr, vestigingsid, winkelnaam, kaartnr, datum, ptnplus, ptnmin, totprijs);
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, datum, ptnplus, ptnmin, totprijs);
                 assortiment.add(ak);
             }
             this.closeConnection();
