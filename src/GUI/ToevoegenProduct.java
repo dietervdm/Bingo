@@ -483,26 +483,31 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_knopVoegToeActionPerformed
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
-//        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-//        Winkel w = d.getWinkel(winkelnaam);
-//        
-//        int artikelnr = Integer.parseInt(txtArtikelnr.getText());
-//        int prijs = Integer.parseInt(txtPrijs.getText());
-//        int puntenplus = Integer.parseInt(txtPuntenplus.getText());
-//        int puntenmin = Integer.parseInt(txtPuntenmin.getText());
-//        int minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
-//        int minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText());
-//        String artikelnaam = txtArtikelnaam.getText();
-//        
-//        Artikel p = new Artikel(artikelnr, w, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
-//        if(d.checkProduct(artikelnr, winkelnaam)){
-//            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
-//        }
-//        else{
-//            d.addArtikel(p);
-//            txtVestigingid.setText("");
-//            txtAdres.setText("");
-//        }
+        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
+        Winkel w = d.getWinkel(winkelnaam);
+        
+        int artikelnr = Integer.parseInt(txtArtikelnr.getText());
+        int prijs = Integer.parseInt(txtPrijs.getText());
+        int puntenplus = Integer.parseInt(txtPuntenplus.getText());
+        int puntenmin = Integer.parseInt(txtPuntenmin.getText());
+        int minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
+        int minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText());
+        String artikelnaam = txtArtikelnaam.getText();
+        
+        Artikel p = new Artikel(artikelnr, w, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
+        if(d.checkProduct(artikelnr, winkelnaam)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addArtikel(p);
+            txtArtikelnr.setText("");
+            txtPrijs.setText("");
+            txtPuntenplus.setText("");
+            txtPuntenmin.setText("");
+            txtMinimumartikelen.setText("");
+            txtMinimumbedrag.setText("");
+            txtArtikelnaam.setText("");
+        }
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
     
