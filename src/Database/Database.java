@@ -145,7 +145,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO artikel(artikelnr,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag) " + "VALUES (" + a.getArtikelnr() + ", " + a.getWinkel().getWinkelnaam() + a.getPrijs() + ")");
+            stmt.executeUpdate("INSERT INTO artikel(artikelnr,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag) " + "VALUES (" + a.getArtikelnr() + ", '" + a.getWinkel().getWinkelnaam() + "', '" + a.getArtikelnaam() + "', " + a.getPrijs() + ", " + a.getPtnwinst() + ", " + a.getMinimumaantal() + ", " + a.getPtnkost() + ", " + a.getMinimumbedrag() +")");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -153,6 +153,22 @@ public class Database {
             this.closeConnection();
         }
     }
+        
+      public Boolean checkArtikel(int artikelnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                return true;
+            }
+            else return false;
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }  
     
     public void addVestiging(Vestiging v){
         
