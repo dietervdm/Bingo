@@ -2,9 +2,9 @@
 package Logica;
 
 
-public class Artikel  implements java.io.Serializable
+public class Artikel
 {
-    private int ArtikelId;
+    private int Artikelnr;
     private Winkel winkel;
     private String artikelnaam;
     private Integer prijs;
@@ -19,14 +19,14 @@ public class Artikel  implements java.io.Serializable
     
     public Artikel(int ArtikelId, Winkel winkel)
     {
-        this.ArtikelId = ArtikelId;
+        this.Artikelnr = ArtikelId;
         this.winkel = winkel;
     }
     
     public Artikel(Integer ArtikelId, Winkel winkel, String artikelnaam, Integer prijs,
                    Integer ptnwinst, Integer minimumaantal, Integer ptnkost, Integer minimumbedrag)
     {
-       this.ArtikelId = ArtikelId;
+       this.Artikelnr = ArtikelId;
        this.winkel = winkel;
        this.artikelnaam = artikelnaam;
        this.prijs = prijs;
@@ -36,14 +36,14 @@ public class Artikel  implements java.io.Serializable
        this.minimumbedrag = minimumbedrag;
     }
     
-    public int getArtikelId()
+    public int getArtikelnr()
     {
-        return ArtikelId;
+        return Artikelnr;
     }
     
-    public void setArtikelId(int ArtikelId)
+    public void setArtikelnr(int Artikelnr)
     {
-        this.ArtikelId = ArtikelId;
+        this.Artikelnr = Artikelnr;
     }
     
     public Winkel getWinkel()

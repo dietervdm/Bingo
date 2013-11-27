@@ -7,8 +7,10 @@ import Database.Database;
 public class Winkel
 {
     private String winkelnaam;
-    private int accountnr;
+    private Account accountnr;
     private String paswoord;
+    
+    Database wdb = new Database();
     
     
     public Winkel()
@@ -23,13 +25,13 @@ public class Winkel
     {
         this.winkelnaam = winkelnaam;
         this.paswoord = paswoord;
-        accountnr = 0;
+        accountnr = null;
     }
     
-    public Winkel(String winkelnaam, int accountnr, String paswoord)
+    public Winkel(String winkelnaam, Account account, String paswoord)
     {
         this.winkelnaam = winkelnaam;
-        this.accountnr = accountnr;
+        this.accountnr = account;
         this.paswoord = paswoord;
     }
     
@@ -43,14 +45,14 @@ public class Winkel
         this.winkelnaam = winkelnaam;
     }
     
-    public int getAccount()
+    public Account getAccount()
     {
         return this.accountnr;
     }
     
-    public void setAccount(int accountnr)
+    public void setAccount(Account account)
     {
-        this.accountnr = accountnr;
+        this.accountnr = account;
     }
     
     public String getPaswoord()
@@ -66,8 +68,28 @@ public class Winkel
     public void addWinkel(String naam, int major, String paswoord)
     {
         Winkel wk = new Winkel(naam, major, paswoord);
-        
-        Database wdb = new Database();
+          
         wdb.addWinkel(wk);
     }
+    
+//    public void deleteWinkel(String naam)
+//    {
+//        this.winkelnaam = naam;
+//        wdb.deleteWinkel(winkelnaam);        
+//    }
+//    
+//    public void updateNaamWinkel(String naam){
+//        this.winkelnaam = naam;
+//        wdb.updateNaamWinkel(winkelnaam);
+//    }
+//    
+//    public void updateMajorWinkel(int accnr){
+//        this.accountnr = accnr;
+//        wdb.updateMajorWinkel(accountnr);
+//    }
+//    
+//    public void updatePaswoordWinkel(String ps){
+//        this.paswoord = ps;
+//        wdb.updatePaswoordWinkel(paswoord);
+//    }
 }
