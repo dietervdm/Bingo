@@ -10,4 +10,4 @@ package Database;
  */
 public class WinkelDB {
     
-}
+    }
