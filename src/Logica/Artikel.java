@@ -2,7 +2,7 @@
 package Logica;
 
 
-public class Artikel  implements java.io.Serializable
+public class Artikel
 {
     private int Artikelnr;
     private Winkel winkel;
