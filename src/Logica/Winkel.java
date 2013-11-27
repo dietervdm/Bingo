@@ -1,11 +1,13 @@
 
 package Logica;
 
+import Database.Database;
+
 
 public class Winkel
 {
     private String winkelnaam;
-    private Account account;
+    private int accountnr;
     private String paswoord;
     
     
@@ -21,13 +23,13 @@ public class Winkel
     {
         this.winkelnaam = winkelnaam;
         this.paswoord = paswoord;
-        account = null;
+        accountnr = 0;
     }
     
-    public Winkel(String winkelnaam, Account account, String paswoord)
+    public Winkel(String winkelnaam, int accountnr, String paswoord)
     {
         this.winkelnaam = winkelnaam;
-        this.account = account;
+        this.accountnr = accountnr;
         this.paswoord = paswoord;
     }
     
@@ -41,14 +43,14 @@ public class Winkel
         this.winkelnaam = winkelnaam;
     }
     
-    public Account getAccount()
+    public int getAccount()
     {
-        return this.account;
+        return this.accountnr;
     }
     
-    public void setAccount(Account account)
+    public void setAccount(int accountnr)
     {
-        this.account = account;
+        this.accountnr = accountnr;
     }
     
     public String getPaswoord()
@@ -61,5 +63,11 @@ public class Winkel
         this.paswoord = paswoord;
     }
     
-    
+    public void addWinkel(String naam, int major, String paswoord)
+    {
+        Winkel wk = new Winkel(naam, major, paswoord);
+        
+        Database wdb = new Database();
+        wdb.addWinkel(wk);
+    }
 }
