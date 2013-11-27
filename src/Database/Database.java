@@ -139,6 +139,19 @@ public class Database {
             return null;
         }
     }
+    public void deleteWinkel(Winkel w){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("DELETE from winkel WHERE winkelnaam=" + w.getWinkelnaam());
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
     
     public void addArtikel(Artikel a){
         
