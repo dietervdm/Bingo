@@ -11,7 +11,7 @@ public class Account
     private String naam;     //bedrijf = bedrijfsnaam, particulier = naam klant
     private String email;
     private String adres;
-    private Integer punten;
+    private int punten;
     private boolean wolverine;
     private Date startw;
     private boolean bigspender;
@@ -19,7 +19,7 @@ public class Account
     private boolean major;
     private Date startm;
     private boolean bedrijf;
-    private Integer btwnummer;
+    private int btwnummer;
     //bedrijf
     private String btwNummer;
     private Image logo;
@@ -38,9 +38,9 @@ public class Account
         this.bedrijf = bedrijf;
     }
     
-    public Account(int accountnr, String naam, String email, String adres, Integer punten,
+    public Account(int accountnr, String naam, String email, String adres, int punten,
                    boolean wolverine, Date startw, boolean bigspender, Date startb, boolean major,
-                   Date startm, boolean bedrijf, Integer btwnummer)
+                   Date startm, boolean bedrijf, int btwnummer)
     {
         this.accountnr = accountnr;
         this.naam = naam;
@@ -97,12 +97,12 @@ public class Account
         this.adres = adres;
     }
     
-    public Integer getPunten()
+    public int getPunten()
     {
         return this.punten;
     }
     
-    public void setPunten(Integer punten)
+    public void setPunten(int punten)
     {
         this.punten = punten;
     }
@@ -177,12 +177,12 @@ public class Account
         this.bedrijf = bedrijf;
     }
     
-    public Integer getBtwnummer()
+    public int getBtwnummer()
     {
         return this.btwnummer;
     }
     
-    public void setBtwnummer(Integer btwnummer)
+    public void setBtwnummer(int btwnummer)
     {
         this.btwnummer = btwnummer;
     }

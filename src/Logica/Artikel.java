@@ -5,29 +5,29 @@ package Logica;
 public class Artikel
 {
     private int Artikelnr;
-    private Winkel winkel;
+    private String winkelnaam;
     private String artikelnaam;
-    private Integer prijs;
-    private Integer ptnwinst;
-    private Integer minimumaantal;
-    private Integer ptnkost;
-    private Integer minimumbedrag;
+    private int prijs;
+    private int ptnwinst;
+    private int minimumaantal;
+    private int ptnkost;
+    private int minimumbedrag;
     
     
     public Artikel()
     {}
     
-    public Artikel(int ArtikelId, Winkel winkel)
+    public Artikel(int Artikelnr, String winkelnaam)
     {
-        this.Artikelnr = ArtikelId;
-        this.winkel = winkel;
+        this.Artikelnr = Artikelnr;
+        this.winkelnaam = winkelnaam;
     }
     
-    public Artikel(Integer ArtikelId, Winkel winkel, String artikelnaam, Integer prijs,
-                   Integer ptnwinst, Integer minimumaantal, Integer ptnkost, Integer minimumbedrag)
+    public Artikel(int Artikelnr, String winkelnaam, String artikelnaam, int prijs,
+                   int ptnwinst, int minimumaantal, int ptnkost, int minimumbedrag)
     {
-       this.Artikelnr = ArtikelId;
-       this.winkel = winkel;
+       this.Artikelnr = Artikelnr;
+       this.winkelnaam = winkelnaam;
        this.artikelnaam = artikelnaam;
        this.prijs = prijs;
        this.ptnwinst = ptnwinst;
@@ -46,14 +46,14 @@ public class Artikel
         this.Artikelnr = Artikelnr;
     }
     
-    public Winkel getWinkel()
+    public String getWinkelnaam()
     {
-        return this.winkel;
+        return winkelnaam;
     }
     
-    public void setWinkel(Winkel winkel)
+    public void setWinkelnaam(String winkelnaam)
     {
-        this.winkel = winkel;
+        this.winkelnaam = winkelnaam;
     }
     
     public String getArtikelnaam()
@@ -66,52 +66,52 @@ public class Artikel
         this.artikelnaam = artikelnaam;
     }
     
-    public Integer getPrijs()
+    public int getPrijs()
     {
         return this.prijs;
     }
     
-    public void setPrijs(Integer prijs)
+    public void setPrijs(int prijs)
     {
         this.prijs = prijs;
     }
     
-    public Integer getPtnwinst()
+    public int getPtnwinst()
     {
         return this.ptnwinst;
     }
     
-    public void setPtnwinst(Integer ptnwinst)
+    public void setPtnwinst(int ptnwinst)
     {
         this.ptnwinst = ptnwinst;
     }
     
-    public Integer getMinimumaantal()
+    public int getMinimumaantal()
     {
         return this.minimumaantal;
     }
     
-    public void setMinimumaantal(Integer minimumaantal)
+    public void setMinimumaantal(int minimumaantal)
     {
         this.minimumaantal = minimumaantal;
     }
     
-    public Integer getPtnkost()
+    public int getPtnkost()
     {
         return this.ptnkost;
     }
     
-    public void setPtnkost(Integer ptnkost)
+    public void setPtnkost(int ptnkost)
     {
         this.ptnkost = ptnkost;
     }
     
-    public Integer getMinimumbedrag()
+    public int getMinimumbedrag()
     {
         return this.minimumbedrag;
     }
     
-    public void setMinimumbedrag(Integer minimumbedrag)
+    public void setMinimumbedrag(int minimumbedrag)
     {
         this.minimumbedrag = minimumbedrag;
     }

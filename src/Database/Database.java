@@ -123,10 +123,10 @@ public class Database {
             String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             if(srs.next()){
-                int id = srs.getInt("accountnr");
+                int accountnr = srs.getInt("accountnr");
                 String naam = srs.getString("winkelnaam");
                 String paswoord = srs.getString("paswoord");
-                Winkel w = new Winkel(naam,paswoord);
+                Winkel w = new Winkel(naam,accountnr,paswoord);
                 this.closeConnection();
                 return w;
             }
@@ -140,12 +140,12 @@ public class Database {
         }
     }
     
-        public void addArtikel(Artikel a){
+    public void addArtikel(Artikel a){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO artikel(artikelnr,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag) " + "VALUES (" + a.getArtikelnr() + ", '" + a.getWinkel().getWinkelnaam() + "', '" + a.getArtikelnaam() + "', " + a.getPrijs() + ", " + a.getPtnwinst() + ", " + a.getMinimumaantal() + ", " + a.getPtnkost() + ", " + a.getMinimumbedrag() +")");
+            stmt.executeUpdate("INSERT INTO artikel(artikelnr,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag) " + "VALUES (" + a.getArtikelnr() + ", '" + a.getWinkelnaam() + "', '" + a.getArtikelnaam() + "', " + a.getPrijs() + ", " + a.getPtnwinst() + ", " + a.getMinimumaantal() + ", " + a.getPtnkost() + ", " + a.getMinimumbedrag() +")");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -154,7 +154,7 @@ public class Database {
         }
     }
         
-      public Boolean checkArtikel(int artikelnr, String winkelnaam){
+    public Boolean checkArtikel(int artikelnr, String winkelnaam){
         try{
             String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "' and artikelnr=" + artikelnr;
             ResultSet srs = getData(sql);
@@ -168,7 +168,35 @@ public class Database {
             this.closeConnection();
             return null;
         }
-    }  
+    } 
+     
+    public Artikel getArtikel(int artikelnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "' and artikelnr=" + artikelnr;
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                String naam = srs.getString("winkelnaam");
+                int artikelnummer = srs.getInt("artikelnr");
+                String artikelnaam = srs.getString("artikelnaam");
+                int prijs = srs.getInt("prijs");
+                int ptnwinst = srs.getInt("ptnwinst");
+                int ptnkost = srs.getInt("ptnkost");
+                int minimumaantal = srs.getInt("minimumaantal");
+                int minimumbedrag = srs.getInt("minimumbedrag");
+                Artikel a = new Artikel(artikelnummer,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag);
+                this.closeConnection();
+                return a;
+            }
+            else return null;
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+      
     
     public void addVestiging(Vestiging v){
         

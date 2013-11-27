@@ -7,7 +7,7 @@ public class Artikelaankoop
     private int transactienr;
     private Artikel artikel;
     private Aankoop aankoop;
-    private Integer aantal;
+    private int aantal;
     
     
     public Artikelaankoop()
@@ -20,7 +20,7 @@ public class Artikelaankoop
         this.aankoop = aankoop;
     }
     
-    public Artikelaankoop(int transactienr, Artikel artikel, Aankoop aankoop, Integer aantal)
+    public Artikelaankoop(int transactienr, Artikel artikel, Aankoop aankoop, int aantal)
     {
         this.transactienr = transactienr;
         this.artikel = artikel;
@@ -58,12 +58,12 @@ public class Artikelaankoop
         this.aankoop = aankoop;
     }
     
-    public Integer getAantal()
+    public int getAantal()
     {
         return this.aantal;
     }
     
-    public void setAantal(Integer aantal)
+    public void setAantal(int aantal)
     {
         this.aantal = aantal;
     }

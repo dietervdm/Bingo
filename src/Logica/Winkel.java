@@ -68,7 +68,6 @@ public class Winkel
     public void addWinkel(String naam, int major, String paswoord)
     {
         Winkel wk = new Winkel(naam, major, paswoord);
-          
         wdb.addWinkel(wk);
     }
     

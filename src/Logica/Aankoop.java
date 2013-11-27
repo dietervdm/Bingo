@@ -10,9 +10,9 @@ public class Aankoop
     private Spaarkaart spaarkaart;
     private Vestiging vestiging;
     private Date datum;
-    private Integer ptnplus;
-    private Integer ptnmin;
-    private Integer totprijs;
+    private int ptnplus;
+    private int ptnmin;
+    private int totprijs;
     
     
     public Aankoop()
@@ -26,7 +26,7 @@ public class Aankoop
     }
     
     public Aankoop(int transactienr, Spaarkaart spaarkaart, Vestiging vestiging,
-                   Date datum, Integer ptnplus, Integer ptnmin, Integer totprijs)
+                   Date datum, int ptnplus, int ptnmin, int totprijs)
     {
         this.transactienr = transactienr;
         this.spaarkaart = spaarkaart;
@@ -77,32 +77,32 @@ public class Aankoop
         this.datum = datum;
     }
     
-    public Integer getPtnplus()
+    public int getPtnplus()
     {
         return this.ptnplus;
     }
     
-    public void setPtnplus(Integer ptnplus)
+    public void setPtnplus(int ptnplus)
     {
         this.ptnplus = ptnplus;
     }
     
-    public Integer getPtnmin()
+    public int getPtnmin()
     {
         return this.ptnmin;
     }
     
-    public void setPtnmin(Integer ptnmin)
+    public void setPtnmin(int ptnmin)
     {
         this.ptnmin = ptnmin;
     }
     
-    public Integer getTotprijs()
+    public int getTotprijs()
     {
         return this.totprijs;
     }
     
-    public void setTotprijs(Integer totprijs)
+    public void setTotprijs(int totprijs)
     {
         this.totprijs = totprijs;
     }
