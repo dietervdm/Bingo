@@ -10,6 +10,8 @@ public class Winkel
     private int accountnr;
     private String paswoord;
     
+    Database wdb = new Database();
+    
     
     public Winkel()
     {}
@@ -66,8 +68,28 @@ public class Winkel
     public void addWinkel(String naam, int major, String paswoord)
     {
         Winkel wk = new Winkel(naam, major, paswoord);
-        
-        Database wdb = new Database();
+          
         wdb.addWinkel(wk);
+    }
+    
+    public void deleteWinkel(String naam)
+    {
+        this.winkelnaam = naam;
+        wdb.deleteWinkel(winkelnaam);        
+    }
+    
+    public void updateNaamWinkel(String naam){
+        this.winkelnaam = naam;
+        wdb.updateNaamWinkel(winkelnaam);
+    }
+    
+    public void updateMajorWinkel(int accnr){
+        this.accountnr = accnr;
+        wdb.updateMajorWinkel(accountnr);
+    }
+    
+    public void updatePaswoordWinkel(String ps){
+        this.paswoord = ps;
+        wdb.updatePaswoordWinkel(paswoord);
     }
 }
