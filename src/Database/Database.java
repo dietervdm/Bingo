@@ -140,6 +140,19 @@ public class Database {
         }
     }
     
+        public void addArtikel(Artikel a){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO artikel(artikelnr,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag) " + "VALUES (" + a.getArtikelnr() + ", " + a.getWinkel().getWinkelnaam() + a.getPrijs() + ")");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
     
     public void addVestiging(Vestiging v){
         
