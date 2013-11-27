@@ -203,7 +203,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO vestiging (vestigingid,winkelnaam,adres) " + "VALUES ( '" + v.getVestigingId() + "', '" + v.getWinkel().getWinkelnaam() + "', '" + v.getAdres() + "')");
+            stmt.executeUpdate("INSERT INTO vestiging (vestigingid,winkelnaam,adres) " + "VALUES ( '" + v.getVestigingId() + "', '" + v.getWinkelnaam() + "', '" + v.getAdres() + "')");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -227,6 +227,31 @@ public class Database {
             return null;
         }
     }
+    
+    public Vestiging getVestiging(int vestigingsid, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM vestiging WHERE winkelnaam='" + winkelnaam + "' and vestigingsid=" + vestigingsid;
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                String naam = srs.getString("winkelnaam");
+                int vestid = srs.getInt("vestigingsid");
+                String adres = srs.getString("adres");
+                Vestiging v = new Vestiging(vestid,naam,adres);
+                this.closeConnection();
+                return v;
+            }
+            else return null;
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    
+    
 //    public void getAccount(String accountnr){
 //        try{
 //            String sql = "SELECT * FROM account WHERE accountnr='" + accountnr + "'";
