@@ -25,13 +25,13 @@ public class Winkel
     {
         this.winkelnaam = winkelnaam;
         this.paswoord = paswoord;
-        account = null;
+        accountnr = null;
     }
     
     public Winkel(String winkelnaam, Account account, String paswoord)
     {
         this.winkelnaam = winkelnaam;
-        this.account = account;
+        this.accountnr = account;
         this.paswoord = paswoord;
     }
     
@@ -47,12 +47,12 @@ public class Winkel
     
     public Account getAccount()
     {
-        return this.account;
+        return this.accountnr;
     }
     
     public void setAccount(Account account)
     {
-        this.account = account;
+        this.accountnr = account;
     }
     
     public String getPaswoord()
@@ -72,24 +72,24 @@ public class Winkel
         wdb.addWinkel(wk);
     }
     
-    public void deleteWinkel(String naam)
-    {
-        this.winkelnaam = naam;
-        wdb.deleteWinkel(winkelnaam);        
-    }
-    
-    public void updateNaamWinkel(String naam){
-        this.winkelnaam = naam;
-        wdb.updateNaamWinkel(winkelnaam);
-    }
-    
-    public void updateMajorWinkel(int accnr){
-        this.accountnr = accnr;
-        wdb.updateMajorWinkel(accountnr);
-    }
-    
-    public void updatePaswoordWinkel(String ps){
-        this.paswoord = ps;
-        wdb.updatePaswoordWinkel(paswoord);
-    }
+//    public void deleteWinkel(String naam)
+//    {
+//        this.winkelnaam = naam;
+//        wdb.deleteWinkel(winkelnaam);        
+//    }
+//    
+//    public void updateNaamWinkel(String naam){
+//        this.winkelnaam = naam;
+//        wdb.updateNaamWinkel(winkelnaam);
+//    }
+//    
+//    public void updateMajorWinkel(int accnr){
+//        this.accountnr = accnr;
+//        wdb.updateMajorWinkel(accountnr);
+//    }
+//    
+//    public void updatePaswoordWinkel(String ps){
+//        this.paswoord = ps;
+//        wdb.updatePaswoordWinkel(paswoord);
+//    }
 }
