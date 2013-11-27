@@ -386,6 +386,7 @@ public class ToevoegenVestiging extends javax.swing.JFrame {
         }
         else{
             d.addVestiging(v);
+            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
             txtVestigingid.setText("");
             txtAdres.setText("");
         }

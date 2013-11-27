@@ -51,7 +51,6 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         knopToevoegen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        knopVoegToe = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -100,13 +99,9 @@ public class ToevoegenProduct extends javax.swing.JFrame {
 
         checkGeeftpunten.setText("Geeft");
 
-        txtPuntenplus.setText("<aantal>");
-
         jLabel8.setText("bonuspunten");
 
         checkKostpunten.setText("Kost");
-
-        txtPuntenmin.setText("<aantal>");
 
         jLabel9.setText("bonuspunten");
 
@@ -114,11 +109,13 @@ public class ToevoegenProduct extends javax.swing.JFrame {
 
         checkMinimumaankoopbedrag.setText("Bij een minimum aankoopbedrag van");
 
-        txtMinimumartikelen.setText("<aantal>");
-
         jLabel10.setText("artikelen");
 
-        txtMinimumbedrag.setText("<aantal>");
+        txtMinimumbedrag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMinimumbedragActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("euro");
 
@@ -155,13 +152,6 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         ));
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
-
-        knopVoegToe.setText("Voeg toe");
-        knopVoegToe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopVoegToeActionPerformed(evt);
-            }
-        });
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -292,28 +282,32 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(checkGeeftpunten)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPuntenplus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtArtikelnr, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtArtikelnaam, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtArtikelnr, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(checkGeeftpunten)
+                                            .addGap(30, 30, 30)
+                                            .addComponent(jLabel8)
+                                            .addGap(91, 91, 91)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(checkKostpunten)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPuntenmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(checkKostpunten)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtPuntenmin, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(55, 55, 55)
+                                                .addComponent(txtPuntenplus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel9)))
                                 .addGap(18, 18, 18)
@@ -321,7 +315,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(checkMinimumaankoopbedrag)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,16 +326,13 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(checkMinimumartikelen)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 220, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(knopTerug)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(knopVoegToe)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(knopTerug))
+                        .addGap(0, 220, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -383,9 +374,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(knopTerug)
-                    .addComponent(knopVoegToe))
+                .addComponent(knopTerug)
                 .addContainerGap())
         );
 
@@ -489,31 +478,49 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_txtArtikelnaamActionPerformed
 
-    private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
-        JOptionPane.showMessageDialog(null, "Producten toegevoegd!");
-        ToevoegenProduct s = new ToevoegenProduct(this);
-                s.setLocationRelativeTo(null);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_knopVoegToeActionPerformed
-
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
         
+        Integer puntenplus;
+        Integer puntenmin;
+        Integer minimumartikelen;
+        Integer minimumbedrag;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
         int prijs = Integer.parseInt(txtPrijs.getText());
-        int puntenplus = Integer.parseInt(txtPuntenplus.getText());
-        int puntenmin = Integer.parseInt(txtPuntenmin.getText());
-        int minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
-        int minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText());
+        
+        if(checkGeeftpunten.isSelected()){
+            puntenplus = Integer.parseInt(txtPuntenplus.getText());
+            if(checkMinimumaankoopbedrag.isSelected()){
+                minimumartikelen = Integer.parseInt(txtMinimumbedrag.getText());
+            }
+            else minimumartikelen = 0;
+        }
+        else{
+            puntenplus = 0;
+            minimumartikelen = 0;
+        }
+        
+        if(checkKostpunten.isSelected()){
+            puntenmin = Integer.parseInt(txtPuntenmin.getText());
+            if(checkMinimumartikelen.isSelected()){
+                minimumbedrag = Integer.parseInt(txtMinimumartikelen.getText());
+            }
+            else minimumbedrag = 0;
+        }
+        else {
+            puntenmin = -1;
+            minimumbedrag = 0;
+        }
+        
         String artikelnaam = txtArtikelnaam.getText();
         
         Artikel p = new Artikel(artikelnr, winkelnaam, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
         if(d.checkArtikel(artikelnr, winkelnaam)){
-            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+            JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel");
         }
         else{
             d.addArtikel(p);
+            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
             txtArtikelnr.setText("");
             txtPrijs.setText("");
             txtPuntenplus.setText("");
@@ -523,6 +530,10 @@ public class ToevoegenProduct extends javax.swing.JFrame {
             txtArtikelnaam.setText("");
         }
     }//GEN-LAST:event_knopToevoegenActionPerformed
+
+    private void txtMinimumbedragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimumbedragActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMinimumbedragActionPerformed
 
     
     public static void main(String args[]) {
@@ -578,7 +589,6 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton knopTerug;
     private javax.swing.JButton knopToevoegen;
-    private javax.swing.JButton knopVoegToe;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;

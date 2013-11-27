@@ -190,32 +190,39 @@
                   <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="checkGeeftpunten" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPuntenplus" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jLabel1" min="-2" pref="113" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel4" min="-2" pref="85" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtArtikelnaam" min="-2" pref="118" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" pref="115" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txtArtikelnr" min="-2" pref="118" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="txtArtikelnaam" min="-2" pref="118" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="checkGeeftpunten" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="checkKostpunten" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtPuntenmin" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="checkKostpunten" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="txtPuntenmin" min="-2" pref="26" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                              <Component id="txtPuntenplus" min="-2" pref="24" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -225,7 +232,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="checkMinimumaankoopbedrag" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtMinimumbedrag" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtMinimumbedrag" min="-2" pref="27" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel11" min="-2" pref="31" max="-2" attributes="0"/>
                                   </Group>
@@ -238,7 +245,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="checkMinimumartikelen" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtMinimumartikelen" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtMinimumartikelen" min="-2" pref="27" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel10" min="-2" pref="55" max="-2" attributes="0"/>
                                   </Group>
@@ -246,13 +253,9 @@
                           </Group>
                           <Component id="knopToevoegen" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" alignment="0" min="-2" pref="554" max="-2" attributes="0"/>
+                          <Component id="knopTerug" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="220" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="knopVoegToe" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -302,10 +305,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="255" max="-2" attributes="0"/>
               <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="knopTerug" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="knopVoegToe" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -363,9 +363,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPuntenplus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;aantal&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -378,9 +375,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPuntenmin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;aantal&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -398,9 +392,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMinimumartikelen">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;aantal&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
@@ -408,9 +399,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMinimumbedrag">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;aantal&gt;"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMinimumbedragActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
@@ -469,13 +460,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="knopVoegToe">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Voeg toe"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopVoegToeActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>
