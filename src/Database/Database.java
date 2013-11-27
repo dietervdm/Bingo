@@ -2,14 +2,14 @@
 package Database;
 
 import Logica.*;
+import java.lang.String;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
 
 
@@ -196,12 +196,68 @@ public class Database {
                 int ptnkost = srs.getInt("ptnkost");
                 int minimumaantal = srs.getInt("minimumaantal");
                 int minimumbedrag = srs.getInt("minimumbedrag");
-                Artikel a = new Artikel(artikelnummer,winkelnaam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag);
+                Artikel a = new Artikel(artikelnummer,naam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag);
                 this.closeConnection();
                 return a;
             }
             else return null;
             
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public ArrayList<Artikel> getAssortimentWinkel(String winkelnaam){
+        try{
+            ArrayList<Artikel> assortiment = new ArrayList<Artikel>();
+            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            while(srs.next()){
+                String naam = srs.getString("winkelnaam");
+                int artikelnummer = srs.getInt("artikelnr");
+                String artikelnaam = srs.getString("artikelnaam");
+                int prijs = srs.getInt("prijs");
+                int ptnwinst = srs.getInt("ptnwinst");
+                int ptnkost = srs.getInt("ptnkost");
+                int minimumaantal = srs.getInt("minimumaantal");
+                int minimumbedrag = srs.getInt("minimumbedrag");
+                
+                Artikel a = new Artikel(artikelnummer,naam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag);
+                assortiment.add(a);
+            }
+            this.closeConnection();
+            return assortiment;          
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public ArrayList<Aankoop> getVerkopenWinkel(String winkelnaam){
+        try{
+            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
+            String sql = "SELECT * FROM aankoop WHERE winkelnaam='" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            while(srs.next()){
+                String transactienr = srs.getString("transactienr");
+                int vestigingsid = srs.getInt("vestigingsid");
+                String naam = srs.getString("winkelnaam");
+                int kaartnr = srs.getInt("kaartnr");
+                int datum = srs.getInt("datum");
+                int ptnplus = srs.getInt("ptnplus");
+                int ptnmin = srs.getInt("ptnmin");
+                int totprijs = srs.getInt("totprijs");
+                
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, winkelnaam, kaartnr, datum, ptnplus, ptnmin, totprijs);
+                assortiment.add(ak);
+            }
+            this.closeConnection();
+            return assortiment;          
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
