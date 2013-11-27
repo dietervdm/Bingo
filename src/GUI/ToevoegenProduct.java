@@ -495,7 +495,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         String artikelnaam = txtArtikelnaam.getText();
         
         Artikel p = new Artikel(artikelnr, w, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
-        if(d.checkProduct(artikelnr, winkelnaam)){
+        if(d.checkArtikel(artikelnr, winkelnaam)){
             JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
         }
         else{

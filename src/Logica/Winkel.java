@@ -7,7 +7,7 @@ import Database.Database;
 public class Winkel
 {
     private String winkelnaam;
-    private Account accountnr;
+    private int accountnr;
     private String paswoord;
     
     Database wdb = new Database();
@@ -25,10 +25,10 @@ public class Winkel
     {
         this.winkelnaam = winkelnaam;
         this.paswoord = paswoord;
-        accountnr = null;
+        accountnr = 0;
     }
     
-    public Winkel(String winkelnaam, Account account, String paswoord)
+    public Winkel(String winkelnaam, int account, String paswoord)
     {
         this.winkelnaam = winkelnaam;
         this.accountnr = account;
@@ -45,12 +45,12 @@ public class Winkel
         this.winkelnaam = winkelnaam;
     }
     
-    public Account getAccount()
+    public int getAccount()
     {
         return this.accountnr;
     }
     
-    public void setAccount(Account account)
+    public void setAccount(int account)
     {
         this.accountnr = account;
     }
