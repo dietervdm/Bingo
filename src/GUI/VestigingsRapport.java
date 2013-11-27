@@ -8,9 +8,11 @@ import Logica.*;
 public class VestigingsRapport extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief;
     
     public VestigingsRapport() {
         initComponents();
+        actief = InlogScherm.getInstance().actief;
     }
     
     public VestigingsRapport(JFrame caller) {

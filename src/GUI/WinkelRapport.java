@@ -8,16 +8,19 @@ import Logica.*;
 public class WinkelRapport extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief;
     
     // Code van Dieter
     private Winkel w = new Winkel();
     private Database d = new Database();
     
     public WinkelRapport() {
+        actief = InlogScherm.getInstance().actief;
         initComponents();
     }
     
     public WinkelRapport(JFrame caller) {
+        actief = InlogScherm.getInstance().actief;
         initComponents();
         myCaller = caller;
     }
@@ -340,11 +343,11 @@ public class WinkelRapport extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void knopAfdrukvoorbeeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAfdrukvoorbeeldActionPerformed
-        jTextArea1.append(w.winkelToString());
+        jTextArea1.append(actief.getWinkelnaam() + d.artikelsToString(actief.getWinkelnaam()));
     }//GEN-LAST:event_knopAfdrukvoorbeeldActionPerformed
 
     private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
-        w.printWinkel(w.winkelToString());
+        //w.printWinkel(w.winkelToString());
     }//GEN-LAST:event_knopPrintActionPerformed
 
     
