@@ -7,8 +7,8 @@ import java.util.Date;
 public class Aankoop
 {
     private int transactienr;
-    private Spaarkaart spaarkaart;
-    private Vestiging vestiging;
+    private int spaarkaart;
+    private int vestiging;
     private Date datum;
     private int ptnplus;
     private int ptnmin;
@@ -18,14 +18,14 @@ public class Aankoop
     public Aankoop()
     {}
     
-    public Aankoop(int transactienr, Spaarkaart spaarkaart, Vestiging vestiging)
+    public Aankoop(int transactienr, int spaarkaart, int vestiging)
     {
         this.transactienr = transactienr;
         this.spaarkaart = spaarkaart;
         this.vestiging = vestiging;
     }
     
-    public Aankoop(int transactienr, Spaarkaart spaarkaart, Vestiging vestiging,
+    public Aankoop(int transactienr, int spaarkaart, int vestiging,
                    Date datum, int ptnplus, int ptnmin, int totprijs)
     {
         this.transactienr = transactienr;
@@ -47,22 +47,22 @@ public class Aankoop
         this.transactienr = transactienr;
     }
     
-    public Spaarkaart getSpaarkaart()
+    public int getSpaarkaart()
     {
         return this.spaarkaart;
     }
     
-    public void setSpaarkaart(Spaarkaart spaarkaart)
+    public void setSpaarkaart(int spaarkaart)
     {
         this.spaarkaart = spaarkaart;
     }
     
-    public Vestiging getVestiging()
+    public int getVestiging()
     {
         return this.vestiging;
     }
     
-    public void setVestiging(Vestiging vestiging)
+    public void setVestiging(int vestiging)
     {
         this.vestiging = vestiging;
     }
