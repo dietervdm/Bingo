@@ -5,23 +5,23 @@ package Logica;
 public class Vestiging
 {
     private int VestigingId;
-    private Winkel winkel;
+    private String winkelnaam;
     private String adres;
     
     
     public Vestiging()
     {}
     
-    public Vestiging(Integer VestigingsId, Winkel winkel)
+    public Vestiging(int VestigingId, String winkelnaam)
     {
-        this.VestigingId = VestigingsId;
-        this.winkel = winkel;
+        this.VestigingId = VestigingId;
+        this.winkelnaam = winkelnaam;
     }
     
-    public Vestiging(Integer VestigingsId, Winkel winkel, String adres)
+    public Vestiging(int VestigingId, String winkelnaam, String adres)
     {
-        this.VestigingId = VestigingsId;
-        this.winkel = winkel;
+        this.VestigingId = VestigingId;
+        this.winkelnaam = winkelnaam;
         this.adres = adres;
     }
     
@@ -35,14 +35,14 @@ public class Vestiging
         this.VestigingId = VestigingId;
     }
     
-    public Winkel getWinkel()
+    public String getWinkelnaam()
     {
-        return this.winkel;
+        return this.winkelnaam;
     }
     
-    public void setWinkel(Winkel winkel)
+    public void setWinkelnaam(String winkelnaam)
     {
-        this.winkel = winkel;
+        this.winkelnaam = winkelnaam;
     }
     
     public String getAdres()
