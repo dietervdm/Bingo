@@ -64,6 +64,7 @@ public class WinkelRapport extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -218,12 +219,13 @@ public class WinkelRapport extends javax.swing.JFrame {
                         .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(knopAfdrukvoorbeeld)
-                                .addGap(61, 61, 61)
-                                .addComponent(knopPrint))
-                            .addComponent(jLabel2))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(knopAfdrukvoorbeeld)
+                                    .addGap(61, 61, 61)
+                                    .addComponent(knopPrint))
+                                .addComponent(jLabel2)))))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -338,11 +340,11 @@ public class WinkelRapport extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void knopAfdrukvoorbeeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAfdrukvoorbeeldActionPerformed
-        w.winkelToString();
+        jTextArea1.append(w.winkelToString());
     }//GEN-LAST:event_knopAfdrukvoorbeeldActionPerformed
 
     private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
-        // TODO add your handling code here:
+        w.printWinkel(w.winkelToString());
     }//GEN-LAST:event_knopPrintActionPerformed
 
     
