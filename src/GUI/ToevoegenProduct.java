@@ -481,16 +481,16 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
         
-        Integer puntenplus;
-        Integer puntenmin;
-        Integer minimumartikelen;
-        Integer minimumbedrag;
+        Integer puntenplus = 0;
+        Integer puntenmin = -1;
+        Integer minimumartikelen = 0;
+        Integer minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
         int prijs = Integer.parseInt(txtPrijs.getText());
         
         if(checkGeeftpunten.isSelected()){
             puntenplus = Integer.parseInt(txtPuntenplus.getText());
-            if(checkMinimumaankoopbedrag.isSelected()){
+            if(checkMinimumaankoopbedrag.isSelected() && !txtMinimumbedrag.getText().equals("")){
                 minimumartikelen = Integer.parseInt(txtMinimumbedrag.getText());
             }
             else minimumartikelen = 0;
@@ -502,7 +502,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         
         if(checkKostpunten.isSelected()){
             puntenmin = Integer.parseInt(txtPuntenmin.getText());
-            if(checkMinimumartikelen.isSelected()){
+            if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals("")){
                 minimumbedrag = Integer.parseInt(txtMinimumartikelen.getText());
             }
             else minimumbedrag = 0;
