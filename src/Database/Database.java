@@ -156,7 +156,7 @@ public class Database {
         
       public Boolean checkArtikel(int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "'";
+            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "' and artikelnr=" + artikelnr;
             ResultSet srs = getData(sql);
             if(srs.next()){
                 return true;
@@ -186,7 +186,7 @@ public class Database {
     
     public Boolean checkVestiging(int vestigingnummer, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE vestigingid='" + vestigingnummer + "' and winkelnaam='" + winkelnaam + "'";
+            String sql = "SELECT * FROM vestiging WHERE vestigingid=" + vestigingnummer + " and winkelnaam='" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 return true;
