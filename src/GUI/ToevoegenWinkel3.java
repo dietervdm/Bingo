@@ -268,18 +268,21 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
         Home s = new Home(this);
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopVoegToeActionPerformed
 
     private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed
         myCaller.setVisible(true);
+        myCaller.setLocationRelativeTo(null);
                 setVisible(false);
     }//GEN-LAST:event_knopTerugActionPerformed
 

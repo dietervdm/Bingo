@@ -141,6 +141,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
 
     private void knopAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnulerenActionPerformed
         getMyCaller().setVisible(true);
+        getMyCaller().setLocationRelativeTo(null);
                 setVisible(false);
     }//GEN-LAST:event_knopAnnulerenActionPerformed
 

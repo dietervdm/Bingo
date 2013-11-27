@@ -76,6 +76,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
         VerkopenAfrekening s = new VerkopenAfrekening();
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
