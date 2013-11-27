@@ -35,7 +35,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         txtAdres = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        knopToevoegen = new javax.swing.JButton();
         knopGaVerder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,7 +89,12 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("Toevoegen");
+        knopToevoegen.setText("Toevoegen");
+        knopToevoegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopToevoegenActionPerformed(evt);
+            }
+        });
 
         knopGaVerder.setText("Ga verder");
         knopGaVerder.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +124,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(20, 20, 20)))
                             .addGroup(layout.createSequentialGroup()
@@ -146,7 +151,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
                     .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(93, 93, 93)
-                .addComponent(jButton2)
+                .addComponent(knopToevoegen)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -165,7 +170,20 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
 
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
         
-        String winkelnaam = ToevoegenWinkel.getInstance().getW().getWinkelnaam();
+        
+            ToevoegenWinkel3 s = new ToevoegenWinkel3(this);
+                s.setVisible(true);
+                setVisible(false);
+        
+    }//GEN-LAST:event_knopGaVerderActionPerformed
+
+    private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed
+        myCaller.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_knopTerugActionPerformed
+
+    private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
+        String winkelnaam = ToevoegenWinkel.getInstance().getName();
         Winkel w = d.getWinkel(winkelnaam);
         int vestigingid = Integer.parseInt(txtVestigingid.getText());
         Vestiging v = new Vestiging(vestigingid, w , txtAdres.getText());
@@ -174,16 +192,8 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         }
         else{
             d.addVestiging(v);
-            ToevoegenWinkel3 s = new ToevoegenWinkel3(this);
-                s.setVisible(true);
-                setVisible(false);
         }
-    }//GEN-LAST:event_knopGaVerderActionPerformed
-
-    private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed
-        myCaller.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_knopTerugActionPerformed
+    }//GEN-LAST:event_knopToevoegenActionPerformed
 
    
     public static void main(String args[]) {
@@ -218,7 +228,6 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -227,6 +236,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton knopGaVerder;
     private javax.swing.JButton knopTerug;
+    private javax.swing.JButton knopToevoegen;
     private javax.swing.JTextField txtAdres;
     private javax.swing.JTextField txtVestigingid;
     // End of variables declaration//GEN-END:variables

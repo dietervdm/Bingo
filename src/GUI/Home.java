@@ -8,19 +8,19 @@ import Logica.*;
 public class Home extends javax.swing.JFrame {
     
     public JFrame myCaller;
-    public String actief;
+    public Winkel actief;
     
     public Home() {
         initComponents();
         actief = InlogScherm.getInstance().actief;
-        txtNaam.setText(actief);
+        txtNaam.setText("Welkom" + actief.getWinkelnaam());
     }
     
     public Home(JFrame caller) {
         initComponents();
         myCaller = caller;
         actief = InlogScherm.getInstance().actief;
-        txtNaam.setText(actief);
+        txtNaam.setText("Welkom " + actief.getWinkelnaam());
     }
 
     

@@ -44,8 +44,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPasswordField1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="keuzeWinkel" alignment="1" pref="272" max="32767" attributes="0"/>
+                          <Component id="txtPaswoord" pref="272" max="32767" attributes="0"/>
+                          <Component id="txtNaam" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -58,17 +58,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="keuzeWinkel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNaam" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPaswoord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="69" max="32767" attributes="0"/>
+              <EmptySpace pref="70" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="knopLogIn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="knopNieuweWinkel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Wachtwoord"/>
+        <Property name="text" type="java.lang.String" value="Paswoord"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -94,7 +94,7 @@
         <Property name="text" type="java.lang.String" value="Gelieve in te loggen of een nieuwe winkel toe te voegen."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="txtPaswoord">
     </Component>
     <Component class="javax.swing.JButton" name="knopLogIn">
       <Properties>
@@ -112,20 +112,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopNieuweWinkelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="keuzeWinkel">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="winkel 1"/>
-            <StringItem index="1" value="winkel 2"/>
-            <StringItem index="2" value="winkel 3"/>
-            <StringItem index="3" value="winkel 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="keuzeWinkelActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="txtNaam">
     </Component>
   </SubComponents>
 </Form>

@@ -2,12 +2,15 @@
 package GUI;
 
 import Database.*;
+import Logica.*;
+import javax.swing.JOptionPane;
 
 
 public class InlogScherm extends javax.swing.JFrame {
     
-    public String actief = null;
-    public Database d;
+    public Winkel actief = null;
+    public Winkel w;
+    public Database d = new Database();
     
     private static final InlogScherm inlogscherm = new InlogScherm();
     
@@ -27,17 +30,17 @@ public class InlogScherm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPaswoord = new javax.swing.JPasswordField();
         knopLogIn = new javax.swing.JButton();
         knopNieuweWinkel = new javax.swing.JButton();
-        keuzeWinkel = new javax.swing.JComboBox();
+        txtNaam = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Log in");
 
         jLabel1.setText("Naam");
 
-        jLabel2.setText("Wachtwoord");
+        jLabel2.setText("Paswoord");
 
         jLabel3.setText("Gelieve in te loggen of een nieuwe winkel toe te voegen.");
 
@@ -52,13 +55,6 @@ public class InlogScherm extends javax.swing.JFrame {
         knopNieuweWinkel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 knopNieuweWinkelActionPerformed(evt);
-            }
-        });
-
-        keuzeWinkel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "winkel 1", "winkel 2", "winkel 3", "winkel 4" }));
-        keuzeWinkel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keuzeWinkelActionPerformed(evt);
             }
         });
 
@@ -83,8 +79,8 @@ public class InlogScherm extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(keuzeWinkel, javax.swing.GroupLayout.Alignment.TRAILING, 0, 272, Short.MAX_VALUE))
+                            .addComponent(txtPaswoord, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                            .addComponent(txtNaam))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -92,15 +88,15 @@ public class InlogScherm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addGap(61, 61, 61)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(keuzeWinkel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                    .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(knopLogIn)
                     .addComponent(knopNieuweWinkel))
@@ -111,11 +107,28 @@ public class InlogScherm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopLogInActionPerformed
-        inlogscherm.setActief(keuzeWinkel.getSelectedItem().toString());
         
-        Home s = new Home(this);
+        String naam = txtNaam.getText();
+        String paswoord = txtPaswoord.getText();
+        
+        if(d.checkWinkel(naam)){
+            if(naam.equals(paswoord)){
+                w = d.getWinkel(naam);
+                inlogscherm.setActief(w);
+                Home s = new Home(this);
                 s.setVisible(true);
                 setVisible(false);
+            }
+            else JOptionPane.showMessageDialog(null, "Incorrect paswoord.");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Deze winkel bestaat nog niet, je kan hem aanmaken via de knop 'Nieuwe Winkel'.");
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_knopLogInActionPerformed
 
     private void knopNieuweWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopNieuweWinkelActionPerformed
@@ -125,10 +138,6 @@ public class InlogScherm extends javax.swing.JFrame {
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopNieuweWinkelActionPerformed
-
-    private void keuzeWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keuzeWinkelActionPerformed
-        
-    }//GEN-LAST:event_keuzeWinkelActionPerformed
 
     
     public static void main(String args[]) {
@@ -166,23 +175,23 @@ public class InlogScherm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JComboBox keuzeWinkel;
     private javax.swing.JButton knopLogIn;
     private javax.swing.JButton knopNieuweWinkel;
+    private javax.swing.JTextField txtNaam;
+    private javax.swing.JPasswordField txtPaswoord;
     // End of variables declaration//GEN-END:variables
 
     /**
      * @return the actief
      */
-    public String getActief() {
+    public Winkel getActief() {
         return actief;
     }
 
     /**
      * @param actief the actief to set
      */
-    public void setActief(String actief) {
+    public void setActief(Winkel actief) {
         this.actief = actief;
     }
 }
