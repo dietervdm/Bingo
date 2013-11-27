@@ -343,7 +343,7 @@ public class WinkelRapport extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void knopAfdrukvoorbeeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAfdrukvoorbeeldActionPerformed
-        jTextArea1.append(actief.getWinkelnaam() + d.artikelsToString(actief.getWinkelnaam()));
+        //jTextArea1.append(actief.getWinkelnaam() + d.artikelsToString(actief.getWinkelnaam()));
     }//GEN-LAST:event_knopAfdrukvoorbeeldActionPerformed
 
     private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
