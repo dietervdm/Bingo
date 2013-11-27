@@ -1,11 +1,13 @@
 
 package Logica;
 
+import Database.Database;
+
 
 public class Winkel
 {
     private String winkelnaam;
-    private Account account;
+    private Account accountnr;
     private String paswoord;
     
     Database wdb = new Database();
