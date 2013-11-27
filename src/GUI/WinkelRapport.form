@@ -262,11 +262,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Print"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopPrintActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="knopAfdrukvoorbeeld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Afdrukvoorbeeld"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopAfdrukvoorbeeldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

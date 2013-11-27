@@ -9,6 +9,10 @@ public class WinkelRapport extends javax.swing.JFrame {
     
     public JFrame myCaller;
     
+    // Code van Dieter
+    private Winkel w = new Winkel();
+    private Database d = new Database();
+    
     public WinkelRapport() {
         initComponents();
     }
@@ -67,8 +71,18 @@ public class WinkelRapport extends javax.swing.JFrame {
         jLabel1.setText("Print rapport");
 
         knopPrint.setText("Print");
+        knopPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopPrintActionPerformed(evt);
+            }
+        });
 
         knopAfdrukvoorbeeld.setText("Afdrukvoorbeeld");
+        knopAfdrukvoorbeeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopAfdrukvoorbeeldActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Winkelrapport");
 
@@ -322,6 +336,14 @@ public class WinkelRapport extends javax.swing.JFrame {
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
+
+    private void knopAfdrukvoorbeeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAfdrukvoorbeeldActionPerformed
+        w.winkelToString();
+    }//GEN-LAST:event_knopAfdrukvoorbeeldActionPerformed
+
+    private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_knopPrintActionPerformed
 
     
     public static void main(String args[]) {
