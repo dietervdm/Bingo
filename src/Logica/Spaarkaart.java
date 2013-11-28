@@ -5,23 +5,23 @@ package Logica;
 public class Spaarkaart
 {
     private int kaartnr;
-    private Account account;
+    private int accountnr;
     private String naamhouder;
     
     
     public Spaarkaart()
     {}
     
-    public Spaarkaart(int kaartnr, Account account)
+    public Spaarkaart(int kaartnr, int accountnr)
     {
         this.kaartnr = kaartnr;
-        this.account = account;
+        this.accountnr = accountnr;
     }
     
-    public Spaarkaart(int kaartnr, Account account, String naamhouder)
+    public Spaarkaart(int kaartnr, int accountnr, String naamhouder)
     {
         this.kaartnr = kaartnr;
-        this.account = account;
+        this.accountnr = accountnr;
         this.naamhouder = naamhouder;
     }
     
@@ -35,14 +35,14 @@ public class Spaarkaart
         this.kaartnr = kaartnr;
     }
     
-    public Account getAccount()
+    public int getAccountnr()
     {
-        return this.account;
+        return this.accountnr;
     }
     
-    public void setAccount(Account account)
+    public void setAccountnr(int accountnr)
     {
-        this.account = account;
+        this.accountnr = accountnr;
     }
     
     public String getNaamhouder()
