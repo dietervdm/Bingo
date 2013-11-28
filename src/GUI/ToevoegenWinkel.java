@@ -78,7 +78,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         });
 
         labelPaswoord.setForeground(new java.awt.Color(255, 0, 0));
-        labelPaswoord.setText("De 2 paswoorden moeten gelijk zijn!");
+        labelPaswoord.setText("De 2 wachtwoorden moeten gelijk zijn!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
