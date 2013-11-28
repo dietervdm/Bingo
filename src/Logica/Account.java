@@ -5,6 +5,7 @@ package Logica;
 import java.awt.Image;
 import java.util.Date;
 
+
 public class Account 
 {
     private int accountnr;
@@ -13,11 +14,14 @@ public class Account
     private String adres;
     private int punten;
     private boolean wolverine;
-    private Date startw;
+    private java.util.Date jstartw = new java.util.Date();
+    private java.sql.Date startw = new java.sql.Date(jstartw.getTime());
     private boolean bigspender;
-    private Date startb;
+    private java.util.Date jstartb = new java.util.Date();
+    private java.sql.Date startb = new java.sql.Date(jstartw.getTime());
     private boolean major;
-    private Date startm;
+    private java.util.Date jstartm = new java.util.Date();
+    private java.sql.Date startm = new java.sql.Date(jstartw.getTime());
     private boolean bedrijf;
     private String btwnummer;
     //bedrijf
@@ -38,9 +42,7 @@ public class Account
         this.bedrijf = bedrijf;
     }
     
-    public Account(int accountnr, String naam, String email, String adres, int punten,
-                   boolean wolverine, Date startw, boolean bigspender, Date startb, boolean major,
-                   Date startm, boolean bedrijf, String btwnummer)
+    public Account(int accountnr, String naam, String email, String adres, int punten, boolean wolverine, java.sql.Date startw, boolean bigspender, java.sql.Date startb, boolean major, java.sql.Date startm, boolean bedrijf, String btwnummer)
     {
         this.accountnr = accountnr;
         this.naam = naam;
@@ -122,7 +124,7 @@ public class Account
         return this.startw;
     }
     
-    public void setStartw(Date startw)
+    public void setStartw(java.sql.Date startw)
     {
         this.startw = startw;
     }
@@ -142,7 +144,7 @@ public class Account
         return this.startb;
     }
     
-    public void setStartb(Date startb)
+    public void setStartb(java.sql.Date startb)
     {
         this.startb = startb;
     }
@@ -162,7 +164,7 @@ public class Account
         return this.startm;
     }
     
-    public void setStartm(Date startm)
+    public void setStartm(java.sql.Date startm)
     {
         this.startm = startm;
     }

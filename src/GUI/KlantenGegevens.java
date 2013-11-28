@@ -448,12 +448,12 @@ public class KlantenGegevens extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
         String btwnummer = txtBtwnummer.getText();
-        Datum startw = new Datum();
-        startw.wijzigDatum(2000, 0, 0, 0);
-        Datum startb = new Datum();
-        startb.wijzigDatum(2000, 0, 0, 0);
-        Datum startm = new Datum();
-        startm.wijzigDatum(2000, 0, 0, 0);
+        java.util.Date jstartw = new java.util.Date();
+        java.sql.Date startw = new java.sql.Date(jstartw.getTime());
+        java.util.Date jstartb = new java.util.Date();
+        java.sql.Date startb = new java.sql.Date(jstartb.getTime());
+        java.util.Date jstartm = new java.util.Date();
+        java.sql.Date startm = new java.sql.Date(jstartm.getTime());
         
         if(checkBedrijf.isSelected()){
             btwnummer = txtBtwnummer.getText();

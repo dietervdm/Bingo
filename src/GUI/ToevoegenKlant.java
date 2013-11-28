@@ -419,17 +419,18 @@ public class ToevoegenKlant extends javax.swing.JFrame {
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
+        
+        
+        java.util.Date jstartw = new java.util.Date();
+        java.sql.Date startw = new java.sql.Date(jstartw.getTime());
+        java.util.Date jstartb = new java.util.Date();
+        java.sql.Date startb = new java.sql.Date(jstartb.getTime());
+        java.util.Date jstartm = new java.util.Date();
+        java.sql.Date startm = new java.sql.Date(jstartm.getTime());
 
-        Datum startw = new Datum();
-        startw.wijzigDatum(2000, 0, 0, 0);
-        Datum startb = new Datum();
-        startb.wijzigDatum(2000, 0, 0, 0);
-        Datum startm = new Datum();
-        startm.wijzigDatum(2000, 0, 0, 0);
         String naam = txtNaam.getText();
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
-        Integer artikelnummer;
         String btwnummer = null;
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         
@@ -440,13 +441,21 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         
         Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
         
-//        d.addAccount(a);
-//        JOptionPane.showMessageDialog(null, "Account toegevoegd");
-//        txtAccountnr.setText("");
-//        txtBtwnummer.setText("");
-//        txtAdres.setText("");
-//        txtEmail.setText("");
-//        txtNaam.setText("");
+        if(d.checkAccount(accountnr)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addAccount(a);
+            JOptionPane.showMessageDialog(null, "Account toegevoegd");
+            txtAccountnr.setText("");
+            txtBtwnummer.setText("");
+            txtAdres.setText("");
+            txtEmail.setText("");
+            txtNaam.setText("");
+        }
+        
+        
+        
             
         
     }//GEN-LAST:event_knopToevoegenActionPerformed

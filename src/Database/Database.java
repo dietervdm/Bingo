@@ -411,7 +411,9 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", " + a.getStartw() + ", " + a.isBigspender() + ", " + a.getStartb() + ", " + a.isMajor() + ", " + a.getStartm() + ", " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
+            java.util.Date jtest = new java.util.Date();
+            java.sql.Date test = new java.sql.Date(jtest.getTime());
+            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + test + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '2000-01-01 00:00:00', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -447,11 +449,11 @@ public class Database {
                 String adres = srs.getString("adres");
                 int punten = srs.getInt("punten");
                 boolean wolverine = srs.getBoolean("wolverine");
-                Date startw = srs.getDate("startw");
+                java.sql.Date startw = srs.getDate("startw");
                 boolean bigspender = srs.getBoolean("bigspender");
-                Date startb = srs.getDate("startb");
+                java.sql.Date startb = srs.getDate("startb");
                 boolean major = srs.getBoolean("major");
-                Date startm = srs.getDate("startm");
+                java.sql.Date startm = srs.getDate("startm");
                 boolean bedrijf = srs.getBoolean("bedrijf");
                 String btwnummer = srs.getString("btwnummer");
                 Account a = new Account(accountnummer,naam,email,adres,punten,wolverine,startw,bigspender,startb,major,startm,bedrijf,btwnummer);
