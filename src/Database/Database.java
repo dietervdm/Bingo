@@ -489,7 +489,8 @@ public class Database {
                     + "UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr() + "; "
                     + "UPDATE account SET startm = " + nieuw.getStartm() + " WHERE accountnr = " + oud.getAccountnr() + "; "
                     + "UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr() + "; ");           
+                    + "UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
+                    + "UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr() + ";");           
             this.closeConnection();
         }
         catch(SQLException sqle){
