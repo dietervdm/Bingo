@@ -32,7 +32,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtAccountnr2 = new javax.swing.JTextField();
-        txtAccountnr1 = new javax.swing.JTextField();
+        txtAccountnr = new javax.swing.JTextField();
         txtNaam = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -299,7 +299,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtAccountnr1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -319,7 +319,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAccountnr1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(knopVulin)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -442,8 +442,8 @@ public class KlantenGegevens extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void knopWijzigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopWijzigActionPerformed
-        String accountnrstring = txtAccountnr2.getText();
-        int accountnr = Integer.parseInt(accountnrstring);
+        String accountnr2string = txtAccountnr2.getText();
+        int accountnr2 = Integer.parseInt(accountnr2string);
         String naam = txtNaam.getText();
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
@@ -460,27 +460,37 @@ public class KlantenGegevens extends javax.swing.JFrame {
         }
             else btwnummer = null;
         
-//        Account oud = d.getAccount(txtAccountnr1.getText());
-//        Account nieuw = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
-//        
-//        d.updateAccount(oud,nieuw);
-//        JOptionPane.showMessageDialog(null, "Account gewijzigd");
-//        txtAccountnr.setText("");
-//        txtBtwnummer.setText("");
-//        txtAdres.setText("");
-//        txtEmail.setText("");
-//        txtNaam.setText("");
+        int accountnr = Integer.parseInt(txtAccountnr.getText());
+        Account oud = d.getAccount(accountnr);
+        Account nieuw = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
+        
+        
+        if(d.checkAccount(nieuw.getAccountnr())){
+            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat al.");
+        }
+        else {
+            d.updateAccount(oud,nieuw);
+            JOptionPane.showMessageDialog(null, "Account gewijzigd");
+            txtAccountnr.setText("");
+            txtBtwnummer.setText("");
+            txtAdres.setText("");
+            txtEmail.setText("");
+            txtNaam.setText("");
+            JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
+        }
+        
     }//GEN-LAST:event_knopWijzigActionPerformed
 
     private void knopVulinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVulinActionPerformed
-//        Account a = d.getAccount(txtAccountnr.getText());
-//        
-//        txtAccountnr2.setText(Integer.toString(a.getAccountnr()));
-//        txtNaam.setText(a.getNaam());
-//        txtEmail.setText(a.getEmail());
-//        txtAdres.setText(a.getAdres());
-//        txtBtwnummer.setText(a.getBtwNummer());
-//        
+        int accountnr = Integer.parseInt(txtAccountnr.getText());
+        Account a = d.getAccount(accountnr);
+        
+        txtAccountnr2.setText(Integer.toString(a.getAccountnr()));
+        txtNaam.setText(a.getNaam());
+        txtEmail.setText(a.getEmail());
+        txtAdres.setText(a.getAdres());
+        txtBtwnummer.setText(a.getBtwNummer());
+        
     }//GEN-LAST:event_knopVulinActionPerformed
 
     private void MenuknopArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevensActionPerformed
@@ -554,7 +564,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTextField txtAccountnr1;
+    private javax.swing.JTextField txtAccountnr;
     private javax.swing.JTextField txtAccountnr2;
     private javax.swing.JTextField txtAdres;
     private javax.swing.JTextField txtBtwnummer;

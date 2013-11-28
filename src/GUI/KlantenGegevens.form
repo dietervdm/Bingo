@@ -242,7 +242,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel2" min="-2" pref="125" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtAccountnr1" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <Component id="txtAccountnr" min="-2" pref="135" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel1" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                               </Group>
@@ -272,7 +272,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtAccountnr1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtAccountnr" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="knopVulin" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -340,7 +340,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAccountnr2">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAccountnr1">
+    <Component class="javax.swing.JTextField" name="txtAccountnr">
     </Component>
     <Component class="javax.swing.JTextField" name="txtNaam">
     </Component>
