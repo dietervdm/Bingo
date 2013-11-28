@@ -4,10 +4,12 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
 
 public class VestigingsGegevens extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Database d = new Database();
     
     public VestigingsGegevens() {
         initComponents();
@@ -399,33 +401,33 @@ public class VestigingsGegevens extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAdresActionPerformed
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
-//        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-//        int vestigingid = Integer.parseInt(txtVestigingid.getText());
-//        Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
-//        if(d.checkVestiging(vestigingid, winkelnaam)){
-//            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
-//        }
-//        else{
-//            d.addVestiging(v);
-//            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
-//            txtVestigingid.setText("");
-//            txtAdres.setText("");
-//       }
+        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
+        int vestigingid = Integer.parseInt(txtVestigingid.getText());
+        Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
+        if(d.checkVestiging(vestigingid, winkelnaam)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addVestiging(v);
+            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
+            txtVestigingid.setText("");
+            txtAdres.setText("");
+       }
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
     private void knopToevoegen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegen1ActionPerformed
-//        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-//        int vestigingid = Integer.parseInt(txtVestigingid.getText());
-//        Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
-//        if(d.checkVestiging(vestigingid, winkelnaam)){
-//            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
-//        }
-//        else{
-//            d.addVestiging(v);
-//            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
-//            txtVestigingid.setText("");
-//            txtAdres.setText("");
-//        }
+        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
+        int vestigingid = Integer.parseInt(txtVestigingid.getText());
+        Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
+        if(d.checkVestiging(vestigingid, winkelnaam)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addVestiging(v);
+            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
+            txtVestigingid.setText("");
+            txtAdres.setText("");
+        }
     }//GEN-LAST:event_knopToevoegen1ActionPerformed
 
     private void txtVestigingidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVestigingidActionPerformed
