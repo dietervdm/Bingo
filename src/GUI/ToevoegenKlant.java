@@ -54,6 +54,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         menuknopWinkelgegevens = new javax.swing.JMenuItem();
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
+        MenuknopnArtikelgegevens = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
@@ -198,6 +199,15 @@ public class ToevoegenKlant extends javax.swing.JFrame {
             }
         });
         menuknopAanpassen.add(menuknopKlantengegevens);
+
+        MenuknopnArtikelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopnArtikelgegevens.setText("Artikelgegevens");
+        MenuknopnArtikelgegevens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopnArtikelgegevensActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopnArtikelgegevens);
 
         jMenuBar1.add(menuknopAanpassen);
 
@@ -441,6 +451,13 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
+    private void MenuknopnArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopnArtikelgegevensActionPerformed
+        ProductGegevens s = new ProductGegevens(this);
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_MenuknopnArtikelgegevensActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -475,6 +492,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JMenuItem MenuknopnArtikelgegevens;
     private javax.swing.JCheckBox checkBedrijf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -115,6 +115,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopKlantengegevensActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuknopArtikelgegevens">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/GUI/Icon Pack/Artikel.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Artikelgegevens"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopArtikelgegevensActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuknopToevoegen">
@@ -214,7 +225,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="knopToevoegen1" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
+                  <Component id="knopAanpassen" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="554" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="157" max="32767" attributes="0"/>
@@ -243,7 +254,7 @@
                   <Component id="txtAdres" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="57" max="32767" attributes="0"/>
-              <Component id="knopToevoegen1" min="-2" max="-2" attributes="0"/>
+              <Component id="knopAanpassen" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="279" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -302,12 +313,12 @@
         <Property name="text" type="java.lang.String" value="Opgepast! Elke vestiging moet een verschillende ID hebben."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="knopToevoegen1">
+    <Component class="javax.swing.JButton" name="knopAanpassen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Aanpassen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopToevoegen1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopAanpassenActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

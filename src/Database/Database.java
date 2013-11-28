@@ -579,9 +579,11 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE spaarkaart SET accountnr = " + nieuw.getAccountnr() + " WHERE kaarntr = " + oud.getKaartnr() + "; "
-                    + "UPDATE spaarkaart SET naamhouder = '" + nieuw.getNaamhouder() + "' WHERE kaartnr = " + oud.getKaartnr()+ "; "
-                    + "UPDATE spaarkaart SET kaartnr = " + nieuw.getKaartnr() + " WHERE kaartnr = " + oud.getKaartnr() + ";");           
+
+            stmt.executeUpdate("UPDATE spaarkaart SET accountnr = " + nieuw.getAccountnr() + " WHERE kaarntr = " + oud.getKaartnr());
+            stmt.executeUpdate("UPDATE spaarkaart SET naamhouder = '" + nieuw.getNaamhouder() + "' WHERE kaarntr = " + oud.getKaartnr());
+            stmt.executeUpdate("UPDATE spaarkaart SET kaartnr = " + nieuw.getKaartnr() + " WHERE kaarntr = " + oud.getKaartnr());
+            
             this.closeConnection();
         }
         catch(SQLException sqle){
