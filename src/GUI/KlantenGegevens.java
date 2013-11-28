@@ -463,7 +463,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
     }//GEN-LAST:event_knopWijzigActionPerformed
 
     private void knopVulinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVulinActionPerformed
-//        Account a = d.getAccount(txtAccountnr1.getText());
+//        Account a = d.getAccount(txtAccountnr.getText());
 //        
 //        txtAccountnr2.setText(Integer.toString(a.getAccountnr()));
 //        txtNaam.setText(a.getNaam());

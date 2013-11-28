@@ -5,6 +5,7 @@ import Logica.*;
 import java.lang.String;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -158,9 +159,11 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE winkel SET accountnr = " + nieuw.getAccount() + " WHERE winkelnaam = '" + oud.getWinkelnaam() + "'; "
-                    + "UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam()+ "'; "
-                    + "UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "';");           
+
+            stmt.executeUpdate("UPDATE winkel SET accountnr = 0 WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            stmt.executeUpdate("UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            stmt.executeUpdate("UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -245,13 +248,16 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE artikel SET artikelnaam = '" + nieuw.getArtikelnaam() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';" 
-                    + "UPDATE artikel SET prijs = " + nieuw.getPrijs() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET ptnwinst = " + nieuw.getPtnwinst() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET minimumaantal = " + nieuw.getMinimumaantal()+ " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET ptnkost = " + nieuw.getPtnkost() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET artikelnr = " + nieuw.getArtikelnr() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';");           
+            
+            stmt.executeUpdate("UPDATE artikel SET artikelnaam = '" + nieuw.getArtikelnaam() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET prijs = '" + nieuw.getPrijs() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET ptnwinst = '" + nieuw.getPtnwinst() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET minimumaantal = '" + nieuw.getMinimumaantal() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET ptnkost = '" + nieuw.getPtnkost() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = '" + nieuw.getMinimumbedrag() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET artikelnr = '" + nieuw.getArtikelnr() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            
+            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -388,8 +394,10 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "';" 
-                    + "UPDATE vestiging SET vestigingid = " + nieuw.getVestigingId() + " WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "';");           
+            
+            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "'" );
+            stmt.executeUpdate("UPDATE vestiging SET vestigingid = '" + nieuw.getVestigingId() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "'" );     
+                    
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -478,19 +486,21 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE account SET naam = '" + nieuw.getNaam() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET email = '" + nieuw.getEmail() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET adres = '" + nieuw.getAdres() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET punten = " + nieuw.getPunten() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET wolverine = " + nieuw.isWolverine() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET startw = " + nieuw.getStartw() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET startb = " + nieuw.getStartb() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET startm = " + nieuw.getStartm() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr() + ";");           
+            
+            stmt.executeUpdate("UPDATE account SET naam = '" + nieuw.getNaam() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET email = '" + nieuw.getEmail() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET adres = '" + nieuw.getAdres() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET punten = " + nieuw.getPunten() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET wolverine = " + nieuw.isWolverine() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startw = " + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startb = " + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startm = " + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + "' WHERE accountnr = " + oud.getAccountnr());
+            
             this.closeConnection();
         }
         catch(SQLException sqle){

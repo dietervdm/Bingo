@@ -4,19 +4,25 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
 
 public class WinkelGegevens extends javax.swing.JFrame {
     
     public JFrame myCaller;
-    
+    private Winkel actief;
+    public Database d = new Database();
     
     public WinkelGegevens() {
         initComponents();
+        actief = InlogScherm.getInstance().getActief();
+        
     }
     
     public WinkelGegevens(JFrame caller) {
         initComponents();
         myCaller = caller;
+        actief = InlogScherm.getInstance().getActief();
+        
     }
 
     
@@ -31,9 +37,9 @@ public class WinkelGegevens extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtNaam = new javax.swing.JTextField();
-        txtWachtwoord = new javax.swing.JTextField();
-        txtWachtwoord2 = new javax.swing.JTextField();
         knopAanpassen = new javax.swing.JButton();
+        txtPaswoord = new javax.swing.JPasswordField();
+        txtPaswoord2 = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -72,6 +78,17 @@ public class WinkelGegevens extends javax.swing.JFrame {
         jLabel4.setText("Nieuwe naam");
 
         knopAanpassen.setText("Aanpassen");
+        knopAanpassen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopAanpassenActionPerformed(evt);
+            }
+        });
+
+        txtPaswoord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPaswoordActionPerformed(evt);
+            }
+        });
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,10 +225,10 @@ public class WinkelGegevens extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtWachtwoord2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(txtPaswoord)
+                            .addComponent(txtPaswoord2))))
                 .addGap(489, 542, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -226,11 +243,11 @@ public class WinkelGegevens extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtWachtwoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPaswoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(knopAanpassen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
@@ -331,6 +348,28 @@ public class WinkelGegevens extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
+    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
+        if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
+            Winkel nieuw = new Winkel(txtNaam.getText(), txtPaswoord.getText());
+            
+            if(d.checkWinkel(nieuw.getWinkelnaam())){
+                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+            }
+            else {
+                d.updateWinkel(actief, nieuw);
+                InlogScherm.getInstance().setActief(nieuw);
+                JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
+        }
+    }//GEN-LAST:event_knopAanpassenActionPerformed
+
+    private void txtPaswoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaswoordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPaswoordActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -388,7 +427,7 @@ public class WinkelGegevens extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
     private javax.swing.JTextField txtNaam;
-    private javax.swing.JTextField txtWachtwoord;
-    private javax.swing.JTextField txtWachtwoord2;
+    private javax.swing.JPasswordField txtPaswoord;
+    private javax.swing.JPasswordField txtPaswoord2;
     // End of variables declaration//GEN-END:variables
 }
