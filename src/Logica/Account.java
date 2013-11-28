@@ -19,7 +19,7 @@ public class Account
     private boolean major;
     private Date startm;
     private boolean bedrijf;
-    private int btwnummer;
+    private String btwnummer;
     //bedrijf
     private String btwNummer;
     private Image logo;
@@ -40,7 +40,7 @@ public class Account
     
     public Account(int accountnr, String naam, String email, String adres, int punten,
                    boolean wolverine, Date startw, boolean bigspender, Date startb, boolean major,
-                   Date startm, boolean bedrijf, int btwnummer)
+                   Date startm, boolean bedrijf, String btwnummer)
     {
         this.accountnr = accountnr;
         this.naam = naam;
@@ -177,12 +177,12 @@ public class Account
         this.bedrijf = bedrijf;
     }
     
-    public int getBtwnummer()
+    public String getBtwnummer()
     {
         return this.btwnummer;
     }
     
-    public void setBtwnummer(int btwnummer)
+    public void setBtwnummer(String btwnummer)
     {
         this.btwnummer = btwnummer;
     }

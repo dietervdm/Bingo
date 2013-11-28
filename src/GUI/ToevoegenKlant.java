@@ -420,32 +420,25 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
         Integer artikelnummer;
-        Integer Btwnummer = -1;
+        String btwnummer = null;
         int accountnr = Integer.parseInt(txtAccountnr.getText());
-        int btwnummer = Integer.parseInt(txtBtwnummer.getText());
-
-        if(checkBedrijf.isSelected()){
-            Btwnummer = Integer.parseInt(txtBtwnummer.getText());
-        }
-            else Btwnummer = -1;
         
-
-        Account a = new Account(accountnr, naam, email, adres, 0,
-                   false, startw, false, startb, false,
-                   startm, false, btwnummer);
-//        if(d.checkAccount(accountnr)){
-//            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat al");
-//        }
-//        else{
-//            d.addAccount(a);
-//            JOptionPane.showMessageDialog(null, "Account toegevoegd");
-//            txtAccountnr.setText("");
-//            txtBtwnummer.setText("");
-//            txtAdres.setText("");
-//            txtEmail.setText("");
-//            txtNaam.setText("");
-//            
-//        }
+        if(checkBedrijf.isSelected()){
+            btwnummer = txtBtwnummer.getText();
+        }
+            else btwnummer = null;
+        
+        Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
+        
+//        d.addAccount(a);
+//        JOptionPane.showMessageDialog(null, "Account toegevoegd");
+//        txtAccountnr.setText("");
+//        txtBtwnummer.setText("");
+//        txtAdres.setText("");
+//        txtEmail.setText("");
+//        txtNaam.setText("");
+            
+        
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
     
