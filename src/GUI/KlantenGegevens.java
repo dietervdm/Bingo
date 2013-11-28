@@ -448,11 +448,11 @@ public class KlantenGegevens extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
         String btwnummer = txtBtwnummer.getText();
-        java.util.Date jstartw = new java.util.Date();
+        java.util.Date jstartw = new java.util.Date(100,00,01);
         java.sql.Date startw = new java.sql.Date(jstartw.getTime());
-        java.util.Date jstartb = new java.util.Date();
+        java.util.Date jstartb = new java.util.Date(100,00,01);
         java.sql.Date startb = new java.sql.Date(jstartb.getTime());
-        java.util.Date jstartm = new java.util.Date();
+        java.util.Date jstartm = new java.util.Date(100,00,01);
         java.sql.Date startm = new java.sql.Date(jstartm.getTime());
         
         if(checkBedrijf.isSelected()){
@@ -462,21 +462,22 @@ public class KlantenGegevens extends javax.swing.JFrame {
         
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         Account oud = d.getAccount(accountnr);
-        Account nieuw = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
+        Account nieuw = new Account(accountnr2, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
         
         
-        if(d.checkAccount(nieuw.getAccountnr())){
+        if(d.checkAccount(nieuw.getAccountnr()) && !(nieuw.getAccountnr() == oud.getAccountnr())){
             JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat al.");
         }
         else {
             d.updateAccount(oud,nieuw);
-            JOptionPane.showMessageDialog(null, "Account gewijzigd");
+            
             txtAccountnr.setText("");
+            txtAccountnr2.setText("");
             txtBtwnummer.setText("");
             txtAdres.setText("");
             txtEmail.setText("");
             txtNaam.setText("");
-            JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
+            
         }
         
     }//GEN-LAST:event_knopWijzigActionPerformed

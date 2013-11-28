@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 
 
@@ -413,7 +414,8 @@ public class Database {
             Statement stmt = dbConnection.createStatement();
             java.util.Date jtest = new java.util.Date();
             java.sql.Date test = new java.sql.Date(jtest.getTime());
-            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + test + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '2000-01-01 00:00:00', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
+            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "')");
+            JOptionPane.showMessageDialog(null, "Account toegevoegd");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -492,17 +494,17 @@ public class Database {
             stmt.executeUpdate("UPDATE account SET naam = '" + nieuw.getNaam() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET email = '" + nieuw.getEmail() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET adres = '" + nieuw.getAdres() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET punten = " + nieuw.getPunten() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET wolverine = " + nieuw.isWolverine() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET startw = " + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET startb = " + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET startm = " + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET punten = " + nieuw.getPunten() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET wolverine = " + nieuw.isWolverine() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startw = '" + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startb = '" + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startm = '" + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + "' WHERE accountnr = " + oud.getAccountnr());
-            
+            stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
+            JOptionPane.showMessageDialog(null, "Account gewijzigd");
             this.closeConnection();
         }
         catch(SQLException sqle){
