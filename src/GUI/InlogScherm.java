@@ -170,7 +170,10 @@ public class InlogScherm extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InlogScherm().setVisible(true);
+                //new InlogScherm().setVisible(true);
+                InlogScherm i = new InlogScherm();
+                i.setLocationRelativeTo(null);
+                i.setVisible(true);
             }
         });
     }
