@@ -428,7 +428,7 @@ public class Database {
         }
     }
     
-    public Winkel getAccount(int accountnr){
+    public Account getAccount(int accountnr){
         try{
             String sql = "SELECT * FROM account WHERE accountnr=" + accountnr + ";";
             ResultSet srs = getData(sql);
