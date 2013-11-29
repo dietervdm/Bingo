@@ -1,6 +1,8 @@
 
 package Logica;
 
+import javax.swing.Timer;
+
 
 public class Spaarkaart
 {
