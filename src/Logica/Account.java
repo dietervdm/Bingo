@@ -21,10 +21,7 @@ public class Account
     private boolean bedrijf;
     private String btwnummer;
     //bedrijf
-    private String btwNummer;
     private Image logo;
-    //particulier
-    private Image pasfoto;
     
     public Account()
     {}
