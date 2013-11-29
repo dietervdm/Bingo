@@ -323,7 +323,7 @@ public class Database {
         }
     }
     
-    public ArrayList<Aankoop> getVerkopenWinkel(String winkelnaam, int vestigingid){
+    public ArrayList<Aankoop> getVerkopenWinkelVestiging(String winkelnaam, int vestigingid){
         try{
             ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
             String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and + vestigingid = '" + vestigingid + "';";
