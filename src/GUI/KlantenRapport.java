@@ -36,6 +36,7 @@ public class KlantenRapport extends javax.swing.JFrame {
         menuknopWinkelgegevens = new javax.swing.JMenuItem();
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
+        MenuknopArtikelgegevens = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
@@ -129,6 +130,15 @@ public class KlantenRapport extends javax.swing.JFrame {
             }
         });
         menuknopAanpassen.add(menuknopKlantengegevens);
+
+        MenuknopArtikelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopArtikelgegevens.setText("Artikelgegevens");
+        MenuknopArtikelgegevens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopArtikelgegevensActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopArtikelgegevens);
 
         jMenuBar1.add(menuknopAanpassen);
 
@@ -283,6 +293,13 @@ public class KlantenRapport extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
+    private void MenuknopArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevensActionPerformed
+        ProductGegevens s = new ProductGegevens(this);
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -316,6 +333,7 @@ public class KlantenRapport extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;

@@ -54,6 +54,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         menuknopWinkelgegevens = new javax.swing.JMenuItem();
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
+        MenuknopnArtikelgegevens = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
@@ -198,6 +199,15 @@ public class ToevoegenKlant extends javax.swing.JFrame {
             }
         });
         menuknopAanpassen.add(menuknopKlantengegevens);
+
+        MenuknopnArtikelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopnArtikelgegevens.setText("Artikelgegevens");
+        MenuknopnArtikelgegevens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopnArtikelgegevensActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopnArtikelgegevens);
 
         jMenuBar1.add(menuknopAanpassen);
 
@@ -409,17 +419,18 @@ public class ToevoegenKlant extends javax.swing.JFrame {
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
+        
+        
+        java.util.Date jstartw = new java.util.Date(100,00,01);
+        java.sql.Date startw = new java.sql.Date(jstartw.getTime());
+        java.util.Date jstartb = new java.util.Date(100,00,01);
+        java.sql.Date startb = new java.sql.Date(jstartb.getTime());
+        java.util.Date jstartm = new java.util.Date(100,00,01);
+        java.sql.Date startm = new java.sql.Date(jstartm.getTime());
 
-        Datum startw = new Datum();
-        startw.wijzigDatum(2000, 0, 0, 0);
-        Datum startb = new Datum();
-        startb.wijzigDatum(2000, 0, 0, 0);
-        Datum startm = new Datum();
-        startm.wijzigDatum(2000, 0, 0, 0);
         String naam = txtNaam.getText();
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
-        Integer artikelnummer;
         String btwnummer = null;
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         
@@ -430,16 +441,31 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         
         Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
         
-//        d.addAccount(a);
-//        JOptionPane.showMessageDialog(null, "Account toegevoegd");
-//        txtAccountnr.setText("");
-//        txtBtwnummer.setText("");
-//        txtAdres.setText("");
-//        txtEmail.setText("");
-//        txtNaam.setText("");
+        if(d.checkAccount(accountnr)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addAccount(a);
+            
+            txtAccountnr.setText("");
+            txtBtwnummer.setText("");
+            txtAdres.setText("");
+            txtEmail.setText("");
+            txtNaam.setText("");
+        }
+        
+        
+        
             
         
     }//GEN-LAST:event_knopToevoegenActionPerformed
+
+    private void MenuknopnArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopnArtikelgegevensActionPerformed
+        ProductGegevens s = new ProductGegevens(this);
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_MenuknopnArtikelgegevensActionPerformed
 
     
     public static void main(String args[]) {
@@ -475,6 +501,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JMenuItem MenuknopnArtikelgegevens;
     private javax.swing.JCheckBox checkBedrijf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

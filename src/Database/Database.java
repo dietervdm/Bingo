@@ -5,11 +5,13 @@ import Logica.*;
 import java.lang.String;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 
 
@@ -104,7 +106,7 @@ public class Database {
     
     public Boolean checkWinkel(String winkelnaam){
         try{
-            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
+            String sql = "SELECT * FROM winkel WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 return true;
@@ -120,7 +122,7 @@ public class Database {
     
     public Winkel getWinkel(String winkelnaam){
         try{
-            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
+            String sql = "SELECT * FROM winkel WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int accountnr = srs.getInt("accountnr");
@@ -144,7 +146,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from winkel WHERE winkelnaam='" + w.getWinkelnaam() +"';");
+            stmt.executeUpdate("DELETE from winkel WHERE winkelnaam = '" + w.getWinkelnaam() +"';");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -158,9 +160,11 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE winkel SET accountnr = " + nieuw.getAccount() + " WHERE winkelnaam = '" + oud.getWinkelnaam() + "'; "
-                    + "UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam()+ "'; "
-                    + "UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "';");           
+
+            stmt.executeUpdate("UPDATE winkel SET accountnr = 0 WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            stmt.executeUpdate("UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            stmt.executeUpdate("UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -185,7 +189,7 @@ public class Database {
         
     public Boolean checkArtikel(int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "' and artikelnr=" + artikelnr + ";";
+            String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "' and artikelnr = " + artikelnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 return true;
@@ -201,7 +205,7 @@ public class Database {
      
     public Artikel getArtikel(int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "' and artikelnr=" + artikelnr + ";";
+            String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "' and artikelnr = " + artikelnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 String naam = srs.getString("winkelnaam");
@@ -231,7 +235,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from artikel WHERE winkelnaam = '" + a.getWinkelnaam() + "' and artikelnr=" + a.getArtikelnr() + ";");
+            stmt.executeUpdate("DELETE from artikel WHERE winkelnaam = '" + a.getWinkelnaam() + "' and artikelnr = " + a.getArtikelnr() + ";");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -245,13 +249,16 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE artikel SET artikelnaam = '" + nieuw.getArtikelnaam() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';" 
-                    + "UPDATE artikel SET prijs = " + nieuw.getPrijs() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET ptnwinst = " + nieuw.getPtnwinst() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET minimumaantal = " + nieuw.getMinimumaantal()+ " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET ptnkost = " + nieuw.getPtnkost() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';"
-                    + "UPDATE artikel SET artikelnr = " + nieuw.getArtikelnr() + " WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "';");           
+            
+            stmt.executeUpdate("UPDATE artikel SET artikelnaam = '" + nieuw.getArtikelnaam() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET prijs = '" + nieuw.getPrijs() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET ptnwinst = '" + nieuw.getPtnwinst() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET minimumaantal = '" + nieuw.getMinimumaantal() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET ptnkost = '" + nieuw.getPtnkost() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = '" + nieuw.getMinimumbedrag() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET artikelnr = '" + nieuw.getArtikelnr() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            
+            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -263,7 +270,7 @@ public class Database {
     public ArrayList<Artikel> getAssortimentWinkel(String winkelnaam){
         try{
             ArrayList<Artikel> assortiment = new ArrayList<Artikel>();
-            String sql = "SELECT * FROM artikel WHERE winkelnaam='" + winkelnaam + "';";
+            String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             while(srs.next()){
                 String naam = srs.getString("winkelnaam");
@@ -291,7 +298,7 @@ public class Database {
     public ArrayList<Aankoop> getVerkopenWinkel(String winkelnaam){
         try{
             ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
-            String sql = "SELECT * FROM aankoop WHERE winkelnaam='" + winkelnaam + "';";
+            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             while(srs.next()){
                 int transactienr = srs.getInt("transactienr");
@@ -333,7 +340,7 @@ public class Database {
     
     public Boolean checkVestiging(int vestigingid, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE vestigingid=" + vestigingid + " and winkelnaam='" + winkelnaam + "';";
+            String sql = "SELECT * FROM vestiging WHERE vestigingid = " + vestigingid + " and winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 return true;
@@ -349,7 +356,7 @@ public class Database {
     
     public Vestiging getVestiging(int vestigingid, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE winkelnaam='" + winkelnaam + "' and vestigingid=" + vestigingid + ";";
+            String sql = "SELECT * FROM vestiging WHERE winkelnaam = '" + winkelnaam + "' and vestigingid = " + vestigingid + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 String naam = srs.getString("winkelnaam");
@@ -374,7 +381,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from vestiging WHERE winkelnaam='" + v.getWinkelnaam() + "' and vestigingid=" + v.getVestigingId() + ";");
+            stmt.executeUpdate("DELETE from vestiging WHERE winkelnaam = '" + v.getWinkelnaam() + "' and vestigingid = " + v.getVestigingId() + ";");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -388,8 +395,10 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "';" 
-                    + "UPDATE vestiging SET vestigingid = " + nieuw.getVestigingId() + " WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "';");           
+            
+            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "'" );
+            stmt.executeUpdate("UPDATE vestiging SET vestigingid = '" + nieuw.getVestigingId() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "'" );     
+                    
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -403,7 +412,10 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", " + a.getStartw() + ", " + a.isBigspender() + ", " + a.getStartb() + ", " + a.isMajor() + ", " + a.getStartm() + ", " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
+            java.util.Date jtest = new java.util.Date();
+            java.sql.Date test = new java.sql.Date(jtest.getTime());
+            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "')");
+            JOptionPane.showMessageDialog(null, "Account toegevoegd");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -430,7 +442,7 @@ public class Database {
     
     public Account getAccount(int accountnr){
         try{
-            String sql = "SELECT * FROM account WHERE accountnr=" + accountnr + ";";
+            String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int accountnummer = srs.getInt("accountnr");
@@ -439,11 +451,11 @@ public class Database {
                 String adres = srs.getString("adres");
                 int punten = srs.getInt("punten");
                 boolean wolverine = srs.getBoolean("wolverine");
-                Date startw = srs.getDate("startw");
+                java.sql.Date startw = srs.getDate("startw");
                 boolean bigspender = srs.getBoolean("bigspender");
-                Date startb = srs.getDate("startb");
+                java.sql.Date startb = srs.getDate("startb");
                 boolean major = srs.getBoolean("major");
-                Date startm = srs.getDate("startm");
+                java.sql.Date startm = srs.getDate("startm");
                 boolean bedrijf = srs.getBoolean("bedrijf");
                 String btwnummer = srs.getString("btwnummer");
                 Account a = new Account(accountnummer,naam,email,adres,punten,wolverine,startw,bigspender,startb,major,startm,bedrijf,btwnummer);
@@ -464,7 +476,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from account WHERE accountnr=" + a.getAccountnr() +";");
+            stmt.executeUpdate("DELETE from account WHERE accountnr = " + a.getAccountnr() +";");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -478,19 +490,21 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("UPDATE account SET naam = '" + nieuw.getNaam() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET email = '" + nieuw.getEmail() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET adres = '" + nieuw.getAdres() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET punten = " + nieuw.getPunten() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET wolverine = " + nieuw.isWolverine() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET startw = " + nieuw.getStartw() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET startb = " + nieuw.getStartb() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET startm = " + nieuw.getStartm() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr() + "; "
-                    + "UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr() + ";");           
+            
+            stmt.executeUpdate("UPDATE account SET naam = '" + nieuw.getNaam() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET email = '" + nieuw.getEmail() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET adres = '" + nieuw.getAdres() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET punten = " + nieuw.getPunten() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET wolverine = " + nieuw.isWolverine() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startw = '" + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startb = '" + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET startm = '" + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
+            JOptionPane.showMessageDialog(null, "Account gewijzigd");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -499,6 +513,168 @@ public class Database {
         }
     }
     
+    public void addSpaarkaart(Spaarkaart s){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO spaarkaart VALUES (" + s.getKaartnr() + ", " + s.getAccountnr() + ", '" + s.getNaamhouder() + "');");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
     
+    public Boolean checkSpaarkaart(int kaartnr){
+        try{
+            String sql = "SELECT * FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                return true;
+            }
+            else return false;
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public Spaarkaart getSpaarkaart(int kaartnr){
+        try{
+            String sql = "SELECT * FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int spaarkaartnr = srs.getInt("kaartnr");
+                String naamhouder = srs.getString("naamhouder");
+                int accountnr = srs.getInt("accountnr");
+                Spaarkaart s = new Spaarkaart(spaarkaartnr,accountnr,naamhouder);
+                this.closeConnection();
+                return s;
+            }
+            else return null;
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    public void deleteSpaarkaart(Spaarkaart s){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("DELETE from spaarkaart WHERE kaartnr = " + s.getKaartnr() + ";");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public void updateSpaarkaart(Spaarkaart oud, Spaarkaart nieuw){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
 
-   }
+            stmt.executeUpdate("UPDATE spaarkaart SET accountnr = " + nieuw.getAccountnr() + " WHERE kaarntr = " + oud.getKaartnr());
+            stmt.executeUpdate("UPDATE spaarkaart SET naamhouder = '" + nieuw.getNaamhouder() + "' WHERE kaarntr = " + oud.getKaartnr());
+            stmt.executeUpdate("UPDATE spaarkaart SET kaartnr = " + nieuw.getKaartnr() + " WHERE kaarntr = " + oud.getKaartnr());
+            
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+//    public void addArtikelaankoop(Artikelaankoop a){
+//        
+//        try{
+//            dbConnection = getConnection();
+//            Statement stmt = dbConnection.createStatement();
+//            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienr() + ", " + a.getArtikel().getArtikelnr() + ", " + a.getWinkelnaam());");
+//            this.closeConnection();
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//        }
+//    }
+//    
+//    public Boolean checkAankoop(String winkelnaam){
+//        try{
+//            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
+//            ResultSet srs = getData(sql);
+//            if(srs.next()){
+//                return true;
+//            }
+//            else return false;
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//            return null;
+//        }
+//    }
+//    
+//    public Winkel getAankoop(String winkelnaam){
+//        try{
+//            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
+//            ResultSet srs = getData(sql);
+//            if(srs.next()){
+//                int accountnr = srs.getInt("accountnr");
+//                String naam = srs.getString("winkelnaam");
+//                String paswoord = srs.getString("paswoord");
+//                Winkel w = new Winkel(naam,accountnr,paswoord);
+//                this.closeConnection();
+//                return w;
+//            }
+//            else return null;
+//            
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//            return null;
+//        }
+//    }
+//    public void deleteAankoop(Winkel w){
+//        
+//        try{
+//            dbConnection = getConnection();
+//            Statement stmt = dbConnection.createStatement();
+//            stmt.executeUpdate("DELETE from winkel WHERE winkelnaam='" + w.getWinkelnaam() +"';");
+//            this.closeConnection();
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//        }
+//    }
+//    
+//    public void updateAankoop(Winkel oud, Winkel nieuw){
+//        
+//        try{
+//            dbConnection = getConnection();
+//            Statement stmt = dbConnection.createStatement();
+//            stmt.executeUpdate("UPDATE winkel SET accountnr = " + nieuw.getAccount() + " WHERE winkelnaam = '" + oud.getWinkelnaam() + "'; "
+//                    + "UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam()+ "'; "
+//                    + "UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "';");           
+//            this.closeConnection();
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//        }
+//    }
+    
+    }

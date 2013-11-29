@@ -107,6 +107,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopKlantengegevensActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuknopArtikelgegevens">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/GUI/Icon Pack/Artikel.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Artikelgegevens"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopArtikelgegevensActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuknopToevoegen">
@@ -197,10 +208,10 @@
                           <Component id="jLabel4" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNaam" min="-2" pref="171" max="-2" attributes="0"/>
-                          <Component id="txtWachtwoord" min="-2" pref="171" max="-2" attributes="0"/>
-                          <Component id="txtWachtwoord2" min="-2" pref="171" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtNaam" pref="171" max="32767" attributes="0"/>
+                          <Component id="txtPaswoord" max="32767" attributes="0"/>
+                          <Component id="txtPaswoord2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -221,12 +232,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtWachtwoord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPaswoord" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtWachtwoord2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPaswoord2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="knopAanpassen" min="-2" max="-2" attributes="0"/>
@@ -268,14 +279,20 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNaam">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtWachtwoord">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtWachtwoord2">
-    </Component>
     <Component class="javax.swing.JButton" name="knopAanpassen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Aanpassen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopAanpassenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtPaswoord">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPaswoordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtPaswoord2">
     </Component>
   </SubComponents>
 </Form>

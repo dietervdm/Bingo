@@ -4,10 +4,12 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
 
 public class VestigingsGegevens extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Database d = new Database();
     
     public VestigingsGegevens() {
         initComponents();
@@ -34,7 +36,7 @@ public class VestigingsGegevens extends javax.swing.JFrame {
         txtVestigingid = new javax.swing.JTextField();
         txtAdres = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        knopToevoegen1 = new javax.swing.JButton();
+        knopAanpassen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -48,6 +50,7 @@ public class VestigingsGegevens extends javax.swing.JFrame {
         menuknopWinkelgegevens = new javax.swing.JMenuItem();
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
+        MenuknopArtikelgegevens = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
@@ -96,10 +99,10 @@ public class VestigingsGegevens extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("Opgepast! Elke vestiging moet een verschillende ID hebben.");
 
-        knopToevoegen1.setText("Aanpassen");
-        knopToevoegen1.addActionListener(new java.awt.event.ActionListener() {
+        knopAanpassen.setText("Aanpassen");
+        knopAanpassen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopToevoegen1ActionPerformed(evt);
+                knopAanpassenActionPerformed(evt);
             }
         });
 
@@ -205,6 +208,15 @@ public class VestigingsGegevens extends javax.swing.JFrame {
         });
         menuknopAanpassen.add(menuknopKlantengegevens);
 
+        MenuknopArtikelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopArtikelgegevens.setText("Artikelgegevens");
+        MenuknopArtikelgegevens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopArtikelgegevensActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopArtikelgegevens);
+
         jMenuBar1.add(menuknopAanpassen);
 
         menuknopToevoegen.setText("Toevoegen");
@@ -258,11 +270,15 @@ public class VestigingsGegevens extends javax.swing.JFrame {
                     .addComponent(knopTerug)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(66, 66, 66))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(5, 5, 5)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtVestigingid, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +286,7 @@ public class VestigingsGegevens extends javax.swing.JFrame {
                                 .addComponent(txtVestigingid2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(knopToevoegen1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knopAanpassen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
@@ -293,7 +309,7 @@ public class VestigingsGegevens extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(knopToevoegen1)
+                .addComponent(knopAanpassen)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -399,38 +415,38 @@ public class VestigingsGegevens extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAdresActionPerformed
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
-//        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-//        int vestigingid = Integer.parseInt(txtVestigingid.getText());
-//        Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
-//        if(d.checkVestiging(vestigingid, winkelnaam)){
-//            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
-//        }
-//        else{
-//            d.addVestiging(v);
-//            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
-//            txtVestigingid.setText("");
-//            txtAdres.setText("");
-//       }
+        
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
-    private void knopToevoegen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegen1ActionPerformed
-//        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-//        int vestigingid = Integer.parseInt(txtVestigingid.getText());
-//        Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
-//        if(d.checkVestiging(vestigingid, winkelnaam)){
-//            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
-//        }
-//        else{
-//            d.addVestiging(v);
-//            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
-//            txtVestigingid.setText("");
-//            txtAdres.setText("");
-//        }
-    }//GEN-LAST:event_knopToevoegen1ActionPerformed
+    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
+        
+        String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
+        int vestigingid = Integer.parseInt(txtVestigingid.getText());
+        int vestigingid2 = Integer.parseInt(txtVestigingid2.getText());
+        Vestiging nieuw = new Vestiging(vestigingid2, winkelnaam, txtAdres.getText());
+        Vestiging oud = new Vestiging(vestigingid, winkelnaam, "");
+        
+        if(d.checkVestiging(vestigingid2, winkelnaam) && !(nieuw.getVestigingId() == oud.getVestigingId())){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.updateVestiging(oud,nieuw,winkelnaam);
+            JOptionPane.showMessageDialog(null, "Vestiging aangepast");
+            txtVestigingid.setText("");
+            txtAdres.setText("");
+        }
+    }//GEN-LAST:event_knopAanpassenActionPerformed
 
     private void txtVestigingidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVestigingidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVestigingidActionPerformed
+
+    private void MenuknopArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevensActionPerformed
+        ProductGegevens s = new ProductGegevens(this);
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
 
     
     public static void main(String args[]) {
@@ -465,6 +481,7 @@ public class VestigingsGegevens extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -475,9 +492,9 @@ public class VestigingsGegevens extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton knopAanpassen;
     private javax.swing.JButton knopTerug;
     private javax.swing.JButton knopToevoegen;
-    private javax.swing.JButton knopToevoegen1;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;
