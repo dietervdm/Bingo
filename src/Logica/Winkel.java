@@ -2,6 +2,10 @@
 package Logica;
 
 import Database.Database;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.sql.SQLException;
 
 
 public class Winkel
@@ -69,6 +73,25 @@ public class Winkel
     {
         Winkel wk = new Winkel(naam, major, paswoord);
         wdb.addWinkel(wk);
+    }
+    
+//    public void printWinkelAankoop(String winkelnaam, String path){
+//        Database db = new Database();
+//        db.printVerkopen(winkelnaam);
+//
+//        try
+//        {
+//            PrintStream out = new PrintStream(new FileOutputStream(path));
+//            int cols = db.printVerkopen(winkelnaam).getMetaData().getColumnCount();
+//            
+//        }
+//        catch(FileNotFoundException ex || SQLException sqle){
+//            
+//        }
+        
+        
+        
+     
     }
     
 //    public void deleteWinkel(String naam)
