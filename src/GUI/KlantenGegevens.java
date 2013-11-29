@@ -488,7 +488,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
         txtNaam.setText(a.getNaam());
         txtEmail.setText(a.getEmail());
         txtAdres.setText(a.getAdres());
-        txtBtwnummer.setText(a.getBtwNummer());
+        txtBtwnummer.setText(a.getBtwnummer());
         
     }//GEN-LAST:event_knopVulinActionPerformed
 

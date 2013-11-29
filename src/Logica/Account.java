@@ -186,16 +186,6 @@ public class Account
         this.btwnummer = btwnummer;
     }
     
-    public String getBtwNummer()
-    {
-        return btwNummer;
-    }
-    
-    public void setBtwNummer(String btwNummer)
-    {
-        this.btwNummer = btwNummer;
-    }
-    
     public Image getLogo()
     {
         return logo;
@@ -204,16 +194,6 @@ public class Account
     public void setLogo(Image logo)
     {
         this.logo = logo;
-    }
-    
-    public Image getPasfoto()
-    {
-        return pasfoto;
-    }
-    
-    public void setPasfoto(Image pasfoto)
-    {
-        this.pasfoto = pasfoto;
     }
     
     
