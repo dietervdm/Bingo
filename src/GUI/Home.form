@@ -199,9 +199,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNaam" min="-2" pref="81" max="-2" attributes="0"/>
+                  <Component id="txtNaam" min="-2" pref="386" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="709" max="32767" attributes="0"/>
+              <EmptySpace pref="404" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
