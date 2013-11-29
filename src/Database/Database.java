@@ -322,6 +322,92 @@ public class Database {
             return null;
         }
     }
+    
+    public ArrayList<Aankoop> getVerkopenWinkel(String winkelnaam, int vestigingid){
+        try{
+            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
+            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and + vestigingid = '" + vestigingid + "';";
+            ResultSet srs = getData(sql);
+            while(srs.next()){
+                int transactienr = srs.getInt("transactienr");
+                int vestigingsid = srs.getInt("vestigingsid");
+                String naam = srs.getString("winkelnaam");
+                int kaartnr = srs.getInt("kaartnr");
+                Date datum = srs.getDate("datum");
+                int ptnplus = srs.getInt("ptnplus");
+                int ptnmin = srs.getInt("ptnmin");
+                int totprijs = srs.getInt("totprijs");
+                
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, datum, ptnplus, ptnmin, totprijs);
+                assortiment.add(ak);
+            }
+            this.closeConnection();
+            return assortiment;          
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public ArrayList<Aankoop> getVerkopenWinkelKlant(String winkelnaam, int kaartnr){
+        try{
+            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
+            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and kaartnummer = '" + kaartnr + "';";
+            ResultSet srs = getData(sql);
+            while(srs.next()){
+                int transactienr = srs.getInt("transactienr");
+                int vestigingsid = srs.getInt("vestigingsid");
+                String naam = srs.getString("winkelnaam");
+                int kaartnummer = srs.getInt("kaartnr");
+                Date datum = srs.getDate("datum");
+                int ptnplus = srs.getInt("ptnplus");
+                int ptnmin = srs.getInt("ptnmin");
+                int totprijs = srs.getInt("totprijs");
+                
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, datum, ptnplus, ptnmin, totprijs);
+                assortiment.add(ak);
+            }
+            this.closeConnection();
+            return assortiment;          
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public ArrayList<Aankoop> getVerkopenWinkel(String winkelnaam, int vestigingid, int kaartnr){
+        try{
+            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
+            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + 
+                            "' and vestigingid = '" + vestigingid + 
+                            "' and kaartnr = '" + kaartnr + "';";
+            ResultSet srs = getData(sql);
+            while(srs.next()){
+                int transactienr = srs.getInt("transactienr");
+                int vestigingsid = srs.getInt("vestigingsid");
+                String naam = srs.getString("winkelnaam");
+                int kaartnummer = srs.getInt("kaartnr");
+                Date datum = srs.getDate("datum");
+                int ptnplus = srs.getInt("ptnplus");
+                int ptnmin = srs.getInt("ptnmin");
+                int totprijs = srs.getInt("totprijs");
+                
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, datum, ptnplus, ptnmin, totprijs);
+                assortiment.add(ak);
+            }
+            this.closeConnection();
+            return assortiment;          
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
       
     
     public void addVestiging(Vestiging v){
