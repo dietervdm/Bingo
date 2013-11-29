@@ -56,6 +56,7 @@ public class ProductGegevens extends javax.swing.JFrame {
         menuknopWinkelgegevens = new javax.swing.JMenuItem();
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
+        MenuknopArtikelgegevens2 = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
@@ -65,7 +66,7 @@ public class ProductGegevens extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Klantengegevens");
+        setTitle("Artikel aanpassen");
 
         knopTerug.setText("Terug");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
@@ -203,6 +204,15 @@ public class ProductGegevens extends javax.swing.JFrame {
             }
         });
         menuknopAanpassen.add(menuknopKlantengegevens);
+
+        MenuknopArtikelgegevens2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopArtikelgegevens2.setText("Artikelgegevens");
+        MenuknopArtikelgegevens2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopArtikelgegevens2ActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopArtikelgegevens2);
 
         jMenuBar1.add(menuknopAanpassen);
 
@@ -439,6 +449,13 @@ public class ProductGegevens extends javax.swing.JFrame {
 
     }//GEN-LAST:event_knopVulinActionPerformed
 
+    private void MenuknopArtikelgegevens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevens2ActionPerformed
+        ProductGegevens s = new ProductGegevens(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_MenuknopArtikelgegevens2ActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -472,6 +489,9 @@ public class ProductGegevens extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuknopArtikelgegevens;
+    private javax.swing.JMenuItem MenuknopArtikelgegevens1;
+    private javax.swing.JMenuItem MenuknopArtikelgegevens2;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JCheckBox checkBedrijf;
     private javax.swing.JLabel jLabel1;
