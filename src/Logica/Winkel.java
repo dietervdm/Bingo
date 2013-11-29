@@ -114,4 +114,3 @@ public class Winkel
 //        this.paswoord = ps;
 //        wdb.updatePaswoordWinkel(paswoord);
 //    }
-}
