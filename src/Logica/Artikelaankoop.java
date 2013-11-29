@@ -4,7 +4,7 @@ package Logica;
 
 public class Artikelaankoop
 {
-    private int transactienr;
+    private int transactienrAankoop;
     private Artikel artikel;
     private Aankoop aankoop;
     private int aantal;
@@ -15,14 +15,14 @@ public class Artikelaankoop
     
     public Artikelaankoop(int transactienr, Artikel artikel, Aankoop aankoop)
     {
-        this.transactienr = transactienr;
+        this.transactienrAankoop = transactienr;
         this.artikel = artikel;
         this.aankoop = aankoop;
     }
     
     public Artikelaankoop(int transactienr, Artikel artikel, Aankoop aankoop, int aantal)
     {
-        this.transactienr = transactienr;
+        this.transactienrAankoop = transactienr;
         this.artikel = artikel;
         this.aankoop = aankoop;
         this.aantal = aantal;
@@ -30,12 +30,12 @@ public class Artikelaankoop
     
     public int getTransactienr()
     {
-        return this.transactienr;
+        return this.transactienrAankoop;
     }
     
     public void setTransactienr(int transactienr)
     {
-        this.transactienr = transactienr;
+        this.transactienrAankoop = transactienr;
     }
     
     public Artikel getArtikel()
