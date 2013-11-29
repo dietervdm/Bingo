@@ -610,7 +610,7 @@ public class Database {
 //        }
 //    }
 //    
-//    public Boolean checkAankoop(String winkelnaam){
+//    public Boolean checkArtikelAankoop(String winkelnaam){
 //        try{
 //            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
 //            ResultSet srs = getData(sql);
@@ -626,7 +626,7 @@ public class Database {
 //        }
 //    }
 //    
-//    public Winkel getAankoop(String winkelnaam){
+//    public Winkel getArtikelaankoop(String winkelnaam){
 //        try{
 //            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
 //            ResultSet srs = getData(sql);
@@ -661,7 +661,8 @@ public class Database {
 //        }
 //    }
 //    
-//    public void updateAankoop(Winkel oud, Winkel nieuw){
+//    public void updateArtikelaankoop(Winkel oud, Winkel nieuw){
+            // Gaan we wss niet doen
 //        
 //        try{
 //            dbConnection = getConnection();

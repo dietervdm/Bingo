@@ -5,57 +5,68 @@ package Logica;
 public class Artikelaankoop
 {
     private int transactienrAankoop;
-    private Artikel artikel;
-    private Aankoop aankoop;
+    private int artikelnr;
+    private String winkelnaam;
+    private int transactienr;
     private int aantal;
     
     
     public Artikelaankoop()
     {}
     
-    public Artikelaankoop(int transactienr, Artikel artikel, Aankoop aankoop)
+    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer)
     {
         this.transactienrAankoop = transactienr;
-        this.artikel = artikel;
-        this.aankoop = aankoop;
+        this.artikelnr = artikelnr;
+        this.winkelnaam = winkelnaam;
+        this.transactienr = transactienummer;
     }
     
-    public Artikelaankoop(int transactienr, Artikel artikel, Aankoop aankoop, int aantal)
+    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, int aantal)
     {
         this.transactienrAankoop = transactienr;
-        this.artikel = artikel;
-        this.aankoop = aankoop;
+        this.artikelnr = artikelnr;
+        this.transactienr = transactienummer;
         this.aantal = aantal;
     }
     
-    public int getTransactienr()
+    public int getTransactienrAankoop()
     {
         return this.transactienrAankoop;
     }
     
-    public void setTransactienr(int transactienr)
+    public void setTransactienrAaankoop(int transactienraankoop)
     {
-        this.transactienrAankoop = transactienr;
+        this.transactienrAankoop = transactienraankoop;
     }
     
-    public Artikel getArtikel()
+    public int getArtikelnr()
     {
-        return this.artikel;
+        return this.artikelnr;
     }
     
-    public void setArtikel(Artikel artikel)
+    public void setArtikelnr(int artikelnr)
     {
-        this.artikel = artikel;
+        this.artikelnr = artikelnr;
     }
     
-    public Aankoop getAankoop()
+    public String getWinkelnaam()
     {
-        return this.aankoop;
+        return this.winkelnaam;
     }
     
-    public void setAankoop(Aankoop aankoop)
+    public void setWinkelNaam(String winkelnaam){
+        this.winkelnaam = winkelnaam;
+    }
+    
+    public int getTransactienr()
     {
-        this.aankoop = aankoop;
+        return this.transactienr;
+    }
+    
+    public void setAankoop(int transactienummer)
+    {
+        this.transactienr = transactienummer;
     }
     
     public int getAantal()
