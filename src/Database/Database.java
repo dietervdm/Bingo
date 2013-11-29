@@ -327,6 +327,7 @@ public class Database {
         try{
             ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
             String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and + vestigingid = '" + vestigingid + "';";
+            // moet nog getest worden.
             ResultSet srs = getData(sql);
             while(srs.next()){
                 int transactienr = srs.getInt("transactienr");
@@ -355,6 +356,7 @@ public class Database {
         try{
             ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
             String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and kaartnummer = '" + kaartnr + "';";
+            // moet nog getest worden.
             ResultSet srs = getData(sql);
             while(srs.next()){
                 int transactienr = srs.getInt("transactienr");
@@ -385,6 +387,7 @@ public class Database {
             String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + 
                             "' and vestigingid = '" + vestigingid + 
                             "' and kaartnr = '" + kaartnr + "';";
+            // moet nog getest worden.
             ResultSet srs = getData(sql);
             while(srs.next()){
                 int transactienr = srs.getInt("transactienr");
@@ -401,6 +404,30 @@ public class Database {
             }
             this.closeConnection();
             return assortiment;          
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public ResultSet printVerkopen(String winkelnaam){
+        try{
+            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
+            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + 
+                            "';";
+            // moet nog getest worden.
+            ResultSet srs = getData(sql);
+            this.closeConnection();
+
+            if(srs.next()){
+                return srs;
+            }
+            else
+            {
+                return null;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
