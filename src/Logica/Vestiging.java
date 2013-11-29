@@ -1,6 +1,9 @@
 
 package Logica;
 
+import Database.Database;
+import java.util.ArrayList;
+
 
 public class Vestiging
 {
@@ -53,5 +56,18 @@ public class Vestiging
     public void setAdres(String adres)
     {
         this.adres = adres;
+    }
+    
+    public ArrayList<String> getAlleVestigingenNaam(String winkelnaam){
+        ArrayList<String> vestigingenId = new ArrayList<String>();
+        ArrayList<Vestiging> vest = new ArrayList<Vestiging>();
+        Database db = new Database();
+        
+        vest = db.getAlleVestigingen(winkelnaam);
+        for(int i=0; i<vest.size(); i++)
+        {
+            vestigingenId.add(Integer.toString(vest.get(i).getVestigingId()));  
+        }
+        return vestigingenId;
     }
 }
