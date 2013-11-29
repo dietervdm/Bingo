@@ -376,6 +376,29 @@ public class Database {
         }
     }
     
+    public ArrayList<Vestiging> getAlleVestigingen(String winkelnaam){
+        try{
+            ArrayList<Vestiging> alleVestigingen = new ArrayList<Vestiging>();
+            String sql = "SELECT * FROM vestiging WHERE winkelnaam = '" + winkelnaam + "';";
+            ResultSet srs = getData(sql);
+            while(srs.next()){
+                int vestigingid = srs.getInt("vestigingid");
+                String naam = srs.getString("winkelnaam");
+                String adres = srs.getString("adres");
+                
+                Vestiging vest = new Vestiging(vestigingid, naam, adres);
+                alleVestigingen.add(vest);
+            }
+            this.closeConnection();
+            return alleVestigingen;          
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
     public void deleteVestiging(Vestiging v){
         
         try{
