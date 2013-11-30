@@ -4,6 +4,8 @@ package Logica;
 
 import Database.Database;
 import java.awt.Image;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 
@@ -214,9 +216,40 @@ public class Account
     
     // FUNCTIES VAN VIP SYSTEEM
     
-    public void isVip(int accountnr, Date datum){
+    public boolean isVip(int accountnr, Date datum){
         
+        return totaalPuntenJaar(accountnr, datum) > 10000;
     }
+    
+    public void isMajor(int accountnr, Date datum, String winkelnaam){
+        try{
+        if(isVip(accountnr, datum))
+            //Combineer tabel account, aankoop en artikelaankoop
+        {
+            ResultSet srs = null;
+            if(srs.next()){
+                Database db = new Database();
+                srs = db.getMajor(accountnr, datum, winkelnaam);
+                int accnr = srs.getInt("accountnr");
+                String naam = srs.getString("winkelnaam");
+                String paswoord = srs.getString("paswoord");
+                
+                //gegevens over aankoop
+                
+                //gegevens over artikelaankoop
+                Winkel w = new Winkel(naam,accnr,paswoord);
+                Aankoop ak = new Aankoop();
+                Artikelaankoop aak = new Artikelaankoop();
+            }
+        }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            // Wat moet hier komen?
+        }
+    }
+    
     
     public int totaalPuntenJaar(int accountnr, Date datum){
         int totaalPunten = 0;
@@ -230,4 +263,5 @@ public class Account
         //functie
         return totaalGeld;
     }
+    
 }

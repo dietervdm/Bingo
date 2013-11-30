@@ -649,6 +649,22 @@ public class Database {
         }
     }
     
+    public ResultSet getMajor(int accountnr, Date datum, String winkelnaam){
+        //try{
+            String sql = "";
+            //moet nog getest worden
+            ResultSet srs = getData(sql);
+            this.closeConnection();
+            return srs;
+            
+        //}
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//            return null;
+//        }
+    }
+    
     //Functie om van een account alle punten die verkregen waren vorig jaar
     
     public void addSpaarkaart(Spaarkaart s){
