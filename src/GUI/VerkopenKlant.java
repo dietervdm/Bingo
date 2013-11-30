@@ -76,7 +76,6 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
         PopUpSpaarkaart s = new PopUpSpaarkaart(5);
-                
                 setVisible(false);
                 
         //Hier moet tijdelijk scherm aangeroepen worden
