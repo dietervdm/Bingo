@@ -1,6 +1,7 @@
 
 package GUI;
 
+import Logica.Account;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -13,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
     public class PopUpSpaarkaart {
         
@@ -22,25 +22,48 @@ import javax.swing.JTextField;
     static JFrame f = new JFrame();
     static JPanel topPanel = new JPanel();
     static JPanel downPanel = new JPanel();
+    static JPanel spaarkaartBalk = new JPanel();
+    static JPanel accountBalk = new JPanel();
+    static JPanel puntenBalk = new JPanel();
     
-    private JTextField account = new JTextField();
-    private JTextField spaarkaart = new JTextField();
-    private JTextField aantalPunten = new JTextField();
+    static JLabel leegBoven = new JLabel("leegb");
+    static JLabel leegOnder = new JLabel("leego");
     
+    
+    static JLabel account = new JLabel("<account naam>");
+    static JLabel spaarkaart = new JLabel("<spaarkaart houder>");
+    static JLabel punten = new JLabel("<aantal punten reeds verzameld>");
+    
+    static JLabel maj;
+    static JLabel bs;
+    static JLabel wol;
+    
+    
+    static JLabel naamKlant = new JLabel("\t Naam van de klant: ");
+    //naamKlant.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
+    static JLabel naamAccount = new JLabel("\t Naam account: ");
+    //naamAccount.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
+    static JLabel aantalPunten = new JLabel("\t aantal punten verzameld: ");
+        //aantalPunten.setFont(new java.awt.Font("Tahoma", 1, 14)); // Lettertype aanpassen
 
     public PopUpSpaarkaart(int seconds) {
         timer = new Timer();
         timer.schedule(new afsluiten(), seconds*1000);
         initComponents();
+        
 	}
 
     public static void initComponents() {
+        //String path1 = afbeeldingMajor();
         String path1 = "src\\GUI\\Badge\\Major.png";
+        //String path2 = afbeeldingBigSpender();
         String path2 = "src\\GUI\\Badge\\BigSpender.png";
+        //String path3 = afbeeldingWolverine();
         String path3 = "src\\GUI\\Badge\\Wolverine.png";
         File file1 = new File(path1);
         File file2 = new File(path2);
         File file3 = new File(path3);
+        
         try{
         BufferedImage image1 = ImageIO.read(file1);
         BufferedImage image2 = ImageIO.read(file2);
@@ -60,24 +83,31 @@ import javax.swing.JTextField;
         ImageIcon bigSpender = new ImageIcon(img2);
         ImageIcon wolverine = new ImageIcon(img3);
         
-        JLabel maj = new JLabel(major);
-        JLabel bs = new JLabel(bigSpender);
-        JLabel wol = new JLabel(wolverine);
+        maj = new JLabel(major);
+        bs = new JLabel(bigSpender);
+        wol = new JLabel(wolverine);
         
         f.setLayout(new GridLayout(2,1,5,5));               // gridlayout (int rows, int cols, int hGap, int vGap)
-        topPanel.setLayout(new GridLayout(3,4,5,5));
+        topPanel.setLayout(new GridLayout(3,1,10,3));
         downPanel.setLayout(new GridLayout(1,3,5,5));
+        spaarkaartBalk.setLayout(new GridLayout(1,3,1,1));
+        accountBalk.setLayout(new GridLayout(1,3,1,1));
+        puntenBalk.setLayout(new GridLayout(1,3,1,1));
         
-        JLabel naamKlant = new JLabel("Naam van de klant: ");
-        //naamKlant.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
-        JLabel naamAccount = new JLabel("Naam account: ");
-        //naamAccount.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
-        JLabel aantalPunten = new JLabel("aantal punten verzameld: ");
-        //aantalPunten.setFont(new java.awt.Font("Tahoma", 1, 14)); // Lettertype aanpassen
         
-        topPanel.add(naamKlant);
-        topPanel.add(naamAccount);
-        topPanel.add(aantalPunten);
+        
+        spaarkaartBalk.add(naamKlant);
+        spaarkaartBalk.add(spaarkaart);
+        accountBalk.add(naamAccount);
+        accountBalk.add(account);
+        puntenBalk.add(aantalPunten);
+        puntenBalk.add(punten);
+        
+        //topPanel.add(leegBoven);
+        topPanel.add(spaarkaartBalk);
+        topPanel.add(accountBalk);
+        topPanel.add(puntenBalk);
+        //topPanel.add(leegBoven);
         
         downPanel.add(maj);
         downPanel.add(bs);
@@ -93,26 +123,26 @@ import javax.swing.JTextField;
         
         catch(IOException ex)
         {
-        System.out.println("error");
+        System.out.println(ex.getMessage());
         }
     }
 
     public void setAccount(String accountNaam) {
-        this.account = new JTextField(accountNaam);
+        this.account.setText(accountNaam);
     }
 
     /**
      * @param spaarkaart the spaarkaart to set
      */
     public void setSpaarkaart(String spaarkaartHouder) {
-        this.spaarkaart = new JTextField(spaarkaartHouder);
+        this.spaarkaart.setText(spaarkaartHouder);
     }
 
     /**
      * @param aantalPunten the aantalPunten to set
      */
     public void setAantalPunten(int aantalPunten) {
-        this.aantalPunten = new JTextField(Integer.toString(aantalPunten));
+        this.punten.setText(Integer.toString(aantalPunten));
     }
     
 
@@ -132,5 +162,29 @@ import javax.swing.JTextField;
         initComponents();
         f.setSize(600, 400);
         f.setVisible(true);
+    }
+    
+    public String afbeeldingMajor(){
+        Account acc = new Account();
+        if (acc.isMajor())
+            return "src\\GUI\\Badge\\Major.png";
+        else
+            return "src\\GUI\\Badge\\MajorBlack.png";
+    }
+    
+    public String afbeeldingBigSpender(){
+        Account acc = new Account();
+        if (acc.isMajor())
+            return "src\\GUI\\Badge\\BigSpender.png";
+        else
+            return "src\\GUI\\Badge\\BigSpenderBlack.png";
+    }
+    
+    public String Wolverine(){
+        Account acc = new Account();
+        if (acc.isMajor())
+            return "src\\GUI\\Badge\\Wolverine.png";
+        else
+            return "src\\GUI\\Badge\\WolverineBlack.png";
     }
 }
