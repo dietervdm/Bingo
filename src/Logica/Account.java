@@ -2,6 +2,7 @@
 package Logica;
 
 
+import Database.Database;
 import java.awt.Image;
 import java.util.Date;
 
@@ -204,5 +205,29 @@ public class Account
             this.bedrijf = true;
         else
             this.bedrijf = false;
+    }
+    
+    public Date getDatumVorigJaar(Date datum){
+        datum.setYear(datum.getYear()-1);
+        return datum;
+    }
+    
+    // FUNCTIES VAN VIP SYSTEEM
+    
+    public void isVip(int accountnr, Date datum){
+        
+    }
+    
+    public int totaalPuntenJaar(int accountnr, Date datum){
+        int totaalPunten = 0;
+        Database db = new Database();
+        //functie
+        return totaalPunten;
+    }
+    
+    public double totaalGeldJaar(){
+        double totaalGeld = 0.0;
+        //functie
+        return totaalGeld;
     }
 }

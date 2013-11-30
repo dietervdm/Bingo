@@ -649,6 +649,8 @@ public class Database {
         }
     }
     
+    //Functie om van een account alle punten die verkregen waren vorig jaar
+    
     public void addSpaarkaart(Spaarkaart s){
         
         try{
