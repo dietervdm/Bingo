@@ -75,9 +75,8 @@ public class VerkopenKlant extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
-        VerkopenAfrekening s = new VerkopenAfrekening();
-                s.setLocationRelativeTo(null);
-                s.setVisible(true);
+        PopUpSpaarkaart s = new PopUpSpaarkaart(5);
+                
                 setVisible(false);
                 
         //Hier moet tijdelijk scherm aangeroepen worden
@@ -117,7 +116,9 @@ public class VerkopenKlant extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerkopenKlant().setVisible(true);
+                VerkopenKlant s = new VerkopenKlant();
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);
             }
         });
     }
