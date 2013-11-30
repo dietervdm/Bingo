@@ -55,7 +55,7 @@ import javax.swing.JPanel;
 
     public static void initComponents() {
         //String path1 = afbeeldingMajor();
-        String path1 = "src\\GUI\\Badge\\Major.png";
+        String path1 = "src\\GUI\\Badge\\MajorBlack.png";
         //String path2 = afbeeldingBigSpender();
         String path2 = "src\\GUI\\Badge\\BigSpender.png";
         //String path3 = afbeeldingWolverine();
