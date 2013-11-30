@@ -128,7 +128,7 @@ import javax.swing.JTextField;
     }
 
     public static void main(String args[]) {
-        new PopUpSpaarkaart(5);
+        //new PopUpSpaarkaart(5);
         initComponents();
         f.setSize(600, 400);
         f.setVisible(true);
