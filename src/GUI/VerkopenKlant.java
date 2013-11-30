@@ -79,6 +79,8 @@ public class VerkopenKlant extends javax.swing.JFrame {
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
+                
+        //Hier moet tijdelijk scherm aangeroepen worden
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
