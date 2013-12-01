@@ -23,7 +23,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        knopVoegToe = new javax.swing.JButton();
         knopAnnuleer = new javax.swing.JButton();
         knopRegistreerAankoop = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -68,10 +68,10 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
         jLabel9.setText("aantal:");
 
-        jButton1.setText("Voeg toe");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        knopVoegToe.setText("Voeg toe");
+        knopVoegToe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                knopVoegToeActionPerformed(evt);
             }
         });
 
@@ -162,7 +162,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel22))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(knopVoegToe, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
@@ -201,7 +201,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(knopVoegToe)
                         .addGap(30, 30, 30)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,9 +242,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_knopVoegToeActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
         VerkopenKlant s = new VerkopenKlant();
@@ -291,7 +291,6 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -317,5 +316,6 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton knopAnnuleer;
     private javax.swing.JButton knopRegistreerAankoop;
+    private javax.swing.JButton knopVoegToe;
     // End of variables declaration//GEN-END:variables
 }
