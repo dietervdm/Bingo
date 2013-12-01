@@ -748,7 +748,7 @@ public class Database {
     // moet nog aangepast worden
     public String getNaamhouder(int kaartnr){
         try{
-            String sql = "SELECT * FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
+            String sql = "SELECT naamhouder FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int spaarkaartnr = srs.getInt("kaartnr");
