@@ -91,12 +91,12 @@ import javax.swing.JPanel;
         Image img2 = icon2.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
         Image img3 = icon3.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
             
-        major.setImage(img1);
-        bigSpender.setImage(img2);
-        wolverine.setImage(img3);
-        //major = new ImageIcon(img1);
-        //bigSpender = new ImageIcon(img2);
-        //wolverine = new ImageIcon(img3);
+        //major.setImage(img1);
+        //bigSpender.setImage(img2);
+        //wolverine.setImage(img3);
+        major = new ImageIcon(img1);
+        bigSpender = new ImageIcon(img2);
+        wolverine = new ImageIcon(img3);
         
         maj = new JLabel(major);
         bs = new JLabel(bigSpender);
