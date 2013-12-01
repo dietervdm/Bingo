@@ -2,6 +2,7 @@
 package GUI;
 
 import Logica.Account;
+import Logica.Spaarkaart;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -138,8 +139,9 @@ import javax.swing.JPanel;
     /**
      * @param spaarkaart the spaarkaart to set
      */
-    public void setSpaarkaart(String spaarkaartHouder) {
-        this.spaarkaart.setText(spaarkaartHouder);
+    public void setSpaarkaart(int spaarkaart) {
+        Spaarkaart k = new Spaarkaart(spaarkaart);
+        this.spaarkaart.setText(k.getNaamhouder());
     }
 
     /**

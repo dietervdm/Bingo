@@ -1,7 +1,7 @@
 
 package Logica;
 
-import javax.swing.Timer;
+import Database.Database;
 
 
 public class Spaarkaart
@@ -13,6 +13,12 @@ public class Spaarkaart
     
     public Spaarkaart()
     {}
+    
+    public Spaarkaart(int kaartnr){
+        this.kaartnr = kaartnr;
+        setAccountnrFromKaartnr(kaartnr);
+        setNaamhouderFromKaartnr(kaartnr);
+    }
     
     public Spaarkaart(int kaartnr, int accountnr)
     {
@@ -47,6 +53,12 @@ public class Spaarkaart
         this.accountnr = accountnr;
     }
     
+    // methode om het accountnr op te halen dat hoort bij een kaartnr
+    public void setAccountnrFromKaartnr(int kaartnr){
+        Database db = new Database();
+        this.accountnr = db.getAccountnr(kaartnr);
+    }
+    
     public String getNaamhouder()
     {
         return this.naamhouder;
@@ -55,5 +67,10 @@ public class Spaarkaart
     public void setNaamhouder(String naamhouder)
     {
         this.naamhouder = naamhouder;
+    }
+    
+    public void setNaamhouderFromKaartnr(int kaarnr){
+        Database db = new Database();
+        this.naamhouder = db.getNaamhouder(kaartnr);
     }
 }
