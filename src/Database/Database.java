@@ -5,13 +5,14 @@ import Logica.*;
 import java.lang.String;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -88,6 +89,35 @@ public class Database {
             this.closeConnection();
             return srs;
         }
+    }
+    
+    public DefaultTableModel naarTabel (String sql) {
+         
+        Database db = new Database(); 
+        ResultSet rs = db.getData(sql);
+        Vector<Vector<Object>> data = new Vector<>();
+        Vector<String> kolommen = new Vector<>();
+        
+        try{    
+            ResultSetMetaData metaData = rs.getMetaData();
+            // kolomnamen
+            int columnCount = metaData.getColumnCount();
+            for (int column = 1; column <= columnCount; column++) {
+                kolommen.add(metaData.getColumnName(column));
+            }
+            // inhoud
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<>();
+                for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                    vector.add(rs.getObject(columnIndex));
+                }
+                data.add(vector);
+            }
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+        }
+        return new DefaultTableModel(data, kolommen);
     }
     
     public void addWinkel(Winkel w){
@@ -551,7 +581,6 @@ public class Database {
             java.util.Date jtest = new java.util.Date();
             java.sql.Date test = new java.sql.Date(jtest.getTime());
             stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "')");
-            JOptionPane.showMessageDialog(null, "Account toegevoegd");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -665,7 +694,6 @@ public class Database {
             stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
-            JOptionPane.showMessageDialog(null, "Account gewijzigd");
             this.closeConnection();
         }
         catch(SQLException sqle){
