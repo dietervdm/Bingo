@@ -241,7 +241,7 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int artikelnummer = srs.getInt("artikelnr");
                 String artikelnaam = srs.getString("artikelnaam");
-                int prijs = srs.getInt("prijs");
+                double prijs = srs.getDouble("prijs");
                 int ptnwinst = srs.getInt("ptnwinst");
                 int ptnkost = srs.getInt("ptnkost");
                 int minimumaantal = srs.getInt("minimumaantal");
@@ -306,7 +306,7 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int artikelnummer = srs.getInt("artikelnr");
                 String artikelnaam = srs.getString("artikelnaam");
-                int prijs = srs.getInt("prijs");
+                double prijs = srs.getDouble("prijs");
                 int ptnwinst = srs.getInt("ptnwinst");
                 int ptnkost = srs.getInt("ptnkost");
                 int minimumaantal = srs.getInt("minimumaantal");

@@ -480,8 +480,8 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         Integer minimumartikelen = 0;
         Integer minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
-        int prijs = Integer.parseInt(txtPrijs.getText());
-        
+        double prijs = Double.parseDouble(txtPrijs.getText());
+       
         if(checkGeeftpunten.isSelected()){
             puntenplus = Integer.parseInt(txtPuntenplus.getText());
             if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals("")){
@@ -512,6 +512,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         if(d.checkArtikel(artikelnr, winkelnaam)){
             JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel");
         }
+        
         else{
             d.addArtikel(p);
             t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");

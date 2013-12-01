@@ -7,7 +7,7 @@ public class Artikel
     private int Artikelnr;
     private String winkelnaam;
     private String artikelnaam;
-    private int prijs;
+    private double prijs;
     private int ptnwinst;
     private int minimumaantal;
     private int ptnkost;
@@ -23,7 +23,7 @@ public class Artikel
         this.winkelnaam = winkelnaam;
     }
     
-    public Artikel(int Artikelnr, String winkelnaam, String artikelnaam, int prijs,
+    public Artikel(int Artikelnr, String winkelnaam, String artikelnaam, double prijs,
                    int ptnwinst, int minimumaantal, int ptnkost, int minimumbedrag)
     {
        this.Artikelnr = Artikelnr;
@@ -66,7 +66,7 @@ public class Artikel
         this.artikelnaam = artikelnaam;
     }
     
-    public int getPrijs()
+    public double getPrijs()
     {
         return this.prijs;
     }
