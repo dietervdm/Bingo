@@ -76,14 +76,14 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
         PopUpSpaarkaart s = new PopUpSpaarkaart(5);
-                s.setSpaarkaartHouder(txtSpaarkaartNummer.getText());
                 setVisible(false);
+                s.setSpaarkaartHouder(txtSpaarkaartNummer.getText());
                 
-        //Hier moet tijdelijk scherm aangeroepen worden
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
         setVisible(false);
+        // Naar home??
     }//GEN-LAST:event_knopAnnuleerActionPerformed
 
     /**
