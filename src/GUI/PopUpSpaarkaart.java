@@ -3,6 +3,8 @@ package GUI;
 
 import Logica.Account;
 import Logica.Spaarkaart;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -11,10 +13,12 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
     public class PopUpSpaarkaart {
     Timer timer;
@@ -48,11 +52,11 @@ import javax.swing.JPanel;
     static ImageIcon wolverine = null;
     
     
-    static JLabel naamKlant = new JLabel("\t Naam van de klant: ");
+    static JLabel naamKlant = new JLabel("Naam van de klant: ");
     //naamKlant.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
-    static JLabel naamAccount = new JLabel("\t Naam account: ");
+    static JLabel naamAccount = new JLabel("Naam account: ");
     //naamAccount.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
-    static JLabel aantalPunten = new JLabel("\t aantal punten verzameld: ");
+    static JLabel aantalPunten = new JLabel("Aantal punten verzameld: ");
         //aantalPunten.setFont(new java.awt.Font("Tahoma", 1, 14)); // Lettertype aanpassen
 
     public PopUpSpaarkaart(int seconds) {
@@ -105,9 +109,9 @@ import javax.swing.JPanel;
         f.setLayout(new GridLayout(2,1,5,5));               // gridlayout (int rows, int cols, int hGap, int vGap)
         topPanel.setLayout(new GridLayout(3,1,10,3));
         downPanel.setLayout(new GridLayout(1,3,5,5));
-        spaarkaartBalk.setLayout(new GridLayout(1,3,1,1));
-        accountBalk.setLayout(new GridLayout(1,3,1,1));
-        puntenBalk.setLayout(new GridLayout(1,3,1,1));
+        spaarkaartBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
+        accountBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
+        puntenBalk.setLayout(new FlowLayout(FlowLayout.LEADING, 25, 25));
         
         
         
@@ -117,6 +121,8 @@ import javax.swing.JPanel;
         accountBalk.add(account);
         puntenBalk.add(aantalPunten);
         puntenBalk.add(punten);
+        Border compound = BorderFactory.createLineBorder(Color.black, 2, false); // true voor ronde hoeken
+        punten.setBorder(compound);
         
         //topPanel.add(leegBoven);
         topPanel.add(spaarkaartBalk);
