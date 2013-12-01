@@ -15,7 +15,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSpaarkaartNummer = new javax.swing.JTextField();
         knopRegistreerAankoop = new javax.swing.JButton();
         knopAnnuleer = new javax.swing.JButton();
 
@@ -23,7 +23,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
         jLabel1.setText("Geef spaarkaartnummer.");
 
-        jTextField1.setText("jTextField1");
+        txtSpaarkaartNummer.setText("<QR-Code>");
 
         knopRegistreerAankoop.setText("Registreer aankoop");
         knopRegistreerAankoop.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +53,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSpaarkaartNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -63,7 +63,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSpaarkaartNummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(knopAnnuleer)
@@ -76,6 +76,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
         PopUpSpaarkaart s = new PopUpSpaarkaart(5);
+                s.setSpaarkaartHouder(txtSpaarkaartNummer.getText());
                 setVisible(false);
                 
         //Hier moet tijdelijk scherm aangeroepen worden
@@ -123,8 +124,8 @@ public class VerkopenKlant extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton knopAnnuleer;
     private javax.swing.JButton knopRegistreerAankoop;
+    private javax.swing.JTextField txtSpaarkaartNummer;
     // End of variables declaration//GEN-END:variables
 }

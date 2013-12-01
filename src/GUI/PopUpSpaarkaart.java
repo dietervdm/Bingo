@@ -16,8 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
     public class PopUpSpaarkaart {
+
+    
         
     Timer timer;
+    
+    private static int spaarkaartHouder;
     
     static JFrame f = new JFrame();
     static JPanel topPanel = new JPanel();
@@ -145,6 +149,9 @@ import javax.swing.JPanel;
         this.punten.setText(Integer.toString(aantalPunten));
     }
     
+    public void setSpaarkaartHouder(String aSpaarkaartHouder) {
+        spaarkaartHouder = Integer.getInteger(aSpaarkaartHouder);
+    }
 
     class afsluiten extends TimerTask {
         public void run() {
