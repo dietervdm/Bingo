@@ -5,12 +5,16 @@ import Database.Database;
 import Logica.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ToevoegenWinkel2 extends javax.swing.JFrame {
 
     public JFrame myCaller;
     public Database d = new Database();
+    public Winkel actief = InlogScherm.getInstance().getActief();
+    public DefaultTableModel t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    
     
     public ToevoegenWinkel2() {
         initComponents();
@@ -19,6 +23,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     public ToevoegenWinkel2(JFrame caller) {
         initComponents();
         myCaller = caller;
+        
     }
 
     
@@ -34,7 +39,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtAdres = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelVestigingen = new javax.swing.JTable(t);
         knopToevoegen = new javax.swing.JButton();
         knopGaVerder = new javax.swing.JButton();
 
@@ -63,31 +68,8 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2"
-            }
-        ));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tabelVestigingen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelVestigingen);
 
         knopToevoegen.setText("Toevoegen");
         knopToevoegen.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +92,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(knopTerug)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,9 +107,8 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(20, 20, 20)))
+                                        .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(355, 355, 355)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -185,7 +167,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     }//GEN-LAST:event_knopTerugActionPerformed
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
-        String winkelnaam = ToevoegenWinkel.getInstance().getName();
+        String winkelnaam = actief.getWinkelnaam();
         int vestigingid = Integer.parseInt(txtVestigingid.getText());
         Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
         if(d.checkVestiging(vestigingid, winkelnaam)){
@@ -193,6 +175,10 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         }
         else{
             d.addVestiging(v);
+            t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            tabelVestigingen.setModel(t);
+            txtVestigingid.setText("");
+            txtAdres.setText("");
         }
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
@@ -234,10 +220,10 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton knopGaVerder;
     private javax.swing.JButton knopTerug;
     private javax.swing.JButton knopToevoegen;
+    private javax.swing.JTable tabelVestigingen;
     private javax.swing.JTextField txtAdres;
     private javax.swing.JTextField txtVestigingid;
     // End of variables declaration//GEN-END:variables

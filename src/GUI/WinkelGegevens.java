@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class WinkelGegevens extends javax.swing.JFrame {
     
     public JFrame myCaller;
-    private Winkel actief;
+    public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
     
     public WinkelGegevens() {

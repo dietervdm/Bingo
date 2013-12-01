@@ -8,7 +8,7 @@ import Logica.*;
 public class WinkelRapport extends javax.swing.JFrame {
     
     public JFrame myCaller;
-    public Winkel actief;
+    public Winkel actief = InlogScherm.getInstance().getActief();
     
     // Code van Dieter
     private Winkel w = new Winkel();

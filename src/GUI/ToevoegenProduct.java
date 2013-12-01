@@ -5,19 +5,24 @@ import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ToevoegenProduct extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
+    DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
     public ToevoegenProduct() {
         initComponents();
+        actief = InlogScherm.getInstance().getActief();
     }
     
     public ToevoegenProduct(JFrame caller) {
         initComponents();
         myCaller = caller;
+        actief = InlogScherm.getInstance().getActief();
     }
 
     
@@ -50,7 +55,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         knopToevoegen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelArtikelen = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -130,29 +135,8 @@ public class ToevoegenProduct extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2"
-            }
-        ));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tabelArtikelen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelArtikelen);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -340,9 +324,9 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(knopTerug))
-                        .addGap(0, 120, Short.MAX_VALUE)))
+                        .addGap(0, 120, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -383,7 +367,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                 .addComponent(knopToevoegen)
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -500,8 +484,8 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         
         if(checkGeeftpunten.isSelected()){
             puntenplus = Integer.parseInt(txtPuntenplus.getText());
-            if(checkMinimumaankoopbedrag.isSelected() && !txtMinimumbedrag.getText().equals("")){
-                minimumartikelen = Integer.parseInt(txtMinimumbedrag.getText());
+            if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals("")){
+                minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
             }
             else minimumartikelen = 0;
         }
@@ -530,7 +514,8 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         }
         else{
             d.addArtikel(p);
-            JOptionPane.showMessageDialog(null, "Vestiging toegevoegd");
+            t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            tabelArtikelen.setModel(t);
             txtArtikelnr.setText("");
             txtPrijs.setText("");
             txtPuntenplus.setText("");
@@ -538,6 +523,10 @@ public class ToevoegenProduct extends javax.swing.JFrame {
             txtMinimumartikelen.setText("");
             txtMinimumbedrag.setText("");
             txtArtikelnaam.setText("");
+            checkKostpunten.setSelected(false);
+            checkMinimumartikelen.setSelected(false);
+            checkGeeftpunten.setSelected(false);
+            checkMinimumaankoopbedrag.setSelected(false);
         }
     }//GEN-LAST:event_knopToevoegenActionPerformed
 
@@ -604,7 +593,6 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton knopTerug;
     private javax.swing.JButton knopToevoegen;
     private javax.swing.JMenu menuknopAanpassen;
@@ -621,6 +609,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTable tabelArtikelen;
     private javax.swing.JTextField txtArtikelnaam;
     private javax.swing.JTextField txtArtikelnr;
     private javax.swing.JTextField txtMinimumartikelen;

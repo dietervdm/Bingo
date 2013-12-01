@@ -5,12 +5,15 @@ import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class KlantenGegevens extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    
+    DefaultTableModel t = d.naarTabel("select * from account");
+
     public KlantenGegevens() {
         initComponents();
     }
@@ -42,7 +45,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtBtwnummer = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelKlanten = new javax.swing.JTable(t);
         knopWijzig = new javax.swing.JButton();
         knopVulin = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -91,29 +94,8 @@ public class KlantenGegevens extends javax.swing.JFrame {
 
         jLabel8.setText("Zo ja, btw-nummer");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2"
-            }
-        ));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tabelKlanten.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelKlanten);
 
         knopWijzig.setText("Wijzig");
         knopWijzig.addActionListener(new java.awt.event.ActionListener() {
@@ -302,10 +284,11 @@ public class KlantenGegevens extends javax.swing.JFrame {
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(knopWijzig, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(knopWijzig, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(665, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +320,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
                     .addComponent(checkBedrijf)
                     .addComponent(jLabel8)
                     .addComponent(txtBtwnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(knopWijzig)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,7 +451,8 @@ public class KlantenGegevens extends javax.swing.JFrame {
         }
         else {
             d.updateAccount(oud,nieuw);
-            
+            t = d.naarTabel("select * from account");
+            tabelKlanten.setModel(t);
             txtAccountnr.setText("");
             txtAccountnr2.setText("");
             txtBtwnummer.setText("");
@@ -545,7 +529,6 @@ public class KlantenGegevens extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton knopTerug;
     private javax.swing.JButton knopVulin;
     private javax.swing.JButton knopWijzig;
@@ -563,6 +546,7 @@ public class KlantenGegevens extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTable tabelKlanten;
     private javax.swing.JTextField txtAccountnr;
     private javax.swing.JTextField txtAccountnr2;
     private javax.swing.JTextField txtAdres;

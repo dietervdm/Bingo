@@ -10,7 +10,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     
     private JFrame myCaller;
     public Database d = new Database();
-    private Winkel w;
+    public Winkel actief = InlogScherm.getInstance().getActief();
     
     private static final ToevoegenWinkel toevoegenWinkel = new ToevoegenWinkel();
     
@@ -61,12 +61,6 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
         jLabel2.setText("Naam:");
 
         jLabel3.setText("Wachtwoord:");
-
-        txtPaswoord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPaswoordActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Herhaal wachtwoord:");
 
@@ -140,26 +134,32 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnulerenActionPerformed
-        getMyCaller().setVisible(true);
-        getMyCaller().setLocationRelativeTo(null);
-                setVisible(false);
+        if (actief == null){
+            
+        }
+        else{
+            d.deleteWinkel(actief);
+            InlogScherm s = new InlogScherm();
+            s.setLocationRelativeTo(null);
+            s.setVisible(true);
+            setVisible(false);
+        }
     }//GEN-LAST:event_knopAnnulerenActionPerformed
-
-    private void txtPaswoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaswoordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPaswoordActionPerformed
 
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
         
         if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
-            w = new Winkel(txtNaam.getText(), txtPaswoord.getText());
-            getInstance().setW(w);
-            if(d.checkWinkel(getW().getWinkelnaam())){
+            Winkel w = new Winkel(txtNaam.getText(), txtPaswoord.getText());
+            
+            if(d.checkWinkel(w.getWinkelnaam())){
                 JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
             }
             else {
-                d.addWinkel(getW());
+                d.addWinkel(w);
+                InlogScherm.getInstance().setActief(w);
+                actief = InlogScherm.getInstance().getActief();
                 ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
             }
@@ -215,24 +215,13 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPaswoord2;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the myCaller
-     */
+    
     public JFrame getMyCaller() {
         return myCaller;
     }
 
-    /**
-     * @return the w
-     */
-    public Winkel getW() {
-        return w;
-    }
-
-    /**
-     * @param w the w to set
-     */
-    public void setW(Winkel w) {
-        this.w = w;
+    
+    public void setMyCaller(JFrame myCaller) {
+        this.myCaller = myCaller;
     }
 }

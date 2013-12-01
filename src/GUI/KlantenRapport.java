@@ -8,6 +8,7 @@ import Logica.*;
 public class KlantenRapport extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief = InlogScherm.getInstance().getActief();
     
     public KlantenRapport() {
         initComponents();

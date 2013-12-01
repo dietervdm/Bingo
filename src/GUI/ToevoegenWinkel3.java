@@ -1,12 +1,21 @@
 
 package GUI;
 
+import Database.Database;
+import Logica.*;
+import Logica.Vestiging;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
     public JFrame myCaller;
+    public Database d = new Database();
+    public Winkel actief = InlogScherm.getInstance().getActief();
+    public DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+
     
     public ToevoegenWinkel3() {
         initComponents();
@@ -26,30 +35,29 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         knopTerug = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtArtikelnr = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtNaam = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        tabelArtikelen = new javax.swing.JTable(t);
+        knopToevoegen = new javax.swing.JButton();
         knopVoegToe = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtPrijs = new javax.swing.JTextField();
+        txtPuntenplus = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtPuntenmin = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jTextField6 = new javax.swing.JTextField();
+        checkMinimumartikelen = new javax.swing.JCheckBox();
+        checkMinimumaankoopbedrag = new javax.swing.JCheckBox();
+        txtMinimumartikelen = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtMinimumbedrag = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        checkGeeftpunten = new javax.swing.JCheckBox();
+        checkKostpunten = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
 
         jLabel12.setForeground(new java.awt.Color(255, 0, 0));
         jLabel12.setText("Er moet minstens 1 artikel zijn dat punten oplevert");
@@ -73,39 +81,21 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
         jLabel4.setText("Artikelnaam");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNaam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtNaamActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2"
-            }
-        ));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tabelArtikelen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelArtikelen);
 
-        jButton2.setText("Toevoegen");
+        knopToevoegen.setText("Toevoegen");
+        knopToevoegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopToevoegenActionPerformed(evt);
+            }
+        });
 
         knopVoegToe.setText("Voeg deze winkel toe!");
         knopVoegToe.addActionListener(new java.awt.event.ActionListener() {
@@ -116,34 +106,24 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
         jLabel5.setText("Prijs");
 
-        jTextField4.setText("<aantal>");
-
         jLabel8.setText("bonuspunten");
-
-        jTextField5.setText("<aantal>");
 
         jLabel9.setText("bonuspunten");
 
-        jCheckBox1.setText("Bij aankoop van");
+        checkMinimumartikelen.setText("Bij aankoop van");
 
-        jCheckBox2.setText("Bij een minimum aankoopbedrag van");
-
-        jTextField6.setText("<aantal>");
+        checkMinimumaankoopbedrag.setText("Bij een minimum aankoopbedrag van");
 
         jLabel10.setText("artikelen");
 
-        jTextField7.setText("<aantal>");
-
         jLabel11.setText("euro");
 
-        jCheckBox3.setText("Geeft");
+        checkGeeftpunten.setText("Geeft");
 
-        jCheckBox4.setText("Geeft");
+        checkKostpunten.setText("Geeft");
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Opgepast! Er moet minstens 1 artikel zijn dat punten oplevert en 1 artikel dat punten kost");
-
-        jButton3.setText("Toevoegen");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,6 +132,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(knopTerug)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,18 +140,17 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox3)
+                                .addComponent(checkGeeftpunten)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPuntenplus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox1)
+                                .addGap(32, 32, 32)
+                                .addComponent(checkMinimumartikelen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,39 +159,34 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtArtikelnr, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jCheckBox4)
+                                            .addComponent(checkKostpunten)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPuntenmin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel9))
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox2)
+                                            .addComponent(jLabel9)))
+                                    .addGap(32, 32, 32)
+                                    .addComponent(checkMinimumaankoopbedrag)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(7, 7, 7)
+                                    .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 206, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(325, 325, 325)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(326, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,34 +196,34 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtArtikelnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkGeeftpunten)
+                    .addComponent(txtPuntenplus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkMinimumartikelen)
+                    .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkKostpunten)
+                    .addComponent(txtPuntenmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkMinimumaankoopbedrag)
+                    .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(knopToevoegen)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -256,25 +231,21 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                     .addComponent(knopTerug)
                     .addComponent(knopVoegToe))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(288, 288, 288)
-                    .addComponent(jButton3)
-                    .addContainerGap(289, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNaamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNaamActionPerformed
         ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNaamActionPerformed
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
-        Home s = new Home(this);
+        System.out.println("Winkel toegevoegd, u kan nu inloggen.");
+        InlogScherm s = new InlogScherm();
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -285,6 +256,64 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         myCaller.setLocationRelativeTo(null);
                 setVisible(false);
     }//GEN-LAST:event_knopTerugActionPerformed
+
+    private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
+        String winkelnaam = actief.getWinkelnaam();
+        Integer puntenplus = 0;
+        Integer puntenmin = -1;
+        Integer minimumartikelen = 0;
+        Integer minimumbedrag = 0;
+        int artikelnr = Integer.parseInt(txtArtikelnr.getText());
+        int prijs = Integer.parseInt(txtPrijs.getText());
+        
+        if(checkGeeftpunten.isSelected()){
+            puntenplus = Integer.parseInt(txtPuntenplus.getText());
+            if(checkMinimumaankoopbedrag.isSelected() && !txtMinimumbedrag.getText().equals("")){
+                minimumartikelen = Integer.parseInt(txtMinimumbedrag.getText());
+            }
+            else minimumartikelen = 0;
+        }
+        else{
+            puntenplus = 0;
+            minimumartikelen = 0;
+        }
+        
+        if(checkKostpunten.isSelected()){
+            puntenmin = Integer.parseInt(txtPuntenmin.getText());
+            if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals("")){
+                minimumbedrag = Integer.parseInt(txtMinimumartikelen.getText());
+            }
+            else minimumbedrag = 0;
+        }
+        else {
+            puntenmin = -1;
+            minimumbedrag = 0;
+        }
+        
+        String artikelnaam = txtNaam.getText();
+        
+        Artikel p = new Artikel(artikelnr, winkelnaam, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
+        if(d.checkArtikel(artikelnr, winkelnaam)){
+            JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel");
+        }
+        else{
+            d.addArtikel(p);
+            t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            tabelArtikelen.setModel(t);
+            txtArtikelnr.setText("");
+            txtPrijs.setText("");
+            txtPuntenplus.setText("");
+            txtPuntenmin.setText("");
+            txtMinimumartikelen.setText("");
+            txtMinimumbedrag.setText("");
+            txtNaam.setText("");
+            checkKostpunten.setSelected(false);
+            checkMinimumartikelen.setSelected(false);
+            checkGeeftpunten.setSelected(false);
+            checkMinimumaankoopbedrag.setSelected(false);
+            
+        }
+    }//GEN-LAST:event_knopToevoegenActionPerformed
 
   
     public static void main(String args[]) {
@@ -319,12 +348,10 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox checkGeeftpunten;
+    private javax.swing.JCheckBox checkKostpunten;
+    private javax.swing.JCheckBox checkMinimumaankoopbedrag;
+    private javax.swing.JCheckBox checkMinimumartikelen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -337,15 +364,16 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton knopTerug;
+    private javax.swing.JButton knopToevoegen;
     private javax.swing.JButton knopVoegToe;
+    private javax.swing.JTable tabelArtikelen;
+    private javax.swing.JTextField txtArtikelnr;
+    private javax.swing.JTextField txtMinimumartikelen;
+    private javax.swing.JTextField txtMinimumbedrag;
+    private javax.swing.JTextField txtNaam;
+    private javax.swing.JTextField txtPrijs;
+    private javax.swing.JTextField txtPuntenmin;
+    private javax.swing.JTextField txtPuntenplus;
     // End of variables declaration//GEN-END:variables
 }

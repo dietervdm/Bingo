@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class InlogScherm extends javax.swing.JFrame {
     
     public Winkel actief = null;
-    public Winkel w;
+    public Winkel w = null;
     public Database d = new Database();
     
     private static final InlogScherm inlogscherm = new InlogScherm();
@@ -135,11 +135,11 @@ public class InlogScherm extends javax.swing.JFrame {
 
     private void knopNieuweWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopNieuweWinkelActionPerformed
 
-       
-                ToevoegenWinkel s = new ToevoegenWinkel(this);
-                s.setLocationRelativeTo(null);
-                s.setVisible(true);
-                setVisible(false);
+        inlogscherm.setActief(null);
+        ToevoegenWinkel s = new ToevoegenWinkel(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_knopNieuweWinkelActionPerformed
 
     
