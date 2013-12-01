@@ -17,12 +17,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
     public class PopUpSpaarkaart {
-
-    
-        
     Timer timer;
     
     private static int spaarkaartHouder;
+    
+//    private static Account acc;
+//    private static Spaarkaart s;
     
     static JFrame f = new JFrame();
     static JPanel topPanel = new JPanel();
@@ -43,6 +43,10 @@ import javax.swing.JPanel;
     static JLabel bs;
     static JLabel wol;
     
+    static ImageIcon major = null;
+    static ImageIcon bigSpender = null;
+    static ImageIcon wolverine = null;
+    
     
     static JLabel naamKlant = new JLabel("\t Naam van de klant: ");
     //naamKlant.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
@@ -56,6 +60,9 @@ import javax.swing.JPanel;
         timer.schedule(new afsluiten(), seconds*1000);
         initComponents();
         
+//        acc = new Account();
+//        s = new Spaarkaart(spaarkaartHouder);
+        // is dit een goeie oplossing?
 	}
 
     public static void initComponents() {
@@ -84,9 +91,12 @@ import javax.swing.JPanel;
         Image img2 = icon2.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
         Image img3 = icon3.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
             
-        ImageIcon major = new ImageIcon(img1);
-        ImageIcon bigSpender = new ImageIcon(img2);
-        ImageIcon wolverine = new ImageIcon(img3);
+        major.setImage(img1);
+        bigSpender.setImage(img2);
+        wolverine.setImage(img3);
+        //major = new ImageIcon(img1);
+        //bigSpender = new ImageIcon(img2);
+        //wolverine = new ImageIcon(img3);
         
         maj = new JLabel(major);
         bs = new JLabel(bigSpender);
@@ -132,23 +142,25 @@ import javax.swing.JPanel;
         }
     }
 
-    public void setAccount(String accountNaam) {
-        this.account.setText(accountNaam);
+    public void setAccount() {
+        Account acc = new Account();
+        this.account.setText(acc.getNaam());
     }
 
     /**
      * @param spaarkaart the spaarkaart to set
      */
-    public void setSpaarkaart(int spaarkaart) {
-        Spaarkaart k = new Spaarkaart(spaarkaart);
+    public void setSpaarkaart() {
+        Spaarkaart k = new Spaarkaart(spaarkaartHouder);
         this.spaarkaart.setText(k.getNaamhouder());
     }
 
     /**
      * @param aantalPunten the aantalPunten to set
      */
-    public void setAantalPunten(int aantalPunten) {
-        this.punten.setText(Integer.toString(aantalPunten));
+    public void setAantalPunten() {
+        Account acc = new Account();
+        this.punten.setText(Integer.toString(acc.getPunten()));
     }
     
     public void setSpaarkaartHouder(String aSpaarkaartHouder) {
