@@ -23,8 +23,6 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
         jLabel1.setText("Geef spaarkaartnummer.");
 
-        txtSpaarkaartNummer.setText("<QR-Code>");
-
         knopRegistreerAankoop.setText("Registreer aankoop");
         knopRegistreerAankoop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

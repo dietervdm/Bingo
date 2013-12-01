@@ -101,7 +101,7 @@ public class Home extends javax.swing.JFrame {
         menuknopWinkelRapport.add(menuknopVestigingsrapport);
 
         menuknopKlantenrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
-        menuknopKlantenrapport.setText("Klantenrapport");
+        menuknopKlantenrapport.setText("Assortiment");
         menuknopKlantenrapport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuknopKlantenrapportActionPerformed(evt);
