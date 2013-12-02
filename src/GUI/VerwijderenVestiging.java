@@ -4,10 +4,15 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class VerwijderenVestiging extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief = InlogScherm.getInstance().getActief();
+    public Database d = new Database();
+    DefaultTableModel t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
     public VerwijderenVestiging() {
         initComponents();
@@ -25,6 +30,12 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtVestigingid = new javax.swing.JTextField();
+        knopVerwijderen = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelVestigingen = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -61,6 +72,22 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
                 knopTerugActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Verwijder een Vestiging.");
+
+        jLabel2.setText("VestigingsID");
+
+        txtVestigingid.setText("jTextField1");
+
+        knopVerwijderen.setText("Verwijderen");
+        knopVerwijderen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopVerwijderenActionPerformed(evt);
+            }
+        });
+
+        tabelVestigingen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelVestigingen);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -245,13 +272,34 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knopTerug)
-                .addContainerGap(727, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(knopTerug)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtVestigingid, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(knopVerwijderen))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(545, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtVestigingid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(knopVerwijderen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -371,48 +419,35 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MenuknopVerwijderenartikelActionPerformed
 
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerwijderenVestiging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerwijderenVestiging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerwijderenVestiging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerwijderenVestiging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void knopVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderenActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VerwijderenVestiging().setVisible(true);
-            }
-        });
+        int vestigingid = Integer.parseInt(txtVestigingid.getText());
+
+        if(d.checkVestiging(vestigingid, actief.getWinkelnaam())){
+            Vestiging v = d.getVestiging(vestigingid, actief.getWinkelnaam());
+            d.deleteVestiging(v);
+            t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            tabelVestigingen.setModel(t);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel");
+    }//GEN-LAST:event_knopVerwijderenActionPerformed
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton knopTerug;
+    private javax.swing.JButton knopVerwijderen;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;
@@ -431,5 +466,7 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTable tabelVestigingen;
+    private javax.swing.JTextField txtVestigingid;
     // End of variables declaration//GEN-END:variables
 }
