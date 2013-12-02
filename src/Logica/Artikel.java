@@ -1,10 +1,12 @@
 
 package Logica;
 
+import Database.Database;
+
 
 public class Artikel
 {
-    private int Artikelnr;
+    private int artikelnr;
     private String winkelnaam;
     private String artikelnaam;
     private double prijs;
@@ -17,16 +19,23 @@ public class Artikel
     public Artikel()
     {}
     
+    
     public Artikel(int Artikelnr, String winkelnaam)
     {
-        this.Artikelnr = Artikelnr;
+        this.artikelnr = Artikelnr;
         this.winkelnaam = winkelnaam;
+        getArtikelnaamFromArtikelnr();
+        getPrijsFromArtikelnr();
+        getPtnwinstFromArtikelnr();
+        getMinimumaantalFromArtikelnr();
+        getPtnkostFromArtikelnr();
+        getMinimumbedragFromArtikelnr();
     }
     
     public Artikel(int Artikelnr, String winkelnaam, String artikelnaam, double prijs,
                    int ptnwinst, int minimumaantal, int ptnkost, int minimumbedrag)
     {
-       this.Artikelnr = Artikelnr;
+       this.artikelnr = Artikelnr;
        this.winkelnaam = winkelnaam;
        this.artikelnaam = artikelnaam;
        this.prijs = prijs;
@@ -38,12 +47,12 @@ public class Artikel
     
     public int getArtikelnr()
     {
-        return Artikelnr;
+        return artikelnr;
     }
     
     public void setArtikelnr(int Artikelnr)
     {
-        this.Artikelnr = Artikelnr;
+        this.artikelnr = Artikelnr;
     }
     
     public String getWinkelnaam()
@@ -114,5 +123,35 @@ public class Artikel
     public void setMinimumbedrag(int minimumbedrag)
     {
         this.minimumbedrag = minimumbedrag;
+    }
+    
+    public void getArtikelnaamFromArtikelnr(){
+        Database db = new Database();
+        this.artikelnaam = db.getArtikel(artikelnr, winkelnaam).getArtikelnaam();
+    }
+    
+    public void getPrijsFromArtikelnr(){
+        Database db = new Database();
+        this.prijs = db.getArtikel(artikelnr, winkelnaam).getPrijs();
+    }
+    
+    public void getPtnwinstFromArtikelnr(){
+        Database db = new Database();
+        this.ptnwinst = db.getArtikel(artikelnr, winkelnaam).getPtnwinst();
+    }
+    
+    public void getMinimumaantalFromArtikelnr(){
+        Database db = new Database();
+        this.minimumaantal = db.getArtikel(artikelnr, winkelnaam).getMinimumaantal();
+    }
+    
+    public void getPtnkostFromArtikelnr(){
+        Database db = new Database();
+        this.ptnkost = db.getArtikel(artikelnr, winkelnaam).getPtnkost();
+    }
+    
+    public void getMinimumbedragFromArtikelnr(){
+        Database db = new Database();
+        this.minimumbedrag = db.getArtikel(artikelnr, winkelnaam).getMinimumbedrag();
     }
 }
