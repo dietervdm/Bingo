@@ -255,6 +255,9 @@ public class Account
                 boolean manier = srs.getBoolean("manierbetaling");
                 
                 Artikelaankoop aak = new Artikelaankoop(trans, artikelnr, nm, aantal, manier);
+                
+                Artikel a = new Artikel(aak.getArtikelnr(), aak.getWinkelnaam());
+                a.getPrijs();
             }
         }
             
