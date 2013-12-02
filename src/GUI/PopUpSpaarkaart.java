@@ -102,7 +102,8 @@ import javax.swing.border.Border;
         bigSpender = new ImageIcon(img2);
         wolverine = new ImageIcon(img3);
         
-        maj = new JLabel(major);
+        maj.setIcon(new ImageIcon(img1));
+        //maj = new JLabel(major);
         bs = new JLabel(bigSpender);
         wol = new JLabel(wolverine);
         
