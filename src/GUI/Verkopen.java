@@ -8,13 +8,16 @@ import Logica.*;
 public class Verkopen extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief;
     
     public Verkopen() {
         initComponents();
+        actief = InlogScherm.getInstance().actief;
     }
     
     public Verkopen(JFrame caller) {
         initComponents();
+        actief = InlogScherm.getInstance().actief;
         myCaller = caller;
     }
 
@@ -498,3 +501,5 @@ public class Verkopen extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopWinkelrapport;
     // End of variables declaration//GEN-END:variables
 }
+
+
