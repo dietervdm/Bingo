@@ -279,49 +279,49 @@ public class VerwijderenWinkel extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        WinkelRapport s = new WinkelRapport(this);
+        RapportWinkel s = new RapportWinkel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopWinkelrapportActionPerformed
 
     private void menuknopVestigingsrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsrapportActionPerformed
-        VestigingsRapport s = new VestigingsRapport(this);
+        RapportVestiging s = new RapportVestiging(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopVestigingsrapportActionPerformed
 
     private void menuknopKlantenrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantenrapportActionPerformed
-        KlantenRapport s = new KlantenRapport(this);
+        RapportAssortiment s = new RapportAssortiment(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopKlantenrapportActionPerformed
 
     private void menuknopWinkelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelgegevensActionPerformed
-        WinkelGegevens s = new WinkelGegevens(this);
+        AanpassenWinkel s = new AanpassenWinkel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopWinkelgegevensActionPerformed
 
     private void menuknopVestigingsgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsgegevensActionPerformed
-        VestigingsGegevens s = new VestigingsGegevens(this);
+        AanpassenVestiging s = new AanpassenVestiging(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopVestigingsgegevensActionPerformed
 
     private void menuknopKlantengegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantengegevensActionPerformed
-        KlantenGegevens s = new KlantenGegevens(this);
+        AanpassenKlant s = new AanpassenKlant(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopKlantengegevensActionPerformed
 
     private void MenuknopArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevensActionPerformed
-        ProductGegevens s = new ProductGegevens(this);
+        AanpassenArtikel s = new AanpassenArtikel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);

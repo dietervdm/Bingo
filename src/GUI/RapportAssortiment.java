@@ -4,25 +4,19 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
-import javax.swing.JOptionPane;
 
-public class WinkelGegevens extends javax.swing.JFrame {
+public class RapportAssortiment extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
-    public Database d = new Database();
     
-    public WinkelGegevens() {
+    public RapportAssortiment() {
         initComponents();
-        actief = InlogScherm.getInstance().getActief();
-        
     }
     
-    public WinkelGegevens(JFrame caller) {
+    public RapportAssortiment(JFrame caller) {
         initComponents();
         myCaller = caller;
-        actief = InlogScherm.getInstance().getActief();
-        
     }
 
     
@@ -32,14 +26,6 @@ public class WinkelGegevens extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtNaam = new javax.swing.JTextField();
-        knopAanpassen = new javax.swing.JButton();
-        txtPaswoord = new javax.swing.JPasswordField();
-        txtPaswoord2 = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -55,39 +41,18 @@ public class WinkelGegevens extends javax.swing.JFrame {
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
-        MenuknopToevoegenAtikel = new javax.swing.JMenuItem();
+        MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
         menuknopUitloggen = new javax.swing.JMenu();
 
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Winkelgegevens");
+        setTitle("Klantenrapport");
 
         knopTerug.setText("Terug");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 knopTerugActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Pas uw gegevens aan.");
-
-        jLabel2.setText("Nieuw wachtwoord");
-
-        jLabel3.setText("herhaal wachtwoord");
-
-        jLabel4.setText("Nieuwe naam");
-
-        knopAanpassen.setText("Aanpassen");
-        knopAanpassen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopAanpassenActionPerformed(evt);
-            }
-        });
-
-        txtPaswoord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPaswoordActionPerformed(evt);
             }
         });
 
@@ -198,14 +163,14 @@ public class WinkelGegevens extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(menuknopToevoegenKlant);
 
-        MenuknopToevoegenAtikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
-        MenuknopToevoegenAtikel.setText("Artikel");
-        MenuknopToevoegenAtikel.addActionListener(new java.awt.event.ActionListener() {
+        MenuknopToevoegenArtikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopToevoegenArtikel.setText("Artikel");
+        MenuknopToevoegenArtikel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuknopToevoegenAtikelActionPerformed(evt);
+                MenuknopToevoegenArtikelActionPerformed(evt);
             }
         });
-        menuknopToevoegen.add(MenuknopToevoegenAtikel);
+        menuknopToevoegen.add(MenuknopToevoegenArtikel);
 
         jMenuBar1.add(menuknopToevoegen);
 
@@ -225,42 +190,13 @@ public class WinkelGegevens extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(knopTerug)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(knopAanpassen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(txtPaswoord)
-                            .addComponent(txtPaswoord2))))
-                .addGap(489, 542, Short.MAX_VALUE))
+                .addComponent(knopTerug)
+                .addContainerGap(727, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPaswoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addComponent(knopAanpassen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addContainerGap(545, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -275,42 +211,42 @@ public class WinkelGegevens extends javax.swing.JFrame {
     }//GEN-LAST:event_knopTerugActionPerformed
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        WinkelRapport s = new WinkelRapport(this);
+        RapportWinkel s = new RapportWinkel(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopWinkelrapportActionPerformed
 
     private void menuknopVestigingsrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsrapportActionPerformed
-        VestigingsRapport s = new VestigingsRapport(this);
+        RapportVestiging s = new RapportVestiging(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopVestigingsrapportActionPerformed
 
     private void menuknopKlantenrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantenrapportActionPerformed
-        KlantenRapport s = new KlantenRapport(this);
+        RapportAssortiment s = new RapportAssortiment(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopKlantenrapportActionPerformed
 
     private void menuknopWinkelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelgegevensActionPerformed
-        WinkelGegevens s = new WinkelGegevens(this);
+        AanpassenWinkel s = new AanpassenWinkel(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopWinkelgegevensActionPerformed
 
     private void menuknopVestigingsgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsgegevensActionPerformed
-        VestigingsGegevens s = new VestigingsGegevens(this);
+        AanpassenVestiging s = new AanpassenVestiging(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopVestigingsgegevensActionPerformed
 
     private void menuknopKlantengegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantengegevensActionPerformed
-        KlantenGegevens s = new KlantenGegevens(this);
+        AanpassenKlant s = new AanpassenKlant(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -330,12 +266,12 @@ public class WinkelGegevens extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopToevoegenKlantActionPerformed
 
-    private void MenuknopToevoegenAtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenAtikelActionPerformed
+    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
         ToevoegenProduct s = new ToevoegenProduct(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenAtikelActionPerformed
+    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
 
     private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
         InlogScherm s = new InlogScherm();
@@ -358,30 +294,8 @@ public class WinkelGegevens extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
-    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
-        if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
-            Winkel nieuw = new Winkel(txtNaam.getText(), txtPaswoord.getText());
-            
-            if(d.checkWinkel(nieuw.getWinkelnaam())){
-                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
-            }
-            else {
-                d.updateWinkel(actief, nieuw);
-                InlogScherm.getInstance().setActief(nieuw);
-                JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
-        }
-    }//GEN-LAST:event_knopAanpassenActionPerformed
-
-    private void txtPaswoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaswoordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPaswoordActionPerformed
-
     private void MenuknopArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevensActionPerformed
-        ProductGegevens s = new ProductGegevens(this);
+        AanpassenArtikel s = new AanpassenArtikel(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -402,33 +316,28 @@ public class WinkelGegevens extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WinkelGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportAssortiment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WinkelGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportAssortiment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WinkelGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportAssortiment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WinkelGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportAssortiment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WinkelGegevens().setVisible(true);
+                new RapportAssortiment().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
-    private javax.swing.JMenuItem MenuknopToevoegenAtikel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JButton knopAanpassen;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
@@ -444,8 +353,5 @@ public class WinkelGegevens extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTextField txtNaam;
-    private javax.swing.JPasswordField txtPaswoord;
-    private javax.swing.JPasswordField txtPaswoord2;
     // End of variables declaration//GEN-END:variables
 }

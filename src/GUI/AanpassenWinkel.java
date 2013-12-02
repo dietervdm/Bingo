@@ -5,22 +5,24 @@ import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-public class KlantenGegevens extends javax.swing.JFrame {
+public class AanpassenWinkel extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select * from account");
-
-    public KlantenGegevens() {
+    
+    public AanpassenWinkel() {
         initComponents();
+        actief = InlogScherm.getInstance().getActief();
+        
     }
     
-    public KlantenGegevens(JFrame caller) {
+    public AanpassenWinkel(JFrame caller) {
         initComponents();
         myCaller = caller;
+        actief = InlogScherm.getInstance().getActief();
+        
     }
 
     
@@ -34,20 +36,10 @@ public class KlantenGegevens extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtAccountnr2 = new javax.swing.JTextField();
-        txtAccountnr = new javax.swing.JTextField();
         txtNaam = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        txtAdres = new javax.swing.JTextField();
-        checkBedrijf = new javax.swing.JCheckBox();
-        jLabel8 = new javax.swing.JLabel();
-        txtBtwnummer = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelKlanten = new javax.swing.JTable(t);
-        knopWijzig = new javax.swing.JButton();
-        knopVulin = new javax.swing.JButton();
+        knopAanpassen = new javax.swing.JButton();
+        txtPaswoord = new javax.swing.JPasswordField();
+        txtPaswoord2 = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -63,13 +55,13 @@ public class KlantenGegevens extends javax.swing.JFrame {
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
-        MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
+        MenuknopToevoegenAtikel = new javax.swing.JMenuItem();
         menuknopUitloggen = new javax.swing.JMenu();
 
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Klantengegevens");
+        setTitle("Winkelgegevens");
 
         knopTerug.setText("Terug");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
@@ -78,36 +70,24 @@ public class KlantenGegevens extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Pas klantengegevens aan.");
+        jLabel1.setText("Pas uw gegevens aan.");
 
-        jLabel2.setText("huidig accountnummer");
+        jLabel2.setText("Nieuw wachtwoord");
 
-        jLabel3.setText("nieuw accountnr");
+        jLabel3.setText("herhaal wachtwoord");
 
-        jLabel4.setText("naam");
+        jLabel4.setText("Nieuwe naam");
 
-        jLabel5.setText("e-mail");
-
-        jLabel6.setText("adres");
-
-        checkBedrijf.setText("Bedrijf");
-
-        jLabel8.setText("Zo ja, btw-nummer");
-
-        tabelKlanten.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelKlanten);
-
-        knopWijzig.setText("Wijzig");
-        knopWijzig.addActionListener(new java.awt.event.ActionListener() {
+        knopAanpassen.setText("Aanpassen");
+        knopAanpassen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopWijzigActionPerformed(evt);
+                knopAanpassenActionPerformed(evt);
             }
         });
 
-        knopVulin.setText("Vul huidige gegevens in");
-        knopVulin.addActionListener(new java.awt.event.ActionListener() {
+        txtPaswoord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopVulinActionPerformed(evt);
+                txtPaswoordActionPerformed(evt);
             }
         });
 
@@ -218,14 +198,14 @@ public class KlantenGegevens extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(menuknopToevoegenKlant);
 
-        MenuknopToevoegenArtikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
-        MenuknopToevoegenArtikel.setText("Artikel");
-        MenuknopToevoegenArtikel.addActionListener(new java.awt.event.ActionListener() {
+        MenuknopToevoegenAtikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopToevoegenAtikel.setText("Artikel");
+        MenuknopToevoegenAtikel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuknopToevoegenArtikelActionPerformed(evt);
+                MenuknopToevoegenAtikelActionPerformed(evt);
             }
         });
-        menuknopToevoegen.add(MenuknopToevoegenArtikel);
+        menuknopToevoegen.add(MenuknopToevoegenAtikel);
 
         jMenuBar1.add(menuknopToevoegen);
 
@@ -246,85 +226,41 @@ public class KlantenGegevens extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(knopTerug)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(knopTerug)
-                            .addComponent(checkBedrijf)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(220, 220, 220)
-                                .addComponent(knopVulin, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(21, 21, 21)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtBtwnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addGap(48, 48, 48)
-                                                            .addComponent(txtAccountnr2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(txtNaam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel6)))))
-                                    .addComponent(jLabel4))
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAdres, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(17, 17, 17))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(knopWijzig, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(665, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(knopAanpassen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(txtPaswoord)
+                            .addComponent(txtPaswoord2))))
+                .addGap(489, 542, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(knopVulin)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtAccountnr2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkBedrijf)
-                    .addComponent(jLabel8)
-                    .addComponent(txtBtwnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(knopWijzig)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPaswoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(knopAanpassen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -339,42 +275,42 @@ public class KlantenGegevens extends javax.swing.JFrame {
     }//GEN-LAST:event_knopTerugActionPerformed
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        WinkelRapport s = new WinkelRapport(this);
+        RapportWinkel s = new RapportWinkel(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopWinkelrapportActionPerformed
 
     private void menuknopVestigingsrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsrapportActionPerformed
-        VestigingsRapport s = new VestigingsRapport(this);
+        RapportVestiging s = new RapportVestiging(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopVestigingsrapportActionPerformed
 
     private void menuknopKlantenrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantenrapportActionPerformed
-        KlantenRapport s = new KlantenRapport(this);
+        RapportAssortiment s = new RapportAssortiment(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopKlantenrapportActionPerformed
 
     private void menuknopWinkelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelgegevensActionPerformed
-        WinkelGegevens s = new WinkelGegevens(this);
+        AanpassenWinkel s = new AanpassenWinkel(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopWinkelgegevensActionPerformed
 
     private void menuknopVestigingsgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVestigingsgegevensActionPerformed
-        VestigingsGegevens s = new VestigingsGegevens(this);
+        AanpassenVestiging s = new AanpassenVestiging(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_menuknopVestigingsgegevensActionPerformed
 
     private void menuknopKlantengegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopKlantengegevensActionPerformed
-        KlantenGegevens s = new KlantenGegevens(this);
+        AanpassenKlant s = new AanpassenKlant(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -394,12 +330,12 @@ public class KlantenGegevens extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopToevoegenKlantActionPerformed
 
-    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
+    private void MenuknopToevoegenAtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenAtikelActionPerformed
         ToevoegenProduct s = new ToevoegenProduct(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
+    }//GEN-LAST:event_MenuknopToevoegenAtikelActionPerformed
 
     private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
         InlogScherm s = new InlogScherm();
@@ -422,62 +358,30 @@ public class KlantenGegevens extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
-    private void knopWijzigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopWijzigActionPerformed
-        String accountnr2string = txtAccountnr2.getText();
-        int accountnr2 = Integer.parseInt(accountnr2string);
-        String naam = txtNaam.getText();
-        String email = txtEmail.getText();
-        String adres = txtAdres.getText();
-        String btwnummer = txtBtwnummer.getText();
-        java.util.Date jstartw = new java.util.Date(100,00,01);
-        java.sql.Date startw = new java.sql.Date(jstartw.getTime());
-        java.util.Date jstartb = new java.util.Date(100,00,01);
-        java.sql.Date startb = new java.sql.Date(jstartb.getTime());
-        java.util.Date jstartm = new java.util.Date(100,00,01);
-        java.sql.Date startm = new java.sql.Date(jstartm.getTime());
-        
-        if(checkBedrijf.isSelected()){
-            btwnummer = txtBtwnummer.getText();
-        }
-            else btwnummer = null;
-        
-        int accountnr = Integer.parseInt(txtAccountnr.getText());
-        Account oud = d.getAccount(accountnr);
-        Account nieuw = new Account(accountnr2, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
-        
-        
-        if(d.checkAccount(nieuw.getAccountnr()) && !(nieuw.getAccountnr() == oud.getAccountnr())){
-            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat al.");
-        }
-        else {
-            d.updateAccount(oud,nieuw);
-            t = d.naarTabel("select * from account");
-            tabelKlanten.setModel(t);
-            txtAccountnr.setText("");
-            txtAccountnr2.setText("");
-            txtBtwnummer.setText("");
-            txtAdres.setText("");
-            txtEmail.setText("");
-            txtNaam.setText("");
+    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
+        if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
+            Winkel nieuw = new Winkel(txtNaam.getText(), txtPaswoord.getText());
             
+            if(d.checkWinkel(nieuw.getWinkelnaam())){
+                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+            }
+            else {
+                d.updateWinkel(actief, nieuw);
+                InlogScherm.getInstance().setActief(nieuw);
+                JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
+            }
         }
-        
-    }//GEN-LAST:event_knopWijzigActionPerformed
+        else{
+            JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
+        }
+    }//GEN-LAST:event_knopAanpassenActionPerformed
 
-    private void knopVulinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVulinActionPerformed
-        int accountnr = Integer.parseInt(txtAccountnr.getText());
-        Account a = d.getAccount(accountnr);
-        
-        txtAccountnr2.setText(Integer.toString(a.getAccountnr()));
-        txtNaam.setText(a.getNaam());
-        txtEmail.setText(a.getEmail());
-        txtAdres.setText(a.getAdres());
-        txtBtwnummer.setText(a.getBtwnummer());
-        
-    }//GEN-LAST:event_knopVulinActionPerformed
+    private void txtPaswoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaswoordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPaswoordActionPerformed
 
     private void MenuknopArtikelgegevensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopArtikelgegevensActionPerformed
-        ProductGegevens s = new ProductGegevens(this);
+        AanpassenArtikel s = new AanpassenArtikel(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -498,40 +402,34 @@ public class KlantenGegevens extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AanpassenWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AanpassenWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AanpassenWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KlantenGegevens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AanpassenWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KlantenGegevens().setVisible(true);
+                new AanpassenWinkel().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
-    private javax.swing.JMenuItem MenuknopToevoegenArtikel;
-    private javax.swing.JCheckBox checkBedrijf;
+    private javax.swing.JMenuItem MenuknopToevoegenAtikel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton knopAanpassen;
     private javax.swing.JButton knopTerug;
-    private javax.swing.JButton knopVulin;
-    private javax.swing.JButton knopWijzig;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;
@@ -546,12 +444,8 @@ public class KlantenGegevens extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTable tabelKlanten;
-    private javax.swing.JTextField txtAccountnr;
-    private javax.swing.JTextField txtAccountnr2;
-    private javax.swing.JTextField txtAdres;
-    private javax.swing.JTextField txtBtwnummer;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNaam;
+    private javax.swing.JPasswordField txtPaswoord;
+    private javax.swing.JPasswordField txtPaswoord2;
     // End of variables declaration//GEN-END:variables
 }
