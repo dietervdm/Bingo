@@ -98,7 +98,7 @@ public class Framework extends javax.swing.JFrame {
         });
         menuknopWinkelRapport.add(menuknopVestigingsrapport);
 
-        menuknopKlantenrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
+        menuknopKlantenrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Assortiment.png"))); // NOI18N
         menuknopKlantenrapport.setText("Assortiment");
         menuknopKlantenrapport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +147,7 @@ public class Framework extends javax.swing.JFrame {
         });
         menuknopAanpassen.add(MenuknopArtikelgegevens);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
         jMenuItem2.setText("Spaarkaart");
         menuknopAanpassen.add(jMenuItem2);
 
@@ -181,6 +182,7 @@ public class Framework extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(MenuknopToevoegenArtikel);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
         jMenuItem1.setText("Spaarkaart");
         menuknopToevoegen.add(jMenuItem1);
 
@@ -224,6 +226,7 @@ public class Framework extends javax.swing.JFrame {
         });
         jMenu1.add(MenuknopVerwijderenartikel);
 
+        menuknopVerwijderenspaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
         menuknopVerwijderenspaarkaart.setText("Spaarkaart");
         menuknopVerwijderenspaarkaart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
