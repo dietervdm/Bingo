@@ -43,6 +43,12 @@ public class Framework extends javax.swing.JFrame {
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
         MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        menuknopVerwijderenwinkel = new javax.swing.JMenuItem();
+        menuknopVerwijderenvestiging = new javax.swing.JMenuItem();
+        menuknopVerwijderenklant = new javax.swing.JMenuItem();
+        MenuknopVerwijderenartikel = new javax.swing.JMenuItem();
+        menuknopVerwijderenspaarkaart = new javax.swing.JMenuItem();
         menuknopUitloggen = new javax.swing.JMenu();
 
         jMenu7.setText("jMenu7");
@@ -106,7 +112,7 @@ public class Framework extends javax.swing.JFrame {
         menuknopAanpassen.setText("Aanpassen");
 
         menuknopWinkelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Winkel.png"))); // NOI18N
-        menuknopWinkelgegevens.setText("Winkelgegevens");
+        menuknopWinkelgegevens.setText("Winkel");
         menuknopWinkelgegevens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuknopWinkelgegevensActionPerformed(evt);
@@ -115,7 +121,7 @@ public class Framework extends javax.swing.JFrame {
         menuknopAanpassen.add(menuknopWinkelgegevens);
 
         menuknopVestigingsgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Vestiging.png"))); // NOI18N
-        menuknopVestigingsgegevens.setText("Vestigingsgegevens");
+        menuknopVestigingsgegevens.setText("Vestiging");
         menuknopVestigingsgegevens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuknopVestigingsgegevensActionPerformed(evt);
@@ -124,7 +130,7 @@ public class Framework extends javax.swing.JFrame {
         menuknopAanpassen.add(menuknopVestigingsgegevens);
 
         menuknopKlantengegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
-        menuknopKlantengegevens.setText("Klantengegevens");
+        menuknopKlantengegevens.setText("Klant");
         menuknopKlantengegevens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuknopKlantengegevensActionPerformed(evt);
@@ -133,7 +139,7 @@ public class Framework extends javax.swing.JFrame {
         menuknopAanpassen.add(menuknopKlantengegevens);
 
         MenuknopArtikelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
-        MenuknopArtikelgegevens.setText("Artikelgegevens");
+        MenuknopArtikelgegevens.setText("Artikel");
         MenuknopArtikelgegevens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuknopArtikelgegevensActionPerformed(evt);
@@ -141,7 +147,7 @@ public class Framework extends javax.swing.JFrame {
         });
         menuknopAanpassen.add(MenuknopArtikelgegevens);
 
-        jMenuItem2.setText("Spaarkaartgegevens");
+        jMenuItem2.setText("Spaarkaart");
         menuknopAanpassen.add(jMenuItem2);
 
         jMenuBar1.add(menuknopAanpassen);
@@ -179,6 +185,49 @@ public class Framework extends javax.swing.JFrame {
         menuknopToevoegen.add(jMenuItem1);
 
         jMenuBar1.add(menuknopToevoegen);
+
+        jMenu1.setText("Verwijderen");
+
+        menuknopVerwijderenwinkel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Winkel.png"))); // NOI18N
+        menuknopVerwijderenwinkel.setText("Winkel");
+        menuknopVerwijderenwinkel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuknopVerwijderenwinkelActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuknopVerwijderenwinkel);
+
+        menuknopVerwijderenvestiging.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Vestiging.png"))); // NOI18N
+        menuknopVerwijderenvestiging.setText("Vestiging");
+        menuknopVerwijderenvestiging.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuknopVerwijderenvestigingActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuknopVerwijderenvestiging);
+
+        menuknopVerwijderenklant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
+        menuknopVerwijderenklant.setText("Klant");
+        menuknopVerwijderenklant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuknopVerwijderenklantActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuknopVerwijderenklant);
+
+        MenuknopVerwijderenartikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
+        MenuknopVerwijderenartikel.setText("Artikel");
+        MenuknopVerwijderenartikel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopVerwijderenartikelActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuknopVerwijderenartikel);
+
+        menuknopVerwijderenspaarkaart.setText("Spaarkaart");
+        jMenu1.add(menuknopVerwijderenspaarkaart);
+
+        jMenuBar1.add(jMenu1);
 
         menuknopUitloggen.setText("Uitloggen");
         menuknopUitloggen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,6 +355,22 @@ public class Framework extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
 
+    private void menuknopVerwijderenwinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenwinkelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuknopVerwijderenwinkelActionPerformed
+
+    private void menuknopVerwijderenvestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenvestigingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuknopVerwijderenvestigingActionPerformed
+
+    private void menuknopVerwijderenklantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenklantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuknopVerwijderenklantActionPerformed
+
+    private void MenuknopVerwijderenartikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopVerwijderenartikelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuknopVerwijderenartikelActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -341,6 +406,8 @@ public class Framework extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JMenuItem MenuknopVerwijderenartikel;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -355,6 +422,10 @@ public class Framework extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopToevoegenVestiging;
     private javax.swing.JMenu menuknopUitloggen;
     private javax.swing.JMenu menuknopVerkopen;
+    private javax.swing.JMenuItem menuknopVerwijderenklant;
+    private javax.swing.JMenuItem menuknopVerwijderenspaarkaart;
+    private javax.swing.JMenuItem menuknopVerwijderenvestiging;
+    private javax.swing.JMenuItem menuknopVerwijderenwinkel;
     private javax.swing.JMenuItem menuknopVestigingsgegevens;
     private javax.swing.JMenuItem menuknopVestigingsrapport;
     private javax.swing.JMenu menuknopWinkelRapport;

@@ -79,7 +79,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Winkel.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Winkelgegevens"/>
+                <Property name="text" type="java.lang.String" value="Winkel"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopWinkelgegevensActionPerformed"/>
@@ -90,7 +90,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Vestiging.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Vestigingsgegevens"/>
+                <Property name="text" type="java.lang.String" value="Vestiging"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopVestigingsgegevensActionPerformed"/>
@@ -101,7 +101,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Klant.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Klantengegevens"/>
+                <Property name="text" type="java.lang.String" value="Klant"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopKlantengegevensActionPerformed"/>
@@ -112,7 +112,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Artikel.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Artikelgegevens"/>
+                <Property name="text" type="java.lang.String" value="Artikel"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopArtikelgegevensActionPerformed"/>
@@ -120,7 +120,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Spaarkaartgegevens"/>
+                <Property name="text" type="java.lang.String" value="Spaarkaart"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -164,6 +164,62 @@
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spaarkaart"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Verwijderen"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuknopVerwijderenwinkel">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/GUI/Icon Pack/Winkel.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Winkel"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopVerwijderenwinkelActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuknopVerwijderenvestiging">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/GUI/Icon Pack/Vestiging.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Vestiging"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopVerwijderenvestigingActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuknopVerwijderenklant">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/GUI/Icon Pack/Klant.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Klant"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopVerwijderenklantActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuknopVerwijderenartikel">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/GUI/Icon Pack/Artikel.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Artikel"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopVerwijderenartikelActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuknopVerwijderenspaarkaart">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Spaarkaart"/>
               </Properties>
