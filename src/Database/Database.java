@@ -833,7 +833,7 @@ public class Database {
 //        try{
 //            dbConnection = getConnection();
 //            Statement stmt = dbConnection.createStatement();
-//            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienr() + ", " + a.getArtikel().getArtikelnr() + ", " + a.getWinkelnaam());");
+//            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienrAankoop() + ", " + a.getArtikelnr() + ", " + a.getWinkelnaam() + ", " + a.getAantal() + ", " + a.get )";
 //            this.closeConnection();
 //        }
 //        catch(SQLException sqle){
@@ -894,7 +894,7 @@ public class Database {
 //    }
 //    
 //    public void updateArtikelaankoop(Winkel oud, Winkel nieuw){
-            // Gaan we wss niet doen
+//             Gaan we wss niet doen
 //        
 //        try{
 //            dbConnection = getConnection();
