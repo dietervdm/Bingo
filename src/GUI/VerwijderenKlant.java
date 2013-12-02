@@ -4,16 +4,21 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-public class Framework extends javax.swing.JFrame {
+public class VerwijderenKlant extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief = InlogScherm.getInstance().getActief();
+    public Database d = new Database();
+    DefaultTableModel t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
-    public Framework() {
+    public VerwijderenKlant() {
         initComponents();
     }
     
-    public Framework(JFrame caller) {
+    public VerwijderenKlant(JFrame caller) {
         initComponents();
         myCaller = caller;
     }
@@ -25,6 +30,12 @@ public class Framework extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtKlantnr = new javax.swing.JTextField();
+        knopVerwijderen = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelVestigingen = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -61,6 +72,22 @@ public class Framework extends javax.swing.JFrame {
                 knopTerugActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Verwijder een klant.");
+
+        jLabel2.setText("Klantnummer");
+
+        txtKlantnr.setText("jTextField1");
+
+        knopVerwijderen.setText("Verwijderen");
+        knopVerwijderen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopVerwijderenActionPerformed(evt);
+            }
+        });
+
+        tabelVestigingen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelVestigingen);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -225,11 +252,6 @@ public class Framework extends javax.swing.JFrame {
         jMenu1.add(MenuknopVerwijderenartikel);
 
         menuknopVerwijderenspaarkaart.setText("Spaarkaart");
-        menuknopVerwijderenspaarkaart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuknopVerwijderenspaarkaartActionPerformed(evt);
-            }
-        });
         jMenu1.add(menuknopVerwijderenspaarkaart);
 
         jMenuBar1.add(jMenu1);
@@ -250,13 +272,34 @@ public class Framework extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knopTerug)
-                .addContainerGap(727, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(knopTerug)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtKlantnr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(knopVerwijderen))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(545, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtKlantnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(knopVerwijderen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -361,82 +404,52 @@ public class Framework extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
 
     private void menuknopVerwijderenwinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenwinkelActionPerformed
-        VerwijderenWinkel s = new VerwijderenWinkel(this);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
+        // TODO add your handling code here:
     }//GEN-LAST:event_menuknopVerwijderenwinkelActionPerformed
 
     private void menuknopVerwijderenvestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenvestigingActionPerformed
-        VerwijderenVestiging s = new VerwijderenVestiging(this);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
+        // TODO add your handling code here:
     }//GEN-LAST:event_menuknopVerwijderenvestigingActionPerformed
 
     private void menuknopVerwijderenklantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenklantActionPerformed
-        VerwijderenKlant s = new VerwijderenKlant(this);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
+        // TODO add your handling code here:
     }//GEN-LAST:event_menuknopVerwijderenklantActionPerformed
 
     private void MenuknopVerwijderenartikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopVerwijderenartikelActionPerformed
-        VerwijderenArtikel s = new VerwijderenArtikel(this);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
+        // TODO add your handling code here:
     }//GEN-LAST:event_MenuknopVerwijderenartikelActionPerformed
 
-    private void menuknopVerwijderenspaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenspaarkaartActionPerformed
-        VerwijderenSpaarkaart s = new VerwijderenSpaarkaart(this);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_menuknopVerwijderenspaarkaartActionPerformed
+    private void knopVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderenActionPerformed
+
+        int accountnr = Integer.parseInt(txtKlantnr.getText());
+
+        if(d.checkAccount(accountnr)){
+            Account a = d.getAccount(accountnr);
+            d.deleteAccount(a);
+            t = d.naarTabel("select * from account");
+            tabelVestigingen.setModel(t);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Dit klantnummer bestaat niet");
+    }//GEN-LAST:event_knopVerwijderenActionPerformed
 
     
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Framework.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Framework().setVisible(true);
-            }
-        });
+   
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton knopTerug;
+    private javax.swing.JButton knopVerwijderen;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;
@@ -455,5 +468,7 @@ public class Framework extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTable tabelVestigingen;
+    private javax.swing.JTextField txtKlantnr;
     // End of variables declaration//GEN-END:variables
 }

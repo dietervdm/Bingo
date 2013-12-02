@@ -430,7 +430,7 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
             tabelVestigingen.setModel(t);
         }
         else{
-            JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel");
+            JOptionPane.showMessageDialog(null, "Dit vestigingid bestaat niet.");
     }//GEN-LAST:event_knopVerwijderenActionPerformed
 
     }

@@ -430,7 +430,7 @@ public class VerwijderenArtikel extends javax.swing.JFrame {
         }
         
         else{
-            JOptionPane.showMessageDialog(null, "Dit artikelnummer bestaat niet");
+            JOptionPane.showMessageDialog(null, "Dit artikelnummer bestaat niet.");
         }//GEN-LAST:event_knopVerwijderenActionPerformed
 
     }
