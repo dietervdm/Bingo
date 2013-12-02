@@ -63,9 +63,9 @@ import javax.swing.border.Border;
         timer = new Timer();
         timer.schedule(new afsluiten(), seconds*1000);
         initComponents();
-        
-//        acc = new Account();
+         
 //        s = new Spaarkaart(spaarkaartHouder);
+//        acc = new Account(s.getAccountnr);
         // is dit een goeie oplossing?
 	}
 

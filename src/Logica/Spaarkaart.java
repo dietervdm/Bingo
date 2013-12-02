@@ -56,7 +56,8 @@ public class Spaarkaart
     // methode om het accountnr op te halen dat hoort bij een kaartnr
     public void setAccountnrFromKaartnr(int kaartnr){
         Database db = new Database();
-        this.accountnr = db.getAccountnr(kaartnr);
+        //this.accountnr = db.getAccountnr(kaartnr);
+        this.accountnr = db.getSpaarkaart(kaartnr).getAccountnr();
     }
     
     public String getNaamhouder()
@@ -71,6 +72,7 @@ public class Spaarkaart
     
     public void setNaamhouderFromKaartnr(int kaarnr){
         Database db = new Database();
-        this.naamhouder = db.getNaamhouder(kaartnr);
+        //this.naamhouder = db.getNaamhouder(kaartnr);
+        this.naamhouder = db.getSpaarkaart(kaartnr).getNaamhouder();
     }
 }

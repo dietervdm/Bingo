@@ -639,27 +639,27 @@ public class Database {
     
     //Nog niet af, moet accountnr opvragen als men het kaartnr meegeeft
     // moet nog aangepast worden
-    public int getAccountnr(int kaartnr){
-        try{
-            String sql = "SELECT accountnr FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
-            ResultSet srs = getData(sql);
-            if(srs.next()){
-                int spaarkaart = srs.getInt("kaartnr");
-                int accountnummer = srs.getInt("accountnr");
-                String naam = srs.getString("naamhouder");
-                
-                this.closeConnection();
-                return accountnummer;
-            }
-            else return 0;
-            
-        }
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            this.closeConnection();
-            return 0;
-        }
-    }
+//    public int getAccountnr(int kaartnr){
+//        try{
+//            String sql = "SELECT accountnr FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
+//            ResultSet srs = getData(sql);
+//            if(srs.next()){
+//                int spaarkaart = srs.getInt("kaartnr");
+//                int accountnummer = srs.getInt("accountnr");
+//                String naam = srs.getString("naamhouder");
+//                
+//                this.closeConnection();
+//                return accountnummer;
+//            }
+//            else return 0;
+//            
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//            return 0;
+//        }
+//    }
         
     public void deleteAccount(Account a){
         
@@ -774,27 +774,27 @@ public class Database {
     
     // geeft de naam van de naamhouder van de kaart met bepaald nummer
     // moet nog aangepast worden
-    public String getNaamhouder(int kaartnr){
-        try{
-            String sql = "SELECT naamhouder FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
-            ResultSet srs = getData(sql);
-            if(srs.next()){
-                int spaarkaartnr = srs.getInt("kaartnr");
-                String naamhouder = srs.getString("naamhouder");
-                int accountnr = srs.getInt("accountnr");
-                Spaarkaart s = new Spaarkaart(spaarkaartnr,accountnr,naamhouder);
-                this.closeConnection();
-                return naamhouder;
-            }
-            else return "not found";
-            
-        }
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            this.closeConnection();
-            return "error";
-        }
-    }
+//    public String getNaamhouder(int kaartnr){
+//        try{
+//            String sql = "SELECT naamhouder FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
+//            ResultSet srs = getData(sql);
+//            if(srs.next()){
+//                int spaarkaartnr = srs.getInt("kaartnr");
+//                String naamhouder = srs.getString("naamhouder");
+//                int accountnr = srs.getInt("accountnr");
+//                Spaarkaart s = new Spaarkaart(spaarkaartnr,accountnr,naamhouder);
+//                this.closeConnection();
+//                return naamhouder;
+//            }
+//            else return "not found";
+//            
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            this.closeConnection();
+//            return "error";
+//        }
+//    }
     
     public void deleteSpaarkaart(Spaarkaart s){
         
