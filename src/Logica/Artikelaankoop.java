@@ -9,17 +9,19 @@ public class Artikelaankoop
     private String winkelnaam;
     private int transactienr;
     private int aantal;
+    private boolean manierBetalen;
     
     
     public Artikelaankoop()
     {}
     
-    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer)
+    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, boolean manier)
     {
         this.transactienrAankoop = transactienr;
         this.artikelnr = artikelnr;
         this.winkelnaam = winkelnaam;
         this.transactienr = transactienummer;
+        this.manierBetalen = manier;
     }
     
     public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, int aantal)

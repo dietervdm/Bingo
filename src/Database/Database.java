@@ -336,11 +336,11 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int kaartnr = srs.getInt("kaartnr");
                 Date datum = srs.getDate("datum");
-                int ptnplus = srs.getInt("ptnplus");
-                int ptnmin = srs.getInt("ptnmin");
-                int totprijs = srs.getInt("totprijs");
+                //int ptnplus = srs.getInt("ptnplus");
+                //int ptnmin = srs.getInt("ptnmin");
+                //int totprijs = srs.getInt("totprijs");
                 
-                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, datum, ptnplus, ptnmin, totprijs);
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, naam,  datum);
                 assortiment.add(ak);
             }
             this.closeConnection();
@@ -365,11 +365,11 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int kaartnr = srs.getInt("kaartnr");
                 Date datum = srs.getDate("datum");
-                int ptnplus = srs.getInt("ptnplus");
-                int ptnmin = srs.getInt("ptnmin");
-                int totprijs = srs.getInt("totprijs");
+                //int ptnplus = srs.getInt("ptnplus");
+                //int ptnmin = srs.getInt("ptnmin");
+                //int totprijs = srs.getInt("totprijs");
                 
-                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, datum, ptnplus, ptnmin, totprijs);
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, naam, datum);
                 assortiment.add(ak);
             }
             this.closeConnection();
@@ -394,11 +394,11 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int kaartnummer = srs.getInt("kaartnr");
                 Date datum = srs.getDate("datum");
-                int ptnplus = srs.getInt("ptnplus");
-                int ptnmin = srs.getInt("ptnmin");
-                int totprijs = srs.getInt("totprijs");
+                //int ptnplus = srs.getInt("ptnplus");
+                //int ptnmin = srs.getInt("ptnmin");
+                //int totprijs = srs.getInt("totprijs");
                 
-                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, datum, ptnplus, ptnmin, totprijs);
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, naam, datum);
                 assortiment.add(ak);
             }
             this.closeConnection();
@@ -425,11 +425,11 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int kaartnummer = srs.getInt("kaartnr");
                 Date datum = srs.getDate("datum");
-                int ptnplus = srs.getInt("ptnplus");
-                int ptnmin = srs.getInt("ptnmin");
-                int totprijs = srs.getInt("totprijs");
+                //int ptnplus = srs.getInt("ptnplus");
+                //int ptnmin = srs.getInt("ptnmin");
+                //int totprijs = srs.getInt("totprijs");
                 
-                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, datum, ptnplus, ptnmin, totprijs);
+                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, naam, datum);
                 assortiment.add(ak);
             }
             this.closeConnection();

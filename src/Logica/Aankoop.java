@@ -9,32 +9,34 @@ public class Aankoop
     private int transactienr;
     private int spaarkaart;
     private int vestiging;
+    private String winkelnaam;
     private Date datum;
-    private int ptnplus;
-    private int ptnmin;
-    private int totprijs;
+    //private int ptnplus;
+    //private int ptnmin;
+    //private int totprijs;
     
     
     public Aankoop()
     {}
     
-    public Aankoop(int transactienr, int spaarkaart, int vestiging)
+    public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam)
     {
         this.transactienr = transactienr;
         this.spaarkaart = spaarkaart;
         this.vestiging = vestiging;
+        this.winkelnaam = winkelnaam;
     }
     
-    public Aankoop(int transactienr, int spaarkaart, int vestiging,
-                   Date datum, int ptnplus, int ptnmin, int totprijs)
+    public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam, Date datum)
     {
         this.transactienr = transactienr;
         this.spaarkaart = spaarkaart;
         this.vestiging = vestiging;
+        this.winkelnaam = winkelnaam;
         this.datum = datum;
-        this.ptnplus = ptnplus;
-        this.ptnmin = ptnmin;
-        this.totprijs = totprijs;
+        //this.ptnplus = ptnplus;
+        //this.ptnmin = ptnmin;
+        //this.totprijs = totprijs;
     }
     
     public int getTransactienr()
@@ -77,33 +79,33 @@ public class Aankoop
         this.datum = datum;
     }
     
-    public int getPtnplus()
-    {
-        return this.ptnplus;
-    }
-    
-    public void setPtnplus(int ptnplus)
-    {
-        this.ptnplus = ptnplus;
-    }
-    
-    public int getPtnmin()
-    {
-        return this.ptnmin;
-    }
-    
-    public void setPtnmin(int ptnmin)
-    {
-        this.ptnmin = ptnmin;
-    }
-    
-    public int getTotprijs()
-    {
-        return this.totprijs;
-    }
-    
-    public void setTotprijs(int totprijs)
-    {
-        this.totprijs = totprijs;
-    }
+//    public int getPtnplus()
+//    {
+//        return this.ptnplus;
+//    }
+//    
+//    public void setPtnplus(int ptnplus)
+//    {
+//        this.ptnplus = ptnplus;
+//    }
+//    
+//    public int getPtnmin()
+//    {
+//        return this.ptnmin;
+//    }
+//    
+//    public void setPtnmin(int ptnmin)
+//    {
+//        this.ptnmin = ptnmin;
+//    }
+//    
+//    public int getTotprijs()
+//    {
+//        return this.totprijs;
+//    }
+//    
+//    public void setTotprijs(int totprijs)
+//    {
+//        this.totprijs = totprijs;
+//    }
 }

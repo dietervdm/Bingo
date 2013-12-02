@@ -230,16 +230,31 @@ public class Account
             if(srs.next()){
                 Database db = new Database();
                 srs = db.getMajor(accountnr, datum, winkelnaam);
+                
+                // gegevens over winkel
                 int accnr = srs.getInt("accountnr");
                 String naam = srs.getString("winkelnaam");
                 String paswoord = srs.getString("paswoord");
                 
+                Winkel w = new Winkel(naam, accnr, paswoord);
+                
                 //gegevens over aankoop
+                int transactienummer = srs.getInt("transactienr");
+                int vestigingid = srs.getInt("vestigingsid");
+                String winkelnm = srs.getString("winkelnaam");
+                int kaartnr = srs.getInt("kaartnr");
+                Date dat = srs.getDate("datum");
+                
+                Aankoop ak = new Aankoop(transactienummer, vestigingid, kaartnr, winkelnm, dat);
                 
                 //gegevens over artikelaankoop
-                Winkel w = new Winkel(naam,accnr,paswoord);
-                Aankoop ak = new Aankoop();
-                Artikelaankoop aak = new Artikelaankoop();
+                int trans = srs.getInt("transactienr");
+                int artikelnr = srs.getInt("artikelnr");
+                String nm = srs.getString("winkelnaam");
+                int aantal = srs.getInt("aantal");
+                boolean manier = srs.getBoolean("manierbetaling");
+                
+                Artikelaankoop aak = new Artikelaankoop(trans, artikelnr, nm, aantal, manier);
             }
         }
             
