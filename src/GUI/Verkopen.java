@@ -2,8 +2,8 @@
 package GUI;
 
 import javax.swing.JFrame;
-import Database.*;
 import Logica.*;
+import java.util.ArrayList;
 
 public class Verkopen extends javax.swing.JFrame {
     
@@ -71,7 +71,8 @@ public class Verkopen extends javax.swing.JFrame {
 
         jLabel1.setText("Kies de vestiging waar u een verkoop wil registreren");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen(actief.getWinkelnaam())));
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         knopVerkoopScherm.setText("Verkoopsscherm");
         knopVerkoopScherm.addActionListener(new java.awt.event.ActionListener() {
@@ -467,6 +468,11 @@ public class Verkopen extends javax.swing.JFrame {
                 new Verkopen().setVisible(true);
             }
         });
+    }
+    
+    public String[] getVestigingen(String winkelnaam){
+        System.out.println(actief.getLijstVestigingen(actief.getWinkelnaam()).length);
+        return actief.getLijstVestigingen(actief.getWinkelnaam());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;

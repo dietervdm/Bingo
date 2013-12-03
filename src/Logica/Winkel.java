@@ -72,14 +72,15 @@ public class Winkel
         wdb.addWinkel(wk);
     }
     
-    public ArrayList<String> getLijstVestigingen(String winkelnaam){
+    public String[] getLijstVestigingen(String winkelnaam){
         Database db = new Database();
         ArrayList<Vestiging> vVest = null;
-        ArrayList<String> vString = null;
         vVest = db.getAlleVestigingen(winkelnaam);
+        String[] vString = new String[vVest.size()];
+        
         for(int i=0; i<vVest.size(); i++)
         {
-            vString.add(Integer.toString(vVest.get(i).getVestigingId()));
+            vString[i] = Integer.toString(vVest.get(i).getVestigingId());
         }
         return vString;
     }
