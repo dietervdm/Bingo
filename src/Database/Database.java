@@ -660,6 +660,8 @@ public class Database {
 //            return 0;
 //        }
 //    }
+    
+    
         
     public void deleteAccount(Account a){
         
@@ -827,6 +829,26 @@ public class Database {
             this.closeConnection();
         }
     }
+    
+    
+    public int aantalSpaarkaarten(){
+        try{
+            String sql = "SELECT COUNT(*) FROM spaarkaart";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int count = srs.getInt("count(*)");
+                return count;
+            }
+            return -1;
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+    }
+    
     
 //    public void addArtikelaankoop(Artikelaankoop a){
 //        
