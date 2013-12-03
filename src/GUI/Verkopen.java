@@ -1,19 +1,25 @@
 
 package GUI;
 
+import Database.Database;
 import javax.swing.JFrame;
-import Database.*;
 import Logica.*;
+import java.util.ArrayList;
 
 public class Verkopen extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Winkel actief = null;
+    private Database db = new Database();
+    //private Vestiging actieveVest = null;
     
     public Verkopen() {
+        this.actief = InlogScherm.getInstance().actief;
         initComponents();
     }
     
     public Verkopen(JFrame caller) {
+        this.actief = InlogScherm.getInstance().actief;
         initComponents();
         myCaller = caller;
     }
@@ -68,7 +74,9 @@ public class Verkopen extends javax.swing.JFrame {
 
         jLabel1.setText("Kies de vestiging waar u een verkoop wil registreren");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        //actief.getLijstVestigingen(actief.getWinkelnaam());
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen()));
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         knopVerkoopScherm.setText("Verkoopsscherm");
         knopVerkoopScherm.addActionListener(new java.awt.event.ActionListener() {
@@ -274,8 +282,8 @@ public class Verkopen extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(knopVerkoopScherm, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(knopTerug)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(532, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,9 +310,10 @@ public class Verkopen extends javax.swing.JFrame {
 
     private void knopVerkoopSchermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerkoopSchermActionPerformed
         VerkopenKlant s = new VerkopenKlant();
+                s.setActieveVest(db.getVestiging(Integer.parseInt(jComboBox1.getSelectedItem().toString()), actief.getWinkelnaam()));
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
-                
+                setVisible(false);
     }//GEN-LAST:event_knopVerkoopSchermActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
@@ -465,6 +474,20 @@ public class Verkopen extends javax.swing.JFrame {
             }
         });
     }
+    
+    public String[] getVestigingen(){
+        ArrayList<Integer> lijst = actief.getLijstVestigingen();
+        
+        String[] lijstje = new String[lijst.size()];
+        for(int i = 0; i<lijst.size(); i++)
+        {
+            lijstje[i] = lijst.get(i).toString();
+        }
+        return lijstje;
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
@@ -498,3 +521,5 @@ public class Verkopen extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopWinkelrapport;
     // End of variables declaration//GEN-END:variables
 }
+
+

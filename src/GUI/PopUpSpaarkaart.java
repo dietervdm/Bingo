@@ -1,8 +1,11 @@
 
 package GUI;
 
+import Database.Database;
 import Logica.Account;
 import Logica.Spaarkaart;
+import Logica.Vestiging;
+import Logica.Winkel;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -21,8 +24,22 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
     public class PopUpSpaarkaart {
+
+    public static Spaarkaart getActieveSpaarkaart() {
+        return actieveSpaarkaart;
+    }
+
+    public static void setActieveSpaarkaart(Spaarkaart aActieveSpaarkaart) {
+        actieveSpaarkaart = aActieveSpaarkaart;
+    }
+    
     Timer timer;
     
+    private static Database db = new Database();
+    
+    private static Winkel actief = InlogScherm.getInstance().actief;
+    private static Vestiging actieveVest = null;
+    private static Spaarkaart actieveSpaarkaart = null;
     private static int spaarkaartHouder;
     
 //    private static Account acc;
@@ -102,13 +119,16 @@ import javax.swing.border.Border;
         bigSpender = new ImageIcon(img2);
         wolverine = new ImageIcon(img3);
         
-        maj.setIcon(new ImageIcon(img1));
-        //maj = new JLabel(major);
+        //maj.setIcon(new ImageIcon(img1));
+        maj = new JLabel(major);
         bs = new JLabel(bigSpender);
         wol = new JLabel(wolverine);
         
-        f.setLayout(new GridLayout(2,1,5,5));               // gridlayout (int rows, int cols, int hGap, int vGap)
-        topPanel.setLayout(new GridLayout(3,1,10,3));
+        account.setText(db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam());
+        spaarkaart.setText(actieveSpaarkaart.getNaamhouder());
+        punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
+        
+        topPanel.setLayout(new GridLayout(3,1,10,3));       // gridlayout (int rows, int cols, int hGap, int vGap)
         downPanel.setLayout(new GridLayout(1,3,5,5));
         spaarkaartBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
         accountBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
@@ -172,6 +192,14 @@ import javax.swing.border.Border;
     
     public void setSpaarkaartHouder(String aSpaarkaartHouder) {
         spaarkaartHouder = Integer.getInteger(aSpaarkaartHouder);
+    }
+
+    public Vestiging getActieveVest() {
+        return actieveVest;
+    }
+
+    public void setActieveVest(Vestiging actieveVest) {
+        this.actieveVest = actieveVest;
     }
 
     class afsluiten extends TimerTask {

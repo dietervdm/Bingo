@@ -2,10 +2,7 @@
 package Logica;
 
 import Database.Database;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class Winkel
@@ -77,6 +74,19 @@ public class Winkel
     }
     
 
+    
+    public ArrayList<Integer> getLijstVestigingen(){
+        Database db = new Database();
+        ArrayList<Vestiging> vVest = null;
+        vVest = db.getAlleVestigingen(winkelnaam);
+        ArrayList<Integer> vString = new ArrayList<Integer>();
+        
+        for(int i=0; i<vVest.size(); i++)
+        {
+            vString.add(vVest.get(i).getVestigingId());
+        }
+        return vString;
+    }
     
 //    public void printWinkelAankoop(String winkelnaam, String path){
 //        Database db = new Database();
