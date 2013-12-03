@@ -17,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -52,9 +53,9 @@ import javax.swing.border.Border;
     static JLabel spaarkaart = new JLabel("<spaarkaart houder>");
     static JLabel punten = new JLabel("<aantal punten reeds verzameld>");
     
-    static JLabel maj;
-    static JLabel bs;
-    static JLabel wol;
+    static JLabel maj = new JLabel();
+    static JLabel bs = new JLabel();
+    static JLabel wol = new JLabel();
     
     static ImageIcon major = null;
     static ImageIcon bigSpender = null;
@@ -105,18 +106,26 @@ import javax.swing.border.Border;
         Image img1 = icon1.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
         Image img2 = icon2.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
         Image img3 = icon3.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
-            
-        //major.setImage(img1);
-        //bigSpender.setImage(img2);
-        //wolverine.setImage(img3);
-        major = new ImageIcon(img1);
-        bigSpender = new ImageIcon(img2);
-        wolverine = new ImageIcon(img3);
         
-        //maj.setIcon(new ImageIcon(img1));
-        maj = new JLabel(major);
-        bs = new JLabel(bigSpender);
-        wol = new JLabel(wolverine);
+        ImageIcon imic1 = new ImageIcon(img1);
+        ImageIcon imic2 = new ImageIcon(img2);
+        ImageIcon imic3 = new ImageIcon(img3);
+        
+            
+//        //major.setImage((Icon)img1);
+//        //bigSpender.setImage(img2);
+//        //wolverine.setImage(img3);
+//        //major.setIcon((Icon) imic1);
+//        //major = new ImageIcon(img1);
+//        bigSpender = new ImageIcon(img2);
+//        wolverine = new ImageIcon(img3);
+        
+        maj.setIcon((Icon)imic1);
+        //maj = new JLabel(major);
+        bs.setIcon((Icon) imic2);
+        //bs = new JLabel(bigSpender);
+        wol.setIcon((Icon) imic3);
+        //wol = new JLabel(wolverine);
         
         String acc = db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam();
         account.setText(acc);
@@ -228,24 +237,21 @@ import javax.swing.border.Border;
     }
     
     public String afbeeldingMajor(){
-        Account acc = new Account();
-        if (acc.isMajor())
+        if (db.getAccount(actieveSpaarkaart.getAccountnr()).isMajor())
             return "src\\GUI\\Badge\\Major.png";
         else
             return "src\\GUI\\Badge\\MajorBlack.png";
     }
     
     public String afbeeldingBigSpender(){
-        Account acc = new Account();
-        if (acc.isMajor())
+        if (db.getAccount(actieveSpaarkaart.getAccountnr()).isBigspender())
             return "src\\GUI\\Badge\\BigSpender.png";
         else
             return "src\\GUI\\Badge\\BigSpenderBlack.png";
     }
     
     public String Wolverine(){
-        Account acc = new Account();
-        if (acc.isMajor())
+        if (db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverine())
             return "src\\GUI\\Badge\\Wolverine.png";
         else
             return "src\\GUI\\Badge\\WolverineBlack.png";

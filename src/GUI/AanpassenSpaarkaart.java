@@ -406,7 +406,7 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
 
     private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
-        ToevoegenProduct s = new ToevoegenProduct(this);
+        ToevoegenArtikel s = new ToevoegenArtikel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
