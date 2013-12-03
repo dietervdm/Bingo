@@ -4,6 +4,9 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import java.text.*;
+import java.awt.print.*;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class RapportAssortiment extends javax.swing.JFrame {
@@ -326,7 +329,7 @@ public class RapportAssortiment extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        RapportWinkel s = new RapportWinkel(this);
+        RapportVerkopen s = new RapportVerkopen(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
@@ -438,7 +441,16 @@ public class RapportAssortiment extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
     private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
-        //w.printWinkel(w.winkelToString());
+        MessageFormat header = new MessageFormat("ASSORTIMENT " + actief.getWinkelnaam());
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try
+        {
+            tabelArtikelen.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        }
+        catch (java.awt.print.PrinterException e)
+        {
+            System.err.format("Cannot print %s%n", e.getMessage());
+        }
     }//GEN-LAST:event_knopPrintActionPerformed
 
     

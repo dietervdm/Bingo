@@ -4,21 +4,24 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import java.text.*;
+import java.awt.print.*;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class RapportWinkel extends javax.swing.JFrame {
+public class RapportVerkopen extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
     DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
     
-    public RapportWinkel() {
+    public RapportVerkopen() {
         actief = InlogScherm.getInstance().actief;
         initComponents();
     }
     
-    public RapportWinkel(JFrame caller) {
+    public RapportVerkopen(JFrame caller) {
         actief = InlogScherm.getInstance().actief;
         initComponents();
         myCaller = caller;
@@ -34,7 +37,7 @@ public class RapportWinkel extends javax.swing.JFrame {
         knopPrint = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelArtikelen = new javax.swing.JTable(t);
+        tabelVerkopen = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -82,8 +85,8 @@ public class RapportWinkel extends javax.swing.JFrame {
 
         jLabel2.setText("Lijst van verkopen");
 
-        tabelArtikelen.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelArtikelen);
+        tabelVerkopen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelVerkopen);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -314,7 +317,16 @@ public class RapportWinkel extends javax.swing.JFrame {
     }//GEN-LAST:event_knopTerugActionPerformed
 
     private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
-        //w.printWinkel(w.winkelToString());
+        MessageFormat header = new MessageFormat("VERKOPEN VAN " + actief.getWinkelnaam());
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try
+        {
+            tabelVerkopen.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        }
+        catch (java.awt.print.PrinterException e)
+        {
+            System.err.format("Cannot print %s%n", e.getMessage());
+        }
     }//GEN-LAST:event_knopPrintActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
@@ -332,7 +344,7 @@ public class RapportWinkel extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        RapportWinkel s = new RapportWinkel(this);
+        RapportVerkopen s = new RapportVerkopen(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
@@ -458,20 +470,20 @@ public class RapportWinkel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RapportWinkel().setVisible(true);
+                new RapportVerkopen().setVisible(true);
             }
         });
     }
@@ -506,6 +518,6 @@ public class RapportWinkel extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTable tabelArtikelen;
+    private javax.swing.JTable tabelVerkopen;
     // End of variables declaration//GEN-END:variables
 }

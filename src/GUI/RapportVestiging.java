@@ -4,6 +4,9 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import java.text.*;
+import java.awt.print.*;
+import javax.swing.JTable;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +38,7 @@ public class RapportVestiging extends javax.swing.JFrame {
         knopPrint = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelArtikelen = new javax.swing.JTable(t);
+        tabelVestigingen = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -77,11 +80,16 @@ public class RapportVestiging extends javax.swing.JFrame {
         jLabel1.setText("Vestigingsverkopen");
 
         knopPrint.setText("Print");
+        knopPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopPrintActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen()));
 
-        tabelArtikelen.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelArtikelen);
+        tabelVestigingen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelVestigingen);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,24 +281,18 @@ public class RapportVestiging extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(knopTerug)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(knopTerug))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(knopPrint)))
+                            .addComponent(knopPrint))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -333,7 +335,7 @@ public class RapportVestiging extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        RapportWinkel s = new RapportWinkel(this);
+        RapportVerkopen s = new RapportVerkopen(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
@@ -444,6 +446,19 @@ public class RapportVestiging extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
+    private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
+        MessageFormat header = new MessageFormat("VESTIGINGSVERKOPEN");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try
+        {
+            tabelVestigingen.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        }
+        catch (java.awt.print.PrinterException e)
+        {
+            System.err.format("Cannot print %s%n", e.getMessage());
+        }
+    }//GEN-LAST:event_knopPrintActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -520,6 +535,6 @@ public class RapportVestiging extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTable tabelArtikelen;
+    private javax.swing.JTable tabelVestigingen;
     // End of variables declaration//GEN-END:variables
 }

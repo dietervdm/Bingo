@@ -421,7 +421,7 @@ public class AanpassenVestiging extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        RapportWinkel s = new RapportWinkel(this);
+        RapportVerkopen s = new RapportVerkopen(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
