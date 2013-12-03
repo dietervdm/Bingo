@@ -26,6 +26,12 @@ public class RapportAssortiment extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        knopAfdrukvoorbeeld = new javax.swing.JButton();
+        knopPrint = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -63,6 +69,29 @@ public class RapportAssortiment extends javax.swing.JFrame {
                 knopTerugActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Assortiment winkel");
+
+        jLabel1.setText("Print rapport");
+
+        knopAfdrukvoorbeeld.setText("Afdrukvoorbeeld");
+        knopAfdrukvoorbeeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopAfdrukvoorbeeldActionPerformed(evt);
+            }
+        });
+
+        knopPrint.setText("Print");
+        knopPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopPrintActionPerformed(evt);
+            }
+        });
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -254,14 +283,36 @@ public class RapportAssortiment extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(knopTerug)
-                .addContainerGap(727, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(knopTerug))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(knopAfdrukvoorbeeld)
+                                .addGap(61, 61, 61)
+                                .addComponent(knopPrint))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(545, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel2)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(knopAfdrukvoorbeeld)
+                    .addComponent(knopPrint))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -401,6 +452,14 @@ public class RapportAssortiment extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
+    private void knopAfdrukvoorbeeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAfdrukvoorbeeldActionPerformed
+        //jTextArea1.append(actief.getWinkelnaam() + d.artikelsToString(actief.getWinkelnaam()));
+    }//GEN-LAST:event_knopAfdrukvoorbeeldActionPerformed
+
+    private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
+        //w.printWinkel(w.winkelToString());
+    }//GEN-LAST:event_knopPrintActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -437,11 +496,17 @@ public class RapportAssortiment extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton knopAfdrukvoorbeeld;
+    private javax.swing.JButton knopPrint;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;

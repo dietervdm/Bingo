@@ -73,22 +73,22 @@ public class Winkel
     }
     
     public ArrayList<Integer> getLijstVestigingen(){
-//        Database db = new Database();
-//        ArrayList<Vestiging> vVest = null;
-//        vVest = db.getAlleVestigingen(winkelnaam);
-//        ArrayList<Integer> vString = new ArrayList<Integer>();
-//        
-//        for(int i=0; i<vVest.size(); i++)
-//        {
-//            vString.add(vVest.get(i).getVestigingId());
-//        }
-//        return vString;
+        Database db = new Database();
+        ArrayList<Vestiging> vVest = null;
+        vVest = db.getAlleVestigingen(winkelnaam);
+        ArrayList<Integer> vString = new ArrayList<Integer>();
         
-        ArrayList<Integer> numb = new ArrayList<Integer>();
-        numb.add(0);
-        numb.add(1);
-        numb.add(3);
-        return numb;
+        for(int i=0; i<vVest.size(); i++)
+        {
+            vString.add(vVest.get(i).getVestigingId());
+        }
+        return vString;
+        
+//        ArrayList<Integer> numb = new ArrayList<Integer>();
+//        numb.add(0);
+//        numb.add(1);
+//        numb.add(3);
+//        return numb;
     }
     
 //    public void printWinkelAankoop(String winkelnaam, String path){

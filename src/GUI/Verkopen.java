@@ -8,16 +8,16 @@ import java.util.ArrayList;
 public class Verkopen extends javax.swing.JFrame {
     
     public JFrame myCaller;
-    public Winkel actief;
+    public Winkel actief = null;
     
     public Verkopen() {
+        this.actief = InlogScherm.getInstance().actief;
         initComponents();
-        actief = InlogScherm.getInstance().actief;
     }
     
     public Verkopen(JFrame caller) {
+        this.actief = InlogScherm.getInstance().actief;
         initComponents();
-        actief = InlogScherm.getInstance().actief;
         myCaller = caller;
     }
 
@@ -309,6 +309,7 @@ public class Verkopen extends javax.swing.JFrame {
         VerkopenKlant s = new VerkopenKlant();
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
+                setVisible(false);
                 
     }//GEN-LAST:event_knopVerkoopSchermActionPerformed
 
@@ -472,9 +473,13 @@ public class Verkopen extends javax.swing.JFrame {
     }
     
     public String[] getVestigingen(){
-        try{
-            ArrayList<Integer> lijst = actief.getLijstVestigingen();
+        
+        ArrayList<Integer> lijst = new ArrayList<Integer>();
+        //Winkel w = new Winkel(actief);
+        lijst = actief.getLijstVestigingen();
         //System.out.println(actief.getLijstVestigingen(actief.getWinkelnaam()).length);
+        if(lijst != null )
+        {
         String[] lijstje = new String[lijst.size()];
         for(int i = 0; i<lijst.size(); i++)
         {
@@ -482,9 +487,8 @@ public class Verkopen extends javax.swing.JFrame {
         }
         return lijstje;
         }
-        catch(NullPointerException ex){
+        else
             return null;
-        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
