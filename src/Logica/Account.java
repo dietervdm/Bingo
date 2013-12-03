@@ -6,6 +6,7 @@ import Database.Database;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -29,6 +30,7 @@ public class Account
     private String btwnummer;
     //bedrijf
     private Image logo;
+    Database db = new Database();
     
     public Account()
     {}
@@ -228,7 +230,6 @@ public class Account
         {
             ResultSet srs = null;
             if(srs.next()){
-                Database db = new Database();
                 srs = db.getMajor(accountnr, datum, winkelnaam);
                 
                 // gegevens over winkel
@@ -268,17 +269,43 @@ public class Account
         }
     }
     
+    public boolean RechtOpPuntenMajor(Date datum){
+        datum.setYear(datum.getYear()-1);
+        return datum.after(jstartm);
+    }
+    
+    public boolean RechtOpPuntenBigSpender(Date datum){
+        datum.setYear(datum.getYear()-1);
+        return datum.after(jstartm);
+    }
+    
+    public boolean RechtOpPuntenWolverine(Date datum){
+        datum.setYear(datum.getYear()-1);
+        return datum.after(jstartm);
+    }
+    
     
     public int totaalPuntenJaar(int accountnr, Date datum){
         int totaalPunten = 0;
-        Database db = new Database();
-        //functie
+        //functie --> alle aankopen van het vorig jaar van een account: daar alle punten van nemen
+        ArrayList<Aankoop> aankopen = new ArrayList<Aankoop>();
+        
+//        for(int i=0; i<aankopen.size(); i++)
+//        {
+//            if(aankopen.get(i).getDatum().after(datum.setYear(datum.getYear()-1)))
+//            {
+//                aankopen.get(i)
+//            }
+//        }
         return totaalPunten;
+        
     }
     
     public double totaalGeldJaar(){
         double totaalGeld = 0.0;
-        //functie
+        //functie --> alle aankopen van het vorig jaar van een account: daar totaal gespendeerd geld van nemen
+        // select * from aankoop where accountnr = ...
+        
         return totaalGeld;
     }
     
