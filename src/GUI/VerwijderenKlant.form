@@ -341,9 +341,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtKlantnr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="knopVerwijderen">
       <Properties>

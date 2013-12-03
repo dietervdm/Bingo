@@ -2,6 +2,7 @@
 package Logica;
 
 import Database.Database;
+import javax.swing.JOptionPane;
 
 
 public class Artikel
@@ -38,6 +39,7 @@ public class Artikel
        this.minimumbedrag = minimumbedrag;
     }
     
+        
     public int getArtikelnr()
     {
         return artikelnr;

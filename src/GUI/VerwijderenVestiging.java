@@ -77,8 +77,6 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
 
         jLabel2.setText("VestigingsID");
 
-        txtVestigingid.setText("jTextField1");
-
         knopVerwijderen.setText("Verwijderen");
         knopVerwijderen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

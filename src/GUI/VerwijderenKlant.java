@@ -77,8 +77,6 @@ public class VerwijderenKlant extends javax.swing.JFrame {
 
         jLabel2.setText("Klantnummer");
 
-        txtKlantnr.setText("jTextField1");
-
         knopVerwijderen.setText("Verwijderen");
         knopVerwijderen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

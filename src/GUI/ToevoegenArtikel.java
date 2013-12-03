@@ -99,12 +99,6 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
 
         jLabel4.setText("Artikelnaam");
 
-        txtArtikelnaam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtArtikelnaamActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Prijs");
 
         checkGeeftpunten.setText("Geeft");
@@ -119,19 +113,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
 
         checkMinimumaankoopbedrag.setText("Bij een minimum aankoopbedrag van");
 
-        txtMinimumartikelen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMinimumartikelenActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("artikelen");
-
-        txtMinimumbedrag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMinimumbedragActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("euro");
 
@@ -457,13 +439,6 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_knopTerugActionPerformed
 
-    private void txtArtikelnaamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArtikelnaamActionPerformed
-        ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
-                s.setLocationRelativeTo(null);
-                s.setVisible(true);
-                setVisible(false);
-    }//GEN-LAST:event_txtArtikelnaamActionPerformed
-
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         
         
@@ -552,14 +527,6 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
             checkMinimumaankoopbedrag.setSelected(false);
         }
     }//GEN-LAST:event_knopToevoegenActionPerformed
-
-    private void txtMinimumbedragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimumbedragActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMinimumbedragActionPerformed
-
-    private void txtMinimumartikelenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimumartikelenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMinimumartikelenActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
         Home s = new Home(this);
