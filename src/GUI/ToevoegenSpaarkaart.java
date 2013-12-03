@@ -4,10 +4,14 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ToevoegenSpaarkaart extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Database d = new Database();
+    DefaultTableModel t = d.naarTabel("select * from spaarkaart where accountnr = ''");
     
     public ToevoegenSpaarkaart() {
         initComponents();
@@ -25,6 +29,17 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtKaartnr = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtAccountnr = new javax.swing.JTextField();
+        knopVoegtoe = new javax.swing.JButton();
+        knopGeefweer = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelSpaarkaarten = new javax.swing.JTable(t);
+        jLabel4 = new javax.swing.JLabel();
+        txtNaamhouder = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -61,6 +76,31 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
                 knopTerugActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Voeg een spaarkaart toe.");
+
+        jLabel2.setText("kaartnummer");
+
+        jLabel3.setText("aan accountnr");
+
+        knopVoegtoe.setText("Voeg toe");
+        knopVoegtoe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopVoegtoeActionPerformed(evt);
+            }
+        });
+
+        knopGeefweer.setText("Geef alle spaarkaarten weer van deze account");
+        knopGeefweer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopGeefweerActionPerformed(evt);
+            }
+        });
+
+        tabelSpaarkaarten.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelSpaarkaarten);
+
+        jLabel4.setText("Naam houder");
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,13 +303,53 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knopTerug)
-                .addContainerGap(727, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(knopTerug)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtAccountnr, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                            .addComponent(knopVoegtoe, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtKaartnr)
+                                    .addComponent(txtNaamhouder, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))))
+                        .addGap(29, 29, 29)
+                        .addComponent(knopGeefweer, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(545, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knopGeefweer))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtKaartnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNaamhouder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addComponent(knopVoegtoe)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -422,6 +502,31 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
+    private void knopGeefweerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGeefweerActionPerformed
+        
+        int accountnr = Integer.parseInt(txtAccountnr.getText());
+        t = d.naarTabel("select * from vestiging where accountnr = '" + accountnr + "'");
+        tabelSpaarkaarten.setModel(t);
+    }//GEN-LAST:event_knopGeefweerActionPerformed
+
+    private void knopVoegtoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegtoeActionPerformed
+        int kaartnr = Integer.parseInt(txtAccountnr.getText());
+        int accountnr = Integer.parseInt(txtAccountnr.getText());
+        String naamhouder = txtNaamhouder.getText();
+        
+        Spaarkaart s = new Spaarkaart(kaartnr, accountnr, naamhouder);
+        
+        if(d.checkSpaarkaart(kaartnr)){
+            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        }
+        else{
+            d.addSpaarkaart(s);
+            t = d.naarTabel("select * from spaarkaart where accountnr = '" + accountnr + "'");
+            
+        }
+        
+    }//GEN-LAST:event_knopVoegtoeActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -460,10 +565,17 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopToevoegenSpaarkaart;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton knopGeefweer;
     private javax.swing.JButton knopTerug;
+    private javax.swing.JButton knopVoegtoe;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;
@@ -482,5 +594,9 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTable tabelSpaarkaarten;
+    private javax.swing.JTextField txtAccountnr;
+    private javax.swing.JTextField txtKaartnr;
+    private javax.swing.JTextField txtNaamhouder;
     // End of variables declaration//GEN-END:variables
 }
