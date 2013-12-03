@@ -322,11 +322,12 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(getVestigingen(actief.getWinkelnaam()))" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel(getVestigingen())" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { &quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;, &quot;Item 4&quot; }));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//actief.getLijstVestigingen(actief.getWinkelnaam());"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="knopVerkoopScherm">

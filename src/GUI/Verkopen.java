@@ -71,7 +71,8 @@ public class Verkopen extends javax.swing.JFrame {
 
         jLabel1.setText("Kies de vestiging waar u een verkoop wil registreren");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen(actief.getWinkelnaam())));
+        //actief.getLijstVestigingen(actief.getWinkelnaam());
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen()));
         //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         knopVerkoopScherm.setText("Verkoopsscherm");
@@ -470,9 +471,10 @@ public class Verkopen extends javax.swing.JFrame {
         });
     }
     
-    public String[] getVestigingen(String winkelnaam){
-        System.out.println(actief.getLijstVestigingen(actief.getWinkelnaam()).length);
-        return actief.getLijstVestigingen(actief.getWinkelnaam());
+    public String[] getVestigingen(){
+        String[] lijst = actief.getLijstVestigingen(actief.getWinkelnaam());
+        //System.out.println(actief.getLijstVestigingen(actief.getWinkelnaam()).length);
+        return lijst;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
