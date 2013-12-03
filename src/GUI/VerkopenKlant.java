@@ -110,7 +110,9 @@ public class VerkopenKlant extends javax.swing.JFrame {
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
-        new Home().setVisible(true);
+        Home s = new Home();         // NOG NIET GOED, CREERD TELKENS EEN NIEUW VENSTER!!!
+            s.setLocationRelativeTo(null);
+            s.setVisible(true);
         setVisible(false);
         // Naar home??
     }//GEN-LAST:event_knopAnnuleerActionPerformed
