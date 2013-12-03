@@ -40,8 +40,8 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         knopAanpassen = new javax.swing.JButton();
         txtPaswoord = new javax.swing.JPasswordField();
         txtPaswoord2 = new javax.swing.JPasswordField();
-        jMenuBar3 = new javax.swing.JMenuBar();
-        menuknopHome2 = new javax.swing.JMenu();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
         menuknopWinkelRapport = new javax.swing.JMenu();
         menuknopWinkelrapport = new javax.swing.JMenuItem();
@@ -52,12 +52,12 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
         MenuknopArtikelgegevens = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        MenuknopAanpassenSpaarkaart = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
         MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MenuknopToevoegenSpaarkaart = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuknopVerwijderenwinkel = new javax.swing.JMenuItem();
         menuknopVerwijderenvestiging = new javax.swing.JMenuItem();
@@ -99,13 +99,13 @@ public class AanpassenWinkel extends javax.swing.JFrame {
             }
         });
 
-        menuknopHome2.setText("Home");
-        menuknopHome2.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuknopHome.setText("Home");
+        menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuknopHome2MouseClicked(evt);
+                menuknopHomeMouseClicked(evt);
             }
         });
-        jMenuBar3.add(menuknopHome2);
+        jMenuBar1.add(menuknopHome);
 
         menuknopVerkopen.setText("Verkopen");
         menuknopVerkopen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,7 +113,7 @@ public class AanpassenWinkel extends javax.swing.JFrame {
                 menuknopVerkopenMouseClicked(evt);
             }
         });
-        jMenuBar3.add(menuknopVerkopen);
+        jMenuBar1.add(menuknopVerkopen);
 
         menuknopWinkelRapport.setText("Rapporten");
 
@@ -144,7 +144,7 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         });
         menuknopWinkelRapport.add(menuknopKlantenrapport);
 
-        jMenuBar3.add(menuknopWinkelRapport);
+        jMenuBar1.add(menuknopWinkelRapport);
 
         menuknopAanpassen.setText("Aanpassen");
 
@@ -184,11 +184,16 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         });
         menuknopAanpassen.add(MenuknopArtikelgegevens);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
-        jMenuItem2.setText("Spaarkaart");
-        menuknopAanpassen.add(jMenuItem2);
+        MenuknopAanpassenSpaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
+        MenuknopAanpassenSpaarkaart.setText("Spaarkaart");
+        MenuknopAanpassenSpaarkaart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopAanpassenSpaarkaartActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopAanpassenSpaarkaart);
 
-        jMenuBar3.add(menuknopAanpassen);
+        jMenuBar1.add(menuknopAanpassen);
 
         menuknopToevoegen.setText("Toevoegen");
 
@@ -219,11 +224,16 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(MenuknopToevoegenArtikel);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
-        jMenuItem1.setText("Spaarkaart");
-        menuknopToevoegen.add(jMenuItem1);
+        MenuknopToevoegenSpaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
+        MenuknopToevoegenSpaarkaart.setText("Spaarkaart");
+        MenuknopToevoegenSpaarkaart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopToevoegenSpaarkaartActionPerformed(evt);
+            }
+        });
+        menuknopToevoegen.add(MenuknopToevoegenSpaarkaart);
 
-        jMenuBar3.add(menuknopToevoegen);
+        jMenuBar1.add(menuknopToevoegen);
 
         jMenu1.setText("Verwijderen");
 
@@ -272,7 +282,7 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         });
         jMenu1.add(menuknopVerwijderenspaarkaart);
 
-        jMenuBar3.add(jMenu1);
+        jMenuBar1.add(jMenu1);
 
         menuknopUitloggen.setText("Uitloggen");
         menuknopUitloggen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -280,9 +290,9 @@ public class AanpassenWinkel extends javax.swing.JFrame {
                 menuknopUitloggenMouseClicked(evt);
             }
         });
-        jMenuBar3.add(menuknopUitloggen);
+        jMenuBar1.add(menuknopUitloggen);
 
-        setJMenuBar(jMenuBar3);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -361,12 +371,12 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPaswoordActionPerformed
 
-    private void menuknopHome2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHome2MouseClicked
+    private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
         Home s = new Home(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_menuknopHome2MouseClicked
+    }//GEN-LAST:event_menuknopHomeMouseClicked
 
     private void menuknopVerkopenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopVerkopenMouseClicked
         Verkopen s = new Verkopen(this);
@@ -424,6 +434,13 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
 
+    private void MenuknopAanpassenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopAanpassenSpaarkaartActionPerformed
+        AanpassenSpaarkaart s = new AanpassenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_MenuknopAanpassenSpaarkaartActionPerformed
+
     private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
         ToevoegenVestiging s = new ToevoegenVestiging(this);
         s.setLocationRelativeTo(null);
@@ -444,6 +461,13 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
+
+    private void MenuknopToevoegenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenSpaarkaartActionPerformed
+        ToevoegenSpaarkaart s = new ToevoegenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
     private void menuknopVerwijderenwinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenwinkelActionPerformed
         VerwijderenWinkel s = new VerwijderenWinkel(this);
@@ -520,8 +544,10 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuknopAanpassenSpaarkaart;
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JMenuItem MenuknopToevoegenSpaarkaart;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -530,16 +556,10 @@ public class AanpassenWinkel extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JButton knopAanpassen;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
-    private javax.swing.JMenu menuknopHome1;
-    private javax.swing.JMenu menuknopHome2;
     private javax.swing.JMenuItem menuknopKlantengegevens;
     private javax.swing.JMenuItem menuknopKlantenrapport;
     private javax.swing.JMenu menuknopToevoegen;

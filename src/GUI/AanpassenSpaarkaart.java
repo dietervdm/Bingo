@@ -342,6 +342,28 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
                 setVisible(false);
     }//GEN-LAST:event_knopTerugActionPerformed
 
+    private void txtKaartnrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKaartnrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKaartnrActionPerformed
+
+    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
+        int kaartnummer = Integer.parseInt(txtKaartnr.getText());
+        int accountnummer = Integer.parseInt(txtAccountnr.getText());
+        
+        Spaarkaart nieuw = new Spaarkaart(kaartnummer, accountnummer, txtNaamhouder.getText());
+        Spaarkaart oud = new Spaarkaart(kaartnummer, accountnummer, "");
+        
+        if(!d.checkAccount(accountnummer)){
+            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet");
+        }
+        else{
+            d.updateSpaarkaart(oud,nieuw);
+            txtKaartnr.setText("");
+            txtAccountnr.setText("");
+            txtNaamhouder.setText("");
+        }
+    }//GEN-LAST:event_knopAanpassenActionPerformed
+
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
         Home s = new Home(this);
         s.setLocationRelativeTo(null);
@@ -405,19 +427,19 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
 
-    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
-        ToevoegenArtikel s = new ToevoegenArtikel(this);
+    private void MenuknopAanpassenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopAanpassenSpaarkaartActionPerformed
+        AanpassenSpaarkaart s = new AanpassenSpaarkaart(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
+    }//GEN-LAST:event_MenuknopAanpassenSpaarkaartActionPerformed
 
-    private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
-        InlogScherm s = new InlogScherm();
+    private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
+        ToevoegenVestiging s = new ToevoegenVestiging(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_menuknopUitloggenMouseClicked
+    }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
 
     private void menuknopToevoegenKlantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenKlantActionPerformed
         ToevoegenKlant s = new ToevoegenKlant(this);
@@ -426,12 +448,19 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopToevoegenKlantActionPerformed
 
-    private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
-        ToevoegenVestiging s = new ToevoegenVestiging(this);
+    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
+        ToevoegenArtikel s = new ToevoegenArtikel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
+    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
+
+    private void MenuknopToevoegenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenSpaarkaartActionPerformed
+        ToevoegenSpaarkaart s = new ToevoegenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
     private void menuknopVerwijderenwinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenwinkelActionPerformed
         VerwijderenWinkel s = new VerwijderenWinkel(this);
@@ -468,41 +497,12 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopVerwijderenspaarkaartActionPerformed
 
-    private void MenuknopAanpassenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopAanpassenSpaarkaartActionPerformed
-        AanpassenSpaarkaart s = new AanpassenSpaarkaart(this);
+    private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
+        InlogScherm s = new InlogScherm();
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_MenuknopAanpassenSpaarkaartActionPerformed
-
-    private void MenuknopToevoegenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenSpaarkaartActionPerformed
-        ToevoegenSpaarkaart s = new ToevoegenSpaarkaart(this);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
-
-    private void txtKaartnrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKaartnrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtKaartnrActionPerformed
-
-    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
-        int kaartnummer = Integer.parseInt(txtKaartnr.getText());
-        int accountnummer = Integer.parseInt(txtAccountnr.getText());
-        
-        Spaarkaart nieuw = new Spaarkaart(kaartnummer, accountnummer, txtNaamhouder.getText());
-        Spaarkaart oud = new Spaarkaart(kaartnummer, accountnummer, "");
-        
-        if(!d.checkAccount(accountnummer)){
-            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet");
-        }
-        else{
-            d.updateSpaarkaart(oud,nieuw);
-            txtKaartnr.setText("");
-            txtAccountnr.setText("");
-            txtNaamhouder.setText("");
-        }
-    }//GEN-LAST:event_knopAanpassenActionPerformed
+    }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
     
     public static void main(String args[]) {

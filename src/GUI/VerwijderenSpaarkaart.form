@@ -69,7 +69,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuknopAanpassenSpaarkaart">
+        <Menu class="javax.swing.JMenu" name="menuknopAanpassen">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aanpassen"/>
           </Properties>
@@ -118,13 +118,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopArtikelgegevensActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuknopAanpassenSpaarkaart">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Spaarkaart.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Spaarkaart"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopAanpassenSpaarkaartActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -166,7 +169,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopToevoegenArtikelActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuknopToevoegenspaarkaart">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuknopToevoegenSpaarkaart">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/Icon Pack/Spaarkaart.png"/>
@@ -174,7 +177,7 @@
                 <Property name="text" type="java.lang.String" value="Spaarkaart"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuknopToevoegenspaarkaartActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuknopToevoegenSpaarkaartActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

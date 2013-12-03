@@ -46,12 +46,12 @@ public class Verkopen extends javax.swing.JFrame {
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
         MenuknopArtikelgegevens = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        MenuknopAanpassenSpaarkaart = new javax.swing.JMenuItem();
         menuknopToevoegen = new javax.swing.JMenu();
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
         MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MenuknopToevoegenSpaarkaart = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuknopVerwijderenwinkel = new javax.swing.JMenuItem();
         menuknopVerwijderenvestiging = new javax.swing.JMenuItem();
@@ -170,9 +170,14 @@ public class Verkopen extends javax.swing.JFrame {
         });
         menuknopAanpassen.add(MenuknopArtikelgegevens);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
-        jMenuItem2.setText("Spaarkaart");
-        menuknopAanpassen.add(jMenuItem2);
+        MenuknopAanpassenSpaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
+        MenuknopAanpassenSpaarkaart.setText("Spaarkaart");
+        MenuknopAanpassenSpaarkaart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopAanpassenSpaarkaartActionPerformed(evt);
+            }
+        });
+        menuknopAanpassen.add(MenuknopAanpassenSpaarkaart);
 
         jMenuBar1.add(menuknopAanpassen);
 
@@ -205,9 +210,14 @@ public class Verkopen extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(MenuknopToevoegenArtikel);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
-        jMenuItem1.setText("Spaarkaart");
-        menuknopToevoegen.add(jMenuItem1);
+        MenuknopToevoegenSpaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
+        MenuknopToevoegenSpaarkaart.setText("Spaarkaart");
+        MenuknopToevoegenSpaarkaart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuknopToevoegenSpaarkaartActionPerformed(evt);
+            }
+        });
+        menuknopToevoegen.add(MenuknopToevoegenSpaarkaart);
 
         jMenuBar1.add(menuknopToevoegen);
 
@@ -381,6 +391,13 @@ public class Verkopen extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
 
+    private void MenuknopAanpassenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopAanpassenSpaarkaartActionPerformed
+        AanpassenSpaarkaart s = new AanpassenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_MenuknopAanpassenSpaarkaartActionPerformed
+
     private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
         ToevoegenVestiging s = new ToevoegenVestiging(this);
         s.setLocationRelativeTo(null);
@@ -401,6 +418,13 @@ public class Verkopen extends javax.swing.JFrame {
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
+
+    private void MenuknopToevoegenSpaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenSpaarkaartActionPerformed
+        ToevoegenSpaarkaart s = new ToevoegenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
     private void menuknopVerwijderenwinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenwinkelActionPerformed
         VerwijderenWinkel s = new VerwijderenWinkel(this);
@@ -491,16 +515,16 @@ public class Verkopen extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuknopAanpassenSpaarkaart;
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
+    private javax.swing.JMenuItem MenuknopToevoegenSpaarkaart;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JButton knopTerug;
     private javax.swing.JButton knopVerkoopScherm;
     private javax.swing.JMenu menuknopAanpassen;
