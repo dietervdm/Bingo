@@ -1,6 +1,7 @@
 
 package GUI;
 
+import Database.Database;
 import javax.swing.JFrame;
 import Logica.*;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ public class Verkopen extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = null;
+    private Database db = new Database();
+    //private Vestiging actieveVest = null;
     
     public Verkopen() {
         this.actief = InlogScherm.getInstance().actief;
@@ -307,10 +310,10 @@ public class Verkopen extends javax.swing.JFrame {
 
     private void knopVerkoopSchermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerkoopSchermActionPerformed
         VerkopenKlant s = new VerkopenKlant();
+                s.setActieveVest(db.getVestiging(Integer.parseInt(jComboBox1.getSelectedItem().toString()), actief.getWinkelnaam()));
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
-                
     }//GEN-LAST:event_knopVerkoopSchermActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
@@ -482,6 +485,9 @@ public class Verkopen extends javax.swing.JFrame {
         }
         return lijstje;
     }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;

@@ -1,13 +1,27 @@
 
 package GUI;
 
+import Database.Database;
+import Logica.Spaarkaart;
+import Logica.Vestiging;
+import Logica.Winkel;
+import javax.swing.JOptionPane;
+
 
 public class VerkopenKlant extends javax.swing.JFrame {
 
+    private Winkel actief = InlogScherm.getInstance().getActief();
+    private Vestiging actieveVest;
+    private Database db = new Database();
     
     public VerkopenKlant() {
         initComponents();
     }
+    
+    public VerkopenKlant(Vestiging vest){
+        actieveVest = vest;
+    }
+    
 
     
     @SuppressWarnings("unchecked")
@@ -73,9 +87,21 @@ public class VerkopenKlant extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
-        PopUpSpaarkaart s = new PopUpSpaarkaart(5);
-                setVisible(false);
-                s.setSpaarkaartHouder(txtSpaarkaartNummer.getText());
+
+                if(db.checkSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())))
+                {
+                    Spaarkaart sk = db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText()));
+                    PopUpSpaarkaart s = new PopUpSpaarkaart(5);
+                    setVisible(false);
+                    s.setActieveSpaarkaart(sk);
+                    s.setActieveVest(actieveVest);
+                }
+                else
+                {
+                    //setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Spaarkaart bestaat niet.");
+                    //setVisible(true);
+                }
                 
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
@@ -126,4 +152,18 @@ public class VerkopenKlant extends javax.swing.JFrame {
     private javax.swing.JButton knopRegistreerAankoop;
     private javax.swing.JTextField txtSpaarkaartNummer;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the actieveVest
+     */
+    public Vestiging getActieveVest() {
+        return actieveVest;
+    }
+
+    /**
+     * @param actieveVest the actieveVest to set
+     */
+    public void setActieveVest(Vestiging actieveVest) {
+        this.actieveVest = actieveVest;
+    }
 }
