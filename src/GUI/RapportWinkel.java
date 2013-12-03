@@ -9,19 +9,19 @@ import java.awt.print.*;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class RapportVerkopen extends javax.swing.JFrame {
+public class RapportWinkel extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
     DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
     
-    public RapportVerkopen() {
+    public RapportWinkel() {
         actief = InlogScherm.getInstance().actief;
         initComponents();
     }
     
-    public RapportVerkopen(JFrame caller) {
+    public RapportWinkel(JFrame caller) {
         actief = InlogScherm.getInstance().actief;
         initComponents();
         myCaller = caller;
@@ -344,7 +344,7 @@ public class RapportVerkopen extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        RapportVerkopen s = new RapportVerkopen(this);
+        RapportWinkel s = new RapportWinkel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
@@ -470,20 +470,20 @@ public class RapportVerkopen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RapportVerkopen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RapportWinkel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RapportVerkopen().setVisible(true);
+                new RapportWinkel().setVisible(true);
             }
         });
     }

@@ -602,7 +602,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopVerkopenMouseClicked
 
     private void menuknopWinkelrapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopWinkelrapportActionPerformed
-        RapportVerkopen s = new RapportVerkopen(this);
+        RapportWinkel s = new RapportWinkel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
