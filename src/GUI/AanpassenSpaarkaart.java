@@ -4,11 +4,13 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.JOptionPane;
 
 public class AanpassenSpaarkaart extends javax.swing.JFrame {
     
     public JFrame myCaller;
-    
+    public Database d = new Database();
+   
     public AanpassenSpaarkaart() {
         initComponents();
     }
@@ -29,7 +31,7 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtAccountnr = new javax.swing.JTextField();
-        txtKaarnr = new javax.swing.JTextField();
+        txtKaartnr = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtNaamhouder = new javax.swing.JTextField();
         knopAanpassen = new javax.swing.JButton();
@@ -76,15 +78,20 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
 
         jLabel3.setText("Nieuw accountnr");
 
-        txtKaarnr.addActionListener(new java.awt.event.ActionListener() {
+        txtKaartnr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKaarnrActionPerformed(evt);
+                txtKaartnrActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Nieuwe naam");
 
         knopAanpassen.setText("Aanpassen");
+        knopAanpassen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopAanpassenActionPerformed(evt);
+            }
+        });
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -297,7 +304,7 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtKaarnr)
+                            .addComponent(txtKaartnr)
                             .addComponent(txtAccountnr)
                             .addComponent(txtNaamhouder, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
                     .addComponent(knopAanpassen, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -311,7 +318,7 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtKaarnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtKaartnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -475,9 +482,27 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
-    private void txtKaarnrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKaarnrActionPerformed
+    private void txtKaartnrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKaartnrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtKaarnrActionPerformed
+    }//GEN-LAST:event_txtKaartnrActionPerformed
+
+    private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
+        int kaartnummer = Integer.parseInt(txtKaartnr.getText());
+        int accountnummer = Integer.parseInt(txtAccountnr.getText());
+        
+        Spaarkaart nieuw = new Spaarkaart(kaartnummer, accountnummer, txtNaamhouder.getText());
+        Spaarkaart oud = new Spaarkaart(kaartnummer, accountnummer, "");
+        
+        if(!d.checkAccount(accountnummer)){
+            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet");
+        }
+        else{
+            d.updateSpaarkaart(oud,nieuw);
+            txtKaartnr.setText("");
+            txtAccountnr.setText("");
+            txtNaamhouder.setText("");
+        }
+    }//GEN-LAST:event_knopAanpassenActionPerformed
 
     
     public static void main(String args[]) {
@@ -545,7 +570,7 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
     private javax.swing.JTextField txtAccountnr;
-    private javax.swing.JTextField txtKaarnr;
+    private javax.swing.JTextField txtKaartnr;
     private javax.swing.JTextField txtNaamhouder;
     // End of variables declaration//GEN-END:variables
 }
