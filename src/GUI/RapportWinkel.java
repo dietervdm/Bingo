@@ -4,15 +4,14 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.table.DefaultTableModel;
 
 public class RapportWinkel extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
-    
-    // Code van Dieter
-    private Winkel w = new Winkel();
-    private Database d = new Database();
+    public Database d = new Database();
+    DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
     
     public RapportWinkel() {
         actief = InlogScherm.getInstance().actief;
