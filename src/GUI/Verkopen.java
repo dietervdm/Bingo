@@ -472,9 +472,14 @@ public class Verkopen extends javax.swing.JFrame {
     }
     
     public String[] getVestigingen(){
-        String[] lijst = actief.getLijstVestigingen(actief.getWinkelnaam());
+        ArrayList<Integer> lijst = actief.getLijstVestigingen();
         //System.out.println(actief.getLijstVestigingen(actief.getWinkelnaam()).length);
-        return lijst;
+        String[] lijstje = new String[lijst.size()];
+        for(int i = 0; i<lijst.size(); i++)
+        {
+            lijstje[i] = lijst.get(i).toString();
+        }
+        return lijstje;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
