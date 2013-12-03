@@ -211,10 +211,13 @@ import javax.swing.border.Border;
         public void run() {
             f.setVisible(false);
             
-            timer.cancel(); //Terminate the timer thread
-            VerkopenAfrekening s = new VerkopenAfrekening();
+            VerkopenAfrekening s = new VerkopenAfrekening(actieveSpaarkaart, actieveVest);
+            //s.setActieveSpaarkaart(actieveSpaarkaart);
+            //s.setActieveVest(actieveVest);
+            
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
+                timer.cancel(); //Terminate the timer thread
         }
     }
 
