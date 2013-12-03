@@ -123,6 +123,12 @@ public class ToevoegenProduct extends javax.swing.JFrame {
 
         checkMinimumaankoopbedrag.setText("Bij een minimum aankoopbedrag van");
 
+        txtMinimumartikelen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMinimumartikelenActionPerformed(evt);
+            }
+        });
+
         jLabel10.setText("artikelen");
 
         txtMinimumbedrag.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +140,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         jLabel11.setText("euro");
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setText("Opgepast! Er moet minstens 1 artikel zijn dat punten oplevert en 1 artikel dat punten kost");
+        jLabel6.setText("Opgepast! Er moet minstens 1 artikel zijn dat punten oplevert en 1 artikel dat punten kost om deel te kunnen nemen aan het systeem.");
 
         knopToevoegen.setText("Toevoegen");
         knopToevoegen.addActionListener(new java.awt.event.ActionListener() {
@@ -341,32 +347,32 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtArtikelnr, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtArtikelnaam, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtArtikelnaam)
+                                                .addComponent(txtArtikelnr, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(checkGeeftpunten)
-                                            .addGap(30, 30, 30)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addComponent(checkGeeftpunten)
+                                                    .addGap(38, 38, 38))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(55, 55, 55)
+                                                    .addComponent(txtPuntenplus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(6, 6, 6)))
                                             .addComponent(jLabel8)
-                                            .addGap(91, 91, 91)))
+                                            .addGap(83, 83, 83)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(checkKostpunten)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtPuntenmin, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(55, 55, 55)
-                                                .addComponent(txtPuntenplus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(checkKostpunten)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtPuntenmin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel9)))
                                 .addGap(18, 18, 18)
@@ -374,7 +380,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(checkMinimumaankoopbedrag)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -384,12 +390,13 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(checkMinimumartikelen)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(knopTerug))
+                            .addComponent(knopTerug)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 120, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -426,9 +433,9 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                     .addComponent(checkMinimumaankoopbedrag)
                     .addComponent(txtMinimumbedrag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addGap(20, 20, 20)
                 .addComponent(knopToevoegen)
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,48 +461,103 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtArtikelnaamActionPerformed
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
+        
+        // voorwaarden worden niet opgenomen
+        
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
         
-        Integer puntenplus = 0;
-        Integer puntenmin = -1;
-        Integer minimumartikelen = 0;
-        Integer minimumbedrag = 0;
+        int puntenplus = 0;
+        int puntenmin = -1;
+        int minimumartikelen = 1;
+        int minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
         double prijs = Double.parseDouble(txtPrijs.getText());
-       
-        if(checkGeeftpunten.isSelected()){
-            puntenplus = Integer.parseInt(txtPuntenplus.getText());
-            if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals("")){
-                minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
-            }
-            else minimumartikelen = 0;
+        double prijsAfgerond = 0;
+        String artikelnaam = txtArtikelnaam.getText();
+        
+        if(prijs < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Controleer de prijs, deze moet positief zijn.");
         }
-        else{
-            puntenplus = 0;
-            minimumartikelen = 0;
+        else
+        {
+            int pr = (int) Math.round(prijs * 100);
+            prijsAfgerond = pr / 100.00 ;
         }
         
-        if(checkKostpunten.isSelected()){
-            puntenmin = Integer.parseInt(txtPuntenmin.getText());
-            if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals("")){
-                minimumbedrag = Integer.parseInt(txtMinimumartikelen.getText());
+        Artikel p = new Artikel(artikelnr, winkelnaam, prijs, puntenplus, puntenmin);
+        
+        if(checkGeeftpunten.isSelected() && !txtPuntenplus.getText().equals(""))
+        {
+            puntenplus = Integer.parseInt(txtPuntenplus.getText());
+            
+            if(puntenplus < 0)
+            {
+                JOptionPane.showMessageDialog(null, "Aantal te ontvangen punten moeten positief zijn.");
             }
-            else minimumbedrag = 0;
+            
+            if(p.checkPuntenplusWaarde(puntenplus, prijs))
+            {
+                if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals(""))
+                {
+                    minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
+                }
+                else
+                {
+                    minimumartikelen = 1;
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
+            }
         }
-        else {
+        else
+        {
+                puntenplus = 0;
+                minimumartikelen = 1;
+        }
+        
+        if(checkKostpunten.isSelected() && !txtPuntenmin.getText().equals(""))
+        {
+            puntenmin = Integer.parseInt(txtPuntenmin.getText());
+            
+            if(puntenmin < 0)
+            {
+                JOptionPane.showMessageDialog(null, "Het aantal punten dat een product kost, moet positief zijn.");
+            }
+            
+            if(p.checkPuntenminWaarde(puntenmin, prijs))
+            {
+                if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals(""))
+                {
+                    minimumbedrag = Integer.parseInt(txtMinimumartikelen.getText());
+                }
+                else
+                {
+                    minimumbedrag = 0;
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
+            }
+        }
+        else
+        {
             puntenmin = -1;
             minimumbedrag = 0;
         }
         
-        String artikelnaam = txtArtikelnaam.getText();
-        
-        Artikel p = new Artikel(artikelnr, winkelnaam, artikelnaam, prijs, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
-        if(d.checkArtikel(artikelnr, winkelnaam)){
-            JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel");
+        if(d.checkArtikel(artikelnr, winkelnaam))
+        {
+            JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel.");
         }
-        
-        else{
-            d.addArtikel(p);
+        else
+        {
+            Artikel q = new Artikel(artikelnr, winkelnaam, artikelnaam, prijsAfgerond, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
+            
+            d.addArtikel(q);
             t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelArtikelen.setModel(t);
             txtArtikelnr.setText("");
@@ -641,6 +703,10 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
+
+    private void txtMinimumartikelenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimumartikelenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMinimumartikelenActionPerformed
 
     
     public static void main(String args[]) {
