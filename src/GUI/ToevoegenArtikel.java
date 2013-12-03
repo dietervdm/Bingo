@@ -12,9 +12,9 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    DefaultTableModel t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
-    public ToevoegenArtikel() {
+    public ToevoegenArtikel() { 
         initComponents();
         actief = InlogScherm.getInstance().getActief();
     }
@@ -537,7 +537,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
         if(toevoegen){
             
             d.addArtikel(q);
-            t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelArtikelen.setModel(t);
             txtArtikelnr.setText("");
             txtPrijs.setText("");

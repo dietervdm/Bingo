@@ -12,7 +12,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    DefaultTableModel t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
     public AanpassenArtikel() {
         initComponents();
@@ -541,7 +541,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
         if(toevoegen){
             
             d.updateArtikel(oud,nieuw, actief.getWinkelnaam());
-            t = d.naarTabel("select * from artikel where winkelnaam = '" + winkelnaam + "'");
+            t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelArtikelen.setModel(t);
             txtArtikelnummer1.setText("");
             txtArtikelnr2.setText("");

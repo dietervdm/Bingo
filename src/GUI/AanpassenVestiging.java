@@ -12,7 +12,7 @@ public class AanpassenVestiging extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    DefaultTableModel t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
     public AanpassenVestiging() {
         initComponents();
@@ -405,7 +405,7 @@ public class AanpassenVestiging extends javax.swing.JFrame {
         }
         else{
             d.updateVestiging(oud,nieuw,winkelnaam);
-            t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);
             txtVestigingid.setText("");
             txtAdres.setText("");

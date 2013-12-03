@@ -13,7 +13,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     public JFrame myCaller;
     public Database d = new Database();
     public Winkel actief = InlogScherm.getInstance().getActief();
-    public DefaultTableModel t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    public DefaultTableModel t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
     
     public ToevoegenWinkel2() {
@@ -175,7 +175,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         }
         else{
             d.addVestiging(v);
-            t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);
             txtVestigingid.setText("");
             txtAdres.setText("");

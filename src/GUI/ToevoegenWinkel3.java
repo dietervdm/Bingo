@@ -14,7 +14,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
     public JFrame myCaller;
     public Database d = new Database();
     public Winkel actief = InlogScherm.getInstance().getActief();
-    public DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    public DefaultTableModel t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
 
     
     public ToevoegenWinkel3() {
@@ -298,7 +298,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         }
         else{
             d.addArtikel(p);
-            t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
+            t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelArtikelen.setModel(t);
             txtArtikelnr.setText("");
             txtPrijs.setText("");
