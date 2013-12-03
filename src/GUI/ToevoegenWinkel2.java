@@ -57,7 +57,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
 
         jLabel2.setText("VestigingsID");
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(153, 0, 0));
         jLabel3.setText("Opgepast! Elke vestiging moet een verschillende ID hebben.");
 
         jLabel4.setText("Adres");
