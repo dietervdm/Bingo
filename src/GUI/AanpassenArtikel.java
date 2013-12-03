@@ -467,7 +467,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
         String winkelnaam = actief.getWinkelnaam();
         int artikelnummer1 = Integer.parseInt(txtArtikelnummer1.getText());
         int puntenplus = 0;
-        int puntenmin = -1;
+        Integer puntenmin = null;
         int minimumartikelen = 1;
         int minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr2.getText());

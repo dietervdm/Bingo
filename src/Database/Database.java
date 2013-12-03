@@ -209,7 +209,15 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
+            try{
             stmt.executeUpdate("INSERT INTO artikel VALUES (" + a.getArtikelnr() + ", '" + a.getWinkelnaam() + "', '" + a.getArtikelnaam() + "', " + a.getPrijs() + ", " + a.getPtnwinst() + ", " + a.getMinimumaantal() + ", " + a.getPtnkost() + ", " + a.getMinimumbedrag() +");");
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            
+            
+            
             this.closeConnection();
         }
         catch(SQLException sqle){

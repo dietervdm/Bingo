@@ -12,7 +12,7 @@ public class Artikel
     private double prijs;
     private int ptnwinst;
     private int minimumaantal;
-    private int ptnkost;
+    private Integer ptnkost;
     private int minimumbedrag;
     
     
@@ -26,7 +26,7 @@ public class Artikel
     }
     
     public Artikel(int artikelnr, String winkelnaam, String artikelnaam, double prijs,
-                   int ptnwinst, int minimumaantal, int ptnkost, int minimumbedrag)
+                   int ptnwinst, int minimumaantal, Integer ptnkost, int minimumbedrag)
     {
        this.artikelnr = artikelnr;
        this.winkelnaam = winkelnaam;
@@ -98,12 +98,12 @@ public class Artikel
         this.minimumaantal = minimumaantal;
     }
     
-    public int getPtnkost()
+    public Integer getPtnkost()
     {
         return this.ptnkost;
     }
     
-    public void setPtnkost(int ptnkost)
+    public void setPtnkost(Integer ptnkost)
     {
         this.ptnkost = ptnkost;
     }

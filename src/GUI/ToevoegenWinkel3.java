@@ -260,7 +260,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = actief.getWinkelnaam();
         Integer puntenplus = 0;
-        Integer puntenmin = -1;
+        Integer puntenmin = null;
         Integer minimumartikelen = 0;
         Integer minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
