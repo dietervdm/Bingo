@@ -24,14 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
     public class PopUpSpaarkaart {
-
-    public static Spaarkaart getActieveSpaarkaart() {
-        return actieveSpaarkaart;
-    }
-
-    public static void setActieveSpaarkaart(Spaarkaart aActieveSpaarkaart) {
-        actieveSpaarkaart = aActieveSpaarkaart;
-    }
     
     Timer timer;
     
@@ -76,9 +68,11 @@ import javax.swing.border.Border;
     static JLabel aantalPunten = new JLabel("Aantal punten verzameld: ");
         //aantalPunten.setFont(new java.awt.Font("Tahoma", 1, 14)); // Lettertype aanpassen
 
-    public PopUpSpaarkaart(int seconds) {
+    public PopUpSpaarkaart(int seconds, Vestiging vest, Spaarkaart sk) {
         timer = new Timer();
         timer.schedule(new afsluiten(), seconds*1000);
+        this.setActieveSpaarkaart(sk);
+        this.setActieveVest(vest);
         initComponents();
          
 //        s = new Spaarkaart(spaarkaartHouder);
@@ -124,10 +118,17 @@ import javax.swing.border.Border;
         bs = new JLabel(bigSpender);
         wol = new JLabel(wolverine);
         
-        account.setText(db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam());
-        spaarkaart.setText(actieveSpaarkaart.getNaamhouder());
-        punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
+        String acc = db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam();
+        account.setText(acc);
+        //account.setText(db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam());
+        String sk = actieveSpaarkaart.getNaamhouder();
+        spaarkaart.setText(sk);
+        //spaarkaart.setText(actieveSpaarkaart.getNaamhouder());
+        String pt = Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten());
+        punten.setText(pt);
+        //punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
         
+        f.setLayout(new GridLayout(2,1,5,5));
         topPanel.setLayout(new GridLayout(3,1,10,3));       // gridlayout (int rows, int cols, int hGap, int vGap)
         downPanel.setLayout(new GridLayout(1,3,5,5));
         spaarkaartBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
@@ -144,6 +145,8 @@ import javax.swing.border.Border;
         puntenBalk.add(punten);
         Border compound = BorderFactory.createLineBorder(Color.black, 2, false); // true voor ronde hoeken
         punten.setBorder(compound);
+        punten.setAlignmentX(20);
+        punten.setAlignmentY(40);
         
         //topPanel.add(leegBoven);
         topPanel.add(spaarkaartBalk);
@@ -174,17 +177,11 @@ import javax.swing.border.Border;
         this.account.setText(acc.getNaam());
     }
 
-    /**
-     * @param spaarkaart the spaarkaart to set
-     */
     public void setSpaarkaart() {
         Spaarkaart k = new Spaarkaart(spaarkaartHouder);
         this.spaarkaart.setText(k.getNaamhouder());
     }
 
-    /**
-     * @param aantalPunten the aantalPunten to set
-     */
     public void setAantalPunten() {
         Account acc = new Account();
         this.punten.setText(Integer.toString(acc.getPunten()));
@@ -201,6 +198,14 @@ import javax.swing.border.Border;
     public void setActieveVest(Vestiging actieveVest) {
         this.actieveVest = actieveVest;
     }
+    
+    public Spaarkaart getActieveSpaarkaart() {
+        return actieveSpaarkaart;
+    }
+
+    public void setActieveSpaarkaart(Spaarkaart aActieveSpaarkaart) {
+        actieveSpaarkaart = aActieveSpaarkaart;
+    }
 
     class afsluiten extends TimerTask {
         public void run() {
@@ -216,7 +221,6 @@ import javax.swing.border.Border;
     public static void main(String args[]) {
         //new PopUpSpaarkaart(5);
         initComponents();
-        f.setSize(600, 400);
         f.setVisible(true);
     }
     
