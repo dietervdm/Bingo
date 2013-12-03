@@ -2,7 +2,7 @@
 package GUI;
 
 import Database.Database;
-import Logica.Spaarkaart;
+import Logica.Aankoop;
 import Logica.Vestiging;
 import Logica.Winkel;
 import javax.swing.JOptionPane;
@@ -95,6 +95,9 @@ public class VerkopenKlant extends javax.swing.JFrame {
                     //s.setActieveSpaarkaart(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())));
                     //s.setActieveVest(actieveVest);
                     
+//                    Aankoop ak = new Aankoop();
+//                    db.addAankoop(db.getLaatsteAankoop().getTransactieNummer + 1);
+                    
                     setVisible(false);
                 }
                 else
@@ -107,6 +110,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
+        new Home().setVisible(true);
         setVisible(false);
         // Naar home??
     }//GEN-LAST:event_knopAnnuleerActionPerformed

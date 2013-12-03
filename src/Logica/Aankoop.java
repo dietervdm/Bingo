@@ -2,6 +2,7 @@
 package Logica;
 
 
+import Database.Database;
 import java.util.Date;
 
 public class Aankoop
@@ -78,6 +79,11 @@ public class Aankoop
     {
         this.datum = datum;
     }
+    
+//    public Aankoop getLaatsteAankoop(){
+//        Database db = new Database();
+//        return db.getLaatsteAankoop();
+//    }
     
 //    public int getPtnplus()
 //    {

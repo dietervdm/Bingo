@@ -2,9 +2,13 @@
 package GUI;
 
 import Database.Database;
+import Logica.Artikel;
+import Logica.Artikelaankoop;
 import Logica.Spaarkaart;
 import Logica.Vestiging;
 import Logica.Winkel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class VerkopenAfrekening extends javax.swing.JFrame {
@@ -13,12 +17,16 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private Vestiging actieveVest;
     private Spaarkaart actieveSpaarkaart;
     
+    private int transactienummer = 1;    
+    
     private double totaalPrijs = 0.0;
     private int totaalPuntenPlus = 0;
     private int totaalPuntenMin = 0;
     private int puntenOver;
+    private int artikelenMetPunten = 0;
     
     private Database db = new Database();
+    DefaultTableModel t = db.naarTabel("select * from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
     
     public VerkopenAfrekening() {
         initComponents();
@@ -42,7 +50,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelAankopen = new javax.swing.JTable(t);
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtProductVerwijderen = new javax.swing.JTextField();
@@ -61,7 +69,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         puntenVerkregen = new javax.swing.JLabel();
         weergaveAfgetrokkenPunten = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        aantalArtikelenPunten = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         weergaveTeGebruikenPunten = new javax.swing.JLabel();
         aantalBepaler = new javax.swing.JSpinner();
@@ -73,18 +81,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
         jLabel2.setText("Aantal punten:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Code", "Naam", "Aantal", "Prijs", "Verkregen punten", "Puntenprijs"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelAankopen);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Afrekening");
@@ -132,15 +129,18 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
         puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
 
-        weergaveAfgetrokkenPunten.setText("jLabel18");
+        weergaveAfgetrokkenPunten.setText(Integer.toString(totaalPuntenMin));
 
         jLabel19.setText("voor");
 
-        jLabel20.setText("x");
+        aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
 
         jLabel21.setText("artikelen");
 
         weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
+
+        aantalBepaler.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        aantalBepaler.setValue(1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,7 +161,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                                         .addComponent(jLabel9))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +180,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                                         .addGap(50, 50, 50)
                                         .addComponent(jLabel19)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel20)
+                                        .addComponent(aantalArtikelenPunten)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel21))
                                     .addGroup(layout.createSequentialGroup()
@@ -195,7 +195,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(knopAnnuleer)
@@ -248,7 +248,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(weergaveAfgetrokkenPunten)
                     .addComponent(jLabel19)
-                    .addComponent(jLabel20)
+                    .addComponent(aantalArtikelenPunten)
                     .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -268,22 +268,96 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
-        double prijs = db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPrijs();
-        int ptnplus = db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnwinst();
-        int ptnmin = db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost();
+        Artikel art = db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
+//        double prijs = art.getPrijs();
+//        int ptnplus = art.getPtnwinst();
+//        int ptnmin = art.getPtnkost();
+//        
+        int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
+//        
+//        if(aantal >= art.getMinimumaantal())
+//        {
+//            if(puntenOver > (db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost() * aantal) && db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost()!= -1)
+//            {
+//                int puntenKost = (db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost() * aantal);
+//                puntenOver = puntenOver - puntenKost;
+//                totaalPuntenMin = totaalPuntenMin + puntenKost;
+//                weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
+//                weergaveAfgetrokkenPunten.setText(Integer.toString(totaalPuntenMin));
+//            }
+//            else
+//            {
+//                
+//            }
+//        }
+//        else
+//        {
+//            double kost = ((db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPrijs()) * aantal);
+//            totaalPrijs = totaalPrijs + kost;
+//            totaalBedrag.setText(Double.toString(totaalPrijs));
+//        }
         
+        Artikelaankoop artAk = new Artikelaankoop();
+        artAk.setTransactienrAaankoop(this.transactienummer);
+        artAk.setArtikelnr(art.getArtikelnr());
+        artAk.setWinkelNaam(actief.getWinkelnaam());
+        artAk.setAantal(aantal);
         
+        if(db.checkArtikel(art.getArtikelnr(), art.getWinkelnaam()))
+        {
+        if(art.getPtnkost() == -1)
+        {
+            if(aantal >= art.getMinimumaantal())
+            {
+                //System.out.println(Integer.toString(aantal));
+                totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
+                totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
+            }
+            else
+            {
+                //System.out.println(Integer.toString(aantal));
+                totaalPrijs = totaalPrijs + art.getPrijs();
+            }
+            artAk.setMetPuntenBetaald(false);
+        }
+        else
+        {
+            if(puntenOver >= art.getPtnkost()*aantal)
+            {
+                totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
+                puntenOver = puntenOver - art.getPtnkost() * aantal;
+                artAk.setMetPuntenBetaald(true);
+                artikelenMetPunten = artikelenMetPunten + aantal;
+            }
+            //System.out.println("dit product kan met punten betaald worden");
+            else
+            {
+                totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
+                totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst();
+                artAk.setMetPuntenBetaald(false);
+            }
+        }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Dit artikel bestaat niet");
+        }
         
-        
-        
-        totaalPuntenMin = totaalPuntenMin + ptnmin;
-        totaalPuntenPlus = totaalPuntenPlus + ptnplus;
-        totaalPrijs = totaalPrijs + prijs;
+//        totaalPuntenMin = totaalPuntenMin + ptnmin;
+//        totaalPuntenPlus = totaalPuntenPlus + ptnplus;
+//        totaalPrijs = totaalPrijs + prijs;
         
         weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
         totaalBedrag.setText(Double.toString(totaalPrijs));
         puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
         weergaveAfgetrokkenPunten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten() - puntenOver));
+        aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
+        
+        
+        t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+        tabelAankopen.setModel(t);
+        
+        
     }//GEN-LAST:event_knopVoegToeActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
@@ -349,6 +423,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aantalArtikelenPunten;
     private javax.swing.JSpinner aantalBepaler;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -359,17 +434,16 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton knopAnnuleer;
     private javax.swing.JButton knopRegistreerAankoop;
     private javax.swing.JButton knopVoegToe;
     private javax.swing.JLabel puntenVerkregen;
+    private javax.swing.JTable tabelAankopen;
     private javax.swing.JLabel totaalBedrag;
     private javax.swing.JTextField txtProductToevoegen;
     private javax.swing.JTextField txtProductVerwijderen;

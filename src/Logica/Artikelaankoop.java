@@ -80,4 +80,12 @@ public class Artikelaankoop
     {
         this.aantal = aantal;
     }
+
+    public boolean isMetPuntenBetaald() {
+        return metPuntenBetaald;
+    }
+
+    public void setMetPuntenBetaald(boolean metPuntenBetaald) {
+        this.metPuntenBetaald = metPuntenBetaald;
+    }
 }
