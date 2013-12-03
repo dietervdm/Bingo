@@ -44,6 +44,12 @@ public class InlogScherm extends javax.swing.JFrame {
 
         jLabel3.setText("Gelieve in te loggen of een nieuwe winkel toe te voegen.");
 
+        txtPaswoord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPaswoordActionPerformed(evt);
+            }
+        });
+
         knopLogIn.setText("Log in");
         knopLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,10 +133,6 @@ public class InlogScherm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Deze winkel bestaat nog niet, je kan hem aanmaken via de knop 'Nieuwe Winkel'.");
         }
         
-        
-        
-        
-        
     }//GEN-LAST:event_knopLogInActionPerformed
 
     private void knopNieuweWinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopNieuweWinkelActionPerformed
@@ -141,6 +143,27 @@ public class InlogScherm extends javax.swing.JFrame {
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_knopNieuweWinkelActionPerformed
+
+    private void txtPaswoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaswoordActionPerformed
+        String naam = txtNaam.getText();
+        String paswoord = txtPaswoord.getText();
+        
+        if(d.checkWinkel(naam)){
+            if(naam.equals(paswoord)){
+                w = d.getWinkel(naam);
+                inlogscherm.setActief(w);
+                inlogscherm.setLocationRelativeTo(null);
+                Home s = new Home(this);
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);
+                setVisible(false);
+            }
+            else JOptionPane.showMessageDialog(null, "Incorrect paswoord. Probeer opnieuw het wachtwoord in te vullen.");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Deze winkel bestaat nog niet, je kan hem aanmaken via de knop 'Nieuwe Winkel'.");
+        }
+    }//GEN-LAST:event_txtPaswoordActionPerformed
 
     
     public static void main(String args[]) {

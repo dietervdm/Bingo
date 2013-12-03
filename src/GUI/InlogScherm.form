@@ -95,6 +95,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPaswoord">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPaswoordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="knopLogIn">
       <Properties>
