@@ -1,14 +1,17 @@
-
+ 
 package GUI;
 
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import javax.swing.table.DefaultTableModel;
 
 public class RapportAssortiment extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
+    public Database d = new Database();
+    DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
     public RapportAssortiment() {
         initComponents();
@@ -27,11 +30,9 @@ public class RapportAssortiment extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        knopAfdrukvoorbeeld = new javax.swing.JButton();
         knopPrint = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tabelArtikelen = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -72,15 +73,6 @@ public class RapportAssortiment extends javax.swing.JFrame {
 
         jLabel2.setText("Assortiment winkel");
 
-        jLabel1.setText("Print rapport");
-
-        knopAfdrukvoorbeeld.setText("Afdrukvoorbeeld");
-        knopAfdrukvoorbeeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knopAfdrukvoorbeeldActionPerformed(evt);
-            }
-        });
-
         knopPrint.setText("Print");
         knopPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,10 +80,8 @@ public class RapportAssortiment extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        tabelArtikelen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelArtikelen);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -283,38 +273,33 @@ public class RapportAssortiment extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(knopTerug))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(knopAfdrukvoorbeeld)
-                                .addGap(61, 61, 61)
-                                .addComponent(knopPrint))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                    .addComponent(knopTerug)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knopPrint))
+                .addContainerGap(636, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(knopAfdrukvoorbeeld)
-                    .addComponent(knopPrint))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(knopPrint)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 479, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(90, 90, 90)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(62, Short.MAX_VALUE)))
         );
 
         pack();
@@ -452,10 +437,6 @@ public class RapportAssortiment extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
-    private void knopAfdrukvoorbeeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAfdrukvoorbeeldActionPerformed
-        //jTextArea1.append(actief.getWinkelnaam() + d.artikelsToString(actief.getWinkelnaam()));
-    }//GEN-LAST:event_knopAfdrukvoorbeeldActionPerformed
-
     private void knopPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPrintActionPerformed
         //w.printWinkel(w.winkelToString());
     }//GEN-LAST:event_knopPrintActionPerformed
@@ -496,7 +477,6 @@ public class RapportAssortiment extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
@@ -504,8 +484,6 @@ public class RapportAssortiment extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton knopAfdrukvoorbeeld;
     private javax.swing.JButton knopPrint;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
@@ -526,5 +504,6 @@ public class RapportAssortiment extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTable tabelArtikelen;
     // End of variables declaration//GEN-END:variables
 }

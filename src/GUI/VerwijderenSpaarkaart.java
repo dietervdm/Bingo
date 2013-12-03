@@ -32,7 +32,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         menuknopWinkelrapport = new javax.swing.JMenuItem();
         menuknopVestigingsrapport = new javax.swing.JMenuItem();
         menuknopKlantenrapport = new javax.swing.JMenuItem();
-        menuknopAanpassen = new javax.swing.JMenu();
+        menuknopAanpassenSpaarkaart = new javax.swing.JMenu();
         menuknopWinkelgegevens = new javax.swing.JMenuItem();
         menuknopVestigingsgegevens = new javax.swing.JMenuItem();
         menuknopKlantengegevens = new javax.swing.JMenuItem();
@@ -42,7 +42,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         menuknopToevoegenVestiging = new javax.swing.JMenuItem();
         menuknopToevoegenKlant = new javax.swing.JMenuItem();
         MenuknopToevoegenArtikel = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuknopToevoegenspaarkaart = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuknopVerwijderenwinkel = new javax.swing.JMenuItem();
         menuknopVerwijderenvestiging = new javax.swing.JMenuItem();
@@ -98,7 +98,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         });
         menuknopWinkelRapport.add(menuknopVestigingsrapport);
 
-        menuknopKlantenrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
+        menuknopKlantenrapport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Assortiment.png"))); // NOI18N
         menuknopKlantenrapport.setText("Assortiment");
         menuknopKlantenrapport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +109,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
 
         jMenuBar1.add(menuknopWinkelRapport);
 
-        menuknopAanpassen.setText("Aanpassen");
+        menuknopAanpassenSpaarkaart.setText("Aanpassen");
 
         menuknopWinkelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Winkel.png"))); // NOI18N
         menuknopWinkelgegevens.setText("Winkel");
@@ -118,7 +118,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
                 menuknopWinkelgegevensActionPerformed(evt);
             }
         });
-        menuknopAanpassen.add(menuknopWinkelgegevens);
+        menuknopAanpassenSpaarkaart.add(menuknopWinkelgegevens);
 
         menuknopVestigingsgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Vestiging.png"))); // NOI18N
         menuknopVestigingsgegevens.setText("Vestiging");
@@ -127,7 +127,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
                 menuknopVestigingsgegevensActionPerformed(evt);
             }
         });
-        menuknopAanpassen.add(menuknopVestigingsgegevens);
+        menuknopAanpassenSpaarkaart.add(menuknopVestigingsgegevens);
 
         menuknopKlantengegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Klant.png"))); // NOI18N
         menuknopKlantengegevens.setText("Klant");
@@ -136,7 +136,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
                 menuknopKlantengegevensActionPerformed(evt);
             }
         });
-        menuknopAanpassen.add(menuknopKlantengegevens);
+        menuknopAanpassenSpaarkaart.add(menuknopKlantengegevens);
 
         MenuknopArtikelgegevens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Artikel.png"))); // NOI18N
         MenuknopArtikelgegevens.setText("Artikel");
@@ -145,12 +145,13 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
                 MenuknopArtikelgegevensActionPerformed(evt);
             }
         });
-        menuknopAanpassen.add(MenuknopArtikelgegevens);
+        menuknopAanpassenSpaarkaart.add(MenuknopArtikelgegevens);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
         jMenuItem2.setText("Spaarkaart");
-        menuknopAanpassen.add(jMenuItem2);
+        menuknopAanpassenSpaarkaart.add(jMenuItem2);
 
-        jMenuBar1.add(menuknopAanpassen);
+        jMenuBar1.add(menuknopAanpassenSpaarkaart);
 
         menuknopToevoegen.setText("Toevoegen");
 
@@ -181,8 +182,14 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         });
         menuknopToevoegen.add(MenuknopToevoegenArtikel);
 
-        jMenuItem1.setText("Spaarkaart");
-        menuknopToevoegen.add(jMenuItem1);
+        menuknopToevoegenspaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
+        menuknopToevoegenspaarkaart.setText("Spaarkaart");
+        menuknopToevoegenspaarkaart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuknopToevoegenspaarkaartActionPerformed(evt);
+            }
+        });
+        menuknopToevoegen.add(menuknopToevoegenspaarkaart);
 
         jMenuBar1.add(menuknopToevoegen);
 
@@ -224,7 +231,13 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         });
         jMenu1.add(MenuknopVerwijderenartikel);
 
+        menuknopVerwijderenspaarkaart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
         menuknopVerwijderenspaarkaart.setText("Spaarkaart");
+        menuknopVerwijderenspaarkaart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuknopVerwijderenspaarkaartActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuknopVerwijderenspaarkaart);
 
         jMenuBar1.add(jMenu1);
@@ -327,19 +340,12 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopArtikelgegevensActionPerformed
 
-    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
-        ToevoegenProduct s = new ToevoegenProduct(this);
+    private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
+        ToevoegenVestiging s = new ToevoegenVestiging(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
-
-    private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
-        InlogScherm s = new InlogScherm();
-        s.setLocationRelativeTo(null);
-        s.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_menuknopUitloggenMouseClicked
+    }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
 
     private void menuknopToevoegenKlantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenKlantActionPerformed
         ToevoegenKlant s = new ToevoegenKlant(this);
@@ -348,28 +354,58 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopToevoegenKlantActionPerformed
 
-    private void menuknopToevoegenVestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenVestigingActionPerformed
-        ToevoegenVestiging s = new ToevoegenVestiging(this);
+    private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
+        ToevoegenProduct s = new ToevoegenProduct(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_menuknopToevoegenVestigingActionPerformed
+    }//GEN-LAST:event_MenuknopToevoegenArtikelActionPerformed
 
     private void menuknopVerwijderenwinkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenwinkelActionPerformed
-        // TODO add your handling code here:
+        VerwijderenWinkel s = new VerwijderenWinkel(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_menuknopVerwijderenwinkelActionPerformed
 
     private void menuknopVerwijderenvestigingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenvestigingActionPerformed
-        // TODO add your handling code here:
+        VerwijderenVestiging s = new VerwijderenVestiging(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_menuknopVerwijderenvestigingActionPerformed
 
     private void menuknopVerwijderenklantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenklantActionPerformed
-        // TODO add your handling code here:
+        VerwijderenKlant s = new VerwijderenKlant(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_menuknopVerwijderenklantActionPerformed
 
     private void MenuknopVerwijderenartikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopVerwijderenartikelActionPerformed
-        // TODO add your handling code here:
+        VerwijderenArtikel s = new VerwijderenArtikel(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_MenuknopVerwijderenartikelActionPerformed
+
+    private void menuknopVerwijderenspaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopVerwijderenspaarkaartActionPerformed
+        VerwijderenSpaarkaart s = new VerwijderenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuknopVerwijderenspaarkaartActionPerformed
+
+    private void menuknopUitloggenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopUitloggenMouseClicked
+        InlogScherm s = new InlogScherm();
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuknopUitloggenMouseClicked
+
+    private void menuknopToevoegenspaarkaartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuknopToevoegenspaarkaartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuknopToevoegenspaarkaartActionPerformed
 
     
     public static void main(String args[]) {
@@ -410,16 +446,16 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JButton knopTerug;
-    private javax.swing.JMenu menuknopAanpassen;
+    private javax.swing.JMenu menuknopAanpassenSpaarkaart;
     private javax.swing.JMenu menuknopHome;
     private javax.swing.JMenuItem menuknopKlantengegevens;
     private javax.swing.JMenuItem menuknopKlantenrapport;
     private javax.swing.JMenu menuknopToevoegen;
     private javax.swing.JMenuItem menuknopToevoegenKlant;
     private javax.swing.JMenuItem menuknopToevoegenVestiging;
+    private javax.swing.JMenuItem menuknopToevoegenspaarkaart;
     private javax.swing.JMenu menuknopUitloggen;
     private javax.swing.JMenu menuknopVerkopen;
     private javax.swing.JMenuItem menuknopVerwijderenklant;
