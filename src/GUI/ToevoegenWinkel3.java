@@ -76,7 +76,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
         jLabel2.setText("Artikelnummer");
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(153, 0, 0));
         jLabel3.setText("Opgepast! Elk artikel moet een verschillend nummer hebben.");
 
         jLabel4.setText("Artikelnaam");
@@ -122,7 +122,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
         checkKostpunten.setText("Geeft");
 
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
         jLabel6.setText("Opgepast! Er moet minstens 1 artikel zijn dat punten oplevert en 1 artikel dat punten kost");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

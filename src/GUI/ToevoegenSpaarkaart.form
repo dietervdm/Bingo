@@ -284,22 +284,28 @@
                   <Component id="jScrollPane1" alignment="1" pref="780" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel4" min="-2" pref="66" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="txtNaamhouder" min="-2" pref="151" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="149" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel3" min="-2" pref="84" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtAccountnr" min="-2" pref="149" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" pref="149" max="-2" attributes="0"/>
+                                  <Component id="knopVoegtoe" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="knopVoegtoe" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" pref="96" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="53" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtAccountnr" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
+                                  <Component id="txtNaamhouder" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="knopGeefweer" min="-2" pref="279" max="-2" attributes="0"/>
+                      <Component id="knopGeefweer" min="-2" pref="391" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>

@@ -145,7 +145,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
         tabelArtikelen.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelArtikelen);
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(153, 0, 0));
         jLabel3.setText("Opgepast! Elk artikel moet een verschillend nummer hebben.");
 
         menuknopHome.setText("Home");
