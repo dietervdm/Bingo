@@ -83,12 +83,6 @@ public class Winkel
             vString.add(vVest.get(i).getVestigingId());
         }
         return vString;
-        
-//        ArrayList<Integer> numb = new ArrayList<Integer>();
-//        numb.add(0);
-//        numb.add(1);
-//        numb.add(3);
-//        return numb;
     }
     
 //    public void printWinkelAankoop(String winkelnaam, String path){

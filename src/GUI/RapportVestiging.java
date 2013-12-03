@@ -4,6 +4,7 @@ package GUI;
 import javax.swing.JFrame;
 import Database.*;
 import Logica.*;
+import java.util.ArrayList;
 
 public class RapportVestiging extends javax.swing.JFrame {
     
@@ -85,7 +86,7 @@ public class RapportVestiging extends javax.swing.JFrame {
 
         knopPrint.setText("Print");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen()));
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -487,6 +488,18 @@ public class RapportVestiging extends javax.swing.JFrame {
             }
         });
     }
+    
+    public String[] getVestigingen(){
+        ArrayList<Integer> lijst = actief.getLijstVestigingen();
+        
+        String[] lijstje = new String[lijst.size()];
+        for(int i = 0; i<lijst.size(); i++)
+        {
+            lijstje[i] = lijst.get(i).toString();
+        }
+        return lijstje;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;

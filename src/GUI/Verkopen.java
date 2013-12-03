@@ -279,8 +279,8 @@ public class Verkopen extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(knopVerkoopScherm, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(knopTerug)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(532, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,22 +473,14 @@ public class Verkopen extends javax.swing.JFrame {
     }
     
     public String[] getVestigingen(){
+        ArrayList<Integer> lijst = actief.getLijstVestigingen();
         
-        ArrayList<Integer> lijst = new ArrayList<Integer>();
-        //Winkel w = new Winkel(actief);
-        lijst = actief.getLijstVestigingen();
-        //System.out.println(actief.getLijstVestigingen(actief.getWinkelnaam()).length);
-        if(lijst != null )
-        {
         String[] lijstje = new String[lijst.size()];
         for(int i = 0; i<lijst.size(); i++)
         {
             lijstje[i] = lijst.get(i).toString();
         }
         return lijstje;
-        }
-        else
-            return null;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
