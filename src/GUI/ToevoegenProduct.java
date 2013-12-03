@@ -472,90 +472,66 @@ public class ToevoegenProduct extends javax.swing.JFrame {
         int minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
         double prijs = Double.parseDouble(txtPrijs.getText());
-        double prijsAfgerond = 0;
+        int pr = (int) Math.round(prijs * 100);
+        double prijsAfgerond = pr / 100.00 ;
         String artikelnaam = txtArtikelnaam.getText();
+        boolean toevoegen = true;
         
-        if(prijs < 0)
-        {
-            JOptionPane.showMessageDialog(null, "Controleer de prijs, deze moet positief zijn.");
-        }
-        else
-        {
-            int pr = (int) Math.round(prijs * 100);
-            prijsAfgerond = pr / 100.00 ;
-        }
         
-        Artikel p = new Artikel(artikelnr, winkelnaam, prijs, puntenplus, puntenmin);
-        
-        if(checkGeeftpunten.isSelected() && !txtPuntenplus.getText().equals(""))
-        {
-            puntenplus = Integer.parseInt(txtPuntenplus.getText());
-            
-            if(puntenplus < 0)
-            {
-                JOptionPane.showMessageDialog(null, "Aantal te ontvangen punten moeten positief zijn.");
+        if(checkGeeftpunten.isSelected()){
+            if(txtPuntenplus.getText().equals("")){
+                toevoegen = false;
+                JOptionPane.showMessageDialog(null, "Aantal pluspunten niet ingevuld");
             }
-            
-            if(p.checkPuntenplusWaarde(puntenplus, prijs))
-            {
-                if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals(""))
-                {
-                    minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText());
-                }
-                else
-                {
-                    minimumartikelen = 1;
-                }
-            }
-            else
-            {
+            else if(!Artikel.checkPuntenplusWaarde(Integer.parseInt(txtPuntenplus.getText()), prijs)){
+                toevoegen = false;
                 JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
             }
-        }
-        else
-        {
-                puntenplus = 0;
-                minimumartikelen = 1;
+            else {
+               puntenplus = Integer.parseInt(txtPuntenplus.getText());
+               if(checkMinimumartikelen.isSelected()){
+                    if(txtMinimumartikelen.getText().equals("")){
+                        toevoegen = false;
+                        JOptionPane.showMessageDialog(null, "Aantal minimumartikelen niet ingevuld");
+                    }
+                    else {
+                       minimumartikelen = Integer.parseInt(txtPuntenplus.getText()); 
+                    }
+                }
+            }
         }
         
-        if(checkKostpunten.isSelected() && !txtPuntenmin.getText().equals(""))
-        {
-            puntenmin = Integer.parseInt(txtPuntenmin.getText());
-            
-            if(puntenmin < 0)
-            {
-                JOptionPane.showMessageDialog(null, "Het aantal punten dat een product kost, moet positief zijn.");
+        if(checkKostpunten.isSelected()){
+            if(txtPuntenmin.getText().equals("")){
+                toevoegen = false;
+                JOptionPane.showMessageDialog(null, "Aantal pluspunten niet ingevuld");
             }
-            
-            if(p.checkPuntenminWaarde(puntenmin, prijs))
-            {
-                if(checkMinimumartikelen.isSelected() && !txtMinimumartikelen.getText().equals(""))
-                {
-                    minimumbedrag = Integer.parseInt(txtMinimumartikelen.getText());
-                }
-                else
-                {
-                    minimumbedrag = 0;
-                }
-            }
-            else
-            {
+            else if(!Artikel.checkPuntenminWaarde(Integer.parseInt(txtPuntenmin.getText()), prijs)){
+                toevoegen = false;
                 JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
             }
-        }
-        else
-        {
-            puntenmin = -1;
-            minimumbedrag = 0;
+            else {
+               puntenplus = Integer.parseInt(txtPuntenmin.getText());
+               if(checkMinimumaankoopbedrag.isSelected()){
+                    if(txtMinimumbedrag.getText().equals("")){
+                        toevoegen = false;
+                        JOptionPane.showMessageDialog(null, "Minimumbedrag niet ingevuld");
+                    }
+                    else {
+                       minimumartikelen = Integer.parseInt(txtPuntenmin.getText()); 
+                    }
+                }
+            }
         }
         
-        if(d.checkArtikel(artikelnr, winkelnaam))
-        {
+        if(d.checkArtikel(artikelnr, winkelnaam)){
+            toevoegen = false;
             JOptionPane.showMessageDialog(null, "Dit productnummer bestaat al voor deze winkel.");
         }
-        else
-        {
-            Artikel q = new Artikel(artikelnr, winkelnaam, artikelnaam, prijsAfgerond, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
+        
+        Artikel q = new Artikel(artikelnr, winkelnaam, artikelnaam, prijsAfgerond, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
+        
+        if(toevoegen){
             
             d.addArtikel(q);
             t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
