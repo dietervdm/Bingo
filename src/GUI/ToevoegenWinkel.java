@@ -148,27 +148,61 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
 
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
         
-        if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
-            Winkel w = new Winkel(txtNaam.getText(), txtPaswoord.getText());
+        String paswoord = txtPaswoord.getText();
+        String paswoordHerhaald = txtPaswoord2.getText();
+        
+        if(checkPaswoord(paswoord))
+        {
+            if(paswoord.equals(paswoordHerhaald))
+            {
+                Winkel w = new Winkel(txtNaam.getText(), paswoord);
             
-            if(d.checkWinkel(w.getWinkelnaam())){
-                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+                if(d.checkWinkel(w.getWinkelnaam()))
+                {
+                    JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+                }
+                else
+                {
+                    d.addWinkel(w);
+                    InlogScherm.getInstance().setActief(w);
+                    actief = InlogScherm.getInstance().getActief();
+                    ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
+                    s.setLocationRelativeTo(null);
+                    s.setVisible(true);
+                    setVisible(false);
+                }
             }
-            else {
-                d.addWinkel(w);
-                InlogScherm.getInstance().setActief(w);
-                actief = InlogScherm.getInstance().getActief();
-                ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
-                s.setLocationRelativeTo(null);
-                s.setVisible(true);
-                setVisible(false);
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Beide wachtwoorden komen niet overeen.");
             }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Het wachtwoord moet tussen 7 à 14 karakters lang zijn en mag geen vreemde cijfers bevatten.");
         }
     }//GEN-LAST:event_knopGaVerderActionPerformed
-
+    
+    public boolean checkPaswoord(String paswoord)
+    {
+        int length;
+        length = paswoord.length();
+        
+        if(length < 6 || length > 15)
+        {
+            return false;
+        }
+        
+        for(int i = 0; i < paswoord.length();i++)
+        {
+            if (!Character.isLetter(paswoord.charAt(i)))
+            {
+                return false;
+            }           
+            return true;
+        }
+        return true;
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
