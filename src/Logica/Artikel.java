@@ -19,22 +19,25 @@ public class Artikel
     public Artikel()
     {}
     
-    public Artikel(int Artikelnr, String winkelnaam)
+    public Artikel(int artikelnr, String winkelnaam)
     {
-        this.artikelnr = Artikelnr;
+        this.artikelnr = artikelnr;
         this.winkelnaam = winkelnaam;
-        getArtikelnaamFromArtikelnr();
-        getPrijsFromArtikelnr();
-        getPtnwinstFromArtikelnr();
-        getMinimumaantalFromArtikelnr();
-        getPtnkostFromArtikelnr();
-        getMinimumbedragFromArtikelnr();
     }
     
-    public Artikel(int Artikelnr, String winkelnaam, String artikelnaam, double prijs,
+    public Artikel(int artikelnr, String winkelnaam, double prijs, int ptnwinst, int ptnkost)
+    {
+        this.artikelnr = artikelnr;
+        this.winkelnaam = winkelnaam;
+        this.prijs = prijs;
+        this.ptnwinst = ptnwinst;
+        this.ptnkost = ptnkost;
+    }
+    
+    public Artikel(int artikelnr, String winkelnaam, String artikelnaam, double prijs,
                    int ptnwinst, int minimumaantal, int ptnkost, int minimumbedrag)
     {
-       this.artikelnr = Artikelnr;
+       this.artikelnr = artikelnr;
        this.winkelnaam = winkelnaam;
        this.artikelnaam = artikelnaam;
        this.prijs = prijs;
@@ -124,33 +127,64 @@ public class Artikel
         this.minimumbedrag = minimumbedrag;
     }
     
-    public void getArtikelnaamFromArtikelnr(){
+    public void getArtikelnaamFromArtikelnr()
+    {
         Database db = new Database();
         this.artikelnaam = db.getArtikel(artikelnr, winkelnaam).getArtikelnaam();
     }
     
-    public void getPrijsFromArtikelnr(){
+    public void getPrijsFromArtikelnr()
+    {
         Database db = new Database();
         this.prijs = db.getArtikel(artikelnr, winkelnaam).getPrijs();
     }
     
-    public void getPtnwinstFromArtikelnr(){
+    public void getPtnwinstFromArtikelnr()
+    {
         Database db = new Database();
         this.ptnwinst = db.getArtikel(artikelnr, winkelnaam).getPtnwinst();
     }
     
-    public void getMinimumaantalFromArtikelnr(){
+    public void getMinimumaantalFromArtikelnr()
+    {
         Database db = new Database();
         this.minimumaantal = db.getArtikel(artikelnr, winkelnaam).getMinimumaantal();
     }
     
-    public void getPtnkostFromArtikelnr(){
+    public void getPtnkostFromArtikelnr()
+    {
         Database db = new Database();
         this.ptnkost = db.getArtikel(artikelnr, winkelnaam).getPtnkost();
     }
     
-    public void getMinimumbedragFromArtikelnr(){
+    public void getMinimumbedragFromArtikelnr()
+    {
         Database db = new Database();
         this.minimumbedrag = db.getArtikel(artikelnr, winkelnaam).getMinimumbedrag();
+    }
+    
+    
+    public boolean checkPuntenplusWaarde(int puntenplus, double prijs)
+    {
+        if((puntenplus/prijs) < 0.25 && (puntenplus/prijs) > 2)
+        {
+            return false;
+        }        
+        else
+        {
+            return true;
+        }
+    }
+    
+    public boolean checkPuntenminWaarde(int puntenmin, double prijs)
+    {
+        if((puntenmin/prijs) < 0.25 && (puntenmin/prijs) > 2)
+        {
+            return false;
+        }        
+        else
+        {
+            return true;
+        }
     }
 }
