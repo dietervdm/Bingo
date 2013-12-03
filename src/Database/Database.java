@@ -139,9 +139,10 @@ public class Database {
             String sql = "SELECT * FROM winkel WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
+                this.closeConnection();
                 return true;
             }
-            else return false;
+            else {this.closeConnection();return false;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -162,7 +163,7 @@ public class Database {
                 this.closeConnection();
                 return w;
             }
-            else return null;
+            else {this.closeConnection();return null;}
             
         }
         catch(SQLException sqle){
@@ -222,9 +223,10 @@ public class Database {
             String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "' and artikelnr = " + artikelnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
+                this.closeConnection();
                 return true;
             }
-            else return false;
+            else {this.closeConnection();return false;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -250,7 +252,7 @@ public class Database {
                 this.closeConnection();
                 return a;
             }
-            else return null;
+            else {this.closeConnection();return null;}
             
         }
         catch(SQLException sqle){
@@ -449,15 +451,18 @@ public class Database {
                             "';";
             // moet nog getest worden.
             ResultSet srs = getData(sql);
-            this.closeConnection();
+            
 
             if(srs.next()){
+                this.closeConnection();
                 return srs;
             }
             else
             {
+                this.closeConnection();
                 return null;
             }
+            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -486,9 +491,10 @@ public class Database {
             String sql = "SELECT * FROM vestiging WHERE vestigingid = " + vestigingid + " and winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
+                this.closeConnection();
                 return true;
             }
-            else return false;
+            else {this.closeConnection();return false;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -509,7 +515,7 @@ public class Database {
                 this.closeConnection();
                 return v;
             }
-            else return null;
+            else {this.closeConnection();return null;}
             
         }
         catch(SQLException sqle){
@@ -594,9 +600,10 @@ public class Database {
             String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
+                this.closeConnection();
                 return true;
             }
-            else return false;
+            else {this.closeConnection();return false;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -741,9 +748,10 @@ public class Database {
             String sql = "SELECT * FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
             ResultSet srs = getData(sql);
             if(srs.next()){
+                this.closeConnection();
                 return true;
             }
-            else return false;
+            else {this.closeConnection();return false;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -837,9 +845,14 @@ public class Database {
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int count = srs.getInt("count(*)");
+                this.closeConnection();
                 return count;
             }
-            return -1;
+           
+            else{
+                this.closeConnection();
+                return -1;
+            }
             
         }
         catch(SQLException sqle){
