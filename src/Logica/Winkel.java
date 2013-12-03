@@ -66,11 +66,14 @@ public class Winkel
         this.paswoord = paswoord;
     }
     
+    
     public void addWinkel(String naam, int major, String paswoord)
     {
         Winkel wk = new Winkel(naam, major, paswoord);
         wdb.addWinkel(wk);
     }
+    
+
     
     public ArrayList<Integer> getLijstVestigingen(){
         Database db = new Database();
@@ -98,11 +101,6 @@ public class Winkel
 //        catch(FileNotFoundException ex || SQLException sqle){
 //            
 //        }
-        
-        
-        
-     
-    }
     
 //    public void deleteWinkel(String naam)
 //    {
@@ -123,4 +121,5 @@ public class Winkel
 //    public void updatePaswoordWinkel(String ps){
 //        this.paswoord = ps;
 //        wdb.updatePaswoordWinkel(paswoord);
-//    }
+//    }         
+    }
