@@ -25,15 +25,6 @@ public class Artikel
         this.winkelnaam = winkelnaam;
     }
     
-    public Artikel(int artikelnr, String winkelnaam, double prijs, int ptnwinst, int ptnkost)
-    {
-        this.artikelnr = artikelnr;
-        this.winkelnaam = winkelnaam;
-        this.prijs = prijs;
-        this.ptnwinst = ptnwinst;
-        this.ptnkost = ptnkost;
-    }
-    
     public Artikel(int artikelnr, String winkelnaam, String artikelnaam, double prijs,
                    int ptnwinst, int minimumaantal, int ptnkost, int minimumbedrag)
     {
@@ -164,9 +155,9 @@ public class Artikel
     }
     
     
-    public boolean checkPuntenplusWaarde(int puntenplus, double prijs)
+    public static boolean checkPuntenplusWaarde(int puntenplus, double prijs)
     {
-        if((puntenplus/prijs) < 0.25 && (puntenplus/prijs) > 2)
+        if(((puntenplus/prijs) < 0.25) || ((puntenplus/prijs) > 2))
         {
             return false;
         }        
@@ -176,9 +167,9 @@ public class Artikel
         }
     }
     
-    public boolean checkPuntenminWaarde(int puntenmin, double prijs)
+    public static boolean checkPuntenminWaarde(int puntenmin, double prijs)
     {
-        if((puntenmin/prijs) < 0.25 && (puntenmin/prijs) > 2)
+        if((puntenmin/prijs) < 0.25 || (puntenmin/prijs) > 2)
         {
             return false;
         }        
