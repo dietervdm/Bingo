@@ -19,7 +19,6 @@ public class Artikel
     public Artikel()
     {}
     
-    
     public Artikel(int Artikelnr, String winkelnaam)
     {
         this.artikelnr = Artikelnr;

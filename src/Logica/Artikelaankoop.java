@@ -9,19 +9,19 @@ public class Artikelaankoop
     private String winkelnaam;
     private int transactienr;
     private int aantal;
-    private boolean manierBetalen;
+    private boolean metPuntenBetaald;
     
     
     public Artikelaankoop()
     {}
     
-    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, boolean manier)
+    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, boolean puntenBetaling)
     {
         this.transactienrAankoop = transactienr;
         this.artikelnr = artikelnr;
         this.winkelnaam = winkelnaam;
         this.transactienr = transactienummer;
-        this.manierBetalen = manier;
+        this.metPuntenBetaald = puntenBetaling;
     }
     
     public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, int aantal)
