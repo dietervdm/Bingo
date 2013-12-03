@@ -299,44 +299,44 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         
         Artikelaankoop artAk = new Artikelaankoop();
         artAk.setTransactienrAaankoop(this.transactienummer);
-        artAk.setArtikelnr(art.getArtikelnr());
+        artAk.setArtikelnr(Integer.parseInt(txtProductToevoegen.getText()));
         artAk.setWinkelNaam(actief.getWinkelnaam());
         artAk.setAantal(aantal);
         
-        if(db.checkArtikel(art.getArtikelnr(), art.getWinkelnaam()))
+        if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
         {
-        if(art.getPtnkost() == -1)
-        {
-            if(aantal >= art.getMinimumaantal())
+            if(art.getPtnkost() == -1)
             {
-                //System.out.println(Integer.toString(aantal));
-                totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
-                totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
-            }
-            else
-            {
-                //System.out.println(Integer.toString(aantal));
-                totaalPrijs = totaalPrijs + art.getPrijs();
-            }
-            artAk.setMetPuntenBetaald(false);
-        }
-        else
-        {
-            if(puntenOver >= art.getPtnkost()*aantal)
-            {
-                totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
-                puntenOver = puntenOver - art.getPtnkost() * aantal;
-                artAk.setMetPuntenBetaald(true);
-                artikelenMetPunten = artikelenMetPunten + aantal;
-            }
-            //System.out.println("dit product kan met punten betaald worden");
-            else
-            {
-                totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
-                totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst();
+                if(aantal >= art.getMinimumaantal())
+                {
+                    //System.out.println(Integer.toString(aantal));
+                    totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
+                    totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
+                }
+                else
+                {
+                    //System.out.println(Integer.toString(aantal));
+                    totaalPrijs = totaalPrijs + art.getPrijs();
+                }
                 artAk.setMetPuntenBetaald(false);
             }
-        }
+            else
+            {
+                if(puntenOver >= art.getPtnkost()*aantal)
+                {
+                    totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
+                    puntenOver = puntenOver - art.getPtnkost() * aantal;
+                    artAk.setMetPuntenBetaald(true);
+                    artikelenMetPunten = artikelenMetPunten + aantal;
+                }
+                //System.out.println("dit product kan met punten betaald worden");
+                else
+                {
+                    totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
+                    totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst();
+                    artAk.setMetPuntenBetaald(false);
+                }
+            }
         }
         else
         {
