@@ -7,19 +7,19 @@ import Logica.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ToevoegenProduct extends javax.swing.JFrame {
+public class ToevoegenArtikel extends javax.swing.JFrame {
     
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
     DefaultTableModel t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
     
-    public ToevoegenProduct() {
+    public ToevoegenArtikel() {
         initComponents();
         actief = InlogScherm.getInstance().getActief();
     }
     
-    public ToevoegenProduct(JFrame caller) {
+    public ToevoegenArtikel(JFrame caller) {
         initComponents();
         myCaller = caller;
         actief = InlogScherm.getInstance().getActief();
@@ -632,7 +632,7 @@ public class ToevoegenProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_menuknopToevoegenKlantActionPerformed
 
     private void MenuknopToevoegenArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuknopToevoegenArtikelActionPerformed
-        ToevoegenProduct s = new ToevoegenProduct(this);
+        ToevoegenArtikel s = new ToevoegenArtikel(this);
         s.setLocationRelativeTo(null);
         s.setVisible(true);
         setVisible(false);
@@ -699,20 +699,20 @@ public class ToevoegenProduct extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ToevoegenProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ToevoegenArtikel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ToevoegenProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ToevoegenArtikel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ToevoegenProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ToevoegenArtikel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ToevoegenProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ToevoegenArtikel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ToevoegenProduct().setVisible(true);
+                new ToevoegenArtikel().setVisible(true);
             }
         });
     }
