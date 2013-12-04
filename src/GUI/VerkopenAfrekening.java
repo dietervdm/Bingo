@@ -19,8 +19,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private Spaarkaart actieveSpaarkaart;
     
     private Aankoop actieveAankoop;
-    
-    private int transactienummer = 1;    
+    private int transactienummer;
+        
     
     private double totaalPrijs = 0.0;
     private int totaalPuntenPlus = 0;
@@ -35,13 +35,16 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         initComponents();
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
+        //this.transactienummer = db.
     }
+    
     
     public VerkopenAfrekening(Spaarkaart sk, Vestiging vest) {
         setActieveSpaarkaart(sk);
         setActieveVest(vest);
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
+        //this.transactienummer = db.;
         initComponents();
     }
 
@@ -354,9 +357,10 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 }
             }
         }
+        // db.addArtikelaankoop(this.transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelNaam(), aantal, metPuntenBetaald;
         else
         {
-            JOptionPane.showMessageDialog(null, "Dit artikel bestaat niet");
+            JOptionPane.showMessageDialog(null, "Dit artikel bestaat niet.");
             txtProductToevoegen.setText("");
             txtProductToevoegen.requestFocus();
         }
@@ -386,6 +390,21 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }//GEN-LAST:event_knopAnnuleerActionPerformed
 
     private void knopVerwijderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderActionPerformed
+//        if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
+//        {
+//            Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
+//            db.deleteArtikelaankoop(artAk);
+//        
+//            t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+//            tabelAankopen.setModel(t);
+//        }
+//        else
+//        {
+//            JOptionPane.showMessageDialog(null, "Dit artikel hebt u niet gescand.");
+//            txtProductVerwijderen.setText("");
+//            txtProductVerwijderen.requestFocus();
+//        }
+        
         
     }//GEN-LAST:event_knopVerwijderActionPerformed
 

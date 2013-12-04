@@ -282,13 +282,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBox1" min="-2" pref="80" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="knopVerkoopScherm" min="-2" pref="143" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="418" max="32767" attributes="0"/>
           </Group>
