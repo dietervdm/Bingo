@@ -245,6 +245,20 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNaamActionPerformed
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         System.out.println("Winkel toegevoegd, u kan nu inloggen.");
         InlogScherm s = new InlogScherm();
                 s.setLocationRelativeTo(null);
