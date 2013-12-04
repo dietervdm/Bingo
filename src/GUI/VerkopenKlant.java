@@ -5,6 +5,7 @@ import Database.Database;
 import Logica.Aankoop;
 import Logica.Vestiging;
 import Logica.Winkel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -14,12 +15,26 @@ public class VerkopenKlant extends javax.swing.JFrame {
     private Vestiging actieveVest;
     private Database db = new Database();
     
+    public JFrame myCaller;
+    
     public VerkopenKlant() {
         initComponents();
     }
     
+    public VerkopenKlant(JFrame caller) {
+        initComponents();
+        myCaller = caller;
+    }
+    
     public VerkopenKlant(Vestiging vest){
         actieveVest = vest;
+        initComponents();
+    }
+    
+    public VerkopenKlant(Vestiging vest, JFrame caller){
+        actieveVest = vest;
+        initComponents();
+        myCaller = caller;
     }
     
 
@@ -110,11 +125,15 @@ public class VerkopenKlant extends javax.swing.JFrame {
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
-        Home s = new Home();         // NOG NIET GOED, CREERD TELKENS EEN NIEUW VENSTER!!!
-            s.setLocationRelativeTo(null);
-            s.setVisible(true);
-        setVisible(false);
-        // Naar home??
+        myCaller.setVisible(true);
+        myCaller.setLocationRelativeTo(null);
+                setVisible(false);
+        
+//        Home s = new Home();         // NOG NIET GOED, CREERD TELKENS EEN NIEUW VENSTER!!!
+//            s.setLocationRelativeTo(null);
+//            s.setVisible(true);
+//        setVisible(false);
+//        // Naar home??
     }//GEN-LAST:event_knopAnnuleerActionPerformed
 
     /**

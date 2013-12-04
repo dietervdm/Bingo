@@ -456,7 +456,9 @@ public class AanpassenKlant extends javax.swing.JFrame {
     }//GEN-LAST:event_knopWijzigActionPerformed
 
     private void knopVulinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVulinActionPerformed
-        int accountnr = Integer.parseInt(txtAccountnr.getText());
+        if(d.checkAccount(Integer.parseInt(txtAccountnr.getText())))
+        {
+            int accountnr = Integer.parseInt(txtAccountnr.getText());
         Account a = d.getAccount(accountnr);
         
         txtAccountnr2.setText(Integer.toString(a.getAccountnr()));
@@ -464,6 +466,14 @@ public class AanpassenKlant extends javax.swing.JFrame {
         txtEmail.setText(a.getEmail());
         txtAdres.setText(a.getAdres());
         txtBtwnummer.setText(a.getBtwnummer());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Accountnummer bestaat niet, gelieve in de lijst te kijken.");
+            txtAccountnr.setText(null);
+            txtAccountnr.requestFocus();
+        }
+        
         
     }//GEN-LAST:event_knopVulinActionPerformed
 

@@ -319,7 +319,7 @@ public class Verkopen extends javax.swing.JFrame {
     }//GEN-LAST:event_knopTerugActionPerformed
 
     private void knopVerkoopSchermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerkoopSchermActionPerformed
-        VerkopenKlant s = new VerkopenKlant();
+        VerkopenKlant s = new VerkopenKlant(this);
                 s.setActieveVest(db.getVestiging(Integer.parseInt(jComboBox1.getSelectedItem().toString()), actief.getWinkelnaam()));
                 s.setLocationRelativeTo(null);
                 setVisible(false);
