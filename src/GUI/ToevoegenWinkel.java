@@ -168,7 +168,7 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                 {
                     d.addWinkel(w);
                     InlogScherm.getInstance().setActief(w);
-                    
+                    actief = InlogScherm.getInstance().getActief();
                     ToevoegenWinkel2 s = new ToevoegenWinkel2(this);
                     s.setLocationRelativeTo(null);
                     s.setVisible(true);
