@@ -2,6 +2,7 @@
 package GUI;
 
 import Database.Database;
+import Logica.Aankoop;
 import Logica.Artikel;
 import Logica.Artikelaankoop;
 import Logica.Spaarkaart;
@@ -16,6 +17,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private Winkel actief = InlogScherm.getInstance().actief;
     private Vestiging actieveVest;
     private Spaarkaart actieveSpaarkaart;
+    
+    private Aankoop actieveAankoop;
     
     private int transactienummer = 1;    
     
@@ -144,6 +147,11 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         aantalBepaler.setValue(1);
 
         knopVerwijder.setText("Verwijder");
+        knopVerwijder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopVerwijderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -313,7 +321,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         
         if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
         {
-            if(art.getPtnkost() == -1)
+            if(art.getPtnkost() == -1 || art.getPtnkost() == null)
             {
                 if(aantal >= art.getMinimumaantal())
                 {
@@ -349,6 +357,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(null, "Dit artikel bestaat niet");
+            txtProductToevoegen.setText("");
+            txtProductToevoegen.requestFocus();
         }
         
 //        totaalPuntenMin = totaalPuntenMin + ptnmin;
@@ -374,6 +384,10 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 s.setVisible(true);
                 setVisible(false);
     }//GEN-LAST:event_knopAnnuleerActionPerformed
+
+    private void knopVerwijderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderActionPerformed
+        
+    }//GEN-LAST:event_knopVerwijderActionPerformed
 
     /**
      * @param args the command line arguments
