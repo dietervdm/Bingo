@@ -452,34 +452,6 @@ public class Database {
         }
     }
     
-    public ResultSet printVerkopen(String winkelnaam){
-        try{
-            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
-            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + 
-                            "';";
-            // moet nog getest worden.
-            ResultSet srs = getData(sql);
-            
-
-            if(srs.next()){
-                this.closeConnection();
-                return srs;
-            }
-            else
-            {
-                this.closeConnection();
-                return null;
-            }
-            
-        }
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            this.closeConnection();
-            return null;
-        }
-    }
-      
-    
     public void addVestiging(Vestiging v){
         
         try{
