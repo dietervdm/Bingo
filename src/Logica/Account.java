@@ -265,7 +265,7 @@ public class Account
     public void isWolverine(String winkelnaam, Date datum){
         if(this.isVip(this.getAccountnr(), datum))
         {
-            if(db.getAantalVerschillendeWinkels(this) > 19)
+            if(db.getAantalVerschillendeWinkels(this, datum) > 19)
             {
                 if(jstartw.before(getDatumVorigJaar(datum)))
                 {
