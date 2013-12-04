@@ -1,7 +1,6 @@
 
 package Logica;
 
-
 import Database.Database;
 import java.awt.Image;
 import java.io.FileNotFoundException;
@@ -263,32 +262,33 @@ public class Account
         //OPSLAAN NAAR DE DATABASE
     }
     
-//    public void isWolverine(String winkelnaam, Date datum){
-//        if(this.isVip(this.getAccountnr(), datum))
-//        {
-//            if(db.getAantalVerschillendeWinkels(this, datum) > 19)
-//            {
-//                if(jstartw.before(getDatumVorigJaar(datum)))
-//                {
-//                    this.setPunten(punten + 600);
-//                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "600");
-//                    this.setStartw(datum);
-//                }
-//                else
-//                {
-//                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "0");
-//                }
-//                this.setWolverine(true);
-//            }
-//            else
-//                this.setWolverine(false);
-//        }
-//        else
-//            this.setWolverine(false);
-//        
-//        // OPSLAAN NAAR DE DATABASE
-//        
-//    }
+    public void isWolverine(String winkelnaam, Date datum){
+        if(this.isVip(this.getAccountnr(), datum))
+        {
+            if(db.getAantalVerschillendeWinkels(this) > 19)
+            {
+                if(jstartw.before(getDatumVorigJaar(datum)))
+                {
+                    this.setPunten(punten + 600);
+                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "600");
+                    this.setStartw(datum);
+                }
+                else
+                {
+                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "0");
+                }
+                this.setWolverine(true);
+            }
+            else
+                this.setWolverine(false);
+        }
+        else
+            this.setWolverine(false);
+        System.out.println(db.getAantalVerschillendeWinkels(this));
+        
+        // OPSLAAN NAAR DE DATABASE
+        
+    }
     
     public void isBigSpender(String winkelnaam, Date datum){
         if(this.isVip(this.getAccountnr(), datum))

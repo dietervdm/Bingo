@@ -54,6 +54,8 @@ import javax.swing.border.Border;
     static JLabel spaarkaart = new JLabel("<spaarkaart houder>");
     static JLabel punten = new JLabel("<aantal punten reeds verzameld>");
     
+    static JLabel bedrijfOfPart = new JLabel("<Bedrijf/Particulier>");
+    
     static JLabel maj = new JLabel();
     static JLabel bs = new JLabel();
     static JLabel wol = new JLabel();
@@ -138,6 +140,13 @@ import javax.swing.border.Border;
         punten.setText(pt);
         //punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
         
+        if(db.getAccount(actieveSpaarkaart.getAccountnr()).isBedrijf())
+        {
+            bedrijfOfPart.setText("BEDRIJF" + db.getAccount(actieveSpaarkaart.getAccountnr()).getBtwnummer());
+        }
+        else
+            bedrijfOfPart.setText("PARTICULIER");
+        
         f.setLayout(new GridLayout(2,1,5,5));
         topPanel.setLayout(new GridLayout(3,1,10,3));       // gridlayout (int rows, int cols, int hGap, int vGap)
         downPanel.setLayout(new GridLayout(1,3,5,5));
@@ -151,6 +160,7 @@ import javax.swing.border.Border;
         spaarkaartBalk.add(spaarkaart);
         accountBalk.add(naamAccount);
         accountBalk.add(account);
+        accountBalk.add(bedrijfOfPart);
         puntenBalk.add(aantalPunten);
         puntenBalk.add(punten);
         Border compound = BorderFactory.createLineBorder(Color.black, 2, false); // true voor ronde hoeken
