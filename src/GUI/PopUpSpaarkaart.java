@@ -83,12 +83,12 @@ import javax.swing.border.Border;
 	}
 
     public static void initComponents() {
-        //String path1 = afbeeldingMajor();
-        String path1 = "src\\GUI\\Badge\\MajorBlack.png";
-        //String path2 = afbeeldingBigSpender();
-        String path2 = "src\\GUI\\Badge\\BigSpender.png";
-        //String path3 = afbeeldingWolverine();
-        String path3 = "src\\GUI\\Badge\\Wolverine.png";
+        String path1 = afbeeldingMajor();
+        //String path1 = "src\\GUI\\Badge\\MajorBlack.png";
+        String path2 = afbeeldingBigSpender();
+        //String path2 = "src\\GUI\\Badge\\BigSpender.png";
+        String path3 = afbeeldingWolverine();
+        //String path3 = "src\\GUI\\Badge\\Wolverine.png";
         File file1 = new File(path1);
         File file2 = new File(path2);
         File file3 = new File(path3);
@@ -238,21 +238,21 @@ import javax.swing.border.Border;
         f.setVisible(true);
     }
     
-    public String afbeeldingMajor(){
+    public static String afbeeldingMajor(){
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isMajor())
             return "src\\GUI\\Badge\\Major.png";
         else
             return "src\\GUI\\Badge\\MajorBlack.png";
     }
     
-    public String afbeeldingBigSpender(){
+    public static String afbeeldingBigSpender(){
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isBigspender())
             return "src\\GUI\\Badge\\BigSpender.png";
         else
             return "src\\GUI\\Badge\\BigSpenderBlack.png";
     }
     
-    public String Wolverine(){
+    public static String afbeeldingWolverine(){
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverine())
             return "src\\GUI\\Badge\\Wolverine.png";
         else

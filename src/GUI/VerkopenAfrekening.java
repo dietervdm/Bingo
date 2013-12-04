@@ -8,6 +8,7 @@ import Logica.Artikelaankoop;
 import Logica.Spaarkaart;
 import Logica.Vestiging;
 import Logica.Winkel;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +36,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         initComponents();
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
-        //this.transactienummer = db.
+        this.transactienummer = db.maxTransactienr() + 1;
+        Aankoop ak = new Aankoop((this.transactienummer), actieveVest.getVestigingId(),
+                                    actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), new Date());
     }
     
     
@@ -44,7 +47,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         setActieveVest(vest);
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
-        //this.transactienummer = db.;
+        this.transactienummer = db.maxTransactienr() + 1;
+        Aankoop ak = new Aankoop((this.transactienummer), actieveVest.getVestigingId(),
+                                    actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), new Date());
         initComponents();
     }
 
@@ -80,6 +85,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         weergaveTeGebruikenPunten = new javax.swing.JLabel();
         aantalBepaler = new javax.swing.JSpinner();
         knopVerwijder = new javax.swing.JButton();
+        transactieNummer = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,6 +164,13 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             }
         });
 
+        transactieNummer.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        transactieNummer.setText(Integer.toString(this.transactienummer));
+
+        jLabel3.setText("€");
+
+        jLabel4.setText("transactienummer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,31 +179,40 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(knopAnnuleer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(knopRegistreerAankoop, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(26, 26, 26)
-                                .addComponent(txtProductToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addGap(28, 28, 28)
-                                .addComponent(aantalBepaler, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(totaalBedrag)
                                             .addComponent(puntenVerkregen)))
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(txtProductToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(aantalBepaler, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(28, 28, 28))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(transactieNummer)))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(19, 19, 19)
@@ -200,41 +224,41 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel21))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(weergaveTeGebruikenPunten))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtProductVerwijderen, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(knopVoegToe, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(knopVerwijder, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(knopAnnuleer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(knopRegistreerAankoop, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(knopVerwijder, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(weergaveTeGebruikenPunten)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(transactieNummer)
+                        .addGap(53, 53, 53)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(weergaveTeGebruikenPunten))
-                        .addGap(111, 111, 111)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -252,24 +276,28 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                             .addComponent(txtProductVerwijderen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(knopVerwijder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(totaalBedrag)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addComponent(puntenVerkregen)))
+                        .addGap(83, 83, 83)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(totaalBedrag))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(puntenVerkregen))
-                        .addGap(83, 83, 83)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(weergaveAfgetrokkenPunten)
-                    .addComponent(jLabel19)
-                    .addComponent(aantalArtikelenPunten)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                            .addComponent(jLabel16)
+                            .addComponent(weergaveAfgetrokkenPunten)
+                            .addComponent(jLabel19)
+                            .addComponent(aantalArtikelenPunten)
+                            .addComponent(jLabel21))))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(knopAnnuleer)
                     .addComponent(knopRegistreerAankoop))
@@ -293,28 +321,6 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 //        int ptnmin = art.getPtnkost();
 //        
         int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
-//        
-//        if(aantal >= art.getMinimumaantal())
-//        {
-//            if(puntenOver > (db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost() * aantal) && db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost()!= -1)
-//            {
-//                int puntenKost = (db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPtnkost() * aantal);
-//                puntenOver = puntenOver - puntenKost;
-//                totaalPuntenMin = totaalPuntenMin + puntenKost;
-//                weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
-//                weergaveAfgetrokkenPunten.setText(Integer.toString(totaalPuntenMin));
-//            }
-//            else
-//            {
-//                
-//            }
-//        }
-//        else
-//        {
-//            double kost = ((db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()).getPrijs()) * aantal);
-//            totaalPrijs = totaalPrijs + kost;
-//            totaalBedrag.setText(Double.toString(totaalPrijs));
-//        }
         
         Artikelaankoop artAk = new Artikelaankoop();
         artAk.setTransactienrAankoop(this.transactienummer);
@@ -324,7 +330,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         
         if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
         {
-            if(art.getPtnkost() == -1 || art.getPtnkost() == null)
+            if(art.getPtnkost() == -1 || art.getPtnkost() == 0)
             {
                 if(aantal >= art.getMinimumaantal())
                 {
@@ -356,8 +362,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                     artAk.setMetPuntenBetaald(false);
                 }
             }
+            db.addArtikelaankoop(artAk);
         }
-        // db.addArtikelaankoop(this.transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelNaam(), aantal, metPuntenBetaald;
+        
         else
         {
             JOptionPane.showMessageDialog(null, "Dit artikel bestaat niet.");
@@ -390,20 +397,20 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }//GEN-LAST:event_knopAnnuleerActionPerformed
 
     private void knopVerwijderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderActionPerformed
-//        if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
-//        {
-//            Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
-//            db.deleteArtikelaankoop(artAk);
-//        
-//            t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
-//            tabelAankopen.setModel(t);
-//        }
-//        else
-//        {
-//            JOptionPane.showMessageDialog(null, "Dit artikel hebt u niet gescand.");
-//            txtProductVerwijderen.setText("");
-//            txtProductVerwijderen.requestFocus();
-//        }
+        if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
+        {
+            Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
+            db.deleteArtikelaankoop(artAk);
+        
+            t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            tabelAankopen.setModel(t);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Dit artikel hebt u niet gescand.");
+            txtProductVerwijderen.setText("");
+            txtProductVerwijderen.requestFocus();
+        }
         
         
     }//GEN-LAST:event_knopVerwijderActionPerformed
@@ -476,6 +483,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -487,6 +496,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private javax.swing.JLabel puntenVerkregen;
     private javax.swing.JTable tabelAankopen;
     private javax.swing.JLabel totaalBedrag;
+    private javax.swing.JLabel transactieNummer;
     private javax.swing.JTextField txtProductToevoegen;
     private javax.swing.JTextField txtProductVerwijderen;
     private javax.swing.JLabel weergaveAfgetrokkenPunten;
