@@ -224,49 +224,77 @@ public class Account
     }
     
     public void isMajor(int accountnr, Date datum, String winkelnaam){
-        try{
+        
         if(isVip(accountnr, datum))
-            //Combineer tabel account, aankoop en artikelaankoop
         {
-            ResultSet srs = null;
-            if(srs.next()){
-                srs = db.getMajor(accountnr, datum, winkelnaam);
+            if(this.totaalGeldJaar(accountnr, datum) > totaalGeldJaar(db.getWinkel(winkelnaam).getAccount(), datum))
+            {
+                this.setMajor(true);
                 
-                // gegevens over winkel
-                int accnr = srs.getInt("accountnr");
-                String naam = srs.getString("winkelnaam");
-                String paswoord = srs.getString("paswoord");
-                
-                Winkel w = new Winkel(naam, accnr, paswoord);
-                
-                //gegevens over aankoop
-                int transactienummer = srs.getInt("transactienr");
-                int vestigingid = srs.getInt("vestigingsid");
-                String winkelnm = srs.getString("winkelnaam");
-                int kaartnr = srs.getInt("kaartnr");
-                Date dat = srs.getDate("datum");
-                
-                Aankoop ak = new Aankoop(transactienummer, vestigingid, kaartnr, winkelnm, dat);
-                
-                //gegevens over artikelaankoop
-                int trans = srs.getInt("transactienr");
-                int artikelnr = srs.getInt("artikelnr");
-                String nm = srs.getString("winkelnaam");
-                int aantal = srs.getInt("aantal");
-                boolean manier = srs.getBoolean("manierbetaling");
-                
-                Artikelaankoop aak = new Artikelaankoop(trans, artikelnr, nm, aantal, manier);
-                
-                Artikel a = new Artikel(aak.getArtikelnr(), aak.getWinkelnaam());
-                a.getPrijs();
+                if(jstartm.after(this.getDatumVorigJaar(datum)))
+                {
+                    this.setPunten(punten + 100);
+                    this.sentMail();
+                }
+                else
+                {
+                    // geen punten toekennen
+                }
+            }
+            else
+            {
+                this.setMajor(major);
             }
         }
-            
+        else
+        {
+            this.setMajor(false);
         }
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            // Wat moet hier komen?
-        }
+        
+        
+//        try{
+//        if(isVip(accountnr, datum))
+//            //Combineer tabel account, aankoop en artikelaankoop
+//        {
+//            ResultSet srs = null;
+//            if(srs.next()){
+//                srs = db.getMajor(accountnr, datum, winkelnaam);
+//                
+//                // gegevens over winkel
+//                int accnr = srs.getInt("accountnr");
+//                String naam = srs.getString("winkelnaam");
+//                String paswoord = srs.getString("paswoord");
+//                
+//                Winkel w = new Winkel(naam, accnr, paswoord);
+//                
+//                //gegevens over aankoop
+//                int transactienummer = srs.getInt("transactienr");
+//                int vestigingid = srs.getInt("vestigingsid");
+//                String winkelnm = srs.getString("winkelnaam");
+//                int kaartnr = srs.getInt("kaartnr");
+//                Date dat = srs.getDate("datum");
+//                
+//                Aankoop ak = new Aankoop(transactienummer, vestigingid, kaartnr, winkelnm, dat);
+//                
+//                //gegevens over artikelaankoop
+//                int trans = srs.getInt("transactienr");
+//                int artikelnr = srs.getInt("artikelnr");
+//                String nm = srs.getString("winkelnaam");
+//                int aantal = srs.getInt("aantal");
+//                boolean manier = srs.getBoolean("manierbetaling");
+//                
+//                Artikelaankoop aak = new Artikelaankoop(trans, artikelnr, nm, aantal, manier);
+//                
+//                Artikel a = new Artikel(aak.getArtikelnr(), aak.getWinkelnaam());
+//                a.getPrijs();
+//            }
+//        }
+//            
+//        }
+//        catch(SQLException sqle){
+//            System.out.println("SQLException: " + sqle.getMessage());
+//            // Wat moet hier komen?
+//        }
     }
     
     public boolean RechtOpPuntenMajor(Date datum){
@@ -301,12 +329,16 @@ public class Account
         
     }
     
-    public double totaalGeldJaar(){
+    public double totaalGeldJaar(int accountnr, Date datum){
         double totaalGeld = 0.0;
         //functie --> alle aankopen van het vorig jaar van een account: daar totaal gespendeerd geld van nemen
         // select * from aankoop where accountnr = ...
         
         return totaalGeld;
+    }
+    
+    public void sentMail(){
+        
     }
     
 }
