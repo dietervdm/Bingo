@@ -2,8 +2,14 @@
 package GUI;
 
 import javax.swing.JFrame;
-import Database.*;
 import Logica.*;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Home extends javax.swing.JFrame {
     
@@ -31,6 +37,7 @@ public class Home extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
         txtNaam = new javax.swing.JLabel();
+        afbeeldingBingo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -61,6 +68,8 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         knopTerug.setText("Terug");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +79,13 @@ public class Home extends javax.swing.JFrame {
         });
 
         txtNaam.setFont(new java.awt.Font("Verdana", 0, 36)); // NOI18N
+        txtNaam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNaam.setLabelFor(afbeeldingBingo);
         txtNaam.setText("<naam>");
+        txtNaam.setToolTipText("");
+        txtNaam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        afbeeldingBingo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,20 +288,45 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(afbeeldingBingo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(knopTerug)
-                    .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(218, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(knopTerug))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 444, Short.MAX_VALUE)
+                .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(afbeeldingBingo, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
+
+        String path = "src\\GUI\\Logo\\bingo.png";
+        File file = new File(path);
+
+        try
+        {
+            BufferedImage image = ImageIO.read(file);
+            ImageIcon icon = new ImageIcon(image);
+            Image img = icon.getImage().getScaledInstance(600, 400, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon icim = new ImageIcon(img);
+            afbeeldingBingo.setIcon((Icon) icim);
+
+        }
+        catch(IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -469,12 +509,14 @@ public class Home extends javax.swing.JFrame {
             }
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuknopAanpassenSpaarkaart;
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopToevoegenSpaarkaart;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
+    private javax.swing.JLabel afbeeldingBingo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;

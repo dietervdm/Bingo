@@ -29,15 +29,17 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private int puntenOver;
     private int artikelenMetPunten = 0;
     
+    private Aankoop ak = null;
+    
     private Database db = new Database();
-    DefaultTableModel t = db.naarTabel("select * from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
+    DefaultTableModel t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
     
     public VerkopenAfrekening() {
         initComponents();
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
         this.transactienummer = db.maxTransactienr() + 1;
-        Aankoop ak = new Aankoop((this.transactienummer), actieveVest.getVestigingId(),
+        ak = new Aankoop(this.transactienummer, actieveVest.getVestigingId(),
                                     actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), new Date());
     }
     
@@ -48,7 +50,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
         this.transactienummer = db.maxTransactienr() + 1;
-        Aankoop ak = new Aankoop((this.transactienummer), actieveVest.getVestigingId(),
+        ak = new Aankoop((this.transactienummer), actieveVest.getVestigingId(),
                                     actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), new Date());
         initComponents();
     }
@@ -308,6 +310,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
+
         VerkopenKlant s = new VerkopenKlant();
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
@@ -323,7 +326,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
         
         Artikelaankoop artAk = new Artikelaankoop();
-        artAk.setTransactienrAankoop(this.transactienummer);
+        artAk.setTransactienrAankoop(ak.getTransactienr());
         artAk.setArtikelnr(Integer.parseInt(txtProductToevoegen.getText()));
         artAk.setWinkelNaam(actief.getWinkelnaam());
         artAk.setAantal(aantal);
@@ -349,16 +352,25 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             {
                 if(puntenOver >= art.getPtnkost()*aantal)
                 {
-                    totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
-                    puntenOver = puntenOver - art.getPtnkost() * aantal;
-                    artAk.setMetPuntenBetaald(true);
-                    artikelenMetPunten = artikelenMetPunten + aantal;
+                    if(art.getMinimumbedrag() > totaalPrijs)
+                    {
+                        totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
+                        puntenOver = puntenOver - art.getPtnkost() * aantal;
+                        artAk.setMetPuntenBetaald(true);
+                        artikelenMetPunten = artikelenMetPunten + aantal;
+                    }
+                    else{
+                        totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
+                        totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
+                        artAk.setMetPuntenBetaald(false);
+                    }
+                    
                 }
                 //System.out.println("dit product kan met punten betaald worden");
                 else
                 {
                     totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
-                    totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst();
+                    totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                     artAk.setMetPuntenBetaald(false);
                 }
             }
@@ -383,14 +395,20 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
         
         
-        t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+        t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
         tabelAankopen.setModel(t);
+        
+        txtProductToevoegen.setText("");
+        txtProductToevoegen.requestFocus();
+        aantalBepaler.setValue(1);
         
         
     }//GEN-LAST:event_knopVoegToeActionPerformed
 
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
-        VerkopenKlant s = new VerkopenKlant();
+        db.deleteAankoop(ak);
+        
+        VerkopenKlant s = new VerkopenKlant(actieveVest);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -402,7 +420,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             db.deleteArtikelaankoop(artAk);
         
-            t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
             tabelAankopen.setModel(t);
         }
         else

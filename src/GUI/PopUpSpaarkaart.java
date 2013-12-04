@@ -137,7 +137,7 @@ import javax.swing.border.Border;
         spaarkaart.setText(sk);
         //spaarkaart.setText(actieveSpaarkaart.getNaamhouder());
         String pt = Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten());
-        punten.setText(pt);
+        punten.setText(" " + pt + " ");
         //punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
         
         if(db.getAccount(actieveSpaarkaart.getAccountnr()).isBedrijf())
@@ -166,8 +166,8 @@ import javax.swing.border.Border;
         Border compound = BorderFactory.createLineBorder(Color.black, 2, false); // true voor ronde hoeken
         //BorderLayout bl = new BorderLayout(5,5);
         punten.setBorder(compound);
-        punten.setAlignmentX(20);
-        punten.setAlignmentY(40);
+//        punten.setAlignmentX(20);
+//        punten.setAlignmentY(40);
         
         //topPanel.add(leegBoven);
         topPanel.add(spaarkaartBalk);
