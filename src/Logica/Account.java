@@ -4,10 +4,13 @@ package Logica;
 
 import Database.Database;
 import java.awt.Image;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class Account 
@@ -126,7 +129,8 @@ public class Account
         return this.startw;
     }
     
-    public void setStartw(java.sql.Date startw)
+    //public void setStartw(java.sql.Date startw)
+    public void setStartw(Date datum)
     {
         this.startw = startw;
     }
@@ -146,7 +150,8 @@ public class Account
         return this.startb;
     }
     
-    public void setStartb(java.sql.Date startb)
+    //public void setStartb(java.sql.Date startb)
+    public void setStartb(Date datum)
     {
         this.startb = startb;
     }
@@ -166,7 +171,8 @@ public class Account
         return this.startm;
     }
     
-    public void setStartm(java.sql.Date startm)
+    //public void setStartm(java.sql.Date startm)
+    public void setStartm(Date datum)
     {
         this.startm = startm;
     }
@@ -219,31 +225,34 @@ public class Account
     // FUNCTIES VAN VIP SYSTEEM
     
     public boolean isVip(int accountnr, Date datum){
-        
         return totaalPuntenJaar(accountnr, datum) > 10000;
     }
     
     public void isMajor(int accountnr, Date datum, String winkelnaam){
+        Account huidigIngelogdeAccount = db.getAccount(accountnr);
+        Account vorigeMajor = db.getAccount(db.getWinkel(winkelnaam).getAccount());
         
-        if(isVip(accountnr, datum))
+        if(isVip(huidigIngelogdeAccount.getAccountnr(), datum))
         {
-            if(this.totaalGeldJaar(accountnr, datum) > totaalGeldJaar(db.getWinkel(winkelnaam).getAccount(), datum))
+            if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr(), datum) > totaalGeldJaar(vorigeMajor.getAccountnr(), datum))
             {
                 this.setMajor(true);
                 
                 if(jstartm.after(this.getDatumVorigJaar(datum)))
                 {
                     this.setPunten(punten + 100);
-                    this.sentMail();
+                    huidigIngelogdeAccount.sentMailGoed(db.getWinkel(winkelnaam), "major", "100");
+                    vorigeMajor.sentMailSlecht(db.getWinkel(winkelnaam), "Major");
                 }
                 else
                 {
-                    // geen punten toekennen
+                    this.sentMailGoed(db.getWinkel(winkelnaam), "Major", "0");
+                    db.getAccount(db.getWinkel(winkelnaam).getAccount()).sentMailSlecht(db.getWinkel(winkelnaam), "major");
                 }
             }
             else
             {
-                this.setMajor(major);
+                this.setMajor(false);
             }
         }
         else
@@ -251,50 +260,64 @@ public class Account
             this.setMajor(false);
         }
         
-        
-//        try{
-//        if(isVip(accountnr, datum))
-//            //Combineer tabel account, aankoop en artikelaankoop
+        //OPSLAAN NAAR DE DATABASE
+    }
+    
+//    public void isWolverine(String winkelnaam, Date datum){
+//        if(this.isVip(this.getAccountnr(), datum))
 //        {
-//            ResultSet srs = null;
-//            if(srs.next()){
-//                srs = db.getMajor(accountnr, datum, winkelnaam);
-//                
-//                // gegevens over winkel
-//                int accnr = srs.getInt("accountnr");
-//                String naam = srs.getString("winkelnaam");
-//                String paswoord = srs.getString("paswoord");
-//                
-//                Winkel w = new Winkel(naam, accnr, paswoord);
-//                
-//                //gegevens over aankoop
-//                int transactienummer = srs.getInt("transactienr");
-//                int vestigingid = srs.getInt("vestigingsid");
-//                String winkelnm = srs.getString("winkelnaam");
-//                int kaartnr = srs.getInt("kaartnr");
-//                Date dat = srs.getDate("datum");
-//                
-//                Aankoop ak = new Aankoop(transactienummer, vestigingid, kaartnr, winkelnm, dat);
-//                
-//                //gegevens over artikelaankoop
-//                int trans = srs.getInt("transactienr");
-//                int artikelnr = srs.getInt("artikelnr");
-//                String nm = srs.getString("winkelnaam");
-//                int aantal = srs.getInt("aantal");
-//                boolean manier = srs.getBoolean("manierbetaling");
-//                
-//                Artikelaankoop aak = new Artikelaankoop(trans, artikelnr, nm, aantal, manier);
-//                
-//                Artikel a = new Artikel(aak.getArtikelnr(), aak.getWinkelnaam());
-//                a.getPrijs();
+//            if(db.getAantalVerschillendeWinkels(this, datum) > 19)
+//            {
+//                if(jstartw.before(getDatumVorigJaar(datum)))
+//                {
+//                    this.setPunten(punten + 600);
+//                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "600");
+//                    this.setStartw(datum);
+//                }
+//                else
+//                {
+//                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "0");
+//                }
+//                this.setWolverine(true);
 //            }
+//            else
+//                this.setWolverine(false);
 //        }
-//            
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            // Wat moet hier komen?
-//        }
+//        else
+//            this.setWolverine(false);
+//        
+//        // OPSLAAN NAAR DE DATABASE
+//        
+//    }
+    
+    public void isBigSpender(String winkelnaam, Date datum){
+        if(this.isVip(this.getAccountnr(), datum))
+        {
+            if(this.totaalGeldJaar(this.accountnr, datum) > 5000)
+            {
+                if(jstartb.before(getDatumVorigJaar(datum)))
+                {
+                    this.setPunten(punten + 500);
+                    this.sentMailGoed(db.getWinkel(winkelnaam), "Bigspender", "600");
+                    this.setStartw(datum);
+                }
+                else
+                {
+                    this.sentMailGoed(db.getWinkel(winkelnaam), "Bigspender", "0");
+                }
+                this.setBigspender(true);
+            }
+            else
+            {
+                this.setBigspender(false);
+            }
+        }
+        else
+        {
+            this.setBigspender(false);
+        }
+        
+        // OPSLAAN NAAR DATABASE
     }
     
     public boolean RechtOpPuntenMajor(Date datum){
@@ -337,8 +360,55 @@ public class Account
         return totaalGeld;
     }
     
-    public void sentMail(){
+    public void sentMailGoed(Winkel winkel,String badge, String punten){
+        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
+        PrintWriter outputStream = null;
         
+        try
+        {
+            outputStream = new PrintWriter(filename);
+        }
+        
+        catch (FileNotFoundException ex)
+        {
+            System.out.println("Error opening the file " + filename);
+            System.exit(0);
+        }
+        
+        
+            String line = "Beste " + this.getNaam() + ", \n\n"
+                          + "Bedankt om bij " + winkel.getWinkelnaam() + "klant te zijn. \n"
+                          + "U bent " + badge + " geworden./n "
+                          + "U krijgt " + punten + " punten bij op uw account. \n"
+                          + "U heeft nu " + this.getPunten() + " punten";
+            outputStream.println(line);
+        
+        outputStream.close();
+    }
+    
+    public void sentMailSlecht(Winkel winkel,String badge){
+        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
+        PrintWriter outputStream = null;
+        
+        try
+        {
+            outputStream = new PrintWriter(filename);
+        }
+        
+        catch (FileNotFoundException ex)
+        {
+            System.out.println("Error opening the file " + filename);
+            System.exit(0);
+        }
+        
+        
+            String line = "<Send to" + this.getEmail() + "> \n\n" 
+                          + "Beste " + this.getNaam() + ", \n\n"
+                          + "Bedankt om bij " + winkel.getWinkelnaam() + "klant te zijn. \n"
+                          + "U bent uw " + badge + " - Badge helaas kwijtgeraakt.";
+            outputStream.println(line);
+        
+        outputStream.close();
     }
     
 }

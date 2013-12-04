@@ -15,7 +15,10 @@ public class RapportVestiging extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
+    //DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
+    
+    private Database db = new Database();
+    DefaultTableModel t = db.naarTabel("select * from aankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
     
     public RapportVestiging() {
         initComponents();
@@ -39,6 +42,7 @@ public class RapportVestiging extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelVestigingen = new javax.swing.JTable(t);
+        knopOk = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -90,6 +94,13 @@ public class RapportVestiging extends javax.swing.JFrame {
 
         tabelVestigingen.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelVestigingen);
+
+        knopOk.setText("OK");
+        knopOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopOkActionPerformed(evt);
+            }
+        });
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -301,7 +312,9 @@ public class RapportVestiging extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(knopOk)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -311,11 +324,12 @@ public class RapportVestiging extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knopOk))
                 .addGap(18, 18, 18)
                 .addComponent(knopPrint)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(knopTerug)
                 .addContainerGap())
@@ -483,6 +497,13 @@ public class RapportVestiging extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
+    private void knopOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopOkActionPerformed
+        int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        
+        t = db.naarTabel("select * from aankoop where vestigingId = '" + vestigingId + "'");
+        tabelVestigingen.setModel(t);
+    }//GEN-LAST:event_knopOkActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -539,6 +560,7 @@ public class RapportVestiging extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton knopOk;
     private javax.swing.JButton knopPrint;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
