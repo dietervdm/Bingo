@@ -967,7 +967,7 @@ public class Database {
         int aantalArtikelenNietPlus = 0;
                 
         try{
-            String sql = "SELECT COUNT(*) FROM Artikel where WINKELNAAM = '" + winkelnaam + "'";
+            String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 aantalArtikelen = srs.getInt("count(*)");
@@ -1002,7 +1002,7 @@ public class Database {
         int aantalArtikelenNietMin = 0;
                 
         try{
-            String sql = "SELECT COUNT(*) FROM Artikel where WINKELNAAM = '" + winkelnaam + "'";
+            String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 aantalArtikelen = srs.getInt("count(*)");
