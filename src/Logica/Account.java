@@ -284,7 +284,7 @@ public class Account
         }
         else
             this.setWolverine(false);
-        System.out.println(db.getAantalVerschillendeWinkels(this));
+        System.out.println(db.getAantalVerschillendeWinkels(this,datum));
         
         // OPSLAAN NAAR DE DATABASE
         
