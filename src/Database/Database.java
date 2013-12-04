@@ -961,4 +961,73 @@ public class Database {
     
     }
     
+    public boolean minstensArtikelPlus(String winkelnaam){
+
+        int aantalArtikelen = 0;
+        int aantalArtikelenNietPlus = 0;
+                
+        try{
+            String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                aantalArtikelen = srs.getInt("count(*)");
+            }           
+            
+            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = 'test1' AND ptnwinst = 0";
+            ResultSet srs2 = getData(sql2);
+            if(srs2.next()){
+                aantalArtikelenNietPlus = srs.getInt("count(*)");
+            }
+            
+            this.closeConnection();
+            
+            if(aantalArtikelen == aantalArtikelenNietPlus){
+                return false;
+            }
+            else return true;
+        }
+        
+        
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return false;
+        }
+     }
+  
+    
+  public boolean minstensArtikelMin(String winkelnaam){
+
+        int aantalArtikelen = 0;
+        int aantalArtikelenNietMin = 0;
+                
+        try{
+            String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                aantalArtikelen = srs.getInt("count(*)");
+            }           
+            
+            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = 'test1' AND ptnkost = null";
+            ResultSet srs2 = getData(sql2);
+            if(srs2.next()){
+                aantalArtikelenNietMin = srs.getInt("count(*)");
+            }
+            
+            this.closeConnection();
+            
+            if(aantalArtikelen == aantalArtikelenNietMin){
+                return false;
+            }
+            else return true;
+        }
+        
+        
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return false;
+        }
+     }
+    
     }

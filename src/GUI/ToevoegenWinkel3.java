@@ -246,24 +246,19 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        System.out.println("Winkel toegevoegd, u kan nu inloggen.");
-        InlogScherm s = new InlogScherm();
+//        if(d.minstensArtikelPlus("testwinkel") && d.minstensArtikelMin(actief.getWinkelnaam())){
+            JOptionPane.showMessageDialog(null, "Winkel toegevoegd, u kan nu inloggen.");
+            
+            InlogScherm s = new InlogScherm();
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
+//        }
+//        else {
+//            JOptionPane.showMessageDialog(null, "Er moet minstens 1 artikel zijn dat punten geeft en 1 artikel dat punten kost.");
+//            System.out.println(d.minstensArtikelPlus(actief.getWinkelnaam()));
+//            System.out.println(d.minstensArtikelMin(actief.getWinkelnaam()));
+//        }
     }//GEN-LAST:event_knopVoegToeActionPerformed
 
     private void knopTerugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopTerugActionPerformed
