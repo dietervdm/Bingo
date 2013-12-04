@@ -356,8 +356,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                     artAk.setMetPuntenBetaald(false);
                 }
             }
+            db.addArtikelaankoop(artAk);
         }
-        // db.addArtikelaankoop(this.transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelNaam(), aantal, metPuntenBetaald;
+        
         else
         {
             JOptionPane.showMessageDialog(null, "Dit artikel bestaat niet.");
@@ -390,20 +391,20 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }//GEN-LAST:event_knopAnnuleerActionPerformed
 
     private void knopVerwijderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderActionPerformed
-//        if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
-//        {
-//            Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
-//            db.deleteArtikelaankoop(artAk);
-//        
-//            t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
-//            tabelAankopen.setModel(t);
-//        }
-//        else
-//        {
-//            JOptionPane.showMessageDialog(null, "Dit artikel hebt u niet gescand.");
-//            txtProductVerwijderen.setText("");
-//            txtProductVerwijderen.requestFocus();
-//        }
+        if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
+        {
+            Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
+            db.deleteArtikelaankoop(artAk);
+        
+            t = db.naarTabel("select * from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            tabelAankopen.setModel(t);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Dit artikel hebt u niet gescand.");
+            txtProductVerwijderen.setText("");
+            txtProductVerwijderen.requestFocus();
+        }
         
         
     }//GEN-LAST:event_knopVerwijderActionPerformed
