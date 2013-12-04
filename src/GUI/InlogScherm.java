@@ -127,10 +127,19 @@ public class InlogScherm extends javax.swing.JFrame {
                 s.setVisible(true);
                 setVisible(false);
             }
-            else JOptionPane.showMessageDialog(null, "Incorrect paswoord. Probeer opnieuw het wachtwoord in te vullen.");
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Incorrect paswoord. Probeer opnieuw het wachtwoord in te vullen.");
+                txtPaswoord.setText("");
+                txtPaswoord.requestFocus();
+            }
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Deze winkel bestaat nog niet, je kan hem aanmaken via de knop 'Nieuwe Winkel'.");
+            txtNaam.setText("");
+            txtPaswoord.setText("");
+            txtNaam.requestFocus();
         }
         
     }//GEN-LAST:event_knopLogInActionPerformed
