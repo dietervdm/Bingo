@@ -7,7 +7,6 @@ public class Artikelaankoop
     private int transactienrAankoop;
     private int artikelnr;
     private String winkelnaam;
-    private int transactienr;
     private int aantal;
     private boolean metPuntenBetaald;
     
@@ -15,21 +14,12 @@ public class Artikelaankoop
     public Artikelaankoop()
     {}
     
-    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, boolean puntenBetaling)
+    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int aantal, boolean puntenBetaling)
     {
         this.transactienrAankoop = transactienr;
         this.artikelnr = artikelnr;
         this.winkelnaam = winkelnaam;
-        this.transactienr = transactienummer;
         this.metPuntenBetaald = puntenBetaling;
-    }
-    
-    public Artikelaankoop(int transactienr, int artikelnr, String winkelnaam, int transactienummer, int aantal)
-    {
-        this.transactienrAankoop = transactienr;
-        this.artikelnr = artikelnr;
-        this.transactienr = transactienummer;
-        this.aantal = aantal;
     }
     
     public int getTransactienrAankoop()
@@ -37,7 +27,7 @@ public class Artikelaankoop
         return this.transactienrAankoop;
     }
     
-    public void setTransactienrAaankoop(int transactienraankoop)
+    public void setTransactienrAankoop(int transactienraankoop)
     {
         this.transactienrAankoop = transactienraankoop;
     }
@@ -61,14 +51,9 @@ public class Artikelaankoop
         this.winkelnaam = winkelnaam;
     }
     
-    public int getTransactienr()
+    public void setAankoop(int transactienrAankoop)
     {
-        return this.transactienr;
-    }
-    
-    public void setAankoop(int transactienummer)
-    {
-        this.transactienr = transactienummer;
+        this.transactienrAankoop = transactienrAankoop;
     }
     
     public int getAantal()

@@ -19,14 +19,14 @@ public class Aankoop
     
     public Aankoop()
     {}
-    
-    public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam)
-    {
-        this.transactienr = transactienr;
-        this.spaarkaart = spaarkaart;
-        this.vestiging = vestiging;
-        this.winkelnaam = winkelnaam;
-    }
+
+//    public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam)
+//    {
+//        this.transactienr = transactienr;
+//        this.spaarkaart = spaarkaart;
+//        this.vestiging = vestiging;
+//        this.winkelnaam = winkelnaam;
+//    }
     
     public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam, Date datum)
     {
@@ -68,6 +68,14 @@ public class Aankoop
     public void setVestiging(int vestiging)
     {
         this.vestiging = vestiging;
+    }
+    
+    public String getWinkelnaam() {
+        return winkelnaam;
+    }
+
+    public void setWinkelnaam(String winkelnaam) {
+        this.winkelnaam = winkelnaam;
     }
     
     public Date getDatum()

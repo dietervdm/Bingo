@@ -843,86 +843,87 @@ public class Database {
     }
     
     
-//    public void addArtikelaankoop(Artikelaankoop a){
-//        
-//        try{
-//            dbConnection = getConnection();
-//            Statement stmt = dbConnection.createStatement();
-//            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienrAankoop() + ", " + a.getArtikelnr() + ", " + a.getWinkelnaam() + ", " + a.getAantal() + ", " + a.get )";
-//            this.closeConnection();
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//        }
-//    }
-//    
-//    public Boolean checkArtikelAankoop(String winkelnaam){
-//        try{
-//            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
-//            ResultSet srs = getData(sql);
-//            if(srs.next()){
-//                return true;
-//            }
-//            else return false;
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-//    
-//    public Winkel getArtikelaankoop(String winkelnaam){
-//        try{
-//            String sql = "SELECT * FROM winkel WHERE winkelnaam='" + winkelnaam + "';";
-//            ResultSet srs = getData(sql);
-//            if(srs.next()){
-//                int accountnr = srs.getInt("accountnr");
-//                String naam = srs.getString("winkelnaam");
-//                String paswoord = srs.getString("paswoord");
-//                Winkel w = new Winkel(naam,accountnr,paswoord);
-//                this.closeConnection();
-//                return w;
-//            }
-//            else return null;
-//            
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-//    public void deleteAankoop(Winkel w){
-//        
-//        try{
-//            dbConnection = getConnection();
-//            Statement stmt = dbConnection.createStatement();
-//            stmt.executeUpdate("DELETE from winkel WHERE winkelnaam='" + w.getWinkelnaam() +"';");
-//            this.closeConnection();
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//        }
-//    }
-//    
-//    public void updateArtikelaankoop(Winkel oud, Winkel nieuw){
-//             Gaan we wss niet doen
-//        
-//        try{
-//            dbConnection = getConnection();
-//            Statement stmt = dbConnection.createStatement();
-//            stmt.executeUpdate("UPDATE winkel SET accountnr = " + nieuw.getAccount() + " WHERE winkelnaam = '" + oud.getWinkelnaam() + "'; "
-//                    + "UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam()+ "'; "
-//                    + "UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "';");           
-//            this.closeConnection();
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//        }
-//    }
+   public void addArtikelaankoop(Artikelaankoop a){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienrAankoop()  + ", " + a.getArtikelnr()+ ", '" + a.getWinkelnaam() + "', " + a.getAantal() + ", " + a.isMetPuntenBetaald() + ";");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public Artikelaankoop getArtikelaankoop(int transactienraankoop, int artikelnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM artikelaankoop WHERE transactienr = " + transactienraankoop + " and artikelnr = " + artikelnr + " and winkelnaam = '" + winkelnaam + "';";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int transactienr = srs.getInt("transactienr");
+                int artikelnummer = srs.getInt("artikelnr");
+                String naam = srs.getString("winkelnaam");
+                int aantal = srs.getInt("aantal");
+                boolean metPuntenBetaald = srs.getBoolean("metPuntenBetaald");
+                Artikelaankoop a = new Artikelaankoop(transactienr, artikelnummer, naam, aantal, metPuntenBetaald );
+                this.closeConnection();
+                return a;
+            }
+            else {this.closeConnection();return null;}
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public Boolean checkArtikelaankoop(int transactienr, int artikelnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM artikelaankoop WHERE transactienr = " + transactienr + " and artikelnr = " + artikelnr + " and winkelnaam = '" + winkelnaam + "';";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public void deleteArtikelaankoop(Artikelaankoop a){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("DELETE from artikelaankoop WHERE transactienr = " + a.getTransactienrAankoop() + " and artikelnr = " + a.getArtikelnr() + " and winkelnaam = '" + a.getWinkelnaam() + "';");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public void addAankoop(Aankoop a){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestingingid()+ ", '" + a.getWinkelnaam() + "', " + a.getAantal() + ", " + a.isMetPuntenBetaald() + ";");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
     
     }
