@@ -159,6 +159,10 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
                 if(d.checkWinkel(w.getWinkelnaam()))
                 {
                     JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+                    txtNaam.setText("");
+                    txtPaswoord.setText("");
+                    txtPaswoord2.setText("");
+                    txtNaam.requestFocus();
                 }
                 else
                 {
@@ -174,11 +178,17 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
             else
             {
                 JOptionPane.showMessageDialog(null, "Beide wachtwoorden komen niet overeen.");
+                txtPaswoord.setText("");
+                txtPaswoord2.setText("");
+                txtPaswoord.requestFocus();
             }
         }
         else
         {
             JOptionPane.showMessageDialog(null, "Het wachtwoord moet tussen 7 à 14 karakters lang zijn en mag geen vreemde cijfers bevatten.");
+            txtPaswoord.setText("");
+            txtPaswoord2.setText("");
+            txtPaswoord.requestFocus();
         }
     }//GEN-LAST:event_knopGaVerderActionPerformed
     
