@@ -78,7 +78,7 @@ public class AanpassenVestiging extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Vestigingsgegevens");
+        setTitle("Vestigingsgegevens aanpassen");
 
         knopTerug.setText("Terug");
         knopTerug.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class AanpassenVestiging extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(153, 0, 0));
         jLabel5.setText("Opgepast! Elke vestiging moet een verschillende ID hebben.");
 
         knopAanpassen.setText("Aanpassen");
