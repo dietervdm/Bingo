@@ -317,7 +317,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 //        }
         
         Artikelaankoop artAk = new Artikelaankoop();
-        artAk.setTransactienrAaankoop(this.transactienummer);
+        artAk.setTransactienrAankoop(this.transactienummer);
         artAk.setArtikelnr(Integer.parseInt(txtProductToevoegen.getText()));
         artAk.setWinkelNaam(actief.getWinkelnaam());
         artAk.setAantal(aantal);
