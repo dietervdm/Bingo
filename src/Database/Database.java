@@ -120,6 +120,21 @@ public class Database {
         return new DefaultTableModel(data, kolommen);
     }
     
+    public int getAantalVerschillendeWinkels(Account a){
+        try{
+            String sql = "SELECT COUNT AS aantal(DISTINCT winkelnaam)FROM aankoop, account, spaarkaart WHERE spaarkaart.accountnr = " + a.getAccountnr() + ";";
+            ResultSet srs = getData(sql);
+            int aantal = srs.getInt("aantal");
+            return aantal;
+
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+    }
+    
     public void addWinkel(Winkel w){
         
         try{
