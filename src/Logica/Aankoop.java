@@ -9,7 +9,7 @@ public class Aankoop
 {
     private int transactienr;
     private int spaarkaart;
-    private int vestiging;
+    private int vestigingid;
     private String winkelnaam;
     private Date datum;
     //private int ptnplus;
@@ -20,19 +20,19 @@ public class Aankoop
     public Aankoop()
     {}
 
-//    public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam)
+//    public Aankoop(int transactienr, int spaarkaart, int vestigingid, String winkelnaam)
 //    {
 //        this.transactienr = transactienr;
 //        this.spaarkaart = spaarkaart;
-//        this.vestiging = vestiging;
+//        this.vestigingid = vestigingid;
 //        this.winkelnaam = winkelnaam;
 //    }
     
-    public Aankoop(int transactienr, int spaarkaart, int vestiging, String winkelnaam, Date datum)
+    public Aankoop(int transactienr, int spaarkaart, int vestigingid, String winkelnaam, Date datum)
     {
         this.transactienr = transactienr;
         this.spaarkaart = spaarkaart;
-        this.vestiging = vestiging;
+        this.vestigingid = vestigingid;
         this.winkelnaam = winkelnaam;
         this.datum = datum;
         //this.ptnplus = ptnplus;
@@ -60,14 +60,14 @@ public class Aankoop
         this.spaarkaart = spaarkaart;
     }
     
-    public int getVestiging()
+    public int getVestigingid()
     {
-        return this.vestiging;
+        return this.vestigingid;
     }
     
-    public void setVestiging(int vestiging)
+    public void setVestigingid(int vestigingid)
     {
-        this.vestiging = vestiging;
+        this.vestigingid = vestigingid;
     }
     
     public String getWinkelnaam() {

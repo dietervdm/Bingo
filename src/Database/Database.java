@@ -917,13 +917,48 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestingingid()+ ", '" + a.getWinkelnaam() + "', " + a.getAantal() + ", " + a.isMetPuntenBetaald() + ";");
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", " + a.getDatum() + ";");
             this.closeConnection();
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
         }
+    }
+    
+    public void deleteAankoop(Aankoop a){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("DELETE from aankoop WHERE transactienr = " + a.getTransactienr() + " and vestigingid = " + a.getVestigingid() + " and winkelnaam = '" + a.getWinkelnaam() + "' and kaartnr = " + a.getSpaarkaart() +";");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public int maxTransactienr(){
+        try{
+            String sql = "SELECT MAX(transactienr) FROM aankoop;";
+            ResultSet srs = getData(sql);
+                if(srs.next()){
+                    int transactienr = srs.getInt("transactienr");
+                    this.closeConnection();
+                    return transactienr;
+                 }
+                else {this.closeConnection();
+                return 0;}
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return 0;
+        }
+    
     }
     
     }
