@@ -390,10 +390,10 @@ public class AanpassenKlant extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
+                    .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel6)))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkBedrijf)
@@ -443,6 +443,8 @@ public class AanpassenKlant extends javax.swing.JFrame {
         
         if(d.checkAccount(nieuw.getAccountnr()) && !(nieuw.getAccountnr() == oud.getAccountnr())){
             JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat al.");
+            txtAccountnr.setText("");
+            txtAccountnr.requestFocus();
         }
         else {
             d.updateAccount(oud,nieuw);
@@ -474,7 +476,7 @@ public class AanpassenKlant extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(null, "Accountnummer bestaat niet, gelieve in de lijst te kijken.");
-            txtAccountnr.setText(null);
+            txtAccountnr.setText("");
             txtAccountnr.requestFocus();
         }
         

@@ -6,6 +6,7 @@ import Logica.Account;
 import Logica.Spaarkaart;
 import Logica.Vestiging;
 import Logica.Winkel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -153,6 +154,7 @@ import javax.swing.border.Border;
         puntenBalk.add(aantalPunten);
         puntenBalk.add(punten);
         Border compound = BorderFactory.createLineBorder(Color.black, 2, false); // true voor ronde hoeken
+        //BorderLayout bl = new BorderLayout(5,5);
         punten.setBorder(compound);
         punten.setAlignmentX(20);
         punten.setAlignmentY(40);
