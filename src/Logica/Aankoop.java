@@ -28,7 +28,7 @@ public class Aankoop
 //        this.winkelnaam = winkelnaam;
 //    }
     
-    public Aankoop(int transactienr, int spaarkaart, int vestigingid, String winkelnaam, Date datum)
+    public Aankoop(int transactienr, int vestigingid, String winkelnaam, int spaarkaart, Date datum)
     {
         this.transactienr = transactienr;
         this.spaarkaart = spaarkaart;
