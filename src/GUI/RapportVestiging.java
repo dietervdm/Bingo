@@ -18,7 +18,7 @@ public class RapportVestiging extends javax.swing.JFrame {
     //DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
     
     private Database db = new Database();
-    DefaultTableModel t = db.naarTabel("select 'transactienr', 'kaartnr', 'datum' from aankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
+    DefaultTableModel t = db.naarTabel("select transactienr, kaartnr, datum from aankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd';");
     
     public RapportVestiging() {
         initComponents();
@@ -500,7 +500,7 @@ public class RapportVestiging extends javax.swing.JFrame {
     private void knopOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopOkActionPerformed
         int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         
-        t = db.naarTabel("select 'transactienr', 'kaartnr', 'datum' from aankoop where vestigingId = '" + vestigingId + "'");
+        t = db.naarTabel("select transactienr, kaartnr, datum from aankoop where vestigingId = " + vestigingId + ";");
         tabelVestigingen.setModel(t);
     }//GEN-LAST:event_knopOkActionPerformed
 
