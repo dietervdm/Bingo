@@ -134,7 +134,10 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
 
     private void knopAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnulerenActionPerformed
         if (actief == null){
-            
+            InlogScherm s = new InlogScherm();
+            s.setLocationRelativeTo(null);
+            s.setVisible(true);
+            setVisible(false);
         }
         else{
             d.deleteWinkel(actief);
