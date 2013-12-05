@@ -976,73 +976,81 @@ public class Database {
     
     }
     
-    public boolean minstensArtikelPlus(String winkelnaam){
-
-        int aantalArtikelen = 0;
-        int aantalArtikelenNietPlus = 0;
-                
+    public int aantalArtikelen(String winkelnaam){
         try{
             String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             if(srs.next()){
-                aantalArtikelen = srs.getInt("count(*)");
-            }           
-            
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = 'test1' AND ptnwinst = 0";
-            ResultSet srs2 = getData(sql2);
-            if(srs2.next()){
-                aantalArtikelenNietPlus = srs.getInt("count(*)");
+                int a = srs.getInt("count(*)");
+                this.closeConnection();
+                return a;
             }
-            
-            this.closeConnection();
-            
-            if(aantalArtikelen == aantalArtikelenNietPlus){
-                return false;
-            }
-            else return true;
-        }
-        
-        
+         this.closeConnection();
+         return 0;
+        }   
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
-            return false;
+            return 0;
         }
-     }
-  
-    
-  public boolean minstensArtikelMin(String winkelnaam){
-
-        int aantalArtikelen = 0;
-        int aantalArtikelenNietMin = 0;
-                
-        try{
-            String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
-            ResultSet srs = getData(sql);
-            if(srs.next()){
-                aantalArtikelen = srs.getInt("count(*)");
-            }           
-            
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = 'test1' AND ptnkost = null";
-            ResultSet srs2 = getData(sql2);
-            if(srs2.next()){
-                aantalArtikelenNietMin = srs.getInt("count(*)");
-            }
-            
-            this.closeConnection();
-            
-            if(aantalArtikelen == aantalArtikelenNietMin){
-                return false;
-            }
-            else return true;
-        }
-        
-        
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            this.closeConnection();
-            return false;
-        }
-     }
-    
     }
+    
+    public int aantalArtikelenNietPlus(String winkelnaam){
+        try{
+            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "' AND ptnwinst = 0";
+            ResultSet srs2 = getData(sql2);
+            if(srs2.next()){
+                int a = srs2.getInt("count(*)");
+                this.closeConnection();
+                return a;
+            }
+        this.closeConnection();
+         return 0;
+        }   
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return 0;
+        }
+    }
+    
+    public int aantalArtikelenNietMin(String winkelnaam){
+        try{
+            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "' AND ptnwinst = 0";
+            ResultSet srs2 = getData(sql2);
+            if(srs2.next()){
+                int a = srs2.getInt("count(*)");
+                this.closeConnection();
+                return a;
+            }
+        this.closeConnection();
+         return 0;
+        }   
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return 0;
+        }
+    }
+    
+    public int aantalVestigingen(String winkelnaam){
+        try{
+            String sql = "SELECT COUNT(*) FROM vestiging where winkelnaam = '" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int count = srs.getInt("count(*)");
+                this.closeConnection();
+                return count;
+            }
+            else{
+                this.closeConnection();
+                return -1;
+            }
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+    }
+}
