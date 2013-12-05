@@ -15,9 +15,7 @@ public class RapportWinkel extends javax.swing.JFrame {
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database db = new Database();
     
-    //DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
-    //DefaultTableModel t = db.naarTabel("select * from aankoop where winkelnaam = '" + actief.getWinkelnaam() +"'");
-    DefaultTableModel t = db.naarTabel("select transactienr, vestigingid, kaartnr, datum from aankoop where winkelnaam = '" + actief.getWinkelnaam() +"';");
+    DefaultTableModel t = db.naarTabel("select transactienr, artikelnr, aantal, metPuntenBetaald from artikelaankoop where winkelnaam = '" + actief.getWinkelnaam() +"';");
     
     public RapportWinkel() {
         actief = InlogScherm.getInstance().actief;
