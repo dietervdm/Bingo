@@ -41,8 +41,12 @@ public class RapportVestiging extends javax.swing.JFrame {
         knopPrint = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelVestigingen = new javax.swing.JTable(t);
+        tabelVerkopen = new javax.swing.JTable(t);
         knopOk = new javax.swing.JButton();
+        knopMetPuntenBetaald = new javax.swing.JButton();
+        knopMetGeldBetaalt = new javax.swing.JButton();
+        knopPuntenUitgereikt = new javax.swing.JButton();
+        knopAlleVerkopen = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -92,13 +96,41 @@ public class RapportVestiging extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(getVestigingen()));
 
-        tabelVestigingen.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelVestigingen);
+        tabelVerkopen.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelVerkopen);
 
         knopOk.setText("OK");
         knopOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 knopOkActionPerformed(evt);
+            }
+        });
+
+        knopMetPuntenBetaald.setText("Met punten betaald");
+        knopMetPuntenBetaald.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopMetPuntenBetaaldActionPerformed(evt);
+            }
+        });
+
+        knopMetGeldBetaalt.setText("Met geld betaald");
+        knopMetGeldBetaalt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopMetGeldBetaaltActionPerformed(evt);
+            }
+        });
+
+        knopPuntenUitgereikt.setText("Met uitgereikte punten");
+        knopPuntenUitgereikt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopPuntenUitgereiktActionPerformed(evt);
+            }
+        });
+
+        knopAlleVerkopen.setText("Alle verkopen");
+        knopAlleVerkopen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopAlleVerkopenActionPerformed(evt);
             }
         });
 
@@ -304,18 +336,28 @@ public class RapportVestiging extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(knopTerug)
-                            .addComponent(knopPrint)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(knopPrint))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(knopOk)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(knopAlleVerkopen))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(knopMetPuntenBetaald)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(knopMetGeldBetaalt)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(knopPuntenUitgereikt))
+                                    .addComponent(knopOk))))
+                        .addGap(0, 81, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -327,7 +369,12 @@ public class RapportVestiging extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(knopOk))
                 .addGap(18, 18, 18)
-                .addComponent(knopPrint)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(knopPrint)
+                    .addComponent(knopMetPuntenBetaald)
+                    .addComponent(knopMetGeldBetaalt)
+                    .addComponent(knopPuntenUitgereikt)
+                    .addComponent(knopAlleVerkopen))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -349,7 +396,7 @@ public class RapportVestiging extends javax.swing.JFrame {
         MessageFormat footer = new MessageFormat("Page{0,number,integer}");
         try
         {
-            tabelVestigingen.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            tabelVerkopen.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         }
         catch (java.awt.print.PrinterException e)
         {
@@ -501,8 +548,40 @@ public class RapportVestiging extends javax.swing.JFrame {
         int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         
          t = db.naarTabel("SELECT transactienr,artikelnr,aantal,metPuntenBetaald FROM artikelaankoop WHERE transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
-        tabelVestigingen.setModel(t);
+        tabelVerkopen.setModel(t);
     }//GEN-LAST:event_knopOkActionPerformed
+
+    private void knopMetPuntenBetaaldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopMetPuntenBetaaldActionPerformed
+       int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        t = db.naarTabel("select artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam, aantal from artikelaankoop, artikel where artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"' AND artikelaankoop.metPuntenBetaald = true AND artikelaankoop.transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
+        String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal"};
+        t.setColumnIdentifiers(namen);
+        tabelVerkopen.setModel(t);
+    }//GEN-LAST:event_knopMetPuntenBetaaldActionPerformed
+
+    private void knopMetGeldBetaaltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopMetGeldBetaaltActionPerformed
+        int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        t = db.naarTabel("select artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam, aantal from artikelaankoop, artikel where artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"' AND metPuntenBetaald = false AND artikelaankoop.transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
+        String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal"};
+        t.setColumnIdentifiers(namen);
+        tabelVerkopen.setModel(t);
+    }//GEN-LAST:event_knopMetGeldBetaaltActionPerformed
+
+    private void knopPuntenUitgereiktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPuntenUitgereiktActionPerformed
+        int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        t = db.naarTabel("SELECT artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam,artikelaankoop.aantal, artikel.ptnwinst*artikelaankoop.aantal from artikelaankoop, artikel WHERE artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND metPuntenBetaald = 0 AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"' AND artikelaankoop.transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
+        String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal", "totaal uitgereikte punten"};
+        t.setColumnIdentifiers(namen);
+        tabelVerkopen.setModel(t);
+    }//GEN-LAST:event_knopPuntenUitgereiktActionPerformed
+
+    private void knopAlleVerkopenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAlleVerkopenActionPerformed
+        int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        t = db.naarTabel("select artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam, artikelaankoop.aantal, artikelaankoop.metPuntenBetaald from artikelaankoop, artikel where artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"' AND artikelaankoop.transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "');");
+        String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal", "Is het met punten betaald?"};
+        t.setColumnIdentifiers(namen);
+        tabelVerkopen.setModel(t);
+    }//GEN-LAST:event_knopAlleVerkopenActionPerformed
 
     
     public static void main(String args[]) {
@@ -560,8 +639,12 @@ public class RapportVestiging extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton knopAlleVerkopen;
+    private javax.swing.JButton knopMetGeldBetaalt;
+    private javax.swing.JButton knopMetPuntenBetaald;
     private javax.swing.JButton knopOk;
     private javax.swing.JButton knopPrint;
+    private javax.swing.JButton knopPuntenUitgereikt;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;
@@ -581,6 +664,6 @@ public class RapportVestiging extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTable tabelVestigingen;
+    private javax.swing.JTable tabelVerkopen;
     // End of variables declaration//GEN-END:variables
 }

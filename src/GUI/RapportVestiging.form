@@ -279,23 +279,37 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="778" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="knopTerug" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="knopPrint" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="153" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                  <Component id="knopPrint" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="knopOk" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jComboBox1" min="-2" pref="99" max="-2" attributes="0"/>
+                                  <Component id="knopAlleVerkopen" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="knopMetPuntenBetaald" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="knopMetGeldBetaalt" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="knopPuntenUitgereikt" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="knopOk" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="81" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -312,7 +326,13 @@
                   <Component id="knopOk" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="knopPrint" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="knopPrint" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="knopMetPuntenBetaald" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="knopMetGeldBetaalt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="knopPuntenUitgereikt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="knopAlleVerkopen" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="434" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -358,7 +378,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tabelVestigingen">
+        <Component class="javax.swing.JTable" name="tabelVerkopen">
           <Properties>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
@@ -376,6 +396,38 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopOkActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="knopMetPuntenBetaald">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Met punten betaald"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopMetPuntenBetaaldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="knopMetGeldBetaalt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Met geld betaald"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopMetGeldBetaaltActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="knopPuntenUitgereikt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Met uitgereikte punten"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopPuntenUitgereiktActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="knopAlleVerkopen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Alle verkopen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopAlleVerkopenActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
