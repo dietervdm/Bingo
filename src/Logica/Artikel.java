@@ -15,6 +15,7 @@ public class Artikel
     private int minimumaantal;
     private Integer ptnkost;
     private int minimumbedrag;
+    public static Database d = new Database();
     
     
     public Artikel()
@@ -39,6 +40,21 @@ public class Artikel
        this.minimumbedrag = minimumbedrag;
     }
     
+    public static boolean minstensArtikelPlus(String winkelnaam){
+    
+            if(d.aantalArtikelen(winkelnaam) == d.aantalArtikelenNietPlus(winkelnaam)){
+                return false;
+            }
+            else return true;
+        }
+     
+     public static boolean minstensArtikelMin(String winkelnaam){
+
+        if(d.aantalArtikelen(winkelnaam) == d.aantalArtikelenNietPlus(winkelnaam)){
+                return false;
+            }
+            else return true;
+    }
         
     public int getArtikelnr()
     {

@@ -8,6 +8,7 @@ import Logica.*;
 public class Framework extends javax.swing.JFrame {
     
     public JFrame myCaller;
+    public Database d = new Database();
     
     public Framework() {
         initComponents();
