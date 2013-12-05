@@ -395,7 +395,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
         
         
-        t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+        t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
         tabelAankopen.setModel(t);
         
         txtProductToevoegen.setText("");
