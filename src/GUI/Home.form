@@ -352,7 +352,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="String path = &quot;src\\GUI\\Logo\\bingo.png&quot;;&#xa;File file = new File(path);&#xa;&#xa;try&#xa;{&#xa;        BufferedImage image = ImageIO.read(file);&#xa;        ImageIcon icon = new ImageIcon(image);&#xa;        Image img = icon.getImage().getScaledInstance(600, 400, java.awt.Image.SCALE_SMOOTH);&#xa;        ImageIcon icim = new ImageIcon(img);&#xa;        afbeeldingBingo.setIcon((Icon) icim);&#xa;&#xa;}&#xa;catch(IOException ex)&#xa;{&#xa;        System.out.println(ex.getMessage());&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//String path = &quot;src\\GUI\\Logo\\bingo.png&quot;;&#xa;//File file = new File(path);&#xa;&#xa;//try&#xa;//{&#xa;//        BufferedImage image = ImageIO.read(file);&#xa;//        ImageIcon icon = new ImageIcon(image);&#xa;//        Image img = icon.getImage().getScaledInstance(600, 400, java.awt.Image.SCALE_SMOOTH);&#xa;//        ImageIcon icim = new ImageIcon(img);&#xa;//        afbeeldingBingo.setIcon((Icon) icim);&#xa;&#xa;//}&#xa;//catch(IOException ex)&#xa;//{&#xa;//        System.out.println(ex.getMessage());&#xa;//}"/>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel()"/>
       </AuxValues>
     </Component>

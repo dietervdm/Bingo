@@ -313,22 +313,22 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        String path = "src\\GUI\\Logo\\bingo.png";
-        File file = new File(path);
+        //String path = "src\\GUI\\Logo\\bingo.png";
+        //File file = new File(path);
 
-        try
-        {
-            BufferedImage image = ImageIO.read(file);
-            ImageIcon icon = new ImageIcon(image);
-            Image img = icon.getImage().getScaledInstance(600, 400, java.awt.Image.SCALE_SMOOTH);
-            ImageIcon icim = new ImageIcon(img);
-            afbeeldingBingo.setIcon((Icon) icim);
+        //try
+        //{
+            //        BufferedImage image = ImageIO.read(file);
+            //        ImageIcon icon = new ImageIcon(image);
+            //        Image img = icon.getImage().getScaledInstance(600, 400, java.awt.Image.SCALE_SMOOTH);
+            //        ImageIcon icim = new ImageIcon(img);
+            //        afbeeldingBingo.setIcon((Icon) icim);
 
-        }
-        catch(IOException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
+            //}
+        //catch(IOException ex)
+        //{
+            //        System.out.println(ex.getMessage());
+            //}
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
