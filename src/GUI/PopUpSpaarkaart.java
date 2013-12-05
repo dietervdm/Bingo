@@ -137,7 +137,7 @@ import javax.swing.border.Border;
         spaarkaart.setText(sk);
         //spaarkaart.setText(actieveSpaarkaart.getNaamhouder());
         String pt = Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten());
-        punten.setText(" " + pt + " ");
+        punten.setText("  " + pt + "  ");
         //punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
         
         if(db.getAccount(actieveSpaarkaart.getAccountnr()).isBedrijf())
@@ -149,10 +149,10 @@ import javax.swing.border.Border;
         
         f.setLayout(new GridLayout(2,1,5,5));
         topPanel.setLayout(new GridLayout(3,1,10,3));       // gridlayout (int rows, int cols, int hGap, int vGap)
-        downPanel.setLayout(new GridLayout(1,3,5,5));
+        downPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
         spaarkaartBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
         accountBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
-        puntenBalk.setLayout(new FlowLayout(FlowLayout.LEADING, 25, 25));
+        puntenBalk.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 25));
         
         
         
