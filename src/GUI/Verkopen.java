@@ -323,10 +323,7 @@ public class Verkopen extends javax.swing.JFrame {
         VerkopenKlant s = new VerkopenKlant(this);
                 s.setActieveVest(db.getVestiging(Integer.parseInt(jComboBox1.getSelectedItem().toString()), actief.getWinkelnaam()));
                 s.setLocationRelativeTo(null);
-                setVisible(false);
-                myCaller.setVisible(true);
                 s.setVisible(true);
-                
     }//GEN-LAST:event_knopVerkoopSchermActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
