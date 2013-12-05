@@ -12,7 +12,7 @@ public class VerwijderenKlant extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select * from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
+    DefaultTableModel t = d.naarTabel("select accountnr, naam, email, adres, btwnummer from account where accountnr = jsjkfjsljf");// where accountnr = '" + actief.getWinkelnaam() + "'");
     
     public VerwijderenKlant() {
         initComponents();
@@ -35,7 +35,7 @@ public class VerwijderenKlant extends javax.swing.JFrame {
         txtKlantnr = new javax.swing.JTextField();
         knopVerwijderen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelVestigingen = new javax.swing.JTable(t);
+        tabelAccounts = new javax.swing.JTable(t);
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -84,8 +84,8 @@ public class VerwijderenKlant extends javax.swing.JFrame {
             }
         });
 
-        tabelVestigingen.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelVestigingen);
+        tabelAccounts.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelAccounts);
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -335,11 +335,16 @@ public class VerwijderenKlant extends javax.swing.JFrame {
         if(d.checkAccount(accountnr)){
             Account a = d.getAccount(accountnr);
             d.deleteAccount(a);
-            t = d.naarTabel("select * from account");
-            tabelVestigingen.setModel(t);
+            t = d.naarTabel("select accountnr, naam, email, adres, btwnummer from account");
+            tabelAccounts.setModel(t);
+            txtKlantnr.setText("");
+            txtKlantnr.requestFocus();
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Dit klantnummer bestaat niet");
+            txtKlantnr.setText("");
+            txtKlantnr.requestFocus();
     }//GEN-LAST:event_knopVerwijderenActionPerformed
     }
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
@@ -514,7 +519,7 @@ public class VerwijderenKlant extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
-    private javax.swing.JTable tabelVestigingen;
+    private javax.swing.JTable tabelAccounts;
     private javax.swing.JTextField txtKlantnr;
     // End of variables declaration//GEN-END:variables
 }

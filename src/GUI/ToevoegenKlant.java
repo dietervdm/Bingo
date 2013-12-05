@@ -401,17 +401,18 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         
         if(checkBedrijf.isSelected()){
-            if (btwnummer != ""){
+            if (txtBtwnummer.getText() != ""){
                 btwnummer = txtBtwnummer.getText();
             }
             else JOptionPane.showMessageDialog(null, "Een bedrijf moet een btwnummer hebben");
         }
         else btwnummer = null;
         
-        Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
+        Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, checkBedrijf.isSelected(), btwnummer);
         
         if(d.checkAccount(accountnr)){
-            JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+            //JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+            JOptionPane.showMessageDialog(null, "Deze account bestaat al.");
         }
         else{
             d.addAccount(a);
