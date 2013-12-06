@@ -313,7 +313,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
 
-        //db.updateAccount(db.getAccount(actieveSpaarkaart.getAccountnr()), );puntenOver + totaalPunten
+        int puntenToevoegen = puntenOver + totaalPuntenPlus;
+        db.updateAantalpunten(db.getAccount(actieveSpaarkaart.getAccountnr()), totaalPuntenPlus);
         VerkopenKlant s = new VerkopenKlant();
                 s.setActieveVest(actieveVest);
                 s.setLocationRelativeTo(null);
@@ -322,7 +323,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
+        System.out.println(puntenOver);
         Artikel art = db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
+        
 //        double prijs = art.getPrijs();
 //        int ptnplus = art.getPtnwinst();
 //        int ptnmin = art.getPtnkost();
@@ -339,6 +342,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         {
             if(art.getPtnkost() == -1 || art.getPtnkost() == 0)
             {
+                System.out.println("test 1");
                 if(aantal >= art.getMinimumaantal())
                 {
                     //System.out.println(Integer.toString(aantal));
@@ -354,16 +358,20 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             }
             else
             {
+                System.out.println("test 2");
                 if(puntenOver >= art.getPtnkost()*aantal)
                 {
-                    if(art.getMinimumbedrag() > totaalPrijs)
+                    if(art.getMinimumbedrag() < totaalPrijs)
                     {
+                        System.out.println("test 3");
                         totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
                         puntenOver = puntenOver - art.getPtnkost() * aantal;
-                        artAk.setMetPuntenBetaald(true);
                         artikelenMetPunten = artikelenMetPunten + aantal;
+                        artAk.setMetPuntenBetaald(true);
                     }
-                    else{
+                    else
+                    {
+                        System.out.println("test 4");
                         totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
                         totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                         artAk.setMetPuntenBetaald(false);

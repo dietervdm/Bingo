@@ -142,7 +142,7 @@ import javax.swing.border.Border;
         
         if(db.getAccount(actieveSpaarkaart.getAccountnr()).isBedrijf())
         {
-            bedrijfOfPart.setText("BEDRIJF" + db.getAccount(actieveSpaarkaart.getAccountnr()).getBtwnummer());
+            bedrijfOfPart.setText("BEDRIJF     " + db.getAccount(actieveSpaarkaart.getAccountnr()).getBtwnummer());
         }
         else
             bedrijfOfPart.setText("PARTICULIER");
