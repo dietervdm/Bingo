@@ -351,8 +351,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 }
                 else
                 {
+                    System.out.println("wordt deze gebruikt?");
                     //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs + art.getPrijs();
+                    totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
                 }
                 artAk.setMetPuntenBetaald(false);
             }
@@ -431,15 +432,53 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
         {
             Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
-            db.deleteArtikelaankoop(artAk);
-        
-            t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
-            //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
-            tabelAankopen.setModel(t);
             
-            txtProductVerwijderen.setText("");
-            txtProductToevoegen.requestFocus();
-        }
+            Artikel art = db.getArtikel(artAk.getArtikelnr(), actief.getWinkelnaam());
+            
+            if(artAk.isMetPuntenBetaald() == false)
+            {
+                System.out.println("test 1");
+                if(artAk.getAantal() >= art.getMinimumaantal())
+                {
+                    //System.out.println(Integer.toString(aantal));
+                    totaalPrijs = totaalPrijs - (art.getPrijs() * artAk.getAantal());
+                    totaalPuntenPlus = totaalPuntenPlus - (art.getPtnwinst() * artAk.getAantal());
+                }
+                else
+                {
+                    //System.out.println(Integer.toString(aantal));
+                    totaalPrijs = totaalPrijs - art.getPrijs() * artAk.getAantal();
+                }
+            }
+            else
+            {
+                
+                    if(art.getMinimumbedrag() < totaalPrijs)
+                    {
+                        System.out.println("test 3");
+                        totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * artAk.getAantal();
+                        puntenOver = puntenOver + art.getPtnkost() * artAk.getAantal();
+                        artikelenMetPunten = artikelenMetPunten - artAk.getAantal();
+                    }
+                    else
+                    {
+                        System.out.println("test 4");
+                        totaalPrijs = totaalPrijs - art.getPrijs() * artAk.getAantal();
+                        totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAk.getAantal();
+                    }
+                    
+                
+            }
+        
+        
+            db.deleteArtikelaankoop(artAk);
+            
+            weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
+            totaalBedrag.setText(Double.toString(totaalPrijs));
+            puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
+            weergaveAfgetrokkenPunten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten() - puntenOver));
+            aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
+        }  
         else
         {
             JOptionPane.showMessageDialog(null, "Dit artikel hebt u niet gescand.");
@@ -447,6 +486,15 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             txtProductVerwijderen.requestFocus();
         }
         
+        
+        
+        
+        t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
+            tabelAankopen.setModel(t);
+            
+            txtProductVerwijderen.setText("");
+            txtProductToevoegen.requestFocus();
         
     }//GEN-LAST:event_knopVerwijderActionPerformed
 
