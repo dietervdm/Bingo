@@ -155,6 +155,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
         jLabel21.setText("artikelen");
 
+        weergaveTeGebruikenPunten.setForeground(new java.awt.Color(255, 0, 0));
         weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
 
         aantalBepaler.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
@@ -312,6 +313,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
 
+        //db.updateAccount(db.getAccount(actieveSpaarkaart.getAccountnr()), );puntenOver + totaalPunten
         VerkopenKlant s = new VerkopenKlant();
                 s.setActieveVest(actieveVest);
                 s.setLocationRelativeTo(null);
@@ -423,7 +425,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             db.deleteArtikelaankoop(artAk);
         
-            t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
             //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
             tabelAankopen.setModel(t);
             

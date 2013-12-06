@@ -547,7 +547,9 @@ public class RapportVestiging extends javax.swing.JFrame {
     private void knopOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopOkActionPerformed
         int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         
-         t = db.naarTabel("SELECT transactienr,artikelnr,aantal,metPuntenBetaald FROM artikelaankoop WHERE transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
+        t = db.naarTabel("SELECT transactienr,artikelnr,aantal,metPuntenBetaald FROM artikelaankoop WHERE transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
+        String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal"};
+        t.setColumnIdentifiers(namen);
         tabelVerkopen.setModel(t);
     }//GEN-LAST:event_knopOkActionPerformed
 
