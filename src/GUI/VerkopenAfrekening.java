@@ -314,7 +314,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
 
         int puntenToevoegen = puntenOver + totaalPuntenPlus;
-        db.updateAantalpunten(db.getAccount(actieveSpaarkaart.getAccountnr()), totaalPuntenPlus);
+        db.updateAantalpunten(db.getAccount(actieveSpaarkaart.getAccountnr()), puntenToevoegen);
         VerkopenKlant s = new VerkopenKlant();
                 s.setActieveVest(actieveVest);
                 s.setLocationRelativeTo(null);
