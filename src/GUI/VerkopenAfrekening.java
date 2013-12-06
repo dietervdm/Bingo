@@ -435,49 +435,45 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             
             Artikel art = db.getArtikel(artAk.getArtikelnr(), actief.getWinkelnaam());
             
-            if(artAk.isMetPuntenBetaald() == false)
+            if(artAk.isMetPuntenBetaald())
             {
-                System.out.println("test 1");
-                if(artAk.getAantal() >= art.getMinimumaantal())
-                {
-                    //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs - (art.getPrijs() * artAk.getAantal());
-                    totaalPuntenPlus = totaalPuntenPlus - (art.getPtnwinst() * artAk.getAantal());
-                }
-                else
-                {
-                    //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs - art.getPrijs() * artAk.getAantal();
-                }
-            }
-            else
-            {
-                
-                    if(art.getMinimumbedrag() < totaalPrijs)
+                if(art.getMinimumbedrag() < totaalPrijs)
                     {
-                        System.out.println("test 3");
+                        System.out.println("11");
                         totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * artAk.getAantal();
                         puntenOver = puntenOver + art.getPtnkost() * artAk.getAantal();
                         artikelenMetPunten = artikelenMetPunten - artAk.getAantal();
                     }
                     else
                     {
-                        System.out.println("test 4");
+                        System.out.println("12");
                         totaalPrijs = totaalPrijs - art.getPrijs() * artAk.getAantal();
                         totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAk.getAantal();
                     }
-                    
+            }
+            else
+            {
                 
+                if(artAk.getAantal() >= art.getMinimumaantal())
+                {
+                    //System.out.println(Integer.toString(aantal));
+                    totaalPrijs = totaalPrijs - (art.getPrijs() * artAk.getAantal());
+                    totaalPuntenPlus = totaalPuntenPlus - (art.getPtnwinst() * artAk.getAantal());
+                    System.out.println("13");
+                }
+                else
+                {
+                    System.out.println("14");
+                    //System.out.println(Integer.toString(aantal));
+                    totaalPrijs = totaalPrijs - (art.getPrijs() * artAk.getAantal());
+                }
             }
         
-        
             db.deleteArtikelaankoop(artAk);
+            System.out.println("verwijderd");
             
-            weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
-            totaalBedrag.setText(Double.toString(totaalPrijs));
-            puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
-            weergaveAfgetrokkenPunten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten() - puntenOver));
-            aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
+            
+
         }  
         else
         {
@@ -486,7 +482,12 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             txtProductVerwijderen.requestFocus();
         }
         
-        
+            weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
+            totaalBedrag.setText(Double.toString(totaalPrijs));
+            puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
+            weergaveAfgetrokkenPunten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten() - puntenOver));
+            aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
+            System.out.println("getoond");
         
         
         t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
