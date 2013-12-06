@@ -863,7 +863,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienrAankoop()  + ", " + a.getArtikelnr()+ ", '" + a.getWinkelnaam() + "', " + a.getAantal() + ", " + a.isMetPuntenBetaald() + ";");
+            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienrAankoop()  + ", " + a.getArtikelnr()+ ", '" + a.getWinkelnaam() + "', " + a.getAantal() + ", " + a.isMetPuntenBetaald() + ");");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -932,7 +932,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", " + a.getDatum() + ";");
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", " + a.getDatum().getYear() + "-" + a.getDatum().getMonth() + "-" + a.getDatum().getDay() + ";");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -957,10 +957,10 @@ public class Database {
     
     public int maxTransactienr(){
         try{
-            String sql = "SELECT MAX(transactienr) FROM aankoop;";
+            String sql = "SELECT MAX(transactienr) AS maximum FROM aankoop;";
             ResultSet srs = getData(sql);
                 if(srs.next()){
-                    int transactienr = srs.getInt("transactienr");
+                    int transactienr = srs.getInt("maximum");
                     this.closeConnection();
                     return transactienr;
                  }

@@ -20,7 +20,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private Spaarkaart actieveSpaarkaart;
     
     private Aankoop actieveAankoop;
-    private int transactienummer;
+    private Database db = new Database();
+    private int transactienummer = (db.maxTransactienr() + 1);
         
     
     private double totaalPrijs = 0.0;
@@ -31,16 +32,16 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     
     private Aankoop ak = null;
     
-    private Database db = new Database();
-    DefaultTableModel t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
-    
+    //DefaultTableModel t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
+    DefaultTableModel t = db.naarTabel("select * from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
+
     public VerkopenAfrekening() {
         initComponents();
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
-        this.transactienummer = db.maxTransactienr() + 1;
-        ak = new Aankoop(this.transactienummer, actieveVest.getVestigingId(),
+        ak = new Aankoop(transactienummer, actieveVest.getVestigingId(),
                                     actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), new Date());
+        db.addAankoop(ak);
     }
     
     
@@ -49,9 +50,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         setActieveVest(vest);
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
-        this.transactienummer = db.maxTransactienr() + 1;
-        ak = new Aankoop((this.transactienummer), actieveVest.getVestigingId(),
+        ak = new Aankoop((transactienummer), actieveVest.getVestigingId(),
                                     actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), new Date());
+        db.addAankoop(ak);
         initComponents();
     }
 
@@ -312,6 +313,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private void knopRegistreerAankoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopRegistreerAankoopActionPerformed
 
         VerkopenKlant s = new VerkopenKlant();
+                s.setActieveVest(actieveVest);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
                 setVisible(false);
@@ -326,7 +328,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
         
         Artikelaankoop artAk = new Artikelaankoop();
-        artAk.setTransactienrAankoop(ak.getTransactienr());
+        artAk.setTransactienrAankoop(transactienummer);
         artAk.setArtikelnr(Integer.parseInt(txtProductToevoegen.getText()));
         artAk.setWinkelNaam(actief.getWinkelnaam());
         artAk.setAantal(aantal);
@@ -395,7 +397,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
         
         
-        t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+        //t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+        t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
         tabelAankopen.setModel(t);
         
         txtProductToevoegen.setText("");
@@ -420,8 +423,12 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             db.deleteArtikelaankoop(artAk);
         
-            t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            //t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
             tabelAankopen.setModel(t);
+            
+            txtProductVerwijderen.setText("");
+            txtProductToevoegen.requestFocus();
         }
         else
         {
