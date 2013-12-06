@@ -706,6 +706,21 @@ public class Database {
         }
     }
     
+    public void updateAantalpunten(Account acc, int aantalPuntennieuw){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE account SET punten = " + aantalPuntennieuw + " WHERE accountnr = " + acc.getAccountnr());
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
     public ResultSet getMajor(int accountnr, Date datum, String winkelnaam){
         //try{
             String sql = "";
