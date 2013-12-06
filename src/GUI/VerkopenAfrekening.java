@@ -32,8 +32,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     
     private Aankoop ak = null;
     
-    //DefaultTableModel t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
-    DefaultTableModel t = db.naarTabel("select * from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
+    DefaultTableModel t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
+    //DefaultTableModel t = db.naarTabel("select * from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
 
     public VerkopenAfrekening() {
         initComponents();
@@ -397,8 +397,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
         
         
-        //t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
-        t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
+        t = db.naarTabel("select artikelnr, aantal, MetPuntenBetaald from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+        //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
         tabelAankopen.setModel(t);
         
         txtProductToevoegen.setText("");
@@ -423,8 +423,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             db.deleteArtikelaankoop(artAk);
         
-            //t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
-            t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
+            t = db.naarTabel("select 'artikelnr', 'aantal', 'MetPuntenBetaald' from artikelaankoop where transactienr = '" + this.transactienummer + "'");
+            //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
             tabelAankopen.setModel(t);
             
             txtProductVerwijderen.setText("");

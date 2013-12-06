@@ -932,7 +932,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", " + a.getDatum().getYear() + "-" + a.getDatum().getMonth() + "-" + a.getDatum().getDay() + ";");
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", '" + a.getDatum().getYear() + "-" + a.getDatum().getMonth() + "-" + a.getDatum().getDay() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
