@@ -240,13 +240,20 @@ public class Account
     
     public void isMajor(int accountnr, String winkelnaam){
         Account huidigIngelogdeAccount = db.getAccount(accountnr);
+        // Account ingelogdeAccount = db.getAccount(accountnummer waar boolean actief = true
+        // Major ingelogdeMajor = db.getMajor(accountnr winkel boolean);
         Account vorigeMajor = db.getAccount(db.getWinkel(winkelnaam).getAccount());
+        // Account huidigeMajor = db.getAccount(accountnr);
+        // eerst checkMajor(accountnr, winkel)
+        // true: Major huidigeMajor = db.getMajor(accountnr, winkel);
+        // false: Major huidigeMajor = db.addMajor(accountnr, winkel, false);
         
         if(isVip(huidigIngelogdeAccount.getAccountnr()))
         {
             if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr()) > totaalGeldJaar(vorigeMajor.getAccountnr()))
             {
                 this.setMajor(true);
+                // ingelogdeAccount.setActief
                 
                 if(jstartm.after(this.getDatumVorigJaar(datum)))
                 {
