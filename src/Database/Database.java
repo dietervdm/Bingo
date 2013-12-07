@@ -151,6 +151,22 @@ public class Database {
         
     }
     
+    public int getTotaalPuntenVerkregenAccount(int accountnummer, Date datum){
+        try{
+            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > " + datum.toString() + ");";
+            ResultSet srs = getData(sql);
+            int totaalbedrag = srs.getInt("totaalbedrag");
+            return totaalbedrag;
+
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+        
+    }
+    
     public void addWinkel(Winkel w){
         
         try{
