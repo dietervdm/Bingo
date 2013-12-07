@@ -232,7 +232,6 @@ public class Account
         Date volgendJaar = cal.getTime();
         return volgendJaar;
         
-        
     }
     
     public boolean isVip(int accountnr){
