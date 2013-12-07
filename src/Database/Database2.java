@@ -138,7 +138,7 @@ public class Database2 {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE major SET actief = 'true' WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
+            stmt.executeUpdate("UPDATE major SET actief = true WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
                     
             this.closeConnection();
         }
@@ -154,7 +154,7 @@ public class Database2 {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE major SET actief = 'false' WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
+            stmt.executeUpdate("UPDATE major SET actief = false WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
                     
             this.closeConnection();
         }
@@ -170,14 +170,14 @@ public class Database2 {
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
-                return true;
+                return false;
             }
-            else {this.closeConnection();return false;}
+            else {this.closeConnection();return true;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
-            return null;
+            return true;
         }
     }
     
@@ -263,7 +263,7 @@ public class Database2 {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO major VALUES ('" + winkelnaam + "', " + accountnr + ",CURRENT_DATE, true);");
+            stmt.executeUpdate("INSERT INTO major VALUES ('" + winkelnaam + "', " + accountnr + ",CURRENT_DATE, 'true');");
             this.closeConnection();
         }
         catch(SQLException sqle){

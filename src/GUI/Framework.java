@@ -442,8 +442,9 @@ public class Framework extends javax.swing.JFrame {
         Winkel winkel = d.getWinkel("testwinkel");
         
         if(!d.heeftMajor("testwinkel")){
-            d.addMajor("testwinkel",4);
+            d.addMajor("testwinkel",5);
     //             GEEF PUNTEN + STUUR MAIL
+            System.out.println("heeft geen major, geef punten");
         }
         
         Account huidigMajor = d.getMajor(winkel);
@@ -451,24 +452,21 @@ public class Framework extends javax.swing.JFrame {
         int a = d.getUitgegevenBedrag("testwinkel", huidigMajor.getAccountnr());
         int b = d.getUitgegevenBedrag("testwinkel", klant.getAccountnr());
 
-        System.out.println(a);
-        System.out.println(b);
         
-        Major huidig;
-        Major oud;
-        Major niew;
-        
-        if(b>a){
+        if(b>=a){
             d.deactiveerMajor("testwinkel", huidigMajor.getAccountnr());
-            if(d.wasMajor("testwinkel",4)){
-                d.activeerMajor("testwinkel",4);
-                if(d.krijgtPunten("testwinkel",4)){
+            System.out.println("b>=a");
+            if(d.wasMajor("testwinkel",5)){
+                d.activeerMajor("testwinkel",5);
+                if(d.krijgtPunten("testwinkel",5)){
     //             GEEF PUNTEN + STUUR MAIL
+                   System.out.println("was major, geef punten");
                 }
             }
             else{
                 d.addMajor("testwinkel",4);
     //             GEEF PUNTEN + STUUR MAIL
+                   System.out.println("was geen major, geef punten");
             }
 
         }
