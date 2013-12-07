@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Calendar;
 
 
 public class Account 
@@ -222,6 +223,17 @@ public class Account
 //    }
     
     // FUNCTIES VAN VIP SYSTEEM
+    
+    public Date getVorigJaar(){
+        
+        Calendar cal = Calendar.getInstance();
+        Date vandaag = cal.getTime();
+        cal.add(Calendar.YEAR, -1);
+        Date volgendJaar = cal.getTime();
+        return volgendJaar;
+        
+        
+    }
     
     public boolean isVip(int accountnr){
         return totaalPuntenJaar(accountnr) > 10000;
