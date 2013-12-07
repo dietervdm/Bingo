@@ -26,7 +26,11 @@ public class Framework extends javax.swing.JFrame {
 
         jMenu7 = new javax.swing.JMenu();
         knopTerug = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        txtAccountnr = new javax.swing.JTextField();
+        txtWinkelnaam = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Major1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -64,10 +68,28 @@ public class Framework extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Actie!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtAccountnr.setText("5");
+        txtAccountnr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtAccountnrActionPerformed(evt);
+            }
+        });
+
+        txtWinkelnaam.setText("testwinkel");
+        txtWinkelnaam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtWinkelnaamActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Klantnummer");
+
+        jLabel2.setText("Winkelnaam");
+
+        Major1.setText("Major");
+        Major1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Major1ActionPerformed(evt);
             }
         });
 
@@ -276,18 +298,40 @@ public class Framework extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(knopTerug))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(670, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(144, 144, 144)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtWinkelnaam, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(462, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(44, 44, 44)
+                    .addComponent(Major1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(658, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtWinkelnaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(127, 127, 127)
+                    .addComponent(Major1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(399, Short.MAX_VALUE)))
         );
 
         pack();
@@ -438,45 +482,17 @@ public class Framework extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Winkel winkel = d.getWinkel("testwinkel");
-        
-        if(!d.heeftMajor("testwinkel")){
-            d.addMajor("testwinkel",5);
-    //             GEEF PUNTEN + STUUR MAIL
-            System.out.println("heeft geen major, geef punten");
-        }
-        
-        Account huidigMajor = d.getMajor(winkel);
-        Account klant = d.getAccount(4);
-        int a = d.getUitgegevenBedrag("testwinkel", huidigMajor.getAccountnr());
-        int b = d.getUitgegevenBedrag("testwinkel", klant.getAccountnr());
+    private void txtAccountnrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountnrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAccountnrActionPerformed
 
-        
-        if(b>=a){
-            d.deactiveerMajor("testwinkel", huidigMajor.getAccountnr());
-            System.out.println("b>=a");
-            if(d.wasMajor("testwinkel",5)){
-                d.activeerMajor("testwinkel",5);
-                if(d.krijgtPunten("testwinkel",5)){
-    //             GEEF PUNTEN + STUUR MAIL
-                   System.out.println("was major, geef punten");
-                }
-            }
-            else{
-                d.addMajor("testwinkel",4);
-    //             GEEF PUNTEN + STUUR MAIL
-                   System.out.println("was geen major, geef punten");
-            }
+    private void txtWinkelnaamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWinkelnaamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtWinkelnaamActionPerformed
 
-        }
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void Major1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Major1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Major1ActionPerformed
 
     
     public static void main(String args[]) {
@@ -511,12 +527,14 @@ public class Framework extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Major1;
     private javax.swing.JMenuItem MenuknopAanpassenSpaarkaart;
     private javax.swing.JMenuItem MenuknopArtikelgegevens;
     private javax.swing.JMenuItem MenuknopToevoegenArtikel;
     private javax.swing.JMenuItem MenuknopToevoegenSpaarkaart;
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
@@ -539,5 +557,7 @@ public class Framework extends javax.swing.JFrame {
     private javax.swing.JMenu menuknopWinkelRapport;
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
+    private javax.swing.JTextField txtAccountnr;
+    private javax.swing.JTextField txtWinkelnaam;
     // End of variables declaration//GEN-END:variables
 }

@@ -114,9 +114,9 @@ public class Database2 {
     }
     
     
-    public Boolean wasMajor(String winkelnaam,int accountnr){
+    public Boolean wasMajor(Major m){
         try{
-            String sql = "SELECT * FROM major WHERE accountnr = " + accountnr + " AND winkelnaam = '" + winkelnaam + "';";
+            String sql = "SELECT * FROM major WHERE accountnr = " + m.getAccountnr() + " AND winkelnaam = '" + m.getWinkelnaam() + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -132,13 +132,13 @@ public class Database2 {
     }
     
     
-    public void activeerMajor(String winkelnaam, int accountnr){
+    public void activeerMajor(Major m){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE major SET actief = true WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
+            stmt.executeUpdate("UPDATE major SET actief = true WHERE accountnr = " + m.getAccountnr() + " and winkelnaam = '" + m.getWinkelnaam() + "'" );
                     
             this.closeConnection();
         }
@@ -148,13 +148,13 @@ public class Database2 {
         }
     }
     
-    public void deactiveerMajor(String winkelnaam, int accountnr){
+    public void deactiveerMajor(Major m){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE major SET actief = false WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
+            stmt.executeUpdate("UPDATE major SET actief = false WHERE accountnr = " + m.getAccountnr() + " and winkelnaam = '" + m.getWinkelnaam() + "'" );
                     
             this.closeConnection();
         }
@@ -164,9 +164,9 @@ public class Database2 {
         }
     }
     
-    public Boolean krijgtPunten(String winkelnaam, int accountnr){
+    public Boolean krijgtPunten(Major m){
         try{
-            String sql = "SELECT puntendatum FROM major WHERE accountnr = " + accountnr + " AND winkelnaam = '" + winkelnaam + "' AND puntendatum > CURRENT_DATE - INTERVAL '1' YEAR";
+            String sql = "SELECT puntendatum FROM major WHERE accountnr = " + m.getAccountnr() + " AND winkelnaam = '" + m.getWinkelnaam() + "' AND puntendatum > CURRENT_DATE - INTERVAL '1' YEAR";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -234,11 +234,11 @@ public class Database2 {
     }
     
     
-    public int getUitgegevenBedrag(String winkelnaam, int accountnr){
+    public int getUitgegevenBedrag(Major m){
         try{
         String sql = "SELECT SUM(prijzen.prijs*aantallen.aantal)FROM"
-                        + "(SELECT aantal,artikelnr FROM `artikelaankoop` WHERE transactienr IN (SELECT transactienr from aankoop where kaartnr IN (SELECT kaartnr FROM spaarkaart WHERE accountnr = " + accountnr + ") AND  datum > CURRENT_DATE - INTERVAL '1' YEAR)  AND metPuntenBetaald = 0)AS aantallen,"
-                        + "(SELECT prijs,artikelnr FROM artikel WHERE artikelnr IN( SELECT artikelnr FROM `artikelaankoop` WHERE transactienr IN (SELECT transactienr from aankoop where kaartnr IN (SELECT kaartnr FROM spaarkaart WHERE accountnr = 4) AND  datum > CURRENT_DATE - INTERVAL '1' YEAR)  AND metPuntenBetaald = 0) AND artikel.winkelnaam = '" + winkelnaam + "')AS prijzen"
+                        + "(SELECT aantal,artikelnr FROM `artikelaankoop` WHERE transactienr IN (SELECT transactienr from aankoop where kaartnr IN (SELECT kaartnr FROM spaarkaart WHERE accountnr = " + m.getAccountnr() + ") AND  datum > CURRENT_DATE - INTERVAL '1' YEAR)  AND metPuntenBetaald = 0)AS aantallen,"
+                        + "(SELECT prijs,artikelnr FROM artikel WHERE artikelnr IN( SELECT artikelnr FROM `artikelaankoop` WHERE transactienr IN (SELECT transactienr from aankoop where kaartnr IN (SELECT kaartnr FROM spaarkaart WHERE accountnr = 4) AND  datum > CURRENT_DATE - INTERVAL '1' YEAR)  AND metPuntenBetaald = 0) AND artikel.winkelnaam = '" + m.getWinkelnaam() + "')AS prijzen"
                         + " WHERE prijzen.artikelnr = aantallen.artikelnr";
         
             ResultSet srs = getData(sql);
@@ -258,12 +258,12 @@ public class Database2 {
         
     }
     
-    public void addMajor(String winkelnaam, int accountnr){
+    public void addMajor(Major m){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO major VALUES ('" + winkelnaam + "', " + accountnr + ",CURRENT_DATE, 'true');");
+            stmt.executeUpdate("INSERT INTO major VALUES ('" + m.getWinkelnaam() + "', " + m.getAccountnr() + ",CURRENT_DATE, 'true');");
             this.closeConnection();
         }
         catch(SQLException sqle){
