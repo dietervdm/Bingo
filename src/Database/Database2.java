@@ -93,121 +93,110 @@ public class Database2 {
     
     
     
-    
-    
-    
-    
-    public int aantalSpaarkaarten(){
+    public Account getMajor(Winkel w){
         try{
-            String sql = "SELECT COUNT(*) FROM spaarkaart";
+            String sql = "SELECT accountnr FROM major WHERE winkelnaam = '" + w.getWinkelnaam() + "' AND actief = true;";
             ResultSet srs = getData(sql);
             if(srs.next()){
-                int count = srs.getInt("count(*)");
+                int accountnr = srs.getInt("accountnr");
+                Account a = this.getAccount(accountnr);
                 this.closeConnection();
-                return count;
+                return a;
             }
-           
-            else{
-                this.closeConnection();
-                return -1;
-            }
+            else {this.closeConnection();return null;}
             
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
-            return -1;
+            return null;
         }
     }
     
     
-   
-    
-    public void addArtikelaankoop(Artikelaankoop a){
-        
+    public Account getAccount(int accountnr){
         try{
-            dbConnection = getConnection();
-            Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO artikelaankoop VALUES (" + a.getTransactienrAankoop()  + ", " + a.getArtikelnr()+ ", '" + a.getWinkelnaam() + "', " + a.getAantal() + ", " + a.isMetPuntenBetaald() + ";");
-            this.closeConnection();
+            String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + ";";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int accountnummer = srs.getInt("accountnr");
+                String naam = srs.getString("naam");
+                String email = srs.getString("email");
+                String adres = srs.getString("adres");
+                int punten = srs.getInt("punten");
+                boolean wolverine = srs.getBoolean("wolverine");
+                java.sql.Date startw = srs.getDate("startw");
+                boolean bigspender = srs.getBoolean("bigspender");
+                java.sql.Date startb = srs.getDate("startb");
+                boolean major = srs.getBoolean("major");
+                java.sql.Date startm = srs.getDate("startm");
+                boolean bedrijf = srs.getBoolean("bedrijf");
+                String btwnummer = srs.getString("btwnummer");
+                Account a = new Account(accountnummer,naam,email,adres,punten,wolverine,startw,bigspender,startb,major,startm,bedrijf,btwnummer);
+                this.closeConnection();
+                return a;
+            }
+            else return null;
+            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
+            return null;
+        }
+        
+        
+    }
+    
+    
+    public int getUitgegevenBedrag(String winkelnaam, int accountnr){
+        try{
+        String sql = "SELECT SUM(prijzen.prijs*aantallen.aantal)FROM"
+                        + "(SELECT aantal,artikelnr FROM `artikelaankoop` WHERE transactienr IN (SELECT transactienr from aankoop where kaartnr IN (SELECT kaartnr FROM spaarkaart WHERE accountnr = " + accountnr + ") AND  datum > CURRENT_DATE - INTERVAL '1' YEAR)  AND metPuntenBetaald = 0)AS aantallen,"
+                        + "(SELECT prijs,artikelnr FROM artikel WHERE artikelnr IN( SELECT artikelnr FROM `artikelaankoop` WHERE transactienr IN (SELECT transactienr from aankoop where kaartnr IN (SELECT kaartnr FROM spaarkaart WHERE accountnr = 4) AND  datum > CURRENT_DATE - INTERVAL '1' YEAR)  AND metPuntenBetaald = 0) AND artikel.winkelnaam = '" + winkelnaam + "')AS prijzen"
+                        + " WHERE prijzen.artikelnr = aantallen.artikelnr";
+        
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int bedrag = srs.getInt("SUM(prijzen.prijs*aantallen.aantal)");
+                this.closeConnection();
+                return bedrag;
+            }
+            else {this.closeConnection();return 0;}
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return 0;
+        }
+        
+    }
+    
+    
+    public Winkel getWinkel(String winkelnaam){
+        try{
+            String sql = "SELECT * FROM winkel WHERE winkelnaam = '" + winkelnaam + "';";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int accountnr = srs.getInt("accountnr");
+                String naam = srs.getString("winkelnaam");
+                String paswoord = srs.getString("paswoord");
+                Winkel w = new Winkel(naam,accountnr,paswoord);
+                this.closeConnection();
+                return w;
+            }
+            else {this.closeConnection();return null;}
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
         }
     }
     
     
-    
-    
-    public boolean minstensArtikelPlus(String winkelnaam){
-
-        int aantalArtikelen = 0;
-        int aantalArtikelenNietPlus = 0;
-                
-        try{
-            String sql = "SELECT COUNT(*) FROM Artikel where WINKELNAAM = '" + winkelnaam + "'";
-            ResultSet srs = getData(sql);
-            if(srs.next()){
-                aantalArtikelen = srs.getInt("count(*)");
-            }           
-            
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = 'test1' AND ptnwinst = 0";
-            ResultSet srs2 = getData(sql2);
-            if(srs2.next()){
-                aantalArtikelenNietPlus = srs.getInt("count(*)");
-            }
-            
-            this.closeConnection();
-            
-            if(aantalArtikelen == aantalArtikelenNietPlus){
-                return false;
-            }
-            else return true;
-        }
-        
-        
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            this.closeConnection();
-            return false;
-        }
-     }
-  
-    
-  public boolean minstensArtikelMin(String winkelnaam){
-
-        int aantalArtikelen = 0;
-        int aantalArtikelenNietMin = 0;
-                
-        try{
-            String sql = "SELECT COUNT(*) FROM Artikel where WINKELNAAM = '" + winkelnaam + "'";
-            ResultSet srs = getData(sql);
-            if(srs.next()){
-                aantalArtikelen = srs.getInt("count(*)");
-            }           
-            
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = 'test1' AND ptnkost = null";
-            ResultSet srs2 = getData(sql2);
-            if(srs2.next()){
-                aantalArtikelenNietMin = srs.getInt("count(*)");
-            }
-            
-            this.closeConnection();
-            
-            if(aantalArtikelen == aantalArtikelenNietMin){
-                return false;
-            }
-            else return true;
-        }
-        
-        
-        catch(SQLException sqle){
-            System.out.println("SQLException: " + sqle.getMessage());
-            this.closeConnection();
-            return false;
-        }
-     }
   }  
     
     
