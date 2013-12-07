@@ -122,7 +122,7 @@ public class Database {
     
     public int getAantalVerschillendeWinkels(Account a, Date datum){
         try{
-            String sql = "SELECT COUNT AS aantal(DISTINCT winkelnaam)FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") and aankoop.datum = " + datum + ";";
+            String sql = "SELECT COUNT AS aantal(DISTINCT winkelnaam)FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") and aankoop.datum > '" + datum.toString() + "';";
             ResultSet srs = getData(sql);
             int aantal = srs.getInt("aantal");
             return aantal;
