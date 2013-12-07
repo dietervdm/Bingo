@@ -16,6 +16,12 @@ public class Major
     public Major()
     {}
     
+    public Major(String winkelnaam, int accountnr)
+    {
+        this.accountnr = accountnr;
+        this.winkelnaam = winkelnaam;
+    }
+    
     public Major(int accountnr, String winkelnaam, Date puntendatum, boolean actief)
     {
         this.accountnr = accountnr;
