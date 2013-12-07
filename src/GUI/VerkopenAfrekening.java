@@ -331,12 +331,16 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 //        int ptnmin = art.getPtnkost();
 //        
         int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
+        System.out.println(aantal);
         
         Artikelaankoop artAk = new Artikelaankoop();
         artAk.setTransactienrAankoop(transactienummer);
         artAk.setArtikelnr(Integer.parseInt(txtProductToevoegen.getText()));
         artAk.setWinkelNaam(actief.getWinkelnaam());
         artAk.setAantal(aantal);
+        System.out.println(artAk.getAantal());
+        
+//        Artikelaankoop artAk = new Artikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam(), aantal, false);
         
         if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
         {
@@ -388,6 +392,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 }
             }
             db.addArtikelaankoop(artAk);
+//            System.out.println(db.getArtikelaankoop(transactienummer, aantal, actief.getWinkelnaam()).getAantal());
         }
         
         else
@@ -431,45 +436,50 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private void knopVerwijderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderActionPerformed
         if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
         {
-            Artikelaankoop artAk = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
+            Artikelaankoop artAkVerw = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
+            System.out.println(artAkVerw.getAantal());
             
-            Artikel art = db.getArtikel(artAk.getArtikelnr(), actief.getWinkelnaam());
+            Artikel art = db.getArtikel(Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             
-            if(artAk.isMetPuntenBetaald())
+            if(artAkVerw.isMetPuntenBetaald())
             {
                 if(art.getMinimumbedrag() < totaalPrijs)
                     {
+                        totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()).getAantal();
+                        puntenOver = puntenOver + art.getPtnkost() * db.getArtikelaankoop(transactienummer, puntenOver, actief.getWinkelnaam()).getAantal();
+                        artikelenMetPunten = artikelenMetPunten - db.getArtikelaankoop(transactienummer, puntenOver, actief.getWinkelnaam()).getAantal();
                         System.out.println("11");
-                        totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * artAk.getAantal();
-                        puntenOver = puntenOver + art.getPtnkost() * artAk.getAantal();
-                        artikelenMetPunten = artikelenMetPunten - artAk.getAantal();
                     }
                     else
                     {
                         System.out.println("12");
-                        totaalPrijs = totaalPrijs - art.getPrijs() * artAk.getAantal();
-                        totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAk.getAantal();
+                        totaalPrijs = totaalPrijs - art.getPrijs() * artAkVerw.getAantal();
+                        totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAkVerw.getAantal();
                     }
             }
             else
             {
                 
-                if(artAk.getAantal() >= art.getMinimumaantal())
+                if(artAkVerw.getAantal() >= art.getMinimumaantal())
                 {
                     //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs - (art.getPrijs() * artAk.getAantal());
-                    totaalPuntenPlus = totaalPuntenPlus - (art.getPtnwinst() * artAk.getAantal());
+                    totaalPrijs =- art.getPrijs() * artAkVerw.getAantal();
+                    System.out.println(artAkVerw.getAantal());
+                    totaalPuntenPlus =- art.getPtnwinst() * artAkVerw.getAantal();
+                    System.out.println(artAkVerw.getAantal());
                     System.out.println("13");
                 }
                 else
                 {
-                    System.out.println("14");
+                    
                     //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs - (art.getPrijs() * artAk.getAantal());
+                    totaalPrijs =- art.getPrijs() * artAkVerw.getAantal();
+                    System.out.println(artAkVerw.getAantal());
+                    System.out.println("14");
                 }
             }
         
-            db.deleteArtikelaankoop(artAk);
+            db.deleteArtikelaankoop(artAkVerw);
             System.out.println("verwijderd");
             
             
