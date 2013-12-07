@@ -135,11 +135,11 @@ public class Database {
         }
     }
     
-    public int getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
+    public double getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
         try{
             String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > " + datum.toString() + ");";
             ResultSet srs = getData(sql);
-            int totaalbedrag = srs.getInt("totaalbedrag");
+            double totaalbedrag = srs.getDouble("totaalbedrag");
             return totaalbedrag;
 
         }
