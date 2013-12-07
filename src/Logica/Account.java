@@ -224,7 +224,7 @@ public class Account
     
     // FUNCTIES VAN VIP SYSTEEM
     
-    public Date getVorigJaar(){
+    public static Date getVorigJaar(){
         
         Calendar cal = Calendar.getInstance();
         Date vandaag = cal.getTime();
@@ -238,7 +238,7 @@ public class Account
         return totaalPuntenJaar(accountnr) > 10000;
     }
     
-    public void isMajor(int accountnr, String winkelnaam){
+    public void isMajorWorden(int accountnr, String winkelnaam){
         Account huidigIngelogdeAccount = db.getAccount(accountnr);
         // Account ingelogdeAccount = db.getAccount(accountnummer waar boolean actief = true
         // Major ingelogdeMajor = db.getMajor(accountnr winkel boolean);
@@ -255,16 +255,16 @@ public class Account
                 this.setMajor(true);
                 // ingelogdeAccount.setActief
                 
-                if(jstartm.after(this.getDatumVorigJaar(datum)))
+                if(jstartm.after(getVorigJaar()))
                 {
                     this.setPunten(punten + 100);
                     huidigIngelogdeAccount.sendMailGoed("major", "100");
-                    vorigeMajor.sentMailSlecht(db.getWinkel(winkelnaam), "Major");
+                    vorigeMajor.sendMailSlecht("Major");
                 }
                 else
                 {
-                    this.sendMailGoed(db.getWinkel(winkelnaam), "Major", "0");
-                    db.getAccount(db.getWinkel(winkelnaam).getAccount()).sentMailSlecht(db.getWinkel(winkelnaam), "major");
+                    this.sendMailGoed("Major", "0");
+                    db.getAccount(db.getWinkel(winkelnaam).getAccount()).sendMailSlecht("major");
                 }
             }
             else
@@ -280,20 +280,21 @@ public class Account
         //OPSLAAN NAAR DE DATABASE
     }
     
-    public void isWolverine(String winkelnaam){
+    public void isWolverineWorden(){
         if(this.isVip(this.getAccountnr()))
         {
-            if(db.getAantalVerschillendeWinkels(this.) > 19)
+            if(db.getAantalVerschillendeWinkels(this) > 19)
             {
-                if(jstartw.before(getDatumVorigJaar(datum)))
+                if(jstartw.before(getVorigJaar()))
                 {
                     this.setPunten(punten + 600);
-                    this.sendMailGoed(db.getWinkel(winkelnaam), "Wolverine", "600");
-                    this.setStartw(datum);
+                    this.sendMailGoed("Wolverine", "600");
+                    Date vandaag = new Date();
+                    this.setStartw(vandaag);
                 }
                 else
                 {
-                    this.sendMailGoed(db.getWinkel(winkelnaam), "Wolverine", "0");
+                    this.sendMailGoed("Wolverine", "0");
                 }
                 this.setWolverine(true);
             }
@@ -302,26 +303,27 @@ public class Account
         }
         else
             this.setWolverine(false);
-        System.out.println(db.getAantalVerschillendeWinkels(this,datum));
+        System.out.println(db.getAantalVerschillendeWinkels(this));
         
         // OPSLAAN NAAR DE DATABASE
         
     }
     
-    public void isBigSpender(String winkelnaam, Date datum){
-        if(this.isVip(this.getAccountnr(), datum))
+    public void isBigSpenderWorden(){
+        if(this.isVip(this.getAccountnr()))
         {
-            if(this.totaalGeldJaar(this.accountnr, datum) > 5000)
+            if(this.totaalGeldJaar(this.accountnr) > 5000)
             {
-                if(jstartb.before(getDatumVorigJaar(datum)))
+                if(jstartb.before(getVorigJaar()))
                 {
                     this.setPunten(punten + 500);
-                    this.sendMailGoed(db.getWinkel(winkelnaam), "Bigspender", "600");
-                    this.setStartw(datum);
+                    this.sendMailGoed("Bigspender", "600");
+                    Date vandaag = new Date();
+                    this.setStartw(vandaag);
                 }
                 else
                 {
-                    this.sendMailGoed(db.getWinkel(winkelnaam), "Bigspender", "0");
+                    this.sendMailGoed("Bigspender", "0");
                 }
                 this.setBigspender(true);
             }
@@ -389,7 +391,7 @@ public class Account
         outputStream.close();
     }
     
-    public void sentMailSlecht(String badge){
+    public void sendMailSlecht(String badge){
         String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
         PrintWriter outputStream = null;
         
