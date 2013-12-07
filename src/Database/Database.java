@@ -135,6 +135,22 @@ public class Database {
         }
     }
     
+    public int getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
+        try{
+            String sql = "SELECT SUM(totaalPrijs) FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum = " + datum + ");";
+            ResultSet srs = getData(sql);
+            int aantal = srs.getInt("aantal");
+            return aantal;
+
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+        
+    }
+    
     public void addWinkel(Winkel w){
         
         try{
