@@ -371,7 +371,8 @@ public class Account
         }
         
         
-            String line = "Beste " + this.getNaam() + ", \n\n"
+            String line = "<Send to" + this.getEmail() + "> \n\n"
+                          + "Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
                           + "U bent " + badge + " geworden./n "
                           + "U krijgt " + punten + " punten bij op uw account. \n"
