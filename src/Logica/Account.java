@@ -224,7 +224,7 @@ public class Account
     // FUNCTIES VAN VIP SYSTEEM
     
     public boolean isVip(int accountnr, Date datum){
-        return totaalPuntenJaar(accountnr, datum) > 10000;
+        return totaalPuntenJaar(accountnr, getDatumVorigJaar(datum)) > 10000;
     }
     
     public void isMajor(int accountnr, Date datum, String winkelnaam){
@@ -337,15 +337,11 @@ public class Account
     
     
     public int totaalPuntenJaar(int accountnr, Date datum){
-        int totaalPunten = 0; //= db.getTotaalVerworvenPuntenAccount(accountnr, getDatumVorigJaar(datum));
-        
-        return totaalPunten;
-        
+        return db.getTotaalPuntenVerkregenAccount(accountnr, getDatumVorigJaar(datum));        
     }
     
     public double totaalGeldJaar(int accountnr, Date datum){
-        double totaalGeld = 0; // db.getTotaalGespendeerdBedragAccount(accountnr, getDatumVorigJaar(datum));
-        return totaalGeld;
+        return db.getTotaalGespendeerdeBedragAccount(this.accountnr, getDatumVorigJaar(datum));
     }
     
     public void sendMailGoed(Winkel winkel,String badge, String punten){

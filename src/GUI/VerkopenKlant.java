@@ -106,11 +106,11 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
                 if(db.checkSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())))
                 {
-//                    Account acc = db.getAccount(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr());
-//                    acc.isVip(acc.getAccountnr(), new Date());
-//                    acc.isMajor(acc.getAccountnr(), new Date(), actief.getWinkelnaam());
-//                    acc.isWolverine(actief.getWinkelnaam(), new Date());
-//                    acc.isBigSpender(actief.getWinkelnaam(), new Date());
+                    Account acc = db.getAccount(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr());
+                    acc.isVip(acc.getAccountnr(), new Date());
+                    acc.isMajor(acc.getAccountnr(), new Date(), actief.getWinkelnaam());
+                    acc.isWolverine(actief.getWinkelnaam(), new Date());
+                    acc.isBigSpender(actief.getWinkelnaam(), new Date());
                     
                     //Spaarkaart sk = db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText()));
                     PopUpSpaarkaart s = new PopUpSpaarkaart(5, actieveVest, db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())));
