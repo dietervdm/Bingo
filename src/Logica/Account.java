@@ -251,7 +251,7 @@ public class Account
                 if(jstartm.after(this.getDatumVorigJaar(datum)))
                 {
                     this.setPunten(punten + 100);
-                    huidigIngelogdeAccount.sendMailGoed(db.getWinkel(winkelnaam), "major", "100");
+                    huidigIngelogdeAccount.sendMailGoed("major", "100");
                     vorigeMajor.sentMailSlecht(db.getWinkel(winkelnaam), "Major");
                 }
                 else
