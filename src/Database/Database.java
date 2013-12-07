@@ -135,11 +135,11 @@ public class Database {
         }
     }
     
-    public int getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
+    public double getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
         try{
-            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > " + datum.toString() + ");";
+            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > '" + datum.toString() + "');";
             ResultSet srs = getData(sql);
-            int totaalbedrag = srs.getInt("totaalbedrag");
+            double totaalbedrag = srs.getDouble("totaalbedrag");
             return totaalbedrag;
 
         }
@@ -153,7 +153,7 @@ public class Database {
     
     public int getTotaalPuntenVerkregenAccount(int accountnummer, Date datum){
         try{
-            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > " + datum.toString() + ");";
+            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > '" + datum.toString() + "');";
             ResultSet srs = getData(sql);
             int totaalbedrag = srs.getInt("totaalbedrag");
             return totaalbedrag;
@@ -1043,7 +1043,7 @@ public class Database {
     
     public int aantalArtikelen(String winkelnaam){
         try{
-            String sql = "SELECT COUNT(*) FROM artikel where WINKELNAAM = '" + winkelnaam + "'";
+            String sql = "SELECT COUNT(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int a = srs.getInt("count(*)");
@@ -1081,7 +1081,7 @@ public class Database {
     
     public int aantalArtikelenNietMin(String winkelnaam){
         try{
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "' AND ptnwinst = 0";
+            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "' AND ptnwinst = 0;";
             ResultSet srs2 = getData(sql2);
             if(srs2.next()){
                 int a = srs2.getInt("count(*)");
@@ -1100,7 +1100,7 @@ public class Database {
     
     public int aantalVestigingen(String winkelnaam){
         try{
-            String sql = "SELECT COUNT(*) FROM vestiging where winkelnaam = '" + winkelnaam + "'";
+            String sql = "SELECT COUNT(*) FROM vestiging where winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int count = srs.getInt("count(*)");

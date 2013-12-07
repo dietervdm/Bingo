@@ -114,6 +114,91 @@ public class Database2 {
     }
     
     
+    public Boolean wasMajor(String winkelnaam,int accountnr){
+        try{
+            String sql = "SELECT * FROM major WHERE accountnr = " + accountnr + " AND winkelnaam = '" + winkelnaam + "';";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    
+    public void activeerMajor(String winkelnaam, int accountnr){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE major SET actief = true WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
+                    
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public void deactiveerMajor(String winkelnaam, int accountnr){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE major SET actief = false WHERE accountnr = " + accountnr + " and winkelnaam = '" + winkelnaam + "'" );
+                    
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public Boolean krijgtPunten(String winkelnaam, int accountnr){
+        try{
+            String sql = "SELECT puntendatum FROM major WHERE accountnr = " + accountnr + " AND winkelnaam = '" + winkelnaam + "' AND puntendatum > CURRENT_DATE - INTERVAL '1' YEAR";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return false;
+            }
+            else {this.closeConnection();return true;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return true;
+        }
+    }
+    
+    public Boolean heeftMajor(String winkelnaam){
+        try{
+            String sql = "SELECT puntendatum FROM major WHERE winkelnaam = '" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return false;
+        }
+    }
+    
+    
     public Account getAccount(int accountnr){
         try{
             String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + ";";
@@ -171,6 +256,20 @@ public class Database2 {
             return 0;
         }
         
+    }
+    
+    public void addMajor(String winkelnaam, int accountnr){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            stmt.executeUpdate("INSERT INTO major VALUES ('" + winkelnaam + "', " + accountnr + ",CURRENT_DATE, 'true');");
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
     }
     
     
