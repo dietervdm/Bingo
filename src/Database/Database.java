@@ -135,6 +135,38 @@ public class Database {
         }
     }
     
+    public int getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
+        try{
+            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > " + datum.toString() + ");";
+            ResultSet srs = getData(sql);
+            int totaalbedrag = srs.getInt("totaalbedrag");
+            return totaalbedrag;
+
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+        
+    }
+    
+    public int getTotaalPuntenVerkregenAccount(int accountnummer, Date datum){
+        try{
+            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > " + datum.toString() + ");";
+            ResultSet srs = getData(sql);
+            int totaalbedrag = srs.getInt("totaalbedrag");
+            return totaalbedrag;
+
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+        
+    }
+    
     public void addWinkel(Winkel w){
         
         try{
@@ -947,7 +979,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", '" + a.getDatum().getYear() + "-" + a.getDatum().getMonth() + "-" + a.getDatum().getDay() + "');");
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", '" + a.getDatum().toString() + "', 0.0, 0;");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -968,6 +1000,24 @@ public class Database {
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
         }
+    }
+    
+    public void schrijfTotaalPrijsEnTotaalPtnNaarDatabase(int transactienr,int prijs, int punten){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+
+            stmt.executeUpdate("UPDATE aankoop SET totaalPrijs = " + prijs + " WHERE transactienr = " + transactienr + ";");
+            stmt.executeUpdate("UPDATE spaarkaart SET totaalPtnBij = " + punten + " WHERE transactienr = " + transactienr + ";");
+            
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+        
     }
     
     public int maxTransactienr(){

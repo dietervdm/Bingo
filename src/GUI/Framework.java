@@ -437,16 +437,20 @@ public class Framework extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Winkel huidig = d.getWinkel("testwinkel");
+        
         Account huidigMajor = d.getMajor(huidig);
-       
-        System.out.println(huidigMajor.getAccountnr());
+        Account klant = d.getAccount(4);
+        int a = d.getUitgegevenBedrag("testwinkel", huidigMajor.getAccountnr());
+        int b = d.getUitgegevenBedrag("testwinkel", klant.getAccountnr());
+
+        System.out.println(a);
+        System.out.println(b);
+        
+        if(b>a){
+            
+        }
         
         
-        
-        
-        
-        
-        System.out.print(d.getUitgegevenBedrag("testwinkel", 4));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
