@@ -445,8 +445,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             {
                 if(art.getMinimumbedrag() < totaalPrijs)
                     {
-                        totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()).getAantal();
-                        puntenOver = puntenOver + art.getPtnkost() * db.getArtikelaankoop(transactienummer, puntenOver, actief.getWinkelnaam()).getAantal();
+                        totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * artAkVerw.getAantal();
+                        puntenOver = puntenOver + art.getPtnkost() * artAkVerw.getAantal();
                         artikelenMetPunten = artikelenMetPunten - db.getArtikelaankoop(transactienummer, puntenOver, actief.getWinkelnaam()).getAantal();
                         System.out.println("11");
                     }

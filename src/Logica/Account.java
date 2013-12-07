@@ -240,12 +240,12 @@ public class Account
                 if(jstartm.after(this.getDatumVorigJaar(datum)))
                 {
                     this.setPunten(punten + 100);
-                    huidigIngelogdeAccount.sentMailGoed(db.getWinkel(winkelnaam), "major", "100");
+                    huidigIngelogdeAccount.sendMailGoed(db.getWinkel(winkelnaam), "major", "100");
                     vorigeMajor.sentMailSlecht(db.getWinkel(winkelnaam), "Major");
                 }
                 else
                 {
-                    this.sentMailGoed(db.getWinkel(winkelnaam), "Major", "0");
+                    this.sendMailGoed(db.getWinkel(winkelnaam), "Major", "0");
                     db.getAccount(db.getWinkel(winkelnaam).getAccount()).sentMailSlecht(db.getWinkel(winkelnaam), "major");
                 }
             }
@@ -270,12 +270,12 @@ public class Account
                 if(jstartw.before(getDatumVorigJaar(datum)))
                 {
                     this.setPunten(punten + 600);
-                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "600");
+                    this.sendMailGoed(db.getWinkel(winkelnaam), "Wolverine", "600");
                     this.setStartw(datum);
                 }
                 else
                 {
-                    this.sentMailGoed(db.getWinkel(winkelnaam), "Wolverine", "0");
+                    this.sendMailGoed(db.getWinkel(winkelnaam), "Wolverine", "0");
                 }
                 this.setWolverine(true);
             }
@@ -298,12 +298,12 @@ public class Account
                 if(jstartb.before(getDatumVorigJaar(datum)))
                 {
                     this.setPunten(punten + 500);
-                    this.sentMailGoed(db.getWinkel(winkelnaam), "Bigspender", "600");
+                    this.sendMailGoed(db.getWinkel(winkelnaam), "Bigspender", "600");
                     this.setStartw(datum);
                 }
                 else
                 {
-                    this.sentMailGoed(db.getWinkel(winkelnaam), "Bigspender", "0");
+                    this.sendMailGoed(db.getWinkel(winkelnaam), "Bigspender", "0");
                 }
                 this.setBigspender(true);
             }
@@ -337,30 +337,18 @@ public class Account
     
     
     public int totaalPuntenJaar(int accountnr, Date datum){
-        int totaalPunten = 0;
-        //functie --> alle aankopen van het vorig jaar van een account: daar alle punten van nemen
-        ArrayList<Aankoop> aankopen = new ArrayList<Aankoop>();
+        int totaalPunten = 0; //= db.getTotaalVerworvenPuntenAccount(accountnr, getDatumVorigJaar(datum));
         
-//        for(int i=0; i<aankopen.size(); i++)
-//        {
-//            if(aankopen.get(i).getDatum().after(datum.setYear(datum.getYear()-1)))
-//            {
-//                aankopen.get(i)
-//            }
-//        }
         return totaalPunten;
         
     }
     
     public double totaalGeldJaar(int accountnr, Date datum){
-        double totaalGeld = 0.0;
-        //functie --> alle aankopen van het vorig jaar van een account: daar totaal gespendeerd geld van nemen
-        // select * from aankoop where accountnr = ...
-        
+        double totaalGeld = 0; // db.getTotaalGespendeerdBedragAccount(accountnr, getDatumVorigJaar(datum));
         return totaalGeld;
     }
     
-    public void sentMailGoed(Winkel winkel,String badge, String punten){
+    public void sendMailGoed(Winkel winkel,String badge, String punten){
         String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
         PrintWriter outputStream = null;
         
