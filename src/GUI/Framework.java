@@ -64,7 +64,7 @@ public class Framework extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Actie!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -271,18 +271,21 @@ public class Framework extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(knopTerug)
-                    .addComponent(jButton1))
-                .addContainerGap(715, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(knopTerug))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(670, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -436,9 +439,14 @@ public class Framework extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuknopToevoegenSpaarkaartActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Winkel huidig = d.getWinkel("testwinkel");
+        Winkel winkel = d.getWinkel("testwinkel");
         
-        Account huidigMajor = d.getMajor(huidig);
+        if(!d.heeftMajor("testwinkel")){
+            d.addMajor("testwinkel",4);
+    //             GEEF PUNTEN + STUUR MAIL
+        }
+        
+        Account huidigMajor = d.getMajor(winkel);
         Account klant = d.getAccount(4);
         int a = d.getUitgegevenBedrag("testwinkel", huidigMajor.getAccountnr());
         int b = d.getUitgegevenBedrag("testwinkel", klant.getAccountnr());
@@ -446,9 +454,28 @@ public class Framework extends javax.swing.JFrame {
         System.out.println(a);
         System.out.println(b);
         
+        Major huidig;
+        Major oud;
+        Major niew;
+        
         if(b>a){
-            
+            d.deactiveerMajor("testwinkel", huidigMajor.getAccountnr());
+            if(d.wasMajor("testwinkel",4)){
+                d.activeerMajor("testwinkel",4);
+                if(d.krijgtPunten("testwinkel",4)){
+    //             GEEF PUNTEN + STUUR MAIL
+                }
+            }
+            else{
+                d.addMajor("testwinkel",4);
+    //             GEEF PUNTEN + STUUR MAIL
+            }
+
         }
+        
+        
+        
+        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
