@@ -216,24 +216,24 @@ public class Account
             this.bedrijf = false;
     }
     
-    public Date getDatumVorigJaar(Date datum){
-        datum.setYear(datum.getYear()-1);
-        return datum;
-    }
+//    public Date getDatumVorigJaar(Date datum){
+//        datum.setYear(datum.getYear()-1);
+//        return datum;
+//    }
     
     // FUNCTIES VAN VIP SYSTEEM
     
-    public boolean isVip(int accountnr, Date datum){
-        return totaalPuntenJaar(accountnr, getDatumVorigJaar(datum)) > 10000;
+    public boolean isVip(int accountnr){
+        return totaalPuntenJaar(accountnr) > 10000;
     }
     
-    public void isMajor(int accountnr, Date datum, String winkelnaam){
+    public void isMajor(int accountnr, String winkelnaam){
         Account huidigIngelogdeAccount = db.getAccount(accountnr);
         Account vorigeMajor = db.getAccount(db.getWinkel(winkelnaam).getAccount());
         
-        if(isVip(huidigIngelogdeAccount.getAccountnr(), datum))
+        if(isVip(huidigIngelogdeAccount.getAccountnr()))
         {
-            if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr(), datum) > totaalGeldJaar(vorigeMajor.getAccountnr(), datum))
+            if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr()) > totaalGeldJaar(vorigeMajor.getAccountnr()))
             {
                 this.setMajor(true);
                 
@@ -262,10 +262,10 @@ public class Account
         //OPSLAAN NAAR DE DATABASE
     }
     
-    public void isWolverine(String winkelnaam, Date datum){
-        if(this.isVip(this.getAccountnr(), datum))
+    public void isWolverine(String winkelnaam){
+        if(this.isVip(this.getAccountnr()))
         {
-            if(db.getAantalVerschillendeWinkels(this, getDatumVorigJaar(datum)) > 19)
+            if(db.getAantalVerschillendeWinkels(this.) > 19)
             {
                 if(jstartw.before(getDatumVorigJaar(datum)))
                 {
@@ -336,15 +336,15 @@ public class Account
     }
     
     
-    public int totaalPuntenJaar(int accountnr, Date datum){
-        return db.getTotaalPuntenVerkregenAccount(accountnr, getDatumVorigJaar(datum));        
+    public int totaalPuntenJaar(int accountnr){
+        return db.getTotaalPuntenVerkregenAccount(accountnr);        
     }
     
-    public double totaalGeldJaar(int accountnr, Date datum){
-        return db.getTotaalGespendeerdeBedragAccount(this.accountnr, getDatumVorigJaar(datum));
+    public double totaalGeldJaar(int accountnr){
+        return db.getTotaalGespendeerdeBedragAccount(this.accountnr);
     }
     
-    public void sendMailGoed(Winkel winkel,String badge, String punten){
+    public void sendMailGoed(String badge, String punten){
         String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
         PrintWriter outputStream = null;
         
@@ -361,7 +361,7 @@ public class Account
         
         
             String line = "Beste " + this.getNaam() + ", \n\n"
-                          + "Bedankt om bij " + winkel.getWinkelnaam() + "klant te zijn. \n"
+                          + "Bedankt om bij Bingo klant te zijn. \n"
                           + "U bent " + badge + " geworden./n "
                           + "U krijgt " + punten + " punten bij op uw account. \n"
                           + "U heeft nu " + this.getPunten() + " punten";
@@ -370,7 +370,7 @@ public class Account
         outputStream.close();
     }
     
-    public void sentMailSlecht(Winkel winkel,String badge){
+    public void sentMailSlecht(String badge){
         String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
         PrintWriter outputStream = null;
         
@@ -388,11 +388,11 @@ public class Account
         
             String line = "<Send to" + this.getEmail() + "> \n\n" 
                           + "Beste " + this.getNaam() + ", \n\n"
-                          + "Bedankt om bij " + winkel.getWinkelnaam() + "klant te zijn. \n"
+                          + "Bedankt om bij Bingo klant te zijn. \n"
                           + "U bent uw " + badge + " - Badge helaas kwijtgeraakt.";
             outputStream.println(line);
         
         outputStream.close();
     }
     
-}
+    }

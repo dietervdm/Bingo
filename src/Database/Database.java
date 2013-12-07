@@ -120,9 +120,9 @@ public class Database {
         return new DefaultTableModel(data, kolommen);
     }
     
-    public int getAantalVerschillendeWinkels(Account a, Date datum){
+    public int getAantalVerschillendeWinkels(Account a){
         try{
-            String sql = "SELECT COUNT AS aantal(DISTINCT winkelnaam)FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") and aankoop.datum > '" + datum.toString() + "';";
+            String sql = "SELECT COUNT AS aantal(DISTINCT winkelnaam)FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") and (aankoop.datum > CURDATE() );";
             ResultSet srs = getData(sql);
             int aantal = srs.getInt("aantal");
             return aantal;
@@ -135,9 +135,9 @@ public class Database {
         }
     }
     
-    public double getTotaalGespendeerdeBedragAccount(int accountnummer, Date datum){
+    public double getTotaalGespendeerdeBedragAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > '" + datum.toString() + "');";
+            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > DATEADD(year, -1, CURDATE() );";
             ResultSet srs = getData(sql);
             double totaalbedrag = srs.getDouble("totaalbedrag");
             return totaalbedrag;
@@ -151,9 +151,9 @@ public class Database {
         
     }
     
-    public int getTotaalPuntenVerkregenAccount(int accountnummer, Date datum){
+    public int getTotaalPuntenVerkregenAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > '" + datum.toString() + "');";
+            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > DATEADD(year, -1, CURDATE()) );";
             ResultSet srs = getData(sql);
             int totaalbedrag = srs.getInt("totaalbedrag");
             return totaalbedrag;
@@ -275,7 +275,7 @@ public class Database {
         
     public Boolean checkArtikel(int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "' and artikelnr = " + artikelnr + ";";
+            String sql = "SELECT * FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (artikelnr = " + artikelnr + ");";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -292,7 +292,7 @@ public class Database {
      
     public Artikel getArtikel(int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "' and artikelnr = " + artikelnr + ";";
+            String sql = "SELECT * FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (artikelnr = " + artikelnr + ");";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 String naam = srs.getString("winkelnaam");
@@ -322,7 +322,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from artikel WHERE winkelnaam = '" + a.getWinkelnaam() + "' and artikelnr = " + a.getArtikelnr() + ";");
+            stmt.executeUpdate("DELETE from artikel WHERE (winkelnaam = '" + a.getWinkelnaam() + "') and (artikelnr = " + a.getArtikelnr() + ");");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -337,13 +337,13 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE artikel SET artikelnaam = '" + nieuw.getArtikelnaam() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
-            stmt.executeUpdate("UPDATE artikel SET prijs = '" + nieuw.getPrijs() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
-            stmt.executeUpdate("UPDATE artikel SET ptnwinst = '" + nieuw.getPtnwinst() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
-            stmt.executeUpdate("UPDATE artikel SET minimumaantal = '" + nieuw.getMinimumaantal() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
-            stmt.executeUpdate("UPDATE artikel SET ptnkost = '" + nieuw.getPtnkost() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
-            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = '" + nieuw.getMinimumbedrag() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
-            stmt.executeUpdate("UPDATE artikel SET artikelnr = '" + nieuw.getArtikelnr() + "' WHERE artikelnr = " + oud.getArtikelnr() + " and winkelnaam = '" + winkelnaam + "'");
+            stmt.executeUpdate("UPDATE artikel SET artikelnaam = '" + nieuw.getArtikelnaam() + "' WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
+            stmt.executeUpdate("UPDATE artikel SET prijs = '" + nieuw.getPrijs() + "' WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
+            stmt.executeUpdate("UPDATE artikel SET ptnwinst = '" + nieuw.getPtnwinst() + "' WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
+            stmt.executeUpdate("UPDATE artikel SET minimumaantal = '" + nieuw.getMinimumaantal() + "' WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
+            stmt.executeUpdate("UPDATE artikel SET ptnkost = '" + nieuw.getPtnkost() + "' WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
+            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = '" + nieuw.getMinimumbedrag() + "' (WHERE artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "';");
+            stmt.executeUpdate("UPDATE artikel SET artikelnr = '" + nieuw.getArtikelnr() + "' WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             
             
             this.closeConnection();
@@ -515,7 +515,7 @@ public class Database {
     
     public Boolean checkVestiging(int vestigingid, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE vestigingid = " + vestigingid + " and winkelnaam = '" + winkelnaam + "';";
+            String sql = "SELECT * FROM vestiging WHERE (vestigingid = " + vestigingid + ") and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -532,7 +532,7 @@ public class Database {
     
     public Vestiging getVestiging(int vestigingid, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE winkelnaam = '" + winkelnaam + "' and vestigingid = " + vestigingid + ";";
+            String sql = "SELECT * FROM vestiging WHERE (winkelnaam = '" + winkelnaam + "') and (vestigingid = " + vestigingid + ");";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 String naam = srs.getString("winkelnaam");
@@ -580,7 +580,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from vestiging WHERE winkelnaam = '" + v.getWinkelnaam() + "' and vestigingid = " + v.getVestigingId() + ";");
+            stmt.executeUpdate("DELETE from vestiging WHERE (winkelnaam = '" + v.getWinkelnaam() + "') and (vestigingid = " + v.getVestigingId() + ");");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -595,8 +595,8 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "'" );
-            stmt.executeUpdate("UPDATE vestiging SET vestigingid = '" + nieuw.getVestigingId() + "' WHERE vestigingid = " + oud.getVestigingId() + " and winkelnaam = '" + winkelnaam + "'" );     
+            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE (vestigingid = " + oud.getVestigingId() + ") and (winkelnaam = '" + winkelnaam + "');" );
+            stmt.executeUpdate("UPDATE vestiging SET vestigingid = '" + nieuw.getVestigingId() + "' WHERE (vestigingid = " + oud.getVestigingId() + ") and (winkelnaam = '" + winkelnaam + "');" );     
                     
             this.closeConnection();
         }
@@ -613,7 +613,7 @@ public class Database {
             Statement stmt = dbConnection.createStatement();
             java.util.Date jtest = new java.util.Date();
             java.sql.Date test = new java.sql.Date(jtest.getTime());
-            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "')");
+            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -744,7 +744,7 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE account SET punten = " + aantalPuntennieuw + " WHERE accountnr = " + acc.getAccountnr());
+            stmt.executeUpdate("UPDATE account SET punten = " + aantalPuntennieuw + " WHERE accountnr = " + acc.getAccountnr() + ";");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -868,9 +868,9 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
 
-            stmt.executeUpdate("UPDATE spaarkaart SET accountnr = " + nieuw.getAccountnr() + " WHERE kaartnr = " + oud.getKaartnr());
-            stmt.executeUpdate("UPDATE spaarkaart SET naamhouder = '" + nieuw.getNaamhouder() + "' WHERE kaartnr = " + oud.getKaartnr());
-            stmt.executeUpdate("UPDATE spaarkaart SET kaartnr = " + nieuw.getKaartnr() + " WHERE kaartnr = " + oud.getKaartnr());
+            stmt.executeUpdate("UPDATE spaarkaart SET accountnr = " + nieuw.getAccountnr() + " WHERE kaartnr = " + oud.getKaartnr() + ";");
+            stmt.executeUpdate("UPDATE spaarkaart SET naamhouder = '" + nieuw.getNaamhouder() + "' WHERE kaartnr = " + oud.getKaartnr() + ";");
+            stmt.executeUpdate("UPDATE spaarkaart SET kaartnr = " + nieuw.getKaartnr() + " WHERE kaartnr = " + oud.getKaartnr() + ";");
             
             this.closeConnection();
         }
@@ -883,7 +883,7 @@ public class Database {
     
     public int aantalSpaarkaarten(){
         try{
-            String sql = "SELECT COUNT(*) FROM spaarkaart";
+            String sql = "SELECT COUNT(*) FROM spaarkaart;";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int count = srs.getInt("count(*)");
@@ -921,7 +921,7 @@ public class Database {
     
     public Artikelaankoop getArtikelaankoop(int transactienraankoop, int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikelaankoop WHERE transactienr = " + transactienraankoop + " and artikelnr = " + artikelnr + " and winkelnaam = '" + winkelnaam + "';";
+            String sql = "SELECT * FROM artikelaankoop WHERE (transactienr = " + transactienraankoop + ") and (artikelnr = " + artikelnr + ") and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int transactienr = srs.getInt("transactienr");
@@ -945,7 +945,7 @@ public class Database {
     
     public Boolean checkArtikelaankoop(int transactienr, int artikelnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikelaankoop WHERE transactienr = " + transactienr + " and artikelnr = " + artikelnr + " and winkelnaam = '" + winkelnaam + "';";
+            String sql = "SELECT * FROM artikelaankoop WHERE (transactienr = " + transactienr + ") and (artikelnr = " + artikelnr + ") and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -965,7 +965,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from artikelaankoop WHERE transactienr = " + a.getTransactienrAankoop() + " and artikelnr = " + a.getArtikelnr() + " and winkelnaam = '" + a.getWinkelnaam() + "';");
+            stmt.executeUpdate("DELETE from artikelaankoop WHERE (transactienr = " + a.getTransactienrAankoop() + ") and (artikelnr = " + a.getArtikelnr() + ") and (winkelnaam = '" + a.getWinkelnaam() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -979,7 +979,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", '" + a.getDatum().toString() + "', 0.0, 0);");
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", CURDATE(), 0.0, 0);");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -993,7 +993,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from aankoop WHERE transactienr = " + a.getTransactienr() + " and vestigingid = " + a.getVestigingid() + " and winkelnaam = '" + a.getWinkelnaam() + "' and kaartnr = " + a.getSpaarkaart() +";");
+            stmt.executeUpdate("DELETE from aankoop WHERE (transactienr = " + a.getTransactienr() + ") and (vestigingid = " + a.getVestigingid() + ") and (winkelnaam = '" + a.getWinkelnaam() + "') and (kaartnr = " + a.getSpaarkaart() +");");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -1062,7 +1062,7 @@ public class Database {
     
     public int aantalArtikelenNietPlus(String winkelnaam){
         try{
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "' AND ptnwinst = 0";
+            String sql2 = "SELECT count(*) FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (ptnwinst = 0);";
             ResultSet srs2 = getData(sql2);
             if(srs2.next()){
                 int a = srs2.getInt("count(*)");
@@ -1081,7 +1081,7 @@ public class Database {
     
     public int aantalArtikelenNietMin(String winkelnaam){
         try{
-            String sql2 = "SELECT count(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "' AND ptnwinst = 0;";
+            String sql2 = "SELECT count(*) FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (ptnwinst = 0);";
             ResultSet srs2 = getData(sql2);
             if(srs2.next()){
                 int a = srs2.getInt("count(*)");
@@ -1100,7 +1100,7 @@ public class Database {
     
     public int aantalVestigingen(String winkelnaam){
         try{
-            String sql = "SELECT COUNT(*) FROM vestiging where winkelnaam = '" + winkelnaam + "';";
+            String sql = "SELECT COUNT(*) FROM vestiging WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int count = srs.getInt("count(*)");
