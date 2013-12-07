@@ -437,7 +437,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
         {
             Artikelaankoop artAkVerw = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
-            System.out.println(artAkVerw.getAantal());
+            System.out.println("Hier lees je het aantal van het verwijderde product:" + artAkVerw.getAantal());
             
             Artikel art = db.getArtikel(Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             
