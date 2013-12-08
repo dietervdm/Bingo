@@ -408,6 +408,7 @@ public class AanpassenVestiging extends javax.swing.JFrame {
             t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);
             txtVestigingid.setText("");
+            txtVestigingid2.setText("");
             txtAdres.setText("");
         }
     }//GEN-LAST:event_knopAanpassenActionPerformed

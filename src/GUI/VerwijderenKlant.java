@@ -12,7 +12,7 @@ public class VerwijderenKlant extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    DefaultTableModel t = d.naarTabel("select accountnr, naam, email, adres, btwnummer from account where accountnr = jsjkfjsljf");// where accountnr = '" + actief.getWinkelnaam() + "'");
+    DefaultTableModel t = d.naarTabel("select accountnr, naam, email, adres, btwnummer from account");// where accountnr = '" + actief.getWinkelnaam() + "'");
     
     public VerwijderenKlant() {
         initComponents();
