@@ -26,6 +26,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
     public class PopUpSpaarkaart {
+
+    
+    
     
     Timer timer;
     
@@ -249,6 +252,7 @@ import javax.swing.border.Border;
     }
     
     public static String afbeeldingMajor(){
+        db.getAccount(actieveSpaarkaart.getAccountnr()).isMajorWorden(actieveSpaarkaart.getAccountnr(), actief.getWinkelnaam());
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isMajor())
             return "src\\GUI\\Badge\\Major.png";
         else
@@ -256,6 +260,7 @@ import javax.swing.border.Border;
     }
     
     public static String afbeeldingBigSpender(){
+        db.getAccount(actieveSpaarkaart.getAccountnr()).isBigSpenderWorden();
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isBigspender())
             return "src\\GUI\\Badge\\BigSpender.png";
         else
@@ -263,6 +268,7 @@ import javax.swing.border.Border;
     }
     
     public static String afbeeldingWolverine(){
+        db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverineWorden();
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverine())
             return "src\\GUI\\Badge\\Wolverine.png";
         else
