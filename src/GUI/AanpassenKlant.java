@@ -423,6 +423,7 @@ public class AanpassenKlant extends javax.swing.JFrame {
         String naam = txtNaam.getText();
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
+        boolean isBedrijf = checkBedrijf.isSelected();
         String btwnummer = txtBtwnummer.getText();
         java.util.Date jstartw = new java.util.Date(100,00,01);
         java.sql.Date startw = new java.sql.Date(jstartw.getTime());
@@ -434,11 +435,14 @@ public class AanpassenKlant extends javax.swing.JFrame {
         if(checkBedrijf.isSelected()){
             btwnummer = txtBtwnummer.getText();
         }
-            else btwnummer = null;
+        else{
+            btwnummer = "";     // of NULL
+        }
+            
         
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         Account oud = d.getAccount(accountnr);
-        Account nieuw = new Account(accountnr2, naam, email, adres, 0, false, startw, false, startb, false, startm, false, btwnummer);
+        Account nieuw = new Account(accountnr2, naam, email, adres, 0, false, startw, false, startb, false, startm, isBedrijf, btwnummer);
         
         
         if(d.checkAccount(nieuw.getAccountnr()) && !(nieuw.getAccountnr() == oud.getAccountnr())){
@@ -456,6 +460,7 @@ public class AanpassenKlant extends javax.swing.JFrame {
             txtAdres.setText("");
             txtEmail.setText("");
             txtNaam.setText("");
+            checkBedrijf.setSelected(false);
             
         }
         
@@ -471,7 +476,16 @@ public class AanpassenKlant extends javax.swing.JFrame {
         txtNaam.setText(a.getNaam());
         txtEmail.setText(a.getEmail());
         txtAdres.setText(a.getAdres());
-        txtBtwnummer.setText(a.getBtwnummer());
+        if(a.isBedrijf())
+        {
+            txtBtwnummer.setText(a.getBtwnummer());
+            checkBedrijf.setSelected(true);
+        }
+        else{
+            txtBtwnummer.setText("");
+            checkBedrijf.setSelected(false);
+        }
+        
         }
         else
         {
