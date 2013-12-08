@@ -1002,14 +1002,14 @@ public class Database {
         }
     }
     
-    public void schrijfTotaalPrijsEnTotaalPtnNaarDatabase(int transactienr,int prijs, int punten){
+    public void schrijfTotaalPrijsEnTotaalPtnNaarDatabase(int transactienr, double prijs, int punten){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
 
             stmt.executeUpdate("UPDATE aankoop SET totaalPrijs = " + prijs + " WHERE transactienr = " + transactienr + ";");
-            stmt.executeUpdate("UPDATE spaarkaart SET totaalPtnBij = " + punten + " WHERE transactienr = " + transactienr + ";");
+            stmt.executeUpdate("UPDATE aankoop SET totaalPuntenBij = " + punten + " WHERE transactienr = " + transactienr + ";");
             
             this.closeConnection();
         }

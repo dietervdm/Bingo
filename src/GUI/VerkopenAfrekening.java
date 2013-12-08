@@ -30,7 +30,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private int artikelenMetPunten = 0;
     
     Date datum = new Date();
-    private Aankoop ak = new Aankoop(transactienummer, actieveVest.getVestigingId(), actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), datum);
+    private Aankoop ak; // = new Aankoop(transactienummer, actieveVest.getVestigingId(), actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), datum);
 
     DefaultTableModel t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald from artikelaankoop, artikel where transactienr = 0");
     //DefaultTableModel t = db.naarTabel("select * from artikelaankoop where winkelnaam = 'sdjqshdgfqskjdygfqskjd'");
@@ -315,6 +315,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
 
         int puntenToevoegen = puntenOver + totaalPuntenPlus;
         db.updateAantalpunten(db.getAccount(actieveSpaarkaart.getAccountnr()), puntenToevoegen);
+        db.schrijfTotaalPrijsEnTotaalPtnNaarDatabase(transactienummer, totaalPrijs , totaalPuntenPlus);
+        // KLOPT NOG NIET: TOTAALPUNTENPLUS MOET TOTAALPRIJS WORDEN MAAR IS DOUBLE
         VerkopenKlant s = new VerkopenKlant();
                 s.setActieveVest(actieveVest);
                 s.setLocationRelativeTo(null);
@@ -344,7 +346,22 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         
         if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
         {
-            if(art.getPtnkost() == -1 || art.getPtnkost() == 0)
+            if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
+            {
+                Artikelaankoop a = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
+                int nieuwAantal = a.getAantal() + artAk.getAantal();
+                // deze functie nog eens uitvoeren maar met nieuwAantal ipv aantal
+                
+                
+                JOptionPane.showMessageDialog(null, "Dit artikel is reeds toevoegd, om er meer van te kopen "
+                                                + "moet je het artikel eerst verwijderen en daarna opnieuw toevoegen.");
+                txtProductToevoegen.setText("");
+                txtProductVerwijderen.requestFocus();
+                // hier kan iets anders geschreven worden als er nog tijd is.
+            }
+            else
+            {
+                if(art.getPtnkost() == -1 || art.getPtnkost() == 0)
             {
                 System.out.println("test 1");
                 if(aantal >= art.getMinimumaantal())
@@ -393,6 +410,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             }
             db.addArtikelaankoop(artAk);
 //            System.out.println(db.getArtikelaankoop(transactienummer, aantal, actief.getWinkelnaam()).getAantal());
+            }
+            
         }
         
         else
@@ -413,7 +432,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
         
         
-        t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald from artikelaankoop, artikel where transactienr = '" + this.transactienummer + "'");
+        t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald FROM artikelaankoop\n" +
+"INNER JOIN artikel ON artikelaankoop.artikelnr = artikel.artikelnr\n" +
+"WHERE transactienr = '" + this.transactienummer + "' and artikel.winkelnaam = '" + actief.getWinkelnaam() + "'");
         //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
         tabelAankopen.setModel(t);
         
@@ -447,7 +468,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                     {
                         totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * artAkVerw.getAantal();
                         puntenOver = puntenOver + art.getPtnkost() * artAkVerw.getAantal();
-                        artikelenMetPunten = artikelenMetPunten - db.getArtikelaankoop(transactienummer, puntenOver, actief.getWinkelnaam()).getAantal();
+                        artikelenMetPunten = artikelenMetPunten - db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()).getAantal();
                         System.out.println("11");
                     }
                     else
@@ -463,9 +484,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 if(artAkVerw.getAantal() >= art.getMinimumaantal())
                 {
                     //System.out.println(Integer.toString(aantal));
-                    totaalPrijs =- art.getPrijs() * artAkVerw.getAantal();
+                    totaalPrijs = totaalPrijs- art.getPrijs() * artAkVerw.getAantal();
                     System.out.println(artAkVerw.getAantal());
-                    totaalPuntenPlus =- art.getPtnwinst() * artAkVerw.getAantal();
+                    totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAkVerw.getAantal();
                     System.out.println(artAkVerw.getAantal());
                     System.out.println("13");
                 }
@@ -500,7 +521,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             System.out.println("getoond");
         
         
-        t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald from artikelaankoop, artikel where transactienr = '" + this.transactienummer + "'");
+        t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald FROM artikelaankoop\n" +
+"INNER JOIN artikel ON artikelaankoop.artikelnr = artikel.artikelnr\n" +
+"WHERE transactienr = '" + this.transactienummer + "' and artikel.winkelnaam = '" + actief.getWinkelnaam() + "'");
             //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
             tabelAankopen.setModel(t);
             
