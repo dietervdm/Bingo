@@ -122,7 +122,7 @@ public class Database {
     
     public int getAantalVerschillendeWinkels(Account a){
         try{
-            String sql = "SELECT COUNT( DISTINCT winkelnaam ) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr ="+ a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR)";
+            String sql = "SELECT COUNT(DISTINCT winkelnaam) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR);";
             ResultSet srs = getData(sql);
             int aantal = srs.getInt("aantal");
             return aantal;
@@ -137,7 +137,7 @@ public class Database {
     
     public double getTotaalGespendeerdeBedragAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
+            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
             double totaalbedrag = srs.getDouble("totaalbedrag");
             return totaalbedrag;
@@ -580,7 +580,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from vestiging WHERE (winkelnaam = '" + v.getWinkelnaam() + "') and (vestigingid = " + v.getVestigingId() + ");");
+            stmt.executeUpdate("DELETE FROM vestiging WHERE (winkelnaam = '" + v.getWinkelnaam() + "') and (vestigingid = " + v.getVestigingId() + ");");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -611,8 +611,8 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            java.util.Date jtest = new java.util.Date();
-            java.sql.Date test = new java.sql.Date(jtest.getTime());
+//            java.util.Date jtest = new java.util.Date();
+//            java.sql.Date test = new java.sql.Date(jtest.getTime());
             stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
             this.closeConnection();
         }
