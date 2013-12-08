@@ -375,6 +375,8 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
             t = d.naarTabel("select * from spaarkaart where accountnr = '" + accountnr + "'");
             tabelSpaarkaarten.setModel(t);
         }
+        txtNaamhouder.setText("");
+        txtNaamhouder.requestFocus();
         
     }//GEN-LAST:event_knopVoegtoeActionPerformed
 
