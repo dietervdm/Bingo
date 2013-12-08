@@ -348,9 +348,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         {
             if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
             {
-                Artikelaankoop a = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
-                int nieuwAantal = a.getAantal() + artAk.getAantal();
-                // deze functie nog eens uitvoeren maar met nieuwAantal ipv aantal
+//                Artikelaankoop a = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
+//                int nieuwAantal = a.getAantal() + artAk.getAantal();
+//                // deze functie nog eens uitvoeren maar met nieuwAantal ipv aantal
                 
                 
                 JOptionPane.showMessageDialog(null, "Dit artikel is reeds toevoegd, om er meer van te kopen "
