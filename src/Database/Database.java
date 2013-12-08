@@ -122,7 +122,7 @@ public class Database {
     
     public int getAantalVerschillendeWinkels(Account a){
         try{
-            String sql = "SELECT COUNT AS aantal(DISTINCT winkelnaam)FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") and (aankoop.datum > CURDATE() );";
+            String sql = "SELECT COUNT( DISTINCT winkelnaam ) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr ="+ a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR)";
             ResultSet srs = getData(sql);
             int aantal = srs.getInt("aantal");
             return aantal;
@@ -137,7 +137,7 @@ public class Database {
     
     public double getTotaalGespendeerdeBedragAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > DATEADD(year, -1, CURDATE() );";
+            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
             double totaalbedrag = srs.getDouble("totaalbedrag");
             return totaalbedrag;
@@ -153,7 +153,7 @@ public class Database {
     
     public int getTotaalPuntenVerkregenAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPtnBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > DATEADD(year, -1, CURDATE()) );";
+            String sql = "SELECT SUM(totaalPuntenBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
             int totaalbedrag = srs.getInt("totaalbedrag");
             return totaalbedrag;
@@ -753,21 +753,21 @@ public class Database {
         }
     }
     
-    public ResultSet getMajor(int accountnr, Date datum, String winkelnaam){
-        //try{
-            String sql = "";
-            //moet nog getest worden
-            ResultSet srs = getData(sql);
-            this.closeConnection();
-            return srs;
-            
-        //}
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
+//    public ResultSet getMajor(int accountnr, Date datum, String winkelnaam){
+//        //try{
+//            String sql = "";
+//            //moet nog getest worden
+//            ResultSet srs = getData(sql);
 //            this.closeConnection();
-//            return null;
-//        }
-    }
+//            return srs;
+//            
+//        //}
+////        catch(SQLException sqle){
+////            System.out.println("SQLException: " + sqle.getMessage());
+////            this.closeConnection();
+////            return null;
+////        }
+//    }
     
     //Functie om van een account alle punten die verkregen waren vorig jaar
     
