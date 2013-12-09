@@ -251,6 +251,24 @@ public class Database {
         }
     }
     
+    public void updateAccountnrWinkel(Winkel winkel, int accountnr){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+
+            stmt.executeUpdate("UPDATE winkel SET accountnr = " + accountnr + " WHERE winkelnaam = '" + winkel.getWinkelnaam() + "'");
+//            stmt.executeUpdate("UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+//            stmt.executeUpdate("UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+            
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
     public void addArtikel(Artikel a){
         
         try{
@@ -342,7 +360,7 @@ public class Database {
             stmt.executeUpdate("UPDATE artikel SET ptnwinst = " + nieuw.getPtnwinst() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET minimumaantal = " + nieuw.getMinimumaantal() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET ptnkost = " + nieuw.getPtnkost() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
-            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " (WHERE artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "';");
+            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " (WHERE artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET artikelnr = " + nieuw.getArtikelnr() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             
             
@@ -725,8 +743,8 @@ public class Database {
             stmt.executeUpdate("UPDATE account SET startw = '" + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET startb = '" + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET startm = '" + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
+//            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr());
+//            stmt.executeUpdate("UPDATE account SET startm = '" + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
