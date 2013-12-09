@@ -1033,9 +1033,26 @@ public class Database {
         }
     }
     
-    public Boolean checkArtikelaankoop(int transactienr, int artikelnr, String winkelnaam){
+    public Boolean getDatumVoorWolverine(int accountnr){
         try{
-            String sql = "SELECT * FROM artikelaankoop WHERE (transactienr = " + transactienr + ") and (artikelnr = " + artikelnr + ") and (winkelnaam = '" + winkelnaam + "');";
+            String sql = "SELECT * FROM account WHERE (accountnr = " + accountnr + " and account.startw < CURDATE() - INTERVAL '1'YEAR);";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    public Boolean getDatumVoorMajor(int accountnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM major WHERE (accountnr = " + accountnr + " and puntendatum < CURDATE() - INTERVAL '1'YEAR) and winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();

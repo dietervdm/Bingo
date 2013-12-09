@@ -339,7 +339,7 @@ public class Account
             if(db.getAantalVerschillendeWinkels(this) > 5)
                     // 5 MOET NOG VERVANGEN WORDEN DOOR 19
             {
-                if(db.getDatumVoor(accountnr))
+                if(db.getDatumVoorWolverine(accountnr))
                 {
                     this.setPunten(punten + 600);
                     this.sendMailGoed("Wolverine", "600");
