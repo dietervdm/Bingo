@@ -339,7 +339,7 @@ public class Account
             if(db.getAantalVerschillendeWinkels(this) > 5)
                     // 5 MOET NOG VERVANGEN WORDEN DOOR 19
             {
-                if(jstartw.before(getVorigJaar()))
+                if(db.getDatumVoor(accountnr))
                 {
                     this.setPunten(punten + 600);
                     this.sendMailGoed("Wolverine", "600");
@@ -440,7 +440,7 @@ public class Account
             String line = "<Send to" + this.getEmail() + "> \n\n"
                           + "Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
-                          + "U bent " + badge + " geworden./n "
+                          + "U bent " + badge + " geworden.\n "
                           + "U krijgt " + punten + " punten bij op uw account. \n"
                           + "U heeft nu " + this.getPunten() + " punten";
             outputStream.println(line);

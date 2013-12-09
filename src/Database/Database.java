@@ -826,6 +826,23 @@ public class Database {
         }
     }
     
+    public Boolean checkArtikelaankoop(int transactienr, int artikelnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM artikelaankoop WHERE (transactienr = " + transactienr + ") and (artikelnr = " + artikelnr + ") and (winkelnaam = '" + winkelnaam + "');";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
 //    public ResultSet getMajor(int accountnr, Date datum, String winkelnaam){
 //        //try{
 //            String sql = "";
