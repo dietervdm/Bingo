@@ -217,7 +217,7 @@ public class Database2 {
                 java.sql.Date startm = srs.getDate("startm");
                 boolean bedrijf = srs.getBoolean("bedrijf");
                 String btwnummer = srs.getString("btwnummer");
-                Account a = new Account(accountnummer,naam,email,adres,punten,wolverine,startw,bigspender,startb,major,startm,bedrijf,btwnummer);
+                Account a = new Account(accountnummer,naam,email,adres,punten,wolverine,startw,bigspender,startb,bedrijf,btwnummer);
                 this.closeConnection();
                 return a;
             }

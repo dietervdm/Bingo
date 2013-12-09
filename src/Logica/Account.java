@@ -26,8 +26,8 @@ public class Account
     private boolean bigspender;
     private java.util.Date jstartb = new java.util.Date();
     private java.sql.Date startb = new java.sql.Date(jstartw.getTime());
-    private boolean major;
-    private java.util.Date jstartm = new java.util.Date();
+//    private boolean major;
+//    private java.util.Date jstartm = new java.util.Date();
     private java.sql.Date startm = new java.sql.Date(jstartw.getTime());
     private boolean bedrijf;
     private String btwnummer;
@@ -38,16 +38,16 @@ public class Account
     public Account()
     {}
     
-    public Account(int accountnr, boolean wolverine, boolean bigspender, boolean major, boolean bedrijf)
+    public Account(int accountnr, boolean wolverine, boolean bigspender, boolean bedrijf)
     {
         this.accountnr = accountnr;
         this.wolverine = wolverine;
         this.bigspender = bigspender;
-        this.major = major;
+//        this.major = major;
         this.bedrijf = bedrijf;
     }
     
-    public Account(int accountnr, String naam, String email, String adres, int punten, boolean wolverine, java.sql.Date startw, boolean bigspender, java.sql.Date startb, boolean major, java.sql.Date startm, boolean bedrijf, String btwnummer)
+    public Account(int accountnr, String naam, String email, String adres, int punten, boolean wolverine, java.sql.Date startw, boolean bigspender, java.sql.Date startb, boolean bedrijf, String btwnummer)
     {
         this.accountnr = accountnr;
         this.naam = naam;
@@ -58,8 +58,8 @@ public class Account
         this.startw = startw;
         this.bigspender = bigspender;
         this.startb = startb;
-        this.major = major;
-        this.startm = startm;
+//        this.major = major;
+//        this.startm = startm;
         this.bedrijf = bedrijf;
         this.btwnummer = btwnummer;
     }
@@ -156,15 +156,15 @@ public class Account
         this.startb = startb;
     }
     
-    public boolean isMajor()
-    {
-        return this.major;
-    }
-    
-    public void setMajor(boolean major)
-    {
-        this.major = major;
-    }
+//    public boolean isMajor()
+//    {
+//        return this.major;
+//    }
+//    
+//    public void setMajor(boolean major)
+//    {
+//        this.major = major;
+//    }
     
     public Date getStartm()
     {
@@ -238,47 +238,47 @@ public class Account
         return totaalPuntenJaar(accountnr) > 10000;
     }
     
-    public void isMajorWorden(int accountnr, String winkelnaam){
-        Account huidigIngelogdeAccount = db.getAccount(accountnr);
-        // Account ingelogdeAccount = db.getAccount(accountnummer waar boolean actief = true
-        // Major ingelogdeMajor = db.getMajor(accountnr winkel boolean);
-        Account vorigeMajor = db.getAccount(db.getWinkel(winkelnaam).getAccount());
-        // Account huidigeMajor = db.getAccount(accountnr);
-        // eerst checkMajor(accountnr, winkel)
-        // true: Major huidigeMajor = db.getMajor(accountnr, winkel);
-        // false: Major huidigeMajor = db.addMajor(accountnr, winkel, false);
-        
-        if(isVip(huidigIngelogdeAccount.getAccountnr()))
-        {
-            if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr()) > totaalGeldJaar(vorigeMajor.getAccountnr()))
-            {
-                this.setMajor(true);
-                // ingelogdeAccount.setActief
-                
-                if(jstartm.after(getVorigJaar()))
-                {
-                    this.setPunten(punten + 100);
-                    huidigIngelogdeAccount.sendMailGoed("major", "100");
-                    vorigeMajor.sendMailSlecht("Major");
-                }
-                else
-                {
-                    this.sendMailGoed("Major", "0");
-                    db.getAccount(db.getWinkel(winkelnaam).getAccount()).sendMailSlecht("major");
-                }
-            }
-            else
-            {
-                this.setMajor(false);
-            }
-        }
-        else
-        {
-            this.setMajor(false);
-        }
-        
-        //OPSLAAN NAAR DE DATABASE
-    }
+//    public void isMajorWorden(int accountnr, String winkelnaam){
+//        Account huidigIngelogdeAccount = db.getAccount(accountnr);
+//        // Account ingelogdeAccount = db.getAccount(accountnummer waar boolean actief = true
+//        // Major ingelogdeMajor = db.getMajor(accountnr winkel boolean);
+//        Account vorigeMajor = db.getAccount(db.getWinkel(winkelnaam).getAccount());
+//        // Account huidigeMajor = db.getAccount(accountnr);
+//        // eerst checkMajor(accountnr, winkel)
+//        // true: Major huidigeMajor = db.getMajor(accountnr, winkel);
+//        // false: Major huidigeMajor = db.addMajor(accountnr, winkel, false);
+//        
+//        if(isVip(huidigIngelogdeAccount.getAccountnr()))
+//        {
+//            if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr()) > totaalGeldJaar(vorigeMajor.getAccountnr()))
+//            {
+//                this.setMajor(true);
+//                // ingelogdeAccount.setActief
+//                
+//                if(jstartm.after(getVorigJaar()))
+//                {
+//                    this.setPunten(punten + 100);
+//                    huidigIngelogdeAccount.sendMailGoed("major", "100");
+//                    vorigeMajor.sendMailSlecht("Major");
+//                }
+//                else
+//                {
+//                    this.sendMailGoed("Major", "0");
+//                    db.getAccount(db.getWinkel(winkelnaam).getAccount()).sendMailSlecht("major");
+//                }
+//            }
+//            else
+//            {
+//                this.setMajor(false);
+//            }
+//        }
+//        else
+//        {
+//            this.setMajor(false);
+//        }
+//        
+//        //OPSLAAN NAAR DE DATABASE
+//    }
     
     public void isWolverineWorden(){
         if(this.isVip(this.getAccountnr()))
@@ -341,19 +341,19 @@ public class Account
         // OPSLAAN NAAR DATABASE
     }
     
-    public boolean RechtOpPuntenMajor(Date datum){
-        datum.setYear(datum.getYear()-1);
-        return datum.after(jstartm);
-    }
+//    public boolean RechtOpPuntenMajor(Date datum){
+//        datum.setYear(datum.getYear()-1);
+//        return datum.after(jstartm);
+//    }
     
     public boolean RechtOpPuntenBigSpender(Date datum){
         datum.setYear(datum.getYear()-1);
-        return datum.after(jstartm);
+        return datum.after(jstartb);
     }
     
     public boolean RechtOpPuntenWolverine(Date datum){
         datum.setYear(datum.getYear()-1);
-        return datum.after(jstartm);
+        return datum.after(jstartw);
     }
     
     

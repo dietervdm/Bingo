@@ -442,7 +442,7 @@ public class AanpassenKlant extends javax.swing.JFrame {
         
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         Account oud = d.getAccount(accountnr);
-        Account nieuw = new Account(accountnr2, naam, email, adres, 0, false, startw, false, startb, false, startm, isBedrijf, btwnummer);
+        Account nieuw = new Account(accountnr2, naam, email, adres, 0, false, startw, false, startb, isBedrijf, btwnummer);
         
         
         if(d.checkAccount(nieuw.getAccountnr()) && !(nieuw.getAccountnr() == oud.getAccountnr())){

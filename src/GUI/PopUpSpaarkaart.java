@@ -252,6 +252,7 @@ import javax.swing.border.Border;
     }
     
     public static String afbeeldingMajor(){
+        Major maj = db.getMajor(actieveSpaarkaart.getAccountnr(), actief.getWinkelnaam());
         db.getAccount(actieveSpaarkaart.getAccountnr()).isMajorWorden(actieveSpaarkaart.getAccountnr(), actief.getWinkelnaam());
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isMajor())
             return "src\\GUI\\Badge\\Major.png";

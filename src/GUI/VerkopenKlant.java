@@ -107,6 +107,7 @@ public class VerkopenKlant extends javax.swing.JFrame {
                 if(db.checkSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())))
                 {
                     Account acc = db.getAccount(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr());
+                    Major maj = db.getMajor(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr(), actief.getWinkelnaam())
                     acc.isVip(acc.getAccountnr());
                     acc.isMajorWorden(acc.getAccountnr(), actief.getWinkelnaam());
                     acc.isWolverineWorden();

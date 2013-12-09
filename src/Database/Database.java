@@ -631,7 +631,7 @@ public class Database {
             Statement stmt = dbConnection.createStatement();
 //            java.util.Date jtest = new java.util.Date();
 //            java.sql.Date test = new java.sql.Date(jtest.getTime());
-            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isMajor() + ", '" + a.getStartm() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
+            stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", '" + a.getStartw() + "', " + a.isBigspender() + ", '" + a.getStartb() + "', " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -675,7 +675,7 @@ public class Database {
                 java.sql.Date startm = srs.getDate("startm");
                 boolean bedrijf = srs.getBoolean("bedrijf");
                 String btwnummer = srs.getString("btwnummer");
-                Account a = new Account(accountnummer,naam,email,adres,punten,wolverine,startw,bigspender,startb,major,startm,bedrijf,btwnummer);
+                Account a = new Account(accountnummer, naam, email, adres, punten, wolverine, startw, bigspender, startb, bedrijf, btwnummer);
                 this.closeConnection();
                 return a;
             }
@@ -1134,6 +1134,88 @@ public class Database {
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
             return -1;
+        }
+    }
+    
+    
+    
+    public void addArtikel(Artikel a){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            try{
+            stmt.executeUpdate("INSERT INTO artikel VALUES (" + a.getArtikelnr() + ", '" + a.getWinkelnaam() + "', '" + a.getArtikelnaam() + "', " + a.getPrijs() + ", " + a.getPtnwinst() + ", " + a.getMinimumaantal() + ", " + a.getPtnkost() + ", " + a.getMinimumbedrag() +");");
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            
+            
+            
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+        
+    public Boolean checkMajor(int accountnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (accountnr = " + accountnr + ");";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    } 
+     
+    public Major getMajor(int accountnr, String winkelnaam){
+        try{
+            String sql = "SELECT * FROM major WHERE (winkelnaam = '" + winkelnaam + "') and (accountnr = " + accountnr + ");";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                String naam = srs.getString("winkelnaam");
+                int accountnummer = srs.getInt("accountnr");
+                Major maj = new Major(naam,accountnummer);
+                // DATUM MOET HIER NOG BIJ, GEEN IDEE HOE DAT MOET
+                this.closeConnection();
+                return maj;
+            }
+            else {this.closeConnection();return null;}
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return null;
+        }
+    }
+    
+    
+    public void updateMajor(Account acc, Winkel winkel){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE major SET puntendatum = '" + nieuw.getArtikelnaam() + "' WHERE accountnr = " + acc.getAccountnr() + " and winkelnaam = '" + winkel.getWinkelnaam() + "';");
+            
+            
+            
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
         }
     }
 }

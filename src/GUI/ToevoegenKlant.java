@@ -408,7 +408,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         }
         else btwnummer = null;
         
-        Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, false, startm, checkBedrijf.isSelected(), btwnummer);
+        Account a = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, checkBedrijf.isSelected(), btwnummer);
         
         if(d.checkAccount(accountnr)){
             //JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
