@@ -360,7 +360,7 @@ public class Database {
             stmt.executeUpdate("UPDATE artikel SET ptnwinst = " + nieuw.getPtnwinst() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET minimumaantal = " + nieuw.getMinimumaantal() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET ptnkost = " + nieuw.getPtnkost() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
-            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " (WHERE artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
+            stmt.executeUpdate("UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET artikelnr = " + nieuw.getArtikelnr() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             
             
