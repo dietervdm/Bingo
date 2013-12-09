@@ -1139,13 +1139,13 @@ public class Database {
     
     
     
-    public void addArtikel(Artikel a){
+    public void addMajor(Major maj){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             try{
-            stmt.executeUpdate("INSERT INTO artikel VALUES (" + a.getArtikelnr() + ", '" + a.getWinkelnaam() + "', '" + a.getArtikelnaam() + "', " + a.getPrijs() + ", " + a.getPtnwinst() + ", " + a.getMinimumaantal() + ", " + a.getPtnkost() + ", " + a.getMinimumbedrag() +");");
+            stmt.executeUpdate("INSERT INTO major VALUES (" + maj.getWinkelnaam() + ", '" + maj.getAccountnr() + "', CURDATE());");
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -1207,7 +1207,7 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE major SET puntendatum = '" + nieuw.getArtikelnaam() + "' WHERE accountnr = " + acc.getAccountnr() + " and winkelnaam = '" + winkel.getWinkelnaam() + "';");
+            stmt.executeUpdate("UPDATE major SET puntendatum = CURDATE() WHERE accountnr = " + acc.getAccountnr() + " and winkelnaam = '" + winkel.getWinkelnaam() + "';");
             
             
             
