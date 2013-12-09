@@ -281,41 +281,43 @@ public class Account
 //    }
     
     public void isMajorWorden(String winkelnaam){
-        if(this.getAccountnr() != db.getWinkel(winkelnaam).getAccount())
+        Account acc1 = db.getAccount(this.getAccountnr());
+        Account acc2 = db.getAccount(db.getWinkel(winkelnaam).getAccount());
+        
+        if(acc1.isVip(acc1.getAccountnr()))
         {
-            Account acc1 = db.getAccount(this.getAccountnr());
-            Account acc2 = db.getAccount(db.getWinkel(winkelnaam).getAccount());
-            
-            if(!db.heeftMajor(winkelnaam))
+            if(db.heeftMajor(winkelnaam))
             {
-                if(acc1.totaalGeldJaar(acc1.getAccountnr()) > acc2.totaalGeldJaar(acc2.getAccountnr()))
+                if(this.getAccountnr() != db.getWinkel(winkelnaam).getAccount())
                 {
-                    Major major1 = db.getMajor(this.getAccountnr(), winkelnaam);
-                    Major major2 = db.getMajor(db.getWinkel(winkelnaam).getAccount(), winkelnaam);
-                
-                
-                    if(db.checkMajor(this.getAccountnr(), winkelnaam))
+                    if(acc1.totaalGeldJaar(acc1.getAccountnr()) > acc2.totaalGeldJaar(acc2.getAccountnr()))
                     {
-                        // acc1 wordt major
-                        db.updateAccountnrWinkel(db.getWinkel(winkelnaam), acc1.getAccountnr());
-                    
-                        if(db.krijgtPunten(major1))
+                        Major major1 = db.getMajor(this.getAccountnr(), winkelnaam);
+                        Major major2 = db.getMajor(db.getWinkel(winkelnaam).getAccount(), winkelnaam);
+                
+                
+                        if(db.checkMajor(this.getAccountnr(), winkelnaam))
                         {
-                            // geef punten
-                            int nieuwepunten = acc1.getPunten() + 100;  // Major krijgt 100 punten bij.
-                            db.updateAantalpunten(acc1, nieuwepunten);
-                            // zet datum op vandaag
-                            db.updateMajor(acc1, db.getWinkel(winkelnaam));
+                            // acc1 wordt major
+                            db.updateAccountnrWinkel(db.getWinkel(winkelnaam), acc1.getAccountnr());
+                    
+                            if(db.krijgtPunten(major1))
+                            {
+                                // geef punten
+                                int nieuwepunten = acc1.getPunten() + 100;  // Major krijgt 100 punten bij.
+                                db.updateAantalpunten(acc1, nieuwepunten);
+                                // zet datum op vandaag
+                                db.updateMajor(acc1, db.getWinkel(winkelnaam));
+                            }
                         }
-                    }
-                    else
-                    {
-                    // acc1 was nog geen major geweest en wordt major
-                    db.addMajor(this.getAccountnr(), winkelnaam);
-                    // punten geven
-                    }
+                        else
+                        {
+                        // acc1 was nog geen major geweest en wordt major
+                        db.addMajor(this.getAccountnr(), winkelnaam);
+                        // punten geven
+                        }
                         
-                }
+                    }
                 else
                 {
                     // niets doen, acc2 blijft major
@@ -330,7 +332,11 @@ public class Account
         {
             // niets doen, acc2 blijft major
         }
-        
+        }
+        else
+        {
+            
+        }  
     }
     
     public void isWolverineWorden(){
