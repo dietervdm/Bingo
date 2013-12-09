@@ -370,7 +370,7 @@ public class Account
             // if (account is al major) --> doen niets
             if(this.totaalGeldJaar(this.accountnr) > 5000)
             {
-                if(jstartb.before(getVorigJaar()))
+                if(db.getDatumVoorBigspender(accountnr))
                 {
                     this.setPunten(punten + 500);
                     this.sendMailGoed("Bigspender", "600");
