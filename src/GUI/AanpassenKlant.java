@@ -429,8 +429,7 @@ public class AanpassenKlant extends javax.swing.JFrame {
         java.sql.Date startw = new java.sql.Date(jstartw.getTime());
         java.util.Date jstartb = new java.util.Date(100,00,01);
         java.sql.Date startb = new java.sql.Date(jstartb.getTime());
-        java.util.Date jstartm = new java.util.Date(100,00,01);
-        java.sql.Date startm = new java.sql.Date(jstartm.getTime());
+        
         
         if(checkBedrijf.isSelected()){
             btwnummer = txtBtwnummer.getText();
