@@ -55,6 +55,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelArtikelen = new javax.swing.JTable(t);
         jLabel3 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -129,6 +130,9 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(153, 0, 0));
         jLabel3.setText("Opgepast! Elk artikel moet een verschillend nummer hebben.");
+
+        jLabel12.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel12.setText("Gebruik '.' voor decimale getallen.");
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -381,8 +385,10 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 198, Short.MAX_VALUE)))
+                                        .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 111, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -400,7 +406,8 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtArtikelnaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtArtikelnaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkGeeftpunten)
@@ -718,6 +725,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
