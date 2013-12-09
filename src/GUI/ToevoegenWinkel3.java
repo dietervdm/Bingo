@@ -279,17 +279,26 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         int minimumartikelen = 1;
         int minimumbedrag = 0;
         int artikelnr = Integer.parseInt(txtArtikelnr.getText());
-        double prijs = Double.parseDouble(txtPrijs.getText());
+        double prijs = 0;
         int pr = (int) Math.round(prijs * 100);
         double prijsAfgerond = pr / 100.00 ;
         String artikelnaam = txtNaam.getText();
         boolean toevoegen = true;
         
+        if(txtPrijs.getText().equals("") || Double.parseDouble(txtPrijs.getText())<0){
+            toevoegen = false;
+            JOptionPane.showMessageDialog(null, "De prijs moet groter dan of gelijk aan nul zijn.");
+        }
+        else{
+            prijs = Double.parseDouble(txtPrijs.getText());
+            pr = (int) Math.round(prijs * 100);
+            prijsAfgerond = pr / 100.00 ;
+        }
         
         if(checkGeeftpunten.isSelected()){
             if(txtPuntenplus.getText().equals("")){
                 toevoegen = false;
-                JOptionPane.showMessageDialog(null, "Aantal pluspunten niet ingevuld");
+                JOptionPane.showMessageDialog(null, "Puntenkost niet ingevuld");
             }
             else if(!Artikel.checkPuntenplusWaarde(Integer.parseInt(txtPuntenplus.getText()), prijs)){
                 toevoegen = false;
@@ -312,7 +321,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         if(checkKostpunten.isSelected()){
             if(txtPuntenmin.getText().equals("")){
                 toevoegen = false;
-                JOptionPane.showMessageDialog(null, "Aantal pluspunten niet ingevuld");
+                JOptionPane.showMessageDialog(null, "Puntenkost niet ingevuld");
             }
             else if(!Artikel.checkPuntenminWaarde(Integer.parseInt(txtPuntenmin.getText()), prijs)){
                 toevoegen = false;

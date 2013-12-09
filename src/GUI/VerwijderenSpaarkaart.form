@@ -284,28 +284,22 @@
                   <Component id="knopTerug" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="knopVerwijderen" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtKlantnr" min="-2" pref="121" max="-2" attributes="0"/>
-                          <Component id="txtSpaarkaartnr" min="-2" pref="121" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel2" min="-2" pref="128" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtSpaarkaartnr" min="-2" pref="121" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="533" max="32767" attributes="0"/>
+              <EmptySpace pref="537" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" pref="202" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="578" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" alignment="0" pref="780" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -317,17 +311,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtKlantnr" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSpaarkaartnr" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
               <Component id="knopVerwijderen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="342" max="32767" attributes="0"/>
+              <EmptySpace pref="356" max="32767" attributes="0"/>
               <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -335,8 +324,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="14" max="-2" attributes="0"/>
-                  <EmptySpace pref="254" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="248" max="-2" attributes="0"/>
+                  <EmptySpace pref="171" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="331" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -391,12 +380,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Accountnummer"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtKlantnr">
-    </Component>
   </SubComponents>
 </Form>

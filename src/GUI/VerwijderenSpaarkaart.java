@@ -12,7 +12,7 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
     public JFrame myCaller;
     
     Database db = new Database();
-    DefaultTableModel t = db.naarTabel("select accountnr, naam, email, adres, btwnummer from account where accountnr = 'ksjdkfjkls'");
+    DefaultTableModel t = db.naarTabel("select kaartnr, accountnr, naamhouder from spaarkaart");
     
     public VerwijderenSpaarkaart() {
         initComponents();
@@ -36,8 +36,6 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
         knopVerwijderen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelSpaarkaarten = new javax.swing.JTable(t);
-        jLabel3 = new javax.swing.JLabel();
-        txtKlantnr = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -88,8 +86,6 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
 
         tabelSpaarkaarten.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelSpaarkaarten);
-
-        jLabel3.setText("Accountnummer");
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -296,22 +292,18 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
                     .addComponent(knopTerug)
                     .addComponent(knopVerwijderen)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtKlantnr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSpaarkaartnr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(533, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSpaarkaartnr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(537, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 578, Short.MAX_VALUE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
+                            .addGap(0, 578, Short.MAX_VALUE)))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -319,23 +311,19 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtKlantnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtSpaarkaartnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(69, 69, 69)
                 .addComponent(knopVerwijderen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(31, 31, 31)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(32, 32, 32)))
         );
 
@@ -489,13 +477,13 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
 
     private void knopVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderenActionPerformed
 
-        int accountnr = Integer.parseInt(txtSpaarkaartnr.getText());
-
         if(db.checkSpaarkaart(Integer.parseInt(txtSpaarkaartnr.getText()))){
             Spaarkaart sk = db.getSpaarkaart(Integer.parseInt(txtSpaarkaartnr.getText()));
             db.deleteSpaarkaart(sk);
-            t = db.naarTabel("select accountnr, naam, email, adres, btwnummer from account where accountnr = '" + Integer.parseInt(txtKlantnr.getText())); //where accountnr = txtAccountnr.getText()
+            t = db.naarTabel("select kaartnr, accountnr, naamhouder from spaarkaart"); //where accountnr = txtAccountnr.getText()
             tabelSpaarkaarten.setModel(t);
+            JOptionPane.showMessageDialog(null, "Kaart verwijderd.");
+
             txtSpaarkaartnr.setText("");
             txtSpaarkaartnr.requestFocus();
         }
@@ -546,7 +534,6 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuknopVerwijderenartikel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
@@ -572,7 +559,6 @@ public class VerwijderenSpaarkaart extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
     private javax.swing.JTable tabelSpaarkaarten;
-    private javax.swing.JTextField txtKlantnr;
     private javax.swing.JTextField txtSpaarkaartnr;
     // End of variables declaration//GEN-END:variables
 }
