@@ -483,20 +483,13 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                 
                 if(artAkVerw.getAantal() >= art.getMinimumaantal())
                 {
-                    //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs- art.getPrijs() * artAkVerw.getAantal();
+                    totaalPrijs = totaalPrijs - art.getPrijs() * artAkVerw.getAantal();
                     System.out.println(artAkVerw.getAantal());
                     totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAkVerw.getAantal();
-                    System.out.println(artAkVerw.getAantal());
-                    System.out.println("13");
                 }
                 else
                 {
-                    
-                    //System.out.println(Integer.toString(aantal));
-                    totaalPrijs =- art.getPrijs() * artAkVerw.getAantal();
-                    System.out.println(artAkVerw.getAantal());
-                    System.out.println("14");
+                    totaalPrijs = totaalPrijs - art.getPrijs() * artAkVerw.getAantal();
                 }
             }
         
