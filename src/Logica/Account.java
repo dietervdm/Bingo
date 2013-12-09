@@ -312,6 +312,7 @@ public class Account
     public void isBigSpenderWorden(){
         if(this.isVip(this.getAccountnr()))
         {
+            // if (account is al major) --> doen niets
             if(this.totaalGeldJaar(this.accountnr) > 5000)
             {
                 if(jstartb.before(getVorigJaar()))
