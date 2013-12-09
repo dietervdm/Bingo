@@ -3,9 +3,9 @@ package GUI;
 
 import Database.Database;
 import Logica.Account;
+import Logica.Major;
 import Logica.Vestiging;
 import Logica.Winkel;
-import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -107,9 +107,9 @@ public class VerkopenKlant extends javax.swing.JFrame {
                 if(db.checkSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())))
                 {
                     Account acc = db.getAccount(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr());
-                    Major maj = db.getMajor(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr(), actief.getWinkelnaam())
+                    Major maj = db.getMajor(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr(), actief.getWinkelnaam());
                     acc.isVip(acc.getAccountnr());
-                    acc.isMajorWorden(acc.getAccountnr(), actief.getWinkelnaam());
+                    acc.isMajor(actief);
                     acc.isWolverineWorden();
                     acc.isBigSpenderWorden();
                     

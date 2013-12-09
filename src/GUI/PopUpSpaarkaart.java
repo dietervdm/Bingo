@@ -3,10 +3,10 @@ package GUI;
 
 import Database.Database;
 import Logica.Account;
+import Logica.Major;
 import Logica.Spaarkaart;
 import Logica.Vestiging;
 import Logica.Winkel;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -253,8 +253,10 @@ import javax.swing.border.Border;
     
     public static String afbeeldingMajor(){
         Major maj = db.getMajor(actieveSpaarkaart.getAccountnr(), actief.getWinkelnaam());
-        db.getAccount(actieveSpaarkaart.getAccountnr()).isMajorWorden(actieveSpaarkaart.getAccountnr(), actief.getWinkelnaam());
-        if (db.getAccount(actieveSpaarkaart.getAccountnr()).isMajor())
+        Account acc = db.getAccount(actieveSpaarkaart.getAccountnr());
+        db.getAccount(actieveSpaarkaart.getAccountnr());
+        acc.isMajorWorden(actief.getWinkelnaam());
+        if (db.getWinkel(actief.getWinkelnaam()).getAccount() == db.getAccount(actieveSpaarkaart.getAccountnr()).getAccountnr())
             return "src\\GUI\\Badge\\Major.png";
         else
             return "src\\GUI\\Badge\\MajorBlack.png";

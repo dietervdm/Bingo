@@ -280,6 +280,52 @@ public class Account
 //        //OPSLAAN NAAR DE DATABASE
 //    }
     
+    public void isMajorWorden(String winkelnaam){
+        if(this.getAccountnr() != db.getWinkel(winkelnaam).getAccount())
+        {
+            Account acc1 = db.getAccount(this.getAccountnr());
+            Account acc2 = db.getAccount(db.getWinkel(winkelnaam).getAccount());
+            
+            if(acc1.totaalGeldJaar(acc1.getAccountnr()) > acc2.totaalGeldJaar(acc2.getAccountnr()))
+            {
+                Major major1 = db.getMajor(this.getAccountnr(), winkelnaam);
+                Major major2 = db.getMajor(db.getWinkel(winkelnaam).getAccount(), winkelnaam);
+                
+                
+                if(db.checkMajor(this.getAccountnr(), winkelnaam))
+                {
+                    // acc1 wordt major
+                    db.updateAccountnrWinkel(db.getWinkel(winkelnaam), acc1.getAccountnr());
+                    
+                    if(db.krijgtPunten(major1))
+                    {
+                        // geef punten
+                        int nieuwepunten = acc1.getPunten() + 100;  // Major krijgt 100 punten bij.
+                        db.updateAantalpunten(acc1, nieuwepunten);
+                        // zet datum op vandaag
+                        db.updateMajor(acc1, db.getWinkel(winkelnaam));
+                    }
+                }
+                else
+                {
+                    // acc1 was nog geen major geweest en wordt major
+                db.addMajor(this.getAccountnr(), winkelnaam);
+                // punten geven
+                }
+                        
+            }
+            else
+            {
+                // niets doen, acc2 blijft major
+            }
+        }
+        else
+        {
+            // niets doen, acc2 blijft major
+        }
+        
+    }
+    
     public void isWolverineWorden(){
         if(this.isVip(this.getAccountnr()))
         {
@@ -343,7 +389,7 @@ public class Account
     
 //    public boolean RechtOpPuntenMajor(Date datum){
 //        datum.setYear(datum.getYear()-1);
-//        return datum.after(jstartm);
+//        return datum.after(db.getm);
 //    }
     
     public boolean RechtOpPuntenBigSpender(Date datum){
@@ -415,6 +461,10 @@ public class Account
             outputStream.println(line);
         
         outputStream.close();
+    }
+    
+    public boolean isMajor(Winkel winkel){
+        return winkel.getAccount() == this.accountnr;
     }
     
     }

@@ -671,8 +671,8 @@ public class Database {
                 java.sql.Date startw = srs.getDate("startw");
                 boolean bigspender = srs.getBoolean("bigspender");
                 java.sql.Date startb = srs.getDate("startb");
-                boolean major = srs.getBoolean("major");
-                java.sql.Date startm = srs.getDate("startm");
+//                boolean major = srs.getBoolean("major");
+//                java.sql.Date startm = srs.getDate("startm");
                 boolean bedrijf = srs.getBoolean("bedrijf");
                 String btwnummer = srs.getString("btwnummer");
                 Account a = new Account(accountnummer, naam, email, adres, punten, wolverine, startw, bigspender, startb, bedrijf, btwnummer);
@@ -1139,13 +1139,13 @@ public class Database {
     
     
     
-    public void addMajor(Major maj){
+    public void addMajor(int accountnr, String winkelnaam){
         
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             try{
-            stmt.executeUpdate("INSERT INTO major VALUES (" + maj.getWinkelnaam() + ", '" + maj.getAccountnr() + "', CURDATE());");
+            stmt.executeUpdate("INSERT INTO major VALUES ('" + winkelnaam + "', " + accountnr + ", CURDATE());");
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -1216,6 +1216,40 @@ public class Database {
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
+        }
+    }
+    
+    public Boolean krijgtPunten(Major m){
+        try{
+            String sql = "SELECT puntendatum FROM major WHERE accountnr = " + m.getAccountnr() + " AND winkelnaam = '" + m.getWinkelnaam() + "' AND puntendatum > CURRENT_DATE - INTERVAL '1' YEAR";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return false;
+            }
+            else {this.closeConnection();return true;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return true;
+        }
+    }
+    
+    public Boolean heeftMajor(String winkelnaam){
+        try{
+            String sql = "SELECT puntendatum FROM major WHERE winkelnaam = '" + winkelnaam + "'";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                this.closeConnection();
+                return true;
+            }
+            else {this.closeConnection();return false;}
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return false;
         }
     }
 }
