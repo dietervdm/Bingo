@@ -2,7 +2,7 @@
 package Logica;
 
 import Database.Database;
-import static Logica.Account.getVorigJaar;
+//import static Logica.Account.getVorigJaar;
 import java.sql.Date;
 import java.util.ArrayList;
 
