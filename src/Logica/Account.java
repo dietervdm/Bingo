@@ -224,15 +224,15 @@ public class Account
     
     // FUNCTIES VAN VIP SYSTEEM
     
-    public static Date getVorigJaar(){
-        
-        Calendar cal = Calendar.getInstance();
-        Date vandaag = cal.getTime();
-        cal.add(Calendar.YEAR, -1);
-        Date volgendJaar = cal.getTime();
-        return volgendJaar;
-        
-    }
+//    public static Date getVorigJaar(){
+//        
+//        Calendar cal = Calendar.getInstance();
+//        Date vandaag = cal.getTime();
+//        cal.add(Calendar.YEAR, -1);
+//        Date volgendJaar = cal.getTime();
+//        return volgendJaar;
+//        
+//    }
     
     public boolean isVip(int accountnr){
         return totaalPuntenJaar(accountnr) > 10000;
@@ -402,15 +402,15 @@ public class Account
 //        return datum.after(db.getm);
 //    }
     
-    public boolean RechtOpPuntenBigSpender(Date datum){
-        datum.setYear(datum.getYear()-1);
-        return datum.after(jstartb);
-    }
-    
-    public boolean RechtOpPuntenWolverine(Date datum){
-        datum.setYear(datum.getYear()-1);
-        return datum.after(jstartw);
-    }
+//    public boolean RechtOpPuntenBigSpender(Date datum){
+//        datum.setYear(datum.getYear()-1);
+//        return datum.after(jstartb);
+//    }
+//    
+//    public boolean RechtOpPuntenWolverine(Date datum){
+//        datum.setYear(datum.getYear()-1);
+//        return datum.after(jstartw);
+//    }
     
     
     public int totaalPuntenJaar(int accountnr){
