@@ -107,7 +107,7 @@ public class Major
 //        OPSLAAN NAAR DE DATABASE
 //    }
     
-    public void majorWorden(Winkel winkel){
-        
-    }
-}
+//    public void majorWorden(Winkel winkel){
+//        
+//    }
+  }
