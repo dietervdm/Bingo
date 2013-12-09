@@ -256,6 +256,7 @@ import javax.swing.border.Border;
         Account acc = db.getAccount(actieveSpaarkaart.getAccountnr());
         db.getAccount(actieveSpaarkaart.getAccountnr());
         acc.isMajorWorden(actief.getWinkelnaam());
+        System.out.println("controleer major");
         if (db.getWinkel(actief.getWinkelnaam()).getAccount() == db.getAccount(actieveSpaarkaart.getAccountnr()).getAccountnr())
             return "src\\GUI\\Badge\\Major.png";
         else
@@ -264,6 +265,7 @@ import javax.swing.border.Border;
     
     public static String afbeeldingBigSpender(){
         db.getAccount(actieveSpaarkaart.getAccountnr()).isBigSpenderWorden();
+        System.out.println("controleer bigspender");
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isBigspender())
             return "src\\GUI\\Badge\\BigSpender.png";
         else
@@ -272,6 +274,7 @@ import javax.swing.border.Border;
     
     public static String afbeeldingWolverine(){
         db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverineWorden();
+        System.out.println("controleer wolverine");
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverine())
             return "src\\GUI\\Badge\\Wolverine.png";
         else

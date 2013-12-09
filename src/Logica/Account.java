@@ -336,7 +336,8 @@ public class Account
     public void isWolverineWorden(){
         if(this.isVip(this.getAccountnr()))
         {
-            if(db.getAantalVerschillendeWinkels(this) > 19)
+            if(db.getAantalVerschillendeWinkels(this) > 5)
+                    // 5 MOET NOG VERVANGEN WORDEN DOOR 19
             {
                 if(jstartw.before(getVorigJaar()))
                 {
@@ -350,6 +351,7 @@ public class Account
                     this.sendMailGoed("Wolverine", "0");
                 }
                 this.setWolverine(true);
+                
             }
             else
                 this.setWolverine(false);
@@ -359,7 +361,7 @@ public class Account
         System.out.println(db.getAantalVerschillendeWinkels(this));
         
         // OPSLAAN NAAR DE DATABASE
-        
+        db.updateWolverineAccount(accountnr, this.isWolverine());
     }
     
     public void isBigSpenderWorden(){
@@ -391,6 +393,7 @@ public class Account
             this.setBigspender(false);
         }
         
+        db.updateBigSpenderAccount(accountnr, this.isBigspender());
         // OPSLAAN NAAR DATABASE
     }
     
@@ -411,7 +414,7 @@ public class Account
     
     
     public int totaalPuntenJaar(int accountnr){
-        return db.getTotaalPuntenVerkregenAccount(accountnr);        
+        return db.getTotaalPuntenVerkregenAccount(accountnr);       
     }
     
     public double totaalGeldJaar(int accountnr){

@@ -124,9 +124,18 @@ public class Database {
         try{
             String sql = "SELECT COUNT(DISTINCT winkelnaam) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR);";
             ResultSet srs = getData(sql);
-            int aantal = srs.getInt("aantal");
-            return aantal;
-
+            if(srs.next()){
+                int aantal = srs.getInt("aantal");
+                this.closeConnection();
+                return aantal;
+            }
+            else
+            {
+                this.closeConnection();
+                return -1;
+            }
+                
+            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -139,9 +148,17 @@ public class Database {
         try{
             String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
-            double totaalbedrag = srs.getDouble("totaalbedrag");
-            return totaalbedrag;
-
+            if(srs.next()){
+                double totaalbedrag = srs.getDouble("totaalbedrag");
+                this.closeConnection();
+                return totaalbedrag;
+            }
+            else
+            {
+                this.closeConnection();
+                return -1;
+            }
+            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -155,9 +172,17 @@ public class Database {
         try{
             String sql = "SELECT SUM(totaalPuntenBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
-            int totaalbedrag = srs.getInt("totaalbedrag");
-            return totaalbedrag;
-
+            if(srs.next()){
+                int totaalbedrag = srs.getInt("totaalbedrag");
+                this.closeConnection();
+                return totaalbedrag;
+            }
+            else
+            {
+                this.closeConnection();
+                return -1;
+            }
+            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -748,6 +773,36 @@ public class Database {
             stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public void updateWolverineAccount(int accountnr, boolean wol){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE account SET wolverine = " + wol + " WHERE accountnr = " + accountnr);
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public void updateBigSpenderAccount(int accountnr, boolean bs){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE account SET bigspender = " + bs + " WHERE accountnr = " + accountnr);
             this.closeConnection();
         }
         catch(SQLException sqle){
