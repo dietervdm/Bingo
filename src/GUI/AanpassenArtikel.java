@@ -385,7 +385,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -414,7 +414,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
                                         .addComponent(txtMinimumartikelen, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 131, Short.MAX_VALUE)))
+                        .addGap(0, 75, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -475,7 +475,7 @@ public class AanpassenArtikel extends javax.swing.JFrame {
 
     private void knopWijzigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopWijzigActionPerformed
         String winkelnaam = actief.getWinkelnaam();
-        int artikelnummer1 = Integer.parseInt(txtArtikelnummer1.getText());
+        int artikelnummer1 = 000;
         int puntenplus = 0;
         Integer puntenmin = null;
         int minimumartikelen = 1;
@@ -486,6 +486,19 @@ public class AanpassenArtikel extends javax.swing.JFrame {
         double prijsAfgerond = pr / 100.00 ;
         String artikelnaam = txtArtikelnaam.getText();
         boolean toevoegen = true;
+        
+        if(txtArtikelnummer1.getText().equals("")){
+            toevoegen = false;
+            JOptionPane.showMessageDialog(null, "Dit is geen bestaand artikelnummer.");
+        }
+        else{
+            artikelnummer1 = Integer.parseInt(txtArtikelnummer1.getText());
+        }
+        
+        if(!d.checkArtikel(artikelnummer1, winkelnaam)){
+            toevoegen = false;
+            JOptionPane.showMessageDialog(null, "Dit is geen bestaand artikelnummer.");
+        }
         
         if(txtPrijs.getText().equals("") || Double.parseDouble(txtPrijs.getText())<0){
             toevoegen = false;
