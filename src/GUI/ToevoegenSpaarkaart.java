@@ -381,6 +381,11 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
         
         Spaarkaart s = new Spaarkaart(kaartnr, accountnr, naamhouder);
         
+        if(!d.checkAccount(accountnr)){
+            JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet");
+        }
+        else{
+        
         if(d.checkSpaarkaart(kaartnr)){
             JOptionPane.showMessageDialog(null, "Dit spaarkaartnummer bestaat al voor deze account");
         }
@@ -393,7 +398,7 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
         }
         txtNaamhouder.setText("");
         txtNaamhouder.requestFocus();
-        
+        }
     }//GEN-LAST:event_knopVoegtoeActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked
