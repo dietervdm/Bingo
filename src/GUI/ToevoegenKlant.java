@@ -22,7 +22,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
     public ToevoegenKlant(JFrame caller) {
         initComponents();
         myCaller = caller;
-        int accountnr = d.aantalAccounts() + 1;
+        int accountnr = d.maxAccounts() + 1;
         txtAccountnrnieuw.setText("" + accountnr);
     }
 
@@ -347,9 +347,9 @@ public class ToevoegenKlant extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtAccountnrnieuw, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAccountnrnieuw, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -401,7 +401,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
         String btwnummer = null;
-        int accountnr = d.aantalAccounts() + 1;
+        int accountnr = d.maxAccounts() + 1;
         
         if(checkBedrijf.isSelected()){
             if (txtBtwnummer.getText() != ""){
@@ -421,7 +421,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
             d.addAccount(a);
             t = d.naarTabel("select * from account");
             tabelKlanten.setModel(t);
-            int accountnr2 = d.aantalAccounts() + 1;
+            int accountnr2 = d.maxAccounts() + 1;
             txtAccountnrnieuw.setText("" + accountnr2);
             txtBtwnummer.setText("");
             txtAdres.setText("");

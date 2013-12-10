@@ -20,7 +20,7 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
     public ToevoegenSpaarkaart(JFrame caller) {
         initComponents();
         myCaller = caller;
-        int kaartnr = d.aantalSpaarkaarten() + 1;
+        int kaartnr = d.maxSpaarkaarten() + 1;
         txtKaartnr.setText("" + kaartnr);
     }
 
@@ -375,7 +375,7 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
     }//GEN-LAST:event_knopGeefweerActionPerformed
 
     private void knopVoegtoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegtoeActionPerformed
-        int kaartnr = d.aantalSpaarkaarten() + 1;
+        int kaartnr = d.maxSpaarkaarten() + 1;
         int accountnr = Integer.parseInt(txtAccountnr.getText());
         String naamhouder = txtNaamhouder.getText();
         
@@ -388,7 +388,7 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
             d.addSpaarkaart(s);
             t = d.naarTabel("select * from spaarkaart where accountnr = '" + accountnr + "'");
             tabelSpaarkaarten.setModel(t);
-            int kaartnr2 = d.aantalSpaarkaarten() + 1;
+            int kaartnr2 = d.maxSpaarkaarten() + 1;
             txtKaartnr.setText("" + kaartnr2);
         }
         txtNaamhouder.setText("");

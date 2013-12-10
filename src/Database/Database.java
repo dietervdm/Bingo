@@ -997,9 +997,55 @@ public class Database {
         }
     }
     
+    public int maxSpaarkaarten(){
+        try{
+            String sql = "SELECT max(kaartnr) FROM spaarkaart;";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int count = srs.getInt("count(*)");
+                this.closeConnection();
+                return count;
+            }
+           
+            else{
+                this.closeConnection();
+                return -1;
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+    }
+    
     public int aantalAccounts(){
         try{
             String sql = "SELECT COUNT(*) FROM account;";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int count = srs.getInt("count(*)");
+                this.closeConnection();
+                return count;
+            }
+           
+            else{
+                this.closeConnection();
+                return -1;
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+    }
+    
+    public int maxAccounts(){
+        try{
+            String sql = "SELECT max(accountnr) FROM account;";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int count = srs.getInt("count(*)");
