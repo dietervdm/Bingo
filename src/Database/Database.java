@@ -1218,7 +1218,7 @@ public class Database {
         
     public Boolean checkMajor(int accountnr, String winkelnaam){
         try{
-            String sql = "SELECT * FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (accountnr = " + accountnr + ");";
+            String sql = "SELECT * FROM major WHERE (winkelnaam = '" + winkelnaam + "') and (accountnr = " + accountnr + ");";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -1241,7 +1241,6 @@ public class Database {
                 String naam = srs.getString("winkelnaam");
                 int accountnummer = srs.getInt("accountnr");
                 Major maj = new Major(naam,accountnummer);
-                // DATUM MOET HIER NOG BIJ, GEEN IDEE HOE DAT MOET
                 this.closeConnection();
                 return maj;
             }
