@@ -29,7 +29,6 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     private int puntenOver;
     private int artikelenMetPunten = 0;
     
-    Date datum = new Date();
     private Aankoop ak; // = new Aankoop(transactienummer, actieveVest.getVestigingId(), actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), datum);
 
     DefaultTableModel t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald from artikelaankoop, artikel where transactienr = 0");
@@ -40,7 +39,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
         ak = new Aankoop(transactienummer, actieveVest.getVestigingId(),
-                                    actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), datum);
+                                    actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr());
         db.addAankoop(ak);
     }
     
@@ -51,7 +50,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         // initialiseren van aantal punten door uit de database te halen.
         puntenOver = db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten();
         ak = new Aankoop((transactienummer), actieveVest.getVestigingId(),
-                                    actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr(), datum);
+                                    actief.getWinkelnaam(), actieveSpaarkaart.getKaartnr());
         db.addAankoop(ak);
         initComponents();
     }

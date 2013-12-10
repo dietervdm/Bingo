@@ -321,7 +321,7 @@ public class Verkopen extends javax.swing.JFrame {
 
     private void knopVerkoopSchermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerkoopSchermActionPerformed
         VerkopenKlant s = new VerkopenKlant(this);
-                s.setActieveVest(db.getVestiging(Integer.parseInt(jComboBox1.getSelectedItem().toString()), actief.getWinkelnaam()));
+                s.setActieveVest(db.getVestiging(jComboBox1.getSelectedItem().toString(), actief.getWinkelnaam()));
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
     }//GEN-LAST:event_knopVerkoopSchermActionPerformed
@@ -500,12 +500,12 @@ public class Verkopen extends javax.swing.JFrame {
     }
     
     public String[] getVestigingen(){
-        ArrayList<Integer> lijst = actief.getLijstVestigingen();
+        ArrayList<String> lijst = actief.getLijstVestigingen();
         
         String[] lijstje = new String[lijst.size()];
         for(int i = 0; i<lijst.size(); i++)
         {
-            lijstje[i] = lijst.get(i).toString();
+            lijstje[i] = lijst.get(i);
         }
         return lijstje;
     }

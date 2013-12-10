@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Vestiging
 {
-    private int VestigingId;
+    private String VestigingId;
     private String winkelnaam;
     private String adres;
     
@@ -15,25 +15,25 @@ public class Vestiging
     public Vestiging()
     {}
     
-    public Vestiging(int VestigingId, String winkelnaam)
+    public Vestiging(String VestigingId, String winkelnaam)
     {
         this.VestigingId = VestigingId;
         this.winkelnaam = winkelnaam;
     }
     
-    public Vestiging(int VestigingId, String winkelnaam, String adres)
+    public Vestiging(String VestigingId, String winkelnaam, String adres)
     {
         this.VestigingId = VestigingId;
         this.winkelnaam = winkelnaam;
         this.adres = adres;
     }
     
-    public int getVestigingId()
+    public String getVestigingId()
     {
         return VestigingId;
     }
     
-    public void setVestigingId(int VestigingId)
+    public void setVestigingId(String VestigingId)
     {
         this.VestigingId = VestigingId;
     }
@@ -66,7 +66,7 @@ public class Vestiging
         vest = db.getAlleVestigingen(winkelnaam);
         for(int i=0; i<vest.size(); i++)
         {
-            vestigingenId.add(Integer.toString(vest.get(i).getVestigingId()));  
+            vestigingenId.add(vest.get(i).getVestigingId());  
         }
         return vestigingenId;
     }

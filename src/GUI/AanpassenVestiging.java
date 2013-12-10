@@ -395,8 +395,8 @@ public class AanpassenVestiging extends javax.swing.JFrame {
     private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
         
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
-        int vestigingid = Integer.parseInt(txtVestigingid.getText());
-        int vestigingid2 = Integer.parseInt(txtVestigingid2.getText());
+        String vestigingid = txtVestigingid.getText();
+        String vestigingid2 = txtVestigingid2.getText();
         Vestiging nieuw = new Vestiging(vestigingid2, winkelnaam, txtAdres.getText());
         Vestiging oud = new Vestiging(vestigingid, winkelnaam, "");
         

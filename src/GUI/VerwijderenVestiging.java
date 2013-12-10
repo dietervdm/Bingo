@@ -330,7 +330,7 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
 
     private void knopVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVerwijderenActionPerformed
 
-        int vestigingid = Integer.parseInt(txtVestigingid.getText());
+        String vestigingid = txtVestigingid.getText();
 
         if(d.checkVestiging(vestigingid, actief.getWinkelnaam())){
             Vestiging v = d.getVestiging(vestigingid, actief.getWinkelnaam());

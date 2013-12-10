@@ -550,7 +550,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO vestiging VALUES (" + v.getVestigingId() + ", '" + v.getWinkelnaam() + "', '" + v.getAdres() + "');");
+            stmt.executeUpdate("INSERT INTO vestiging VALUES ('" + v.getVestigingId() + "', '" + v.getWinkelnaam() + "', '" + v.getAdres() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -559,9 +559,9 @@ public class Database {
         }
     }
     
-    public Boolean checkVestiging(int vestigingid, String winkelnaam){
+    public Boolean checkVestiging(String vestigingid, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE (vestigingid = " + vestigingid + ") and (winkelnaam = '" + winkelnaam + "');";
+            String sql = "SELECT * FROM vestiging WHERE (vestigingid = '" + vestigingid + "') and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -576,15 +576,15 @@ public class Database {
         }
     }
     
-    public Vestiging getVestiging(int vestigingid, String winkelnaam){
+    public Vestiging getVestiging(String vestigingid, String winkelnaam){
         try{
-            String sql = "SELECT * FROM vestiging WHERE (winkelnaam = '" + winkelnaam + "') and (vestigingid = " + vestigingid + ");";
+            String sql = "SELECT * FROM vestiging WHERE (winkelnaam = '" + winkelnaam + "') and (vestigingid = '" + vestigingid + "');";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 String naam = srs.getString("winkelnaam");
-                int vestid = srs.getInt("vestigingid");
+                String vestid = srs.getString("vestigingid");
                 String adres = srs.getString("adres");
-                Vestiging v = new Vestiging(vestid,naam,adres);
+                Vestiging v = new Vestiging(vestid, naam, adres);
                 this.closeConnection();
                 return v;
             }
@@ -604,7 +604,7 @@ public class Database {
             String sql = "SELECT * FROM vestiging WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
             while(srs.next()){
-                int vestigingid = srs.getInt("vestigingid");
+                String vestigingid = srs.getString("vestigingid");
                 String naam = srs.getString("winkelnaam");
                 String adres = srs.getString("adres");
                 
@@ -626,7 +626,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE FROM vestiging WHERE (winkelnaam = '" + v.getWinkelnaam() + "') and (vestigingid = " + v.getVestigingId() + ");");
+            stmt.executeUpdate("DELETE FROM vestiging WHERE (winkelnaam = '" + v.getWinkelnaam() + "') and (vestigingid = '" + v.getVestigingId() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -641,8 +641,8 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
-            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE (vestigingid = " + oud.getVestigingId() + ") and (winkelnaam = '" + winkelnaam + "');" );
-            stmt.executeUpdate("UPDATE vestiging SET vestigingid = '" + nieuw.getVestigingId() + "' WHERE (vestigingid = " + oud.getVestigingId() + ") and (winkelnaam = '" + winkelnaam + "');" );     
+            stmt.executeUpdate("UPDATE vestiging SET adres = '" + nieuw.getAdres() + "' WHERE (vestigingid = '" + oud.getVestigingId() + "') and (winkelnaam = '" + winkelnaam + "');" );
+            stmt.executeUpdate("UPDATE vestiging SET vestigingid = '" + nieuw.getVestigingId() + "' WHERE (vestigingid = '" + oud.getVestigingId() + "') and (winkelnaam = '" + winkelnaam + "');" );     
                     
             this.closeConnection();
         }
@@ -1055,7 +1055,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", " + a.getVestigingid()+ ", '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", CURDATE(), 0.0, 0);");
+            stmt.executeUpdate("INSERT INTO aankoop VALUES (" + a.getTransactienr()  + ", '" + a.getVestigingid()+ "', '" + a.getWinkelnaam() + "', " + a.getSpaarkaart() + ", CURDATE(), 0.0, 0);");
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -1069,7 +1069,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("DELETE from aankoop WHERE (transactienr = " + a.getTransactienr() + ") and (vestigingid = " + a.getVestigingid() + ") and (winkelnaam = '" + a.getWinkelnaam() + "') and (kaartnr = " + a.getSpaarkaart() +");");
+            stmt.executeUpdate("DELETE from aankoop WHERE (transactienr = " + a.getTransactienr() + ") and (vestigingid = '" + a.getVestigingid() + "') and (winkelnaam = '" + a.getWinkelnaam() + "') and (kaartnr = " + a.getSpaarkaart() +");");
             this.closeConnection();
         }
         catch(SQLException sqle){

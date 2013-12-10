@@ -619,12 +619,12 @@ public class RapportVestiging extends javax.swing.JFrame {
     }
     
     public String[] getVestigingen(){
-        ArrayList<Integer> lijst = actief.getLijstVestigingen();
+        ArrayList<String> lijst = actief.getLijstVestigingen();
         
         String[] lijstje = new String[lijst.size()];
         for(int i = 0; i<lijst.size(); i++)
         {
-            lijstje[i] = lijst.get(i).toString();
+            lijstje[i] = lijst.get(i);
         }
         return lijstje;
     }

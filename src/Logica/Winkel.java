@@ -75,11 +75,11 @@ public class Winkel
     
 
     
-    public ArrayList<Integer> getLijstVestigingen(){
+    public ArrayList<String> getLijstVestigingen(){
         Database db = new Database();
         ArrayList<Vestiging> vVest = null;
         vVest = db.getAlleVestigingen(winkelnaam);
-        ArrayList<Integer> vString = new ArrayList<Integer>();
+        ArrayList<String> vString = new ArrayList<String>();
         
         for(int i=0; i<vVest.size(); i++)
         {

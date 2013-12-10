@@ -168,7 +168,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
 
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = actief.getWinkelnaam();
-        int vestigingid = Integer.parseInt(txtVestigingid.getText());
+        String vestigingid = txtVestigingid.getText();
         Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
         if(d.checkVestiging(vestigingid, winkelnaam)){
             JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
