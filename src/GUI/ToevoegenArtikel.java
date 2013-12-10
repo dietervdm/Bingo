@@ -484,7 +484,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Aantal minimumartikelen niet ingevuld");
                     }
                     else {
-                       minimumartikelen = Integer.parseInt(txtPuntenplus.getText()); 
+                       minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText()); 
                     }
                 }
             }
@@ -507,7 +507,7 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Minimumbedrag niet ingevuld");
                     }
                     else {
-                       minimumbedrag = Integer.parseInt(txtPuntenmin.getText()); 
+                       minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText()); 
                     }
                 }
             }
