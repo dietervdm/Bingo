@@ -361,6 +361,7 @@ public class Account
                     db.updateAantalpunten(this, nieuw);
                     Date vandaag = new Date();
                     this.setStartw(vandaag);
+                    db.updateWolverineAccountDatum(accountnr);
                 }
                 else
                 {
@@ -381,6 +382,8 @@ public class Account
     }
     
     public void isBigSpenderWorden(){
+        
+        
         if(this.isVip(this.getAccountnr()))
         {
             if(this.totaalGeldJaar(this.accountnr) > 5000)
@@ -389,13 +392,16 @@ public class Account
                 if(db.getDatumVoorBigspender(accountnr))
                 {
                     this.setPunten(punten + 500);
+                    System.out.println("mail");
                     this.sendMailGoed("Bigspender", "600");
                     Date vandaag = new Date();
                     this.setStartw(vandaag);
+                    db.updateBigSpenderAccountDatum(accountnr);
                 }
                 else
                 {
                     this.sendMailGoed("Bigspender", "0");
+                    System.out.println("mail");
                 }
                 
             }

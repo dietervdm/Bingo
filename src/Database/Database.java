@@ -799,6 +799,21 @@ public class Database {
         }
     }
     
+    public void updateWolverineAccountDatum(int accountnr){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE account SET startw = CURRENT_DATE WHERE accountnr = " + accountnr);
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
     public void updateBigSpenderAccount(int accountnr, boolean bs){
         
         try{
@@ -806,6 +821,21 @@ public class Database {
             Statement stmt = dbConnection.createStatement();
             
             stmt.executeUpdate("UPDATE account SET bigspender = " + bs + " WHERE accountnr = " + accountnr);
+            this.closeConnection();
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+        }
+    }
+    
+    public void updateBigSpenderAccountDatum(int accountnr){
+        
+        try{
+            dbConnection = getConnection();
+            Statement stmt = dbConnection.createStatement();
+            
+            stmt.executeUpdate("UPDATE account SET startb = CURRENT_DATE WHERE accountnr = " + accountnr);
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -1381,7 +1411,7 @@ public class Database {
     
         public Boolean getDatumVoorWolverine(int accountnr){
         try{
-            String sql = "SELECT * FROM account WHERE (accountnr = " + accountnr + " and account.startw < CURDATE() - INTERVAL '1'YEAR);";
+            String sql = "SELECT * FROM account WHERE (accountnr = " + accountnr + " and (account.startw < (CURDATE() - INTERVAL '1'YEAR) or account.startw IS NULL);";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
@@ -1399,7 +1429,7 @@ public class Database {
     public Boolean getDatumVoorBigspender(int accountnr){
         try{
             // IN DEZE FUNCTIE MOEST HET HAAKJE WEG
-            String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + " and account.startb < (CURDATE() - INTERVAL '1'YEAR);";
+            String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + " and (account.startb < (CURDATE() - INTERVAL '1'YEAR) or account.startb IS NULL);";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
