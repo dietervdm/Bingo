@@ -5,12 +5,16 @@ import Database.Database;
 import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
-import java.util.Calendar;
+import java.util.Properties;
+//Deze nodig voor mail
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 public class Account 
@@ -445,56 +449,140 @@ public class Account
         return db.getTotaalGespendeerdeBedragAccount(this.accountnr);
     }
     
-    public void sendMailGoed(String badge, String punten){
-        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
-        PrintWriter outputStream = null;
-        
-        try
-        {
-            outputStream = new PrintWriter(filename);
-        }
-        
-        catch (FileNotFoundException ex)
-        {
-            System.out.println("Error opening the file " + filename);
-            System.exit(0);
-        }
-        
-        
-            String line = "<Send to" + this.getEmail() + "> \n\n"
-                          + "Beste " + this.getNaam() + ", \n\n"
+//    public void sendMailGoed(String badge, String punten){
+//        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
+//        PrintWriter outputStream = null;
+//        
+//        try
+//        {
+//            outputStream = new PrintWriter(filename);
+//        }
+//        
+//        catch (FileNotFoundException ex)
+//        {
+//            System.out.println("Error opening the file " + filename);
+//            System.exit(0);
+//        }
+//        
+//        
+//            String line = "<Send to" + this.getEmail() + "> \n\n"
+//                          + "Beste " + this.getNaam() + ", \n\n"
+//                          + "Bedankt om bij Bingo klant te zijn. \n"
+//                          + "U bent " + badge + " geworden.\n "
+//                          + "U krijgt " + punten + " punten bij op uw account. \n"
+//                          + "U heeft nu " + this.getPunten() + " punten";
+//            outputStream.println(line);
+//        
+//        outputStream.close();
+//    }
+    
+    public void sendMailGoed(String badge, String ptn){
+        final String username = " bingogroep31@gmail.com";
+	final String password = "aeCahqu3";
+ 
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() 
+                        {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+ 
+		try
+                {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(" bingogroep31@gmail.com"));
+                            // Zend email adres is vast.
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.getEmail()));
+                            // Ontvang email adres is variabel
+			message.setSubject(badge + "-badge verworven!");
+			message.setText("Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
-                          + "U bent " + badge + " geworden.\n "
-                          + "U krijgt " + punten + " punten bij op uw account. \n"
-                          + "U heeft nu " + this.getPunten() + " punten";
-            outputStream.println(line);
-        
-        outputStream.close();
+                          + "Proficiat, u bent " + badge + " geworden.\n "
+                          + "U krijgt " + Integer.parseInt(ptn) + " punten bij op uw account. \n"
+                          + "U heeft nu " + this.getPunten() + " punten");
+ 
+			Transport.send(message);
+ 
+			System.out.println("Done");
+ 
+		} 
+                catch (MessagingException e) 
+                {
+			throw new RuntimeException(e);
+		}
     }
     
+//    public void sendMailSlecht(String badge){
+//        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
+//        PrintWriter outputStream = null;
+//        
+//        try
+//        {
+//            outputStream = new PrintWriter(filename);
+//        }
+//        
+//        catch (FileNotFoundException ex)
+//        {
+//            System.out.println("Error opening the file " + filename);
+//            System.exit(0);
+//        }
+//        
+//        
+//            String line = "<Send to" + this.getEmail() + "> \n\n" 
+//                          + "Beste " + this.getNaam() + ", \n\n"
+//                          + "Bedankt om bij Bingo klant te zijn. \n"
+//                          + "U bent uw " + badge + " - Badge helaas kwijtgeraakt.";
+//            outputStream.println(line);
+//        
+//        outputStream.close();
+//    }
+    
     public void sendMailSlecht(String badge){
-        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
-        PrintWriter outputStream = null;
-        
-        try
-        {
-            outputStream = new PrintWriter(filename);
-        }
-        
-        catch (FileNotFoundException ex)
-        {
-            System.out.println("Error opening the file " + filename);
-            System.exit(0);
-        }
-        
-        
-            String line = "<Send to" + this.getEmail() + "> \n\n" 
-                          + "Beste " + this.getNaam() + ", \n\n"
+        final String username = " bingogroep31@gmail.com";
+	final String password = "aeCahqu3";
+ 
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() 
+                        {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+ 
+		try
+                {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(" bingogroep31@gmail.com"));
+                            // Zend email adres is vast.
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.getEmail()));
+                            // Ontvang email adres is variabel
+			message.setSubject(badge + "-badge verloren!");
+			message.setText("Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
-                          + "U bent uw " + badge + " - Badge helaas kwijtgeraakt.";
-            outputStream.println(line);
-        
-        outputStream.close();
+                          + "Helaas, u bent uw " + badge + "-badge kwijtgeraakt");
+ 
+			Transport.send(message);
+ 
+			System.out.println("Done");
+ 
+		} 
+                catch (MessagingException e) 
+                {
+			throw new RuntimeException(e);
+		}
     }
     
     public boolean isMajor(Winkel winkel){
