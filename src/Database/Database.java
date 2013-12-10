@@ -1364,13 +1364,13 @@ public class Database {
     
     public Boolean heeftMajor(String winkelnaam){
         try{
-            String sql = "SELECT puntendatum FROM major WHERE winkelnaam = '" + winkelnaam + "'";
+            String sql = "SELECT * FROM `winkel` WHERE `accountnr` IS NULL AND winkelnaam = '" + winkelnaam + "'";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
-                return true;
+                return false;
             }
-            else {this.closeConnection();return false;}
+            else {this.closeConnection();return true;}
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());

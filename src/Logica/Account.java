@@ -284,6 +284,7 @@ public class Account
         Account acc1 = db.getAccount(this.getAccountnr());
         Account acc2 = db.getAccount(db.getWinkel(winkelnaam).getAccount());
         
+        
         if(acc1.isVip(acc1.getAccountnr()))
         {
             if(db.heeftMajor(winkelnaam))
@@ -314,7 +315,9 @@ public class Account
                         {
                         // acc1 was nog geen major geweest en wordt major
                         db.addMajor(this.getAccountnr(), winkelnaam);
-                        // punten geven
+                        // geef punten
+                        int nieuwepunten = acc1.getPunten() + 100;  // Major krijgt 100 punten bij.
+                        db.updateAantalpunten(acc1, nieuwepunten);
                         }
                         
                     }
@@ -330,7 +333,12 @@ public class Account
         }
         else
         {
-            // niets doen, acc2 blijft major
+            db.updateAccountnrWinkel(db.getWinkel(winkelnaam), acc1.getAccountnr());
+            // geef punten
+            int nieuwepunten = acc1.getPunten() + 100;  // Major krijgt 100 punten bij.
+            db.updateAantalpunten(acc1, nieuwepunten);
+            // acc1 was nog geen major geweest en wordt major
+            db.addMajor(this.getAccountnr(), winkelnaam);
         }
         }
         else
@@ -342,7 +350,7 @@ public class Account
     public void isWolverineWorden(){
         if(this.isVip(this.getAccountnr()))
         {
-            if(db.getAantalVerschillendeWinkels(this) > 5)
+            if(db.getAantalVerschillendeWinkels(this) > 19)
                     // 5 MOET NOG VERVANGEN WORDEN DOOR 19
             {
                 if(db.getDatumVoorWolverine(accountnr))
