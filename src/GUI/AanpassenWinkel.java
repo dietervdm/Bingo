@@ -40,6 +40,7 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         knopAanpassen = new javax.swing.JButton();
         txtPaswoord = new javax.swing.JPasswordField();
         txtPaswoord2 = new javax.swing.JPasswordField();
+        knopAanpassen1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -96,6 +97,13 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         txtPaswoord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPaswoordActionPerformed(evt);
+            }
+        });
+
+        knopAanpassen1.setText("Aanpassen");
+        knopAanpassen1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knopAanpassen1ActionPerformed(evt);
             }
         });
 
@@ -301,27 +309,23 @@ public class AanpassenWinkel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(knopTerug)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(knopAanpassen, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27))
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(43, 43, 43))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPaswoord2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(472, Short.MAX_VALUE))
+                    .addComponent(knopAanpassen, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPaswoord2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(knopAanpassen1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(515, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,6 +337,8 @@ public class AanpassenWinkel extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(knopAanpassen1)
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPaswoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -340,9 +346,9 @@ public class AanpassenWinkel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPaswoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(knopAanpassen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                 .addComponent(knopTerug)
                 .addContainerGap())
         );
@@ -358,16 +364,11 @@ public class AanpassenWinkel extends javax.swing.JFrame {
 
     private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
         if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
-            Winkel nieuw = new Winkel(txtNaam.getText(), txtPaswoord.getText());
+            Winkel nieuw = new Winkel(actief.getWinkelnaam(),actief.getAccount() ,txtPaswoord.getText());
             
-            if(d.checkWinkel(nieuw.getWinkelnaam())){
-                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
-            }
-            else {
-                d.updateWinkel(actief, nieuw);
-                InlogScherm.getInstance().setActief(nieuw);
-                JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
-            }
+            d.updateWinkel(actief, nieuw);
+            InlogScherm.getInstance().setActief(nieuw);
+            JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
         }
         else{
             JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
@@ -518,6 +519,25 @@ public class AanpassenWinkel extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
 
+    private void knopAanpassen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassen1ActionPerformed
+      
+        if(!txtNaam.getText().equals("")){
+            Winkel nieuw = new Winkel(txtNaam.getText(),actief.getAccount() ,actief.getPaswoord());
+            
+            if(d.checkWinkel(nieuw.getWinkelnaam())){
+                JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
+            }
+            else {
+                d.updateWinkel(actief, nieuw);
+                InlogScherm.getInstance().setActief(nieuw);
+                JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Er moet een naam ingevuld worden");
+        }
+    }//GEN-LAST:event_knopAanpassen1ActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -564,6 +584,7 @@ public class AanpassenWinkel extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton knopAanpassen;
+    private javax.swing.JButton knopAanpassen1;
     private javax.swing.JButton knopTerug;
     private javax.swing.JMenu menuknopAanpassen;
     private javax.swing.JMenu menuknopHome;

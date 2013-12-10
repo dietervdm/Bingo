@@ -267,7 +267,7 @@ public class Database {
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
 
-            stmt.executeUpdate("UPDATE winkel SET accountnr = 0 WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
+//            stmt.executeUpdate("UPDATE winkel SET accountnr = " + nieuw.getAccount() + " WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             stmt.executeUpdate("UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             stmt.executeUpdate("UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             

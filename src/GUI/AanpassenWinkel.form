@@ -282,35 +282,27 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel4" min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtNaam" min="-2" pref="171" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="189" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="knopAanpassen" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel4" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtNaam" min="-2" pref="171" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel3" pref="149" max="32767" attributes="0"/>
-                              <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtPaswoord2" min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="txtPaswoord" min="-2" pref="171" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Component id="knopAanpassen" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtPaswoord2" min="-2" pref="171" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtPaswoord" min="-2" pref="171" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="knopAanpassen1" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="472" max="32767" attributes="0"/>
+              <EmptySpace pref="515" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -325,6 +317,8 @@
                   <Component id="txtNaam" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="knopAanpassen1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPaswoord" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -334,9 +328,9 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPaswoord2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="knopAanpassen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="320" max="32767" attributes="0"/>
+              <EmptySpace pref="259" max="32767" attributes="0"/>
               <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -388,6 +382,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPaswoord2">
+    </Component>
+    <Component class="javax.swing.JButton" name="knopAanpassen1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aanpassen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="knopAanpassen1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
