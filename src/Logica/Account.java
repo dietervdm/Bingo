@@ -348,6 +348,8 @@ public class Account
     }
     
     public void isWolverineWorden(){
+        Account acc = db.getAccount(accountnr);
+        
         if(this.isVip(this.getAccountnr()))
         {
             if(db.getAantalVerschillendeWinkels(this) > 19)
@@ -355,10 +357,9 @@ public class Account
             {
                 if(db.getDatumVoorWolverine(accountnr))
                 {
-                    this.setPunten(punten + 600);
+                    int nieuwepunten = acc.getPunten() + 600;  // Wolverine krijgt 100 punten bij.
+                    db.updateAantalpunten(acc, nieuwepunten);
                     this.sendMailGoed("Wolverine", "600");
-                    int nieuw = db.getAccount(this.getAccountnr()).getPunten() + 600;
-                    db.updateAantalpunten(this, nieuw);
                     Date vandaag = new Date();
                     this.setStartw(vandaag);
                     db.updateWolverineAccountDatum(accountnr);
@@ -383,7 +384,7 @@ public class Account
     
     public void isBigSpenderWorden(){
         
-        
+        Account acc = db.getAccount(accountnr);
         if(this.isVip(this.getAccountnr()))
         {
             if(this.totaalGeldJaar(this.accountnr) > 5000)
@@ -391,8 +392,9 @@ public class Account
                 this.setBigspender(true);
                 if(db.getDatumVoorBigspender(accountnr))
                 {
-                    this.setPunten(punten + 500);
-                    System.out.println("mail");
+                    int nieuwepunten = acc.getPunten() + 500;  // Wolverine krijgt 100 punten bij.
+                    db.updateAantalpunten(acc, nieuwepunten);
+                    
                     this.sendMailGoed("Bigspender", "600");
                     Date vandaag = new Date();
                     this.setStartw(vandaag);
@@ -401,7 +403,7 @@ public class Account
                 else
                 {
                     this.sendMailGoed("Bigspender", "0");
-                    System.out.println("mail");
+                    
                 }
                 
             }
