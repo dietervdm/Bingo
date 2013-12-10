@@ -60,7 +60,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtPrijs" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" pref="230" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtArtikelnr" min="-2" pref="118" max="-2" attributes="0"/>

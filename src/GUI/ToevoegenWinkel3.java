@@ -157,7 +157,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtArtikelnr, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -319,7 +319,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Aantal minimumartikelen niet ingevuld");
                     }
                     else {
-                       minimumartikelen = Integer.parseInt(txtPuntenplus.getText()); 
+                       minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText()); 
                     }
                 }
             }
@@ -342,7 +342,7 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Minimumbedrag niet ingevuld");
                     }
                     else {
-                       minimumbedrag = Integer.parseInt(txtPuntenmin.getText()); 
+                       minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText()); 
                     }
                 }
             }
