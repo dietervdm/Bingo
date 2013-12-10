@@ -235,7 +235,7 @@ public class Account
 //    }
     
     public boolean isVip(int accountnr){
-        return totaalPuntenJaar(accountnr) > 10000;
+        return totaalPuntenJaar(accountnr) > 9999;
     }
     
 //    public void isMajorWorden(int accountnr, String winkelnaam){

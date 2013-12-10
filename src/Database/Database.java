@@ -147,7 +147,8 @@ public class Database {
     
     public double getTotaalGespendeerdeBedragAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
+            //String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
+            String sql = "SELECT SUM( totaalPrijs ) AS totaalbedrag FROM aankoop INNER JOIN spaarkaart ON aankoop.kaartnr = spaarkaart.kaartnr WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR)";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 double totaalbedrag = srs.getDouble("totaalbedrag");
@@ -171,10 +172,11 @@ public class Database {
     
     public int getTotaalPuntenVerkregenAccount(int accountnummer){
         try{
-            String sql = "SELECT SUM(totaalPuntenBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
+            //String sql = "SELECT SUM(totaalPuntenBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
+            String sql = "SELECT SUM(totaalPuntenBij) AS totaalPunten FROM aankoop inner join spaarkaart on aankoop.kaartnr = spaarkaart.kaartnr WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
             if(srs.next()){
-                int totaalbedrag = srs.getInt("totaalbedrag");
+                int totaalbedrag = srs.getInt("totaalPunten");
                 this.closeConnection();
                 return totaalbedrag;
             }

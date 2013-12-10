@@ -14,11 +14,10 @@ public class Testen {
     private static Database db = new Database();
 
     public static void main(String[] args) {
-        Account acc = db.getAccount(4);
-        double test = 10000000.0;
-        System.out.println(test);
-        System.out.println(acc.totaalPuntenJaar(1));
-        System.out.println(acc.totaalGeldJaar(1));
+        Account acc = db.getAccount(55);
+        
+        System.out.println(acc.totaalPuntenJaar(55));
+        System.out.println(acc.totaalGeldJaar(55));
         System.out.println(db.getAantalVerschillendeWinkels(acc));
     }
 }
