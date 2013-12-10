@@ -197,7 +197,7 @@ public class Database {
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-            stmt.executeUpdate("INSERT INTO winkel VALUES ('" + w.getWinkelnaam() + "', 0, '" + w.getPaswoord() + "');");
+            stmt.executeUpdate("INSERT INTO winkel VALUES ('" + w.getWinkelnaam() + "', null, '" + w.getPaswoord() + "');");
             this.closeConnection();
         }
         catch(SQLException sqle){
