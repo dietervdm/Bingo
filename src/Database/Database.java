@@ -1002,7 +1002,7 @@ public class Database {
             String sql = "SELECT max(kaartnr) FROM spaarkaart;";
             ResultSet srs = getData(sql);
             if(srs.next()){
-                int count = srs.getInt("count(*)");
+                int count = srs.getInt("max(kaartnr)");
                 this.closeConnection();
                 return count;
             }
@@ -1048,7 +1048,7 @@ public class Database {
             String sql = "SELECT max(accountnr) FROM account;";
             ResultSet srs = getData(sql);
             if(srs.next()){
-                int count = srs.getInt("count(*)");
+                int count = srs.getInt("max(accountnr)");
                 this.closeConnection();
                 return count;
             }

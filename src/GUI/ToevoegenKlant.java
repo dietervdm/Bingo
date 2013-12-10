@@ -240,6 +240,11 @@ public class ToevoegenKlant extends javax.swing.JFrame {
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icon Pack/Spaarkaart.png"))); // NOI18N
         jMenuItem1.setText("Spaarkaart");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         menuknopToevoegen.add(jMenuItem1);
 
         jMenuBar1.add(menuknopToevoegen);
@@ -560,6 +565,13 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         s.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuknopUitloggenMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ToevoegenSpaarkaart s = new ToevoegenSpaarkaart(this);
+        s.setLocationRelativeTo(null);
+        s.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     
     public static void main(String args[]) {
