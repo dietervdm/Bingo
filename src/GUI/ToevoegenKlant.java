@@ -22,6 +22,8 @@ public class ToevoegenKlant extends javax.swing.JFrame {
     public ToevoegenKlant(JFrame caller) {
         initComponents();
         myCaller = caller;
+        int accountnr = d.aantalAccounts() + 1;
+        txtAccountnrnieuw.setText("" + accountnr);
     }
 
     
@@ -39,13 +41,13 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         checkBedrijf = new javax.swing.JCheckBox();
         txtBtwnummer = new javax.swing.JTextField();
-        txtAccountnr = new javax.swing.JTextField();
         txtNaam = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtAdres = new javax.swing.JTextField();
         knopToevoegen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelKlanten = new javax.swing.JTable(t);
+        txtAccountnrnieuw = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuknopHome = new javax.swing.JMenu();
         menuknopVerkopen = new javax.swing.JMenu();
@@ -113,6 +115,8 @@ public class ToevoegenKlant extends javax.swing.JFrame {
 
         tabelKlanten.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelKlanten);
+
+        txtAccountnrnieuw.setForeground(new java.awt.Color(102, 0, 0));
 
         menuknopHome.setText("Home");
         menuknopHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -309,24 +313,6 @@ public class ToevoegenKlant extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtAccountnr)
-                                    .addComponent(txtNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtAdres))))
                             .addComponent(knopTerug)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -335,8 +321,24 @@ public class ToevoegenKlant extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtBtwnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 242, Short.MAX_VALUE)))
+                            .addComponent(knopToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                            .addComponent(txtAccountnrnieuw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEmail))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -347,24 +349,26 @@ public class ToevoegenKlant extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(txtAccountnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAccountnrnieuw, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(txtAdres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkBedrijf)
                     .addComponent(jLabel8)
                     .addComponent(txtBtwnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(knopToevoegen)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(knopTerug)
                 .addContainerGap())
@@ -397,7 +401,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String adres = txtAdres.getText();
         String btwnummer = null;
-        int accountnr = Integer.parseInt(txtAccountnr.getText());
+        int accountnr = d.aantalAccounts() + 1;
         
         if(checkBedrijf.isSelected()){
             if (txtBtwnummer.getText() != ""){
@@ -417,7 +421,8 @@ public class ToevoegenKlant extends javax.swing.JFrame {
             d.addAccount(a);
             t = d.naarTabel("select * from account");
             tabelKlanten.setModel(t);
-            txtAccountnr.setText("");
+            int accountnr2 = d.aantalAccounts() + 1;
+            txtAccountnrnieuw.setText("" + accountnr2);
             txtBtwnummer.setText("");
             txtAdres.setText("");
             txtEmail.setText("");
@@ -626,7 +631,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuknopWinkelgegevens;
     private javax.swing.JMenuItem menuknopWinkelrapport;
     private javax.swing.JTable tabelKlanten;
-    private javax.swing.JTextField txtAccountnr;
+    private javax.swing.JLabel txtAccountnrnieuw;
     private javax.swing.JTextField txtAdres;
     private javax.swing.JTextField txtBtwnummer;
     private javax.swing.JTextField txtEmail;

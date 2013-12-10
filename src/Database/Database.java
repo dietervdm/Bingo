@@ -997,6 +997,29 @@ public class Database {
         }
     }
     
+    public int aantalAccounts(){
+        try{
+            String sql = "SELECT COUNT(*) FROM account;";
+            ResultSet srs = getData(sql);
+            if(srs.next()){
+                int count = srs.getInt("count(*)");
+                this.closeConnection();
+                return count;
+            }
+           
+            else{
+                this.closeConnection();
+                return -1;
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println("SQLException: " + sqle.getMessage());
+            this.closeConnection();
+            return -1;
+        }
+    }
+    
     
    public void addArtikelaankoop(Artikelaankoop a){
         
