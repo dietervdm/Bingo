@@ -1326,7 +1326,7 @@ public class Database {
     
     public Boolean getDatumVoorBigspender(int accountnr){
         try{
-            String sql = "SELECT * FROM account WHERE (accountnr = " + accountnr + " and account.startb < (CURDATE() - INTERVAL '1'YEAR);";
+            String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + " and account.startb < (CURDATE() - INTERVAL '1'YEAR);";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
