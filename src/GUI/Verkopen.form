@@ -286,7 +286,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jComboBox1" min="-2" pref="173" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="knopVerkoopScherm" min="-2" pref="143" max="-2" attributes="0"/>
