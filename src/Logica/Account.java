@@ -504,9 +504,12 @@ public class Account
 			message.setSubject(badge + "-badge verworven!");
 			message.setText("Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
-                          + "Proficiat, u bent " + badge + " geworden.\n "
+                          + "Proficiat, u bent " + badge + " geworden.\n"
                           + "U krijgt " + Integer.parseInt(ptn) + " punten bij op uw account. \n"
-                          + "U heeft nu " + this.getPunten() + " punten");
+                          + "U heeft nu " + this.getPunten() + " punten"
+                                
+                          + "met vriendelijke groet, \n"
+                          + "uw Bingo-team");
  
 			Transport.send(message);
  
@@ -572,7 +575,10 @@ public class Account
 			message.setSubject(badge + "-badge verloren!");
 			message.setText("Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
-                          + "Helaas, u bent uw " + badge + "-badge kwijtgeraakt");
+                          + "Helaas, u bent uw " + badge + "-badge kwijtgeraakt. \n\n "
+                                
+                          + "met vriendelijke groet, \n"
+                          + "uw Bingo-team");
  
 			Transport.send(message);
  
