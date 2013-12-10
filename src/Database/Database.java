@@ -122,7 +122,8 @@ public class Database {
     
     public int getAantalVerschillendeWinkels(Account a){
         try{
-            String sql = "SELECT COUNT(DISTINCT winkelnaam) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR);";
+            //String sql = "SELECT COUNT(DISTINCT winkelnaam) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR);";
+            String sql = "SELECT COUNT( DISTINCT winkelnaam ) AS aantal FROM aankoop INNER JOIN spaarkaart ON aankoop.kaartnr = spaarkaart.kaartnr INNER JOIN account ON spaarkaart.accountnr = account.accountnr WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR)";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 int aantal = srs.getInt("aantal");

@@ -349,6 +349,8 @@ public class Account
                 {
                     this.setPunten(punten + 600);
                     this.sendMailGoed("Wolverine", "600");
+                    int nieuw = db.getAccount(this.getAccountnr()).getPunten() + 600;
+                    db.updateAantalpunten(this, nieuw);
                     Date vandaag = new Date();
                     this.setStartw(vandaag);
                 }
