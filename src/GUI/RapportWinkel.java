@@ -536,7 +536,7 @@ public class RapportWinkel extends javax.swing.JFrame {
     }//GEN-LAST:event_knopAlleVerkopenActionPerformed
 
     private void knopPuntenUitgereiktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPuntenUitgereiktActionPerformed
-        t = db.naarTabel("SELECT artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam,artikelaankoop.aantal, artikel.ptnwinst*artikelaankoop.aantal from artikelaankoop, artikel WHERE artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND metPuntenBetaald = 0 AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"'");
+        t = db.naarTabel("SELECT artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam,artikelaankoop.aantal, artikel.ptnwinst*artikelaankoop.aantal from artikelaankoop, artikel WHERE artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND metPuntenBetaald = 0 AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"' AND artikel.ptnwinst*artikelaankoop.aantal > 0");
         String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal", "totaal uitgereikte punten"};
         t.setColumnIdentifiers(namen);
         tabelVerkopen.setModel(t);

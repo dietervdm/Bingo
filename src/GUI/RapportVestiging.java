@@ -571,7 +571,7 @@ public class RapportVestiging extends javax.swing.JFrame {
 
     private void knopPuntenUitgereiktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopPuntenUitgereiktActionPerformed
         int vestigingId = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-        t = db.naarTabel("SELECT artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam,artikelaankoop.aantal, artikel.ptnwinst*artikelaankoop.aantal from artikelaankoop, artikel WHERE artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND metPuntenBetaald = 0 AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"' AND artikelaankoop.transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
+        t = db.naarTabel("SELECT artikelaankoop.transactienr, artikelaankoop.artikelnr, artikel.artikelnaam,artikelaankoop.aantal, artikel.ptnwinst*artikelaankoop.aantal from artikelaankoop, artikel WHERE artikelaankoop.artikelnr = artikel.artikelnr AND artikelaankoop.winkelnaam = artikel.winkelnaam AND metPuntenBetaald = 0 AND artikelaankoop.winkelnaam = '" + actief.getWinkelnaam() +"'AND artikel.ptnwinst*artikelaankoop.aantal > 0 AND artikelaankoop.transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = '" + vestigingId + "')");
         String namen[] = new String[]{"transactienummer", "artikelnummer", "artikelnaam", "aantal", "totaal uitgereikte punten"};
         t.setColumnIdentifiers(namen);
         tabelVerkopen.setModel(t);
