@@ -315,7 +315,9 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         int puntenToevoegen = puntenOver + totaalPuntenPlus;
         db.updateAantalpunten(db.getAccount(actieveSpaarkaart.getAccountnr()), puntenToevoegen);
         db.schrijfTotaalPrijsEnTotaalPtnNaarDatabase(transactienummer, totaalPrijs , totaalPuntenPlus);
-        // KLOPT NOG NIET: TOTAALPUNTENPLUS MOET TOTAALPRIJS WORDEN MAAR IS DOUBLE
+        db.getAccount(actieveSpaarkaart.getAccountnr()).isMajorWorden(actief.getWinkelnaam());
+        db.getAccount(actieveSpaarkaart.getAccountnr()).isBigSpenderWorden();
+        db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverineWorden();
         VerkopenKlant s = new VerkopenKlant();
                 s.setActieveVest(actieveVest);
                 s.setLocationRelativeTo(null);
@@ -329,8 +331,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         
 //        double prijs = art.getPrijs();
 //        int ptnplus = art.getPtnwinst();
-//        int ptnmin = art.getPtnkost();
-//        
+//        int ptnmin = art.getPtnkost();       
         int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
         System.out.println(aantal);
         
@@ -341,22 +342,15 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         artAk.setAantal(aantal);
         System.out.println(artAk.getAantal());
         
-//        Artikelaankoop artAk = new Artikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam(), aantal, false);
         
         if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
         {
             if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
-            {
-//                Artikelaankoop a = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
-//                int nieuwAantal = a.getAantal() + artAk.getAantal();
-//                // deze functie nog eens uitvoeren maar met nieuwAantal ipv aantal
-                
-                
+            {              
                 JOptionPane.showMessageDialog(null, "Dit artikel is reeds toevoegd, om er meer van te kopen "
                                                 + "moet je het artikel eerst verwijderen en daarna opnieuw toevoegen.");
                 txtProductToevoegen.setText("");
                 txtProductVerwijderen.requestFocus();
-                // hier kan iets anders geschreven worden als er nog tijd is.
             }
             else
             {
