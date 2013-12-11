@@ -33,7 +33,7 @@ public class Account
     private java.sql.Date startm = new java.sql.Date(jstartw.getTime());
     private boolean bedrijf;
     private String btwnummer;
-    private Image logo;
+    private Image logo;     // logo is niet geïmplementeerd.
     Database db = new Database();
     
     public Account()
@@ -184,6 +184,7 @@ public class Account
         this.btwnummer = btwnummer;
     }
     
+    // Logo niet geïmplementeerd
     public Image getLogo()
     {
         return logo;
