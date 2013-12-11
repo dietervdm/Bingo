@@ -361,52 +361,52 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             else
             {
                 if(art.getPtnkost() == -1 || art.getPtnkost() == 0)
-            {
-                System.out.println("test 1");
-                if(aantal >= art.getMinimumaantal())
                 {
-                    //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
-                    totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
-                }
-                else
-                {
-                    System.out.println("wordt deze gebruikt?");
-                    //System.out.println(Integer.toString(aantal));
-                    totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
-                }
-                artAk.setMetPuntenBetaald(false);
-            }
-            else
-            {
-                System.out.println("test 2");
-                if(puntenOver >= art.getPtnkost()*aantal)
-                {
-                    if(art.getMinimumbedrag() < totaalPrijs)
+                    System.out.println("test 1");
+                    if(aantal >= art.getMinimumaantal())
                     {
-                        System.out.println("test 3");
-                        totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
-                        puntenOver = puntenOver - art.getPtnkost() * aantal;
-                        artikelenMetPunten = artikelenMetPunten + aantal;
-                        artAk.setMetPuntenBetaald(true);
+                        //System.out.println(Integer.toString(aantal));
+                        totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
+                        totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
                     }
                     else
                     {
-                        System.out.println("test 4");
+                        System.out.println("wordt deze gebruikt?");
+                        //System.out.println(Integer.toString(aantal));
                         totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
+                    }
+                    artAk.setMetPuntenBetaald(false);
+                }
+                else
+                {
+                    System.out.println("test 2");
+                    if(puntenOver >= art.getPtnkost()*aantal)
+                    {
+                        if(art.getMinimumbedrag() > totaalPrijs)
+                        {
+                            System.out.println("test 3");
+                            totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
+                            puntenOver = puntenOver - art.getPtnkost() * aantal;
+                            artikelenMetPunten = artikelenMetPunten + aantal;
+                            artAk.setMetPuntenBetaald(true);
+                        }
+                        else
+                        {
+                            System.out.println("test 4");
+                            totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
+                            totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
+                            artAk.setMetPuntenBetaald(false);
+                        }
+
+                    }
+                    //System.out.println("dit product kan met punten betaald worden");
+                    else
+                    {
+                        totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
                         totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                         artAk.setMetPuntenBetaald(false);
                     }
-                    
                 }
-                //System.out.println("dit product kan met punten betaald worden");
-                else
-                {
-                    totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
-                    totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
-                    artAk.setMetPuntenBetaald(false);
-                }
-            }
             db.addArtikelaankoop(artAk);
 //            System.out.println(db.getArtikelaankoop(transactienummer, aantal, actief.getWinkelnaam()).getAantal());
             }
@@ -427,7 +427,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
         totaalBedrag.setText(Double.toString(totaalPrijs));
         puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
-        weergaveAfgetrokkenPunten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten() - puntenOver));
+        weergaveAfgetrokkenPunten.setText(Integer.toString(totaalPuntenMin));
         aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
         
         
