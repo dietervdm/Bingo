@@ -15,7 +15,6 @@ public class Aankoop
     //private int ptnplus;
     //private int totprijs;
     
-    
     public Aankoop()
     {}
     
