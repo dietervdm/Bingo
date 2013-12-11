@@ -19,14 +19,6 @@ public class Aankoop
     
     public Aankoop()
     {}
-
-//    public Aankoop(int transactienr, int spaarkaart, int vestigingid, String winkelnaam)
-//    {
-//        this.transactienr = transactienr;
-//        this.spaarkaart = spaarkaart;
-//        this.vestigingid = vestigingid;
-//        this.winkelnaam = winkelnaam;
-//    }
     
     public Aankoop(int transactienr, String vestigingid, String winkelnaam, int spaarkaart)
     {
@@ -76,49 +68,4 @@ public class Aankoop
     public void setWinkelnaam(String winkelnaam) {
         this.winkelnaam = winkelnaam;
     }
-    
-//    public Date getDatum()
-//    {
-//        return this.datum;
-//    }
-//    
-//    public void setDatum(Date datum)
-//    {
-//        this.datum = datum;
-//    }
-    
-//    public Aankoop getLaatsteAankoop(){
-//        Database db = new Database();
-//        return db.getLaatsteAankoop();
-//    }
-    
-//    public int getPtnplus()
-//    {
-//        return this.ptnplus;
-//    }
-//    
-//    public void setPtnplus(int ptnplus)
-//    {
-//        this.ptnplus = ptnplus;
-//    }
-//    
-//    public int getPtnmin()
-//    {
-//        return this.ptnmin;
-//    }
-//    
-//    public void setPtnmin(int ptnmin)
-//    {
-//        this.ptnmin = ptnmin;
-//    }
-//    
-//    public int getTotprijs()
-//    {
-//        return this.totprijs;
-//    }
-//    
-//    public void setTotprijs(int totprijs)
-//    {
-//        this.totprijs = totprijs;
-//    }
 }

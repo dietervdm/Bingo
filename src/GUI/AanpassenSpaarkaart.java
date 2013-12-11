@@ -354,10 +354,12 @@ public class AanpassenSpaarkaart extends javax.swing.JFrame {
         Spaarkaart nieuw = new Spaarkaart(kaartnummer, accountnummer, txtNaamhouder.getText());
         Spaarkaart oud = new Spaarkaart(kaartnummer, accountnummer, "");
         
-        if(!d.checkAccount(accountnummer)){
+        if(!d.checkAccount(accountnummer))
+        {
             JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet");
         }
-        else{
+        else
+        {
             d.updateSpaarkaart(oud,nieuw);
             txtKaartnr.setText("");
             txtAccountnr.setText("");

@@ -30,12 +30,9 @@ public class Account
     private boolean bigspender;
     private java.util.Date jstartb = new java.util.Date();
     private java.sql.Date startb = new java.sql.Date(jstartw.getTime());
-//    private boolean major;
-//    private java.util.Date jstartm = new java.util.Date();
     private java.sql.Date startm = new java.sql.Date(jstartw.getTime());
     private boolean bedrijf;
     private String btwnummer;
-    //bedrijf
     private Image logo;
     Database db = new Database();
     
@@ -47,7 +44,6 @@ public class Account
         this.accountnr = accountnr;
         this.wolverine = wolverine;
         this.bigspender = bigspender;
-//        this.major = major;
         this.bedrijf = bedrijf;
     }
     
@@ -62,8 +58,6 @@ public class Account
         this.startw = startw;
         this.bigspender = bigspender;
         this.startb = startb;
-//        this.major = major;
-//        this.startm = startm;
         this.bedrijf = bedrijf;
         this.btwnummer = btwnummer;
     }
@@ -133,7 +127,6 @@ public class Account
         return this.startw;
     }
     
-    //public void setStartw(java.sql.Date startw)
     public void setStartw(Date datum)
     {
         this.startw = startw;
@@ -154,28 +147,18 @@ public class Account
         return this.startb;
     }
     
-    //public void setStartb(java.sql.Date startb)
     public void setStartb(Date datum)
     {
         this.startb = startb;
     }
     
-//    public boolean isMajor()
-//    {
-//        return this.major;
-//    }
-//    
-//    public void setMajor(boolean major)
-//    {
-//        this.major = major;
-//    }
+
     
     public Date getStartm()
     {
         return this.startm;
     }
     
-    //public void setStartm(java.sql.Date startm)
     public void setStartm(Date datum)
     {
         this.startm = startm;
@@ -212,7 +195,6 @@ public class Account
     }
     
     
-    // via radiant button bedrijf of particulier
     public void bedrijfOfParticulier(Boolean bedrijf)
     {
         if (bedrijf == true)
@@ -221,68 +203,9 @@ public class Account
             this.bedrijf = false;
     }
     
-//    public Date getDatumVorigJaar(Date datum){
-//        datum.setYear(datum.getYear()-1);
-//        return datum;
-//    }
-    
-    // FUNCTIES VAN VIP SYSTEEM
-    
-//    public static Date getVorigJaar(){
-//        
-//        Calendar cal = Calendar.getInstance();
-//        Date vandaag = cal.getTime();
-//        cal.add(Calendar.YEAR, -1);
-//        Date volgendJaar = cal.getTime();
-//        return volgendJaar;
-//        
-//    }
-    
     public boolean isVip(int accountnr){
         return totaalPuntenJaar(accountnr) > 9999;
     }
-    
-//    public void isMajorWorden(int accountnr, String winkelnaam){
-//        Account huidigIngelogdeAccount = db.getAccount(accountnr);
-//        // Account ingelogdeAccount = db.getAccount(accountnummer waar boolean actief = true
-//        // Major ingelogdeMajor = db.getMajor(accountnr winkel boolean);
-//        Account vorigeMajor = db.getAccount(db.getWinkel(winkelnaam).getAccount());
-//        // Account huidigeMajor = db.getAccount(accountnr);
-//        // eerst checkMajor(accountnr, winkel)
-//        // true: Major huidigeMajor = db.getMajor(accountnr, winkel);
-//        // false: Major huidigeMajor = db.addMajor(accountnr, winkel, false);
-//        
-//        if(isVip(huidigIngelogdeAccount.getAccountnr()))
-//        {
-//            if(this.totaalGeldJaar(huidigIngelogdeAccount.getAccountnr()) > totaalGeldJaar(vorigeMajor.getAccountnr()))
-//            {
-//                this.setMajor(true);
-//                // ingelogdeAccount.setActief
-//                
-//                if(jstartm.after(getVorigJaar()))
-//                {
-//                    this.setPunten(punten + 100);
-//                    huidigIngelogdeAccount.sendMailGoed("major", "100");
-//                    vorigeMajor.sendMailSlecht("Major");
-//                }
-//                else
-//                {
-//                    this.sendMailGoed("Major", "0");
-//                    db.getAccount(db.getWinkel(winkelnaam).getAccount()).sendMailSlecht("major");
-//                }
-//            }
-//            else
-//            {
-//                this.setMajor(false);
-//            }
-//        }
-//        else
-//        {
-//            this.setMajor(false);
-//        }
-//        
-//        //OPSLAAN NAAR DE DATABASE
-//    }
     
     public void isMajorWorden(String winkelnaam){
         Account acc1 = db.getAccount(this.getAccountnr());
@@ -299,7 +222,6 @@ public class Account
                     {
                         Major major1 = db.getMajor(this.getAccountnr(), winkelnaam);
                         Major major2 = db.getMajor(db.getWinkel(winkelnaam).getAccount(), winkelnaam);
-                
                 
                         if(db.checkMajor(this.getAccountnr(), winkelnaam))
                         {
@@ -366,7 +288,7 @@ public class Account
                 {
                     if(db.getDatumVoorWolverine(accountnr))
                     {
-                        int nieuwepunten = acc.getPunten() + 600;  // Wolverine krijgt 100 punten bij.
+                        int nieuwepunten = acc.getPunten() + 600;  // Wolverine krijgt 600 punten bij.
                         db.updateAantalpunten(acc, nieuwepunten);
                         this.sendMailGoed("Wolverine", "600");
                         Date vandaag = new Date();
@@ -386,7 +308,6 @@ public class Account
         }
         else
             this.setWolverine(false);
-        System.out.println(db.getAantalVerschillendeWinkels(this));
         
         // OPSLAAN NAAR DE DATABASE
         db.updateWolverineAccount(accountnr, this.isWolverine());
@@ -408,7 +329,7 @@ public class Account
                     this.setBigspender(true);
                     if(db.getDatumVoorBigspender(accountnr))
                     {
-                        int nieuwepunten = acc.getPunten() + 500;  // Wolverine krijgt 100 punten bij.
+                        int nieuwepunten = acc.getPunten() + 500;  // Bigspender krijgt 500
                         db.updateAantalpunten(acc, nieuwepunten);
 
                         this.sendMailGoed("Bigspender", "600");
@@ -420,7 +341,6 @@ public class Account
                     {
                         this.sendMailGoed("Bigspender", "0");
                     }
-                
                 }
                 else
                 {
@@ -433,25 +353,9 @@ public class Account
             this.setBigspender(false);
         }
         
-        db.updateBigSpenderAccount(accountnr, this.isBigspender());
         // OPSLAAN NAAR DATABASE
+        db.updateBigSpenderAccount(accountnr, this.isBigspender());
     }
-    
-//    public boolean RechtOpPuntenMajor(Date datum){
-//        datum.setYear(datum.getYear()-1);
-//        return datum.after(db.getm);
-//    }
-    
-//    public boolean RechtOpPuntenBigSpender(Date datum){
-//        datum.setYear(datum.getYear()-1);
-//        return datum.after(jstartb);
-//    }
-//    
-//    public boolean RechtOpPuntenWolverine(Date datum){
-//        datum.setYear(datum.getYear()-1);
-//        return datum.after(jstartw);
-//    }
-    
     
     public int totaalPuntenJaar(int accountnr){
         return db.getTotaalPuntenVerkregenAccount(accountnr);       
@@ -460,33 +364,6 @@ public class Account
     public double totaalGeldJaar(int accountnr){
         return db.getTotaalGespendeerdeBedragAccount(this.accountnr);
     }
-    
-//    public void sendMailGoed(String badge, String punten){
-//        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
-//        PrintWriter outputStream = null;
-//        
-//        try
-//        {
-//            outputStream = new PrintWriter(filename);
-//        }
-//        
-//        catch (FileNotFoundException ex)
-//        {
-//            System.out.println("Error opening the file " + filename);
-//            System.exit(0);
-//        }
-//        
-//        
-//            String line = "<Send to" + this.getEmail() + "> \n\n"
-//                          + "Beste " + this.getNaam() + ", \n\n"
-//                          + "Bedankt om bij Bingo klant te zijn. \n"
-//                          + "U bent " + badge + " geworden.\n "
-//                          + "U krijgt " + punten + " punten bij op uw account. \n"
-//                          + "U heeft nu " + this.getPunten() + " punten";
-//            outputStream.println(line);
-//        
-//        outputStream.close();
-//    }
     
     public void sendMailGoed(String badge, String ptn){
         final String username = " bingogroep31@gmail.com";
@@ -498,8 +375,9 @@ public class Account
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
  
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
+                Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() 
+                {
                 protected PasswordAuthentication getPasswordAuthentication() 
                         {
 				return new PasswordAuthentication(username, password);
@@ -534,31 +412,6 @@ public class Account
 		}
     }
     
-//    public void sendMailSlecht(String badge){
-//        String filename = this.getAccountnr() + "_" + this.getNaam() + "_Mail.txt";
-//        PrintWriter outputStream = null;
-//        
-//        try
-//        {
-//            outputStream = new PrintWriter(filename);
-//        }
-//        
-//        catch (FileNotFoundException ex)
-//        {
-//            System.out.println("Error opening the file " + filename);
-//            System.exit(0);
-//        }
-//        
-//        
-//            String line = "<Send to" + this.getEmail() + "> \n\n" 
-//                          + "Beste " + this.getNaam() + ", \n\n"
-//                          + "Bedankt om bij Bingo klant te zijn. \n"
-//                          + "U bent uw " + badge + " - Badge helaas kwijtgeraakt.";
-//            outputStream.println(line);
-//        
-//        outputStream.close();
-//    }
-    
     public void sendMailSlecht(String badge){
         final String username = " bingogroep31@gmail.com";
 	final String password = "aeCahqu3";
@@ -569,8 +422,9 @@ public class Account
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
  
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
+                Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() 
+                {
                 protected PasswordAuthentication getPasswordAuthentication() 
                         {
 				return new PasswordAuthentication(username, password);
@@ -606,5 +460,4 @@ public class Account
     public boolean isMajor(Winkel winkel){
         return winkel.getAccount() == this.accountnr;
     }
-    
-    }
+}

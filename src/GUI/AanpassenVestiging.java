@@ -400,10 +400,12 @@ public class AanpassenVestiging extends javax.swing.JFrame {
         Vestiging nieuw = new Vestiging(vestigingid2, winkelnaam, txtAdres.getText());
         Vestiging oud = new Vestiging(vestigingid, winkelnaam, "");
         
-        if(d.checkVestiging(vestigingid2, winkelnaam) && !(nieuw.getVestigingId() == oud.getVestigingId())){
+        if(d.checkVestiging(vestigingid2, winkelnaam) && !(nieuw.getVestigingId() == oud.getVestigingId()))
+        {
             JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
         }
-        else{
+        else
+        {
             d.updateVestiging(oud,nieuw,winkelnaam);
             t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);

@@ -106,28 +106,13 @@ public class VerkopenKlant extends javax.swing.JFrame {
 
                 if(db.checkSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())))
                 {
-//                    Account acc = db.getAccount(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr());
-//                    Major maj = db.getMajor(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())).getAccountnr(), actief.getWinkelnaam());
-//                    acc.isVip(acc.getAccountnr());
-//                    acc.isMajorWorden(actief.getWinkelnaam());
-//                    acc.isWolverineWorden();
-//                    acc.isBigSpenderWorden();
-                    
-                    //Spaarkaart sk = db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText()));
                     PopUpSpaarkaart s = new PopUpSpaarkaart(5, actieveVest, db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())));
-                    //s.setActieveSpaarkaart(db.getSpaarkaart(Integer.parseInt(txtSpaarkaartNummer.getText())));
-                    //s.setActieveVest(actieveVest);
-                    
-//                    Aankoop ak = new Aankoop();
-//                    db.addAankoop(db.getLaatsteAankoop().getTransactieNummer + 1);
                     
                     setVisible(false);
                 }
                 else
                 {
-                    //setVisible(false);
                     JOptionPane.showMessageDialog(null, "Spaarkaart bestaat niet.");
-                    //setVisible(true);
                 }
                 
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
@@ -135,15 +120,6 @@ public class VerkopenKlant extends javax.swing.JFrame {
     private void knopAnnuleerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnuleerActionPerformed
         setVisible(false);
         
-//        myCaller.setVisible(true);
-//        myCaller.setLocationRelativeTo(null);
-//                setVisible(false);
-        
-//        Home s = new Home();         // NOG NIET GOED, CREERD TELKENS EEN NIEUW VENSTER!!!
-//            s.setLocationRelativeTo(null);
-//            s.setVisible(true);
-//        setVisible(false);
-//        // Naar home??
     }//GEN-LAST:event_knopAnnuleerActionPerformed
 
     /**

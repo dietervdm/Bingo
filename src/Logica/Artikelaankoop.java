@@ -19,7 +19,7 @@ public class Artikelaankoop
         this.transactienrAankoop = transactienr;
         this.artikelnr = artikelnr;
         this.winkelnaam = winkelnaam;
-        this.aantal = aantal; // DEZE LIJN WAS NIET INGEVULD, DAAROM GAF HET DEFAULT ALTIJD 0 !!!
+        this.aantal = aantal;
         this.metPuntenBetaald = puntenBetaling;
     }
     

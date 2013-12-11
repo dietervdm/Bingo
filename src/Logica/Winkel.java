@@ -73,8 +73,6 @@ public class Winkel
         wdb.addWinkel(wk);
     }
     
-
-    
     public ArrayList<String> getLijstVestigingen(){
         Database db = new Database();
         ArrayList<Vestiging> vVest = null;
@@ -86,40 +84,5 @@ public class Winkel
             vString.add(vVest.get(i).getVestigingId());
         }
         return vString;
-    }
-    
-//    public void printWinkelAankoop(String winkelnaam, String path){
-//        Database db = new Database();
-//        db.printVerkopen(winkelnaam);
-//
-//        try
-//        {
-//            PrintStream out = new PrintStream(new FileOutputStream(path));
-//            int cols = db.printVerkopen(winkelnaam).getMetaData().getColumnCount();
-//            
-//        }
-//        catch(FileNotFoundException ex || SQLException sqle){
-//            
-//        }
-    
-//    public void deleteWinkel(String naam)
-//    {
-//        this.winkelnaam = naam;
-//        wdb.deleteWinkel(winkelnaam);        
-//    }
-//    
-//    public void updateNaamWinkel(String naam){
-//        this.winkelnaam = naam;
-//        wdb.updateNaamWinkel(winkelnaam);
-//    }
-//    
-//    public void updateMajorWinkel(int accnr){
-//        this.accountnr = accnr;
-//        wdb.updateMajorWinkel(accountnr);
-//    }
-//    
-//    public void updatePaswoordWinkel(String ps){
-//        this.paswoord = ps;
-//        wdb.updatePaswoordWinkel(paswoord);
-//    }         
-    }
+    }         
+}

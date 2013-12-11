@@ -332,15 +332,16 @@ public class VerwijderenArtikel extends javax.swing.JFrame {
        
         int artikelnr = Integer.parseInt(txtArtikelnummer.getText());
         
-        if(d.checkArtikel(artikelnr, actief.getWinkelnaam())){
-            
+        if(d.checkArtikel(artikelnr, actief.getWinkelnaam()))
+        {
             Artikel a = d.getArtikel(artikelnr, actief.getWinkelnaam());
             d.deleteArtikel(a);
             t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelArtikelen.setModel(t);
         }
         
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Dit artikelnummer bestaat niet.");
         }//GEN-LAST:event_knopVerwijderenActionPerformed
 }

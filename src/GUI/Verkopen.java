@@ -11,7 +11,6 @@ public class Verkopen extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = null;
     private Database db = new Database();
-    //private Vestiging actieveVest = null;
     
     public Verkopen() {
         this.actief = InlogScherm.getInstance().actief;

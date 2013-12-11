@@ -457,18 +457,22 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
         String artikelnaam = txtArtikelnaam.getText();
         boolean toevoegen = true;
         
-        if(txtPrijs.getText().equals("") || Double.parseDouble(txtPrijs.getText())<0){
+        if(txtPrijs.getText().equals("") || Double.parseDouble(txtPrijs.getText())<0)
+        {
             toevoegen = false;
             JOptionPane.showMessageDialog(null, "De prijs moet groter dan of gelijk aan nul zijn.");
         }
-        else{
+        else
+        {
             prijs = Double.parseDouble(txtPrijs.getText());
             pr = (int) Math.round(prijs * 100);
             prijsAfgerond = pr / 100.00 ;
         }
         
-        if(checkGeeftpunten.isSelected()){
-            if(txtPuntenplus.getText().equals("")){
+        if(checkGeeftpunten.isSelected())
+        {
+            if(txtPuntenplus.getText().equals(""))
+            {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "Aantal pluspunten niet ingevuld");
             }
@@ -476,22 +480,28 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
             }
-            else {
+            else
+            {
                puntenplus = Integer.parseInt(txtPuntenplus.getText());
-               if(checkMinimumartikelen.isSelected()){
-                    if(txtMinimumartikelen.getText().equals("")){
+               if(checkMinimumartikelen.isSelected())
+               {
+                    if(txtMinimumartikelen.getText().equals(""))
+                    {
                         toevoegen = false;
                         JOptionPane.showMessageDialog(null, "Aantal minimumartikelen niet ingevuld");
                     }
-                    else {
+                    else 
+                    {
                        minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText()); 
                     }
                 }
             }
         }
         
-        if(checkKostpunten.isSelected()){
-            if(txtPuntenmin.getText().equals("")){
+        if(checkKostpunten.isSelected())
+        {
+            if(txtPuntenmin.getText().equals(""))
+            {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "Puntenkost niet ingevuld");
             }
@@ -499,14 +509,18 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
             }
-            else {
+            else
+            {
                puntenmin = Integer.parseInt(txtPuntenmin.getText());
-               if(checkMinimumaankoopbedrag.isSelected()){
-                    if(txtMinimumbedrag.getText().equals("")){
+               if(checkMinimumaankoopbedrag.isSelected())
+               {
+                    if(txtMinimumbedrag.getText().equals(""))
+                    {
                         toevoegen = false;
                         JOptionPane.showMessageDialog(null, "Minimumbedrag niet ingevuld");
                     }
-                    else {
+                    else
+                    {
                        minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText()); 
                     }
                 }
@@ -520,8 +534,8 @@ public class ToevoegenArtikel extends javax.swing.JFrame {
         
         Artikel q = new Artikel(artikelnr, winkelnaam, artikelnaam, prijsAfgerond, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
         
-        if(toevoegen){
-            
+        if(toevoegen)
+        {
             d.addArtikel(q);
             t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             JOptionPane.showMessageDialog(null, "Artikel toegevoegd.");

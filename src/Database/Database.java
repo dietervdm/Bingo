@@ -91,6 +91,7 @@ public class Database {
         }
     }
     
+    //FUNCTIE OM GEGEVENS NAAR EEN TABEL OM TE ZETTEN
     public DefaultTableModel naarTabel (String sql) {
          
         Database db = new Database(); 
@@ -120,9 +121,9 @@ public class Database {
         return new DefaultTableModel(data, kolommen);
     }
     
+    // FUNCTIES IVM VIP-SYSTEEM
     public int getAantalVerschillendeWinkels(Account a){
         try{
-            //String sql = "SELECT COUNT(DISTINCT winkelnaam) AS aantal FROM aankoop, account, spaarkaart WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR);";
             String sql = "SELECT COUNT( DISTINCT winkelnaam ) AS aantal FROM aankoop INNER JOIN spaarkaart ON aankoop.kaartnr = spaarkaart.kaartnr INNER JOIN account ON spaarkaart.accountnr = account.accountnr WHERE (spaarkaart.accountnr = " + a.getAccountnr() + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR) AND aankoop.totaalPuntenBij > 0";
             ResultSet srs = getData(sql);
             if(srs.next()){
@@ -135,8 +136,6 @@ public class Database {
                 this.closeConnection();
                 return -1;
             }
-                
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -147,7 +146,6 @@ public class Database {
     
     public double getTotaalGespendeerdeBedragAccount(int accountnummer){
         try{
-            //String sql = "SELECT SUM(totaalPrijs) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             String sql = "SELECT SUM( totaalPrijs ) AS totaalbedrag FROM aankoop INNER JOIN spaarkaart ON aankoop.kaartnr = spaarkaart.kaartnr WHERE (spaarkaart.accountnr = " + accountnummer + ") AND (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR)";
             ResultSet srs = getData(sql);
             if(srs.next()){
@@ -160,7 +158,6 @@ public class Database {
                 this.closeConnection();
                 return -1;
             }
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -172,7 +169,6 @@ public class Database {
     
     public int getTotaalPuntenVerkregenAccount(int accountnummer){
         try{
-            //String sql = "SELECT SUM(totaalPuntenBij) AS totaalbedrag FROM aankoop, spaarkaart WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             String sql = "SELECT SUM(totaalPuntenBij) AS totaalPunten FROM aankoop inner join spaarkaart on aankoop.kaartnr = spaarkaart.kaartnr WHERE (spaarkaart.accountnr = " + accountnummer + ") and (aankoop.datum > CURDATE( ) - INTERVAL '1'YEAR );";
             ResultSet srs = getData(sql);
             if(srs.next()){
@@ -185,18 +181,16 @@ public class Database {
                 this.closeConnection();
                 return -1;
             }
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
             return -1;
         }
-        
     }
     
+    // FUNCTIES VOOR WINKEL
     public void addWinkel(Winkel w){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -238,8 +232,11 @@ public class Database {
                 this.closeConnection();
                 return w;
             }
-            else {this.closeConnection();return null;}
-            
+            else 
+            {
+                this.closeConnection();
+                return null;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -247,8 +244,8 @@ public class Database {
             return null;
         }
     }
+    
     public void deleteWinkel(Winkel w){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -262,12 +259,10 @@ public class Database {
     }
     
     public void updateWinkel(Winkel oud, Winkel nieuw){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
 
-//            stmt.executeUpdate("UPDATE winkel SET accountnr = " + nieuw.getAccount() + " WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             stmt.executeUpdate("UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             stmt.executeUpdate("UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             
@@ -280,14 +275,11 @@ public class Database {
     }
     
     public void updateAccountnrWinkel(Winkel winkel, int accountnr){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
 
             stmt.executeUpdate("UPDATE winkel SET accountnr = " + accountnr + " WHERE winkelnaam = '" + winkel.getWinkelnaam() + "'");
-//            stmt.executeUpdate("UPDATE winkel SET paswoord = '" + nieuw.getPaswoord() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
-//            stmt.executeUpdate("UPDATE winkel SET winkelnaam = '" + nieuw.getWinkelnaam() + "' WHERE winkelnaam = '" + oud.getWinkelnaam() + "'");
             
             this.closeConnection();
         }
@@ -297,8 +289,8 @@ public class Database {
         }
     }
     
+    // FUNCTIES VOOR ARTIKEL
     public void addArtikel(Artikel a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -308,9 +300,6 @@ public class Database {
             catch(Exception e){
                 System.out.println(e.getMessage());
             }
-            
-            
-            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -340,7 +329,8 @@ public class Database {
         try{
             String sql = "SELECT * FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (artikelnr = " + artikelnr + ");";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 String naam = srs.getString("winkelnaam");
                 int artikelnummer = srs.getInt("artikelnr");
                 String artikelnaam = srs.getString("artikelnaam");
@@ -353,8 +343,11 @@ public class Database {
                 this.closeConnection();
                 return a;
             }
-            else {this.closeConnection();return null;}
-            
+            else 
+            {
+                this.closeConnection();
+                return null;
+            } 
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -364,7 +357,6 @@ public class Database {
     }
     
     public void deleteArtikel(Artikel a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -378,7 +370,6 @@ public class Database {
     }
     
     public void updateArtikel(Artikel oud, Artikel nieuw, String winkelnaam){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -391,7 +382,6 @@ public class Database {
             stmt.executeUpdate("UPDATE artikel SET minimumbedrag = " + nieuw.getMinimumbedrag() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             stmt.executeUpdate("UPDATE artikel SET artikelnr = " + nieuw.getArtikelnr() + " WHERE (artikelnr = " + oud.getArtikelnr() + ") and (winkelnaam = '" + winkelnaam + "');");
             
-            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -400,153 +390,8 @@ public class Database {
         }
     }
         
-//    public ArrayList<Artikel> getAssortimentWinkel(String winkelnaam){
-//        try{
-//            ArrayList<Artikel> assortiment = new ArrayList<Artikel>();
-//            String sql = "SELECT * FROM artikel WHERE winkelnaam = '" + winkelnaam + "';";
-//            ResultSet srs = getData(sql);
-//            while(srs.next()){
-//                String naam = srs.getString("winkelnaam");
-//                int artikelnummer = srs.getInt("artikelnr");
-//                String artikelnaam = srs.getString("artikelnaam");
-//                double prijs = srs.getDouble("prijs");
-//                int ptnwinst = srs.getInt("ptnwinst");
-//                int ptnkost = srs.getInt("ptnkost");
-//                int minimumaantal = srs.getInt("minimumaantal");
-//                int minimumbedrag = srs.getInt("minimumbedrag");
-//                
-//                Artikel a = new Artikel(artikelnummer,naam,artikelnaam,prijs,ptnwinst,minimumaantal,ptnkost,minimumbedrag);
-//                assortiment.add(a);
-//            }
-//            this.closeConnection();
-//            return assortiment;          
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-    
-//    public ArrayList<Aankoop> getVerkopenWinkel(String winkelnaam){
-//        try{
-//            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
-//            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "';";
-//            ResultSet srs = getData(sql);
-//            while(srs.next()){
-//                int transactienr = srs.getInt("transactienr");
-//                int vestigingsid = srs.getInt("vestigingsid");
-//                String naam = srs.getString("winkelnaam");
-//                int kaartnr = srs.getInt("kaartnr");
-//                Date datum = srs.getDate("datum");
-//                //int ptnplus = srs.getInt("ptnplus");
-//                //int ptnmin = srs.getInt("ptnmin");
-//                //int totprijs = srs.getInt("totprijs");
-//                
-//                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, naam,  datum);
-//                assortiment.add(ak);
-//            }
-//            this.closeConnection();
-//            return assortiment;          
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-//    
-//    public ArrayList<Aankoop> getVerkopenWinkelVestiging(String winkelnaam, int vestigingid){
-//        try{
-//            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
-//            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and + vestigingid = '" + vestigingid + "';";
-//            // moet nog getest worden.
-//            ResultSet srs = getData(sql);
-//            while(srs.next()){
-//                int transactienr = srs.getInt("transactienr");
-//                int vestigingsid = srs.getInt("vestigingsid");
-//                String naam = srs.getString("winkelnaam");
-//                int kaartnr = srs.getInt("kaartnr");
-//                Date datum = srs.getDate("datum");
-//                //int ptnplus = srs.getInt("ptnplus");
-//                //int ptnmin = srs.getInt("ptnmin");
-//                //int totprijs = srs.getInt("totprijs");
-//                
-//                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnr, naam, datum);
-//                assortiment.add(ak);
-//            }
-//            this.closeConnection();
-//            return assortiment;          
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-//    
-//    public ArrayList<Aankoop> getVerkopenWinkelKlant(String winkelnaam, int kaartnr){
-//        try{
-//            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
-//            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + "' and kaartnummer = '" + kaartnr + "';";
-//            // moet nog getest worden.
-//            ResultSet srs = getData(sql);
-//            while(srs.next()){
-//                int transactienr = srs.getInt("transactienr");
-//                int vestigingsid = srs.getInt("vestigingsid");
-//                String naam = srs.getString("winkelnaam");
-//                int kaartnummer = srs.getInt("kaartnr");
-//                Date datum = srs.getDate("datum");
-//                //int ptnplus = srs.getInt("ptnplus");
-//                //int ptnmin = srs.getInt("ptnmin");
-//                //int totprijs = srs.getInt("totprijs");
-//                
-//                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, naam, datum);
-//                assortiment.add(ak);
-//            }
-//            this.closeConnection();
-//            return assortiment;          
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-//    
-//    public ArrayList<Aankoop> getVerkopenWinkelKantVestiging(String winkelnaam, int vestigingid, int kaartnr){
-//        try{
-//            ArrayList<Aankoop> assortiment = new ArrayList<Aankoop>();
-//            String sql = "SELECT * FROM aankoop WHERE winkelnaam = '" + winkelnaam + 
-//                            "' and vestigingid = '" + vestigingid + 
-//                            "' and kaartnr = '" + kaartnr + "';";
-//            // moet nog getest worden.
-//            ResultSet srs = getData(sql);
-//            while(srs.next()){
-//                int transactienr = srs.getInt("transactienr");
-//                int vestigingsid = srs.getInt("vestigingsid");
-//                String naam = srs.getString("winkelnaam");
-//                int kaartnummer = srs.getInt("kaartnr");
-//                Date datum = srs.getDate("datum");
-//                //int ptnplus = srs.getInt("ptnplus");
-//                //int ptnmin = srs.getInt("ptnmin");
-//                //int totprijs = srs.getInt("totprijs");
-//                
-//                Aankoop ak = new Aankoop(transactienr, vestigingsid, kaartnummer, naam, datum);
-//                assortiment.add(ak);
-//            }
-//            this.closeConnection();
-//            return assortiment;          
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return null;
-//        }
-//    }
-//    
+    // FUNCTIES VOOR VESTIGING
     public void addVestiging(Vestiging v){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -563,11 +408,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM vestiging WHERE (vestigingid = '" + vestigingid + "') and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -580,7 +430,8 @@ public class Database {
         try{
             String sql = "SELECT * FROM vestiging WHERE (winkelnaam = '" + winkelnaam + "') and (vestigingid = '" + vestigingid + "');";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 String naam = srs.getString("winkelnaam");
                 String vestid = srs.getString("vestigingid");
                 String adres = srs.getString("adres");
@@ -622,7 +473,6 @@ public class Database {
     }
     
     public void deleteVestiging(Vestiging v){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -636,7 +486,6 @@ public class Database {
     }
     
     public void updateVestiging(Vestiging oud, Vestiging nieuw, String winkelnaam){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -652,13 +501,11 @@ public class Database {
         }
     }
     
+    // FUNCTIES VOOR ACCOUNT
     public void addAccount(Account a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
-//            java.util.Date jtest = new java.util.Date();
-//            java.sql.Date test = new java.sql.Date(jtest.getTime());
             stmt.executeUpdate("INSERT INTO account VALUES (" + a.getAccountnr() + ", '" + a.getNaam() + "', '" + a.getEmail() + "', '" + a.getAdres() + "', " + a.getPunten() + ", " + a.isWolverine() + ", " + a.getStartw() + ", " + a.isBigspender() + ", " + a.getStartb() + ", " + a.isBedrijf() + ", '" + a.getBtwnummer() + "');");
             this.closeConnection();
         }
@@ -672,11 +519,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + ";";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -689,7 +541,8 @@ public class Database {
         try{
             String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + ";";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int accountnummer = srs.getInt("accountnr");
                 String naam = srs.getString("naam");
                 String email = srs.getString("email");
@@ -699,16 +552,14 @@ public class Database {
                 java.sql.Date startw = srs.getDate("startw");
                 boolean bigspender = srs.getBoolean("bigspender");
                 java.sql.Date startb = srs.getDate("startb");
-//                boolean major = srs.getBoolean("major");
-//                java.sql.Date startm = srs.getDate("startm");
                 boolean bedrijf = srs.getBoolean("bedrijf");
                 String btwnummer = srs.getString("btwnummer");
                 Account a = new Account(accountnummer, naam, email, adres, punten, wolverine, startw, bigspender, startb, bedrijf, btwnummer);
                 this.closeConnection();
                 return a;
             }
-            else return null;
-            
+            else
+                return null;
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -716,35 +567,8 @@ public class Database {
             return null;
         }
     }
-    
-    //Nog niet af, moet accountnr opvragen als men het kaartnr meegeeft
-    // moet nog aangepast worden
-//    public int getAccountnr(int kaartnr){
-//        try{
-//            String sql = "SELECT accountnr FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
-//            ResultSet srs = getData(sql);
-//            if(srs.next()){
-//                int spaarkaart = srs.getInt("kaartnr");
-//                int accountnummer = srs.getInt("accountnr");
-//                String naam = srs.getString("naamhouder");
-//                
-//                this.closeConnection();
-//                return accountnummer;
-//            }
-//            else return 0;
-//            
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return 0;
-//        }
-//    }
-    
-    
         
     public void deleteAccount(Account a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -758,7 +582,6 @@ public class Database {
     }
     
     public void updateAccount(Account oud, Account nieuw){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -771,8 +594,6 @@ public class Database {
             stmt.executeUpdate("UPDATE account SET startw = '" + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET startb = '" + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
-//            stmt.executeUpdate("UPDATE account SET major = " + nieuw.isMajor() + " WHERE accountnr = " + oud.getAccountnr());
-//            stmt.executeUpdate("UPDATE account SET startm = '" + nieuw.getStartm() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
@@ -785,7 +606,6 @@ public class Database {
     }
     
     public void updateWolverineAccount(int accountnr, boolean wol){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -800,7 +620,6 @@ public class Database {
     }
     
     public void updateWolverineAccountDatum(int accountnr){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -815,7 +634,6 @@ public class Database {
     }
     
     public void updateBigSpenderAccount(int accountnr, boolean bs){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -830,7 +648,6 @@ public class Database {
     }
     
     public void updateBigSpenderAccountDatum(int accountnr){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -845,7 +662,6 @@ public class Database {
     }
     
     public void updateAantalpunten(Account acc, int aantalPuntennieuw){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -863,11 +679,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM artikelaankoop WHERE (transactienr = " + transactienr + ") and (artikelnr = " + artikelnr + ") and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -876,26 +697,8 @@ public class Database {
         }
     }
     
-//    public ResultSet getMajor(int accountnr, Date datum, String winkelnaam){
-//        //try{
-//            String sql = "";
-//            //moet nog getest worden
-//            ResultSet srs = getData(sql);
-//            this.closeConnection();
-//            return srs;
-//            
-//        //}
-////        catch(SQLException sqle){
-////            System.out.println("SQLException: " + sqle.getMessage());
-////            this.closeConnection();
-////            return null;
-////        }
-//    }
-    
-    //Functie om van een account alle punten die verkregen waren vorig jaar
-    
+    // FUNCTIES VOOR SPAARKAART
     public void addSpaarkaart(Spaarkaart s){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -912,11 +715,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -929,7 +737,8 @@ public class Database {
         try{
             String sql = "SELECT * FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int spaarkaartnr = srs.getInt("kaartnr");
                 String naamhouder = srs.getString("naamhouder");
                 int accountnr = srs.getInt("accountnr");
@@ -937,8 +746,8 @@ public class Database {
                 this.closeConnection();
                 return s;
             }
-            else return null;
-            
+            else
+                return null;
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -947,32 +756,7 @@ public class Database {
         }
     }
     
-    // geeft de naam van de naamhouder van de kaart met bepaald nummer
-    // moet nog aangepast worden
-//    public String getNaamhouder(int kaartnr){
-//        try{
-//            String sql = "SELECT naamhouder FROM spaarkaart WHERE kaartnr = " + kaartnr + ";";
-//            ResultSet srs = getData(sql);
-//            if(srs.next()){
-//                int spaarkaartnr = srs.getInt("kaartnr");
-//                String naamhouder = srs.getString("naamhouder");
-//                int accountnr = srs.getInt("accountnr");
-//                Spaarkaart s = new Spaarkaart(spaarkaartnr,accountnr,naamhouder);
-//                this.closeConnection();
-//                return naamhouder;
-//            }
-//            else return "not found";
-//            
-//        }
-//        catch(SQLException sqle){
-//            System.out.println("SQLException: " + sqle.getMessage());
-//            this.closeConnection();
-//            return "error";
-//        }
-//    }
-    
     public void deleteSpaarkaart(Spaarkaart s){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -986,7 +770,6 @@ public class Database {
     }
     
     public void updateSpaarkaart(Spaarkaart oud, Spaarkaart nieuw){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1008,17 +791,17 @@ public class Database {
         try{
             String sql = "SELECT COUNT(*) FROM spaarkaart;";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int count = srs.getInt("count(*)");
                 this.closeConnection();
                 return count;
             }
-           
-            else{
+            else
+            {
                 this.closeConnection();
                 return -1;
             }
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1031,17 +814,17 @@ public class Database {
         try{
             String sql = "SELECT max(kaartnr) FROM spaarkaart;";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int count = srs.getInt("max(kaartnr)");
                 this.closeConnection();
                 return count;
             }
-           
-            else{
+            else
+            {
                 this.closeConnection();
                 return -1;
             }
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1054,17 +837,17 @@ public class Database {
         try{
             String sql = "SELECT COUNT(*) FROM account;";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int count = srs.getInt("count(*)");
                 this.closeConnection();
                 return count;
             }
-           
-            else{
+            else
+            {
                 this.closeConnection();
                 return -1;
             }
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1077,17 +860,17 @@ public class Database {
         try{
             String sql = "SELECT max(accountnr) FROM account;";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int count = srs.getInt("max(accountnr)");
                 this.closeConnection();
                 return count;
             }
-           
-            else{
+            else
+            {
                 this.closeConnection();
                 return -1;
             }
-            
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1096,9 +879,8 @@ public class Database {
         }
     }
     
-    
+    // FUNCTIES VOOR ARTIKELAANKOOP
    public void addArtikelaankoop(Artikelaankoop a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1115,7 +897,8 @@ public class Database {
         try{
             String sql = "SELECT * FROM artikelaankoop WHERE (transactienr = " + transactienraankoop + ") and (artikelnr = " + artikelnr + ") and (winkelnaam = '" + winkelnaam + "');";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int transactienr = srs.getInt("transactienr");
                 int artikelnummer = srs.getInt("artikelnr");
                 String naam = srs.getString("winkelnaam");
@@ -1125,8 +908,11 @@ public class Database {
                 this.closeConnection();
                 return a;
             }
-            else {this.closeConnection();return null;}
-            
+            else
+            {
+                this.closeConnection();
+                return null;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1136,7 +922,6 @@ public class Database {
     }
     
     public void deleteArtikelaankoop(Artikelaankoop a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1149,8 +934,8 @@ public class Database {
         }
     }
     
+    // FUNCTIES VOOR AANKOOP
     public void addAankoop(Aankoop a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1164,7 +949,6 @@ public class Database {
     }
     
     public void deleteAankoop(Aankoop a){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1178,7 +962,6 @@ public class Database {
     }
     
     public void schrijfTotaalPrijsEnTotaalPtnNaarDatabase(int transactienr, double prijs, int punten){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1192,42 +975,44 @@ public class Database {
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
         }
-        
     }
     
     public int maxTransactienr(){
         try{
             String sql = "SELECT MAX(transactienr) AS maximum FROM aankoop;";
             ResultSet srs = getData(sql);
-                if(srs.next()){
-                    int transactienr = srs.getInt("maximum");
-                    this.closeConnection();
-                    return transactienr;
-                 }
-                else {this.closeConnection();
-                return 0;}
-            
+            if(srs.next())
+            {
+                int transactienr = srs.getInt("maximum");
+                this.closeConnection();
+                return transactienr;
+            }
+            else 
+            {
+                this.closeConnection();
+                return 0;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
             return 0;
         }
-    
     }
     
     public int aantalArtikelen(String winkelnaam){
         try{
             String sql = "SELECT COUNT(*) FROM artikel WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int a = srs.getInt("count(*)");
                 this.closeConnection();
                 return a;
             }
-         this.closeConnection();
-         return 0;
-        }   
+            this.closeConnection();
+            return 0;
+        }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
@@ -1239,14 +1024,15 @@ public class Database {
         try{
             String sql2 = "SELECT count(*) FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (ptnwinst = 0);";
             ResultSet srs2 = getData(sql2);
-            if(srs2.next()){
+            if(srs2.next())
+            {
                 int a = srs2.getInt("count(*)");
                 this.closeConnection();
                 return a;
             }
-        this.closeConnection();
-         return 0;
-        }   
+            this.closeConnection();
+            return 0;
+        }  
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
             this.closeConnection();
@@ -1258,13 +1044,14 @@ public class Database {
         try{
             String sql2 = "SELECT count(*) FROM artikel WHERE (winkelnaam = '" + winkelnaam + "') and (ptnwinst = 0);";
             ResultSet srs2 = getData(sql2);
-            if(srs2.next()){
+            if(srs2.next())
+            {
                 int a = srs2.getInt("count(*)");
                 this.closeConnection();
                 return a;
             }
-        this.closeConnection();
-         return 0;
+            this.closeConnection();
+            return 0;
         }   
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1277,12 +1064,14 @@ public class Database {
         try{
             String sql = "SELECT COUNT(*) FROM vestiging WHERE winkelnaam = '" + winkelnaam + "';";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 int count = srs.getInt("count(*)");
                 this.closeConnection();
                 return count;
             }
-            else{
+            else
+            {
                 this.closeConnection();
                 return -1;
             }
@@ -1294,10 +1083,8 @@ public class Database {
         }
     }
     
-    
-    
+    // FUNCTIES VOOR MAJOR
     public void addMajor(int accountnr, String winkelnaam){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
@@ -1307,9 +1094,6 @@ public class Database {
             catch(Exception e){
                 System.out.println(e.getMessage());
             }
-            
-            
-            
             this.closeConnection();
         }
         catch(SQLException sqle){
@@ -1322,11 +1106,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM major WHERE (winkelnaam = '" + winkelnaam + "') and (accountnr = " + accountnr + ");";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1339,15 +1128,19 @@ public class Database {
         try{
             String sql = "SELECT * FROM major WHERE (winkelnaam = '" + winkelnaam + "') and (accountnr = " + accountnr + ");";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 String naam = srs.getString("winkelnaam");
                 int accountnummer = srs.getInt("accountnr");
                 Major maj = new Major(naam,accountnummer);
                 this.closeConnection();
                 return maj;
             }
-            else {this.closeConnection();return null;}
-            
+            else
+            {
+                this.closeConnection();
+                return null;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1356,16 +1149,12 @@ public class Database {
         }
     }
     
-    
     public void updateMajor(Account acc, Winkel winkel){
-        
         try{
             dbConnection = getConnection();
             Statement stmt = dbConnection.createStatement();
             
             stmt.executeUpdate("UPDATE major SET puntendatum = CURDATE() WHERE accountnr = " + acc.getAccountnr() + " and winkelnaam = '" + winkel.getWinkelnaam() + "';");
-            
-            
             
             this.closeConnection();
         }
@@ -1379,11 +1168,16 @@ public class Database {
         try{
             String sql = "SELECT puntendatum FROM major WHERE accountnr = " + m.getAccountnr() + " AND winkelnaam = '" + m.getWinkelnaam() + "' AND puntendatum > CURRENT_DATE - INTERVAL '1' YEAR";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return false;
             }
-            else {this.closeConnection();return true;}
+            else
+            {
+                this.closeConnection();
+                return true;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1396,11 +1190,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM `winkel` WHERE `accountnr` IS NULL AND winkelnaam = '" + winkelnaam + "'";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return false;
             }
-            else {this.closeConnection();return true;}
+            else
+            {
+                this.closeConnection();
+                return true;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1413,11 +1212,16 @@ public class Database {
         try{
             String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + " and (account.startw < (CURDATE() - INTERVAL '1'YEAR) or account.startw IS NULL);";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());
@@ -1428,14 +1232,18 @@ public class Database {
     
     public Boolean getDatumVoorBigspender(int accountnr){
         try{
-            // IN DEZE FUNCTIE MOEST HET HAAKJE WEG
             String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + " and (account.startb < (CURDATE() - INTERVAL '1'YEAR) or account.startb IS NULL);";
             ResultSet srs = getData(sql);
-            if(srs.next()){
+            if(srs.next())
+            {
                 this.closeConnection();
                 return true;
             }
-            else {this.closeConnection();return false;}
+            else
+            {
+                this.closeConnection();
+                return false;
+            }
         }
         catch(SQLException sqle){
             System.out.println("SQLException: " + sqle.getMessage());

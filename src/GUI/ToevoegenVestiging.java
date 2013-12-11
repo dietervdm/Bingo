@@ -364,10 +364,12 @@ public class ToevoegenVestiging extends javax.swing.JFrame {
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
         String vestigingid = txtVestigingid.getText();
         Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
-        if(d.checkVestiging(vestigingid, winkelnaam)){
+        if(d.checkVestiging(vestigingid, winkelnaam))
+        {
             JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
         }
-        else{
+        else
+        {
             d.addVestiging(v);
             t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);

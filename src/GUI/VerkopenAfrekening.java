@@ -326,21 +326,15 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
     }//GEN-LAST:event_knopRegistreerAankoopActionPerformed
 
     private void knopVoegToeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVoegToeActionPerformed
-        System.out.println(puntenOver);
         Artikel art = db.getArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam());
-        
-//        double prijs = art.getPrijs();
-//        int ptnplus = art.getPtnwinst();
-//        int ptnmin = art.getPtnkost();       
+               
         int aantal = Integer.parseInt(aantalBepaler.getValue().toString());
-        System.out.println(aantal);
         
         Artikelaankoop artAk = new Artikelaankoop();
         artAk.setTransactienrAankoop(transactienummer);
         artAk.setArtikelnr(Integer.parseInt(txtProductToevoegen.getText()));
         artAk.setWinkelNaam(actief.getWinkelnaam());
         artAk.setAantal(aantal);
-        System.out.println(artAk.getAantal());
         
         
         if(db.checkArtikel(Integer.parseInt(txtProductToevoegen.getText()), actief.getWinkelnaam()))
@@ -356,29 +350,23 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             {
                 if(art.getPtnkost() == -1 || art.getPtnkost() == 0)
                 {
-                    System.out.println("test 1");
                     if(aantal >= art.getMinimumaantal())
                     {
-                        //System.out.println(Integer.toString(aantal));
                         totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
                         totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
                     }
                     else
                     {
-                        System.out.println("wordt deze gebruikt?");
-                        //System.out.println(Integer.toString(aantal));
                         totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
                     }
                     artAk.setMetPuntenBetaald(false);
                 }
                 else
                 {
-                    System.out.println("test 2");
                     if(puntenOver >= art.getPtnkost()*aantal)
                     {
                         if(art.getMinimumbedrag() < totaalPrijs)
                         {
-                            System.out.println("test 3");
                             totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
                             puntenOver = puntenOver - art.getPtnkost() * aantal;
                             artikelenMetPunten = artikelenMetPunten + aantal;
@@ -386,47 +374,34 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                         }
                         else
                         {
-                            System.out.println("test 4");
-//                            totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
-//                            totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                             artAk.setMetPuntenBetaald(false);
                             if(aantal >= art.getMinimumaantal())
                             {
-                                //System.out.println(Integer.toString(aantal));
                                 totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
                                 totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
                             }
                             else
                             {
-                                System.out.println("wordt deze gebruikt?");
-                                //System.out.println(Integer.toString(aantal));
                                 totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
                             }
                         }
 
                     }
-                    //System.out.println("dit product kan met punten betaald worden");
                     else
                     {
-//                        totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
-//                        totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                         artAk.setMetPuntenBetaald(false);
                         if(aantal >= art.getMinimumaantal())
                         {
-                            //System.out.println(Integer.toString(aantal));
                             totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
                             totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
                         }
                         else
                         {
-                            System.out.println("wordt deze gebruikt?");
-                            //System.out.println(Integer.toString(aantal));
                             totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
                         }
                     }
                 }
             db.addArtikelaankoop(artAk);
-//            System.out.println(db.getArtikelaankoop(transactienummer, aantal, actief.getWinkelnaam()).getAantal());
             }
             
         }
@@ -438,10 +413,6 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             txtProductToevoegen.requestFocus();
         }
         
-//        totaalPuntenMin = totaalPuntenMin + ptnmin;
-//        totaalPuntenPlus = totaalPuntenPlus + ptnplus;
-//        totaalPrijs = totaalPrijs + prijs;
-        
         weergaveTeGebruikenPunten.setText(Integer.toString(puntenOver));
         totaalBedrag.setText(Double.toString(totaalPrijs));
         puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
@@ -450,9 +421,8 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         
         
         t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald FROM artikelaankoop\n" +
-"INNER JOIN artikel ON artikelaankoop.artikelnr = artikel.artikelnr\n" +
-"WHERE transactienr = '" + this.transactienummer + "' and artikel.winkelnaam = '" + actief.getWinkelnaam() + "'");
-        //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
+                         "INNER JOIN artikel ON artikelaankoop.artikelnr = artikel.artikelnr\n" +
+                         "WHERE transactienr = '" + this.transactienummer + "' and artikel.winkelnaam = '" + actief.getWinkelnaam() + "'");
         tabelAankopen.setModel(t);
         
         txtProductToevoegen.setText("");
@@ -475,7 +445,6 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
         if(db.checkArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()))
         {
             Artikelaankoop artAkVerw = db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
-            System.out.println("Hier lees je het aantal van het verwijderde product:" + artAkVerw.getAantal());
             
             Artikel art = db.getArtikel(Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam());
             
@@ -486,22 +455,18 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                         totaalPuntenMin = totaalPuntenMin - art.getPtnkost() * artAkVerw.getAantal();
                         puntenOver = puntenOver + art.getPtnkost() * artAkVerw.getAantal();
                         artikelenMetPunten = artikelenMetPunten - db.getArtikelaankoop(transactienummer, Integer.parseInt(txtProductVerwijderen.getText()), actief.getWinkelnaam()).getAantal();
-                        System.out.println("11");
                     }
                     else
                     {
-                        System.out.println("12");
                         totaalPrijs = totaalPrijs - art.getPrijs() * artAkVerw.getAantal();
                         totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAkVerw.getAantal();
                     }
             }
             else
             {
-                
                 if(artAkVerw.getAantal() >= art.getMinimumaantal())
                 {
                     totaalPrijs = totaalPrijs - art.getPrijs() * artAkVerw.getAantal();
-                    System.out.println(artAkVerw.getAantal());
                     totaalPuntenPlus = totaalPuntenPlus - art.getPtnwinst() * artAkVerw.getAantal();
                 }
                 else
@@ -509,11 +474,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                     totaalPrijs = totaalPrijs - art.getPrijs() * artAkVerw.getAantal();
                 }
             }
-        
             db.deleteArtikelaankoop(artAkVerw);
-            System.out.println("verwijderd");
-            
-            
 
         }  
         else
@@ -528,13 +489,11 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
             puntenVerkregen.setText(Integer.toString(totaalPuntenPlus));
             weergaveAfgetrokkenPunten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten() - puntenOver));
             aantalArtikelenPunten.setText(Integer.toString(artikelenMetPunten));
-            System.out.println("getoond");
         
         
         t = db.naarTabel("select artikelaankoop.artikelnr, artikel.artikelnaam, artikel.prijs, artikelaankoop.aantal, artikelaankoop.MetPuntenBetaald FROM artikelaankoop\n" +
-"INNER JOIN artikel ON artikelaankoop.artikelnr = artikel.artikelnr\n" +
-"WHERE transactienr = '" + this.transactienummer + "' and artikel.winkelnaam = '" + actief.getWinkelnaam() + "'");
-            //t = db.naarTabel("select * from artikelaankoop where transactienr = " + transactienummer + ";");
+                         "INNER JOIN artikel ON artikelaankoop.artikelnr = artikel.artikelnr\n" +
+                         "WHERE transactienr = '" + this.transactienummer + "' and artikel.winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelAankopen.setModel(t);
             
             txtProductVerwijderen.setText("");

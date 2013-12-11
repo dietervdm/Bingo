@@ -42,18 +42,22 @@ public class Artikel
     
     public static boolean minstensArtikelPlus(String winkelnaam){
     
-            if(d.aantalArtikelen(winkelnaam) == d.aantalArtikelenNietPlus(winkelnaam)){
+            if(d.aantalArtikelen(winkelnaam) == d.aantalArtikelenNietPlus(winkelnaam))
+            {
                 return false;
             }
-            else return true;
+            else
+                return true;
         }
      
      public static boolean minstensArtikelMin(String winkelnaam){
 
-        if(d.aantalArtikelen(winkelnaam) == d.aantalArtikelenNietPlus(winkelnaam)){
-                return false;
-            }
-            else return true;
+        if(d.aantalArtikelen(winkelnaam) == d.aantalArtikelenNietPlus(winkelnaam))
+        {
+            return false;
+        }
+        else
+            return true;
     }
         
     public int getArtikelnr()

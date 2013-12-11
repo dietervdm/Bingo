@@ -332,13 +332,15 @@ public class VerwijderenVestiging extends javax.swing.JFrame {
 
         String vestigingid = txtVestigingid.getText();
 
-        if(d.checkVestiging(vestigingid, actief.getWinkelnaam())){
+        if(d.checkVestiging(vestigingid, actief.getWinkelnaam()))
+        {
             Vestiging v = d.getVestiging(vestigingid, actief.getWinkelnaam());
             d.deleteVestiging(v);
             t = d.naarTabel("select * from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Dit vestigingid bestaat niet.");
     }//GEN-LAST:event_knopVerwijderenActionPerformed
     }

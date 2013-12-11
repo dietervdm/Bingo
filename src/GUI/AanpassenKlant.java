@@ -413,19 +413,21 @@ public class AanpassenKlant extends javax.swing.JFrame {
         java.util.Date jstartb = new java.util.Date(100,00,01);
         java.sql.Date startb = new java.sql.Date(jstartb.getTime());
         
-        if(checkBedrijf.isSelected()){
+        if(checkBedrijf.isSelected())
+        {
             btwnummer = txtBtwnummer.getText();
         }
-        else{
+        else
+        {
             btwnummer = "";     // of NULL
         }
             
         if(d.checkAccount(Integer.parseInt(txtAccountnr.getText())))
         {
-        int accountnr = Integer.parseInt(txtAccountnr.getText());
-        Account oud = d.getAccount(accountnr);
-        Account nieuw = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, isBedrijf, btwnummer);
-        d.updateAccount(oud,nieuw);
+            int accountnr = Integer.parseInt(txtAccountnr.getText());
+            Account oud = d.getAccount(accountnr);
+            Account nieuw = new Account(accountnr, naam, email, adres, 0, false, startw, false, startb, isBedrijf, btwnummer);
+            d.updateAccount(oud,nieuw);
             t = d.naarTabel("select * from account");
             tabelKlanten.setModel(t);
             txtAccountnr.setText("");
@@ -435,7 +437,8 @@ public class AanpassenKlant extends javax.swing.JFrame {
             txtNaam.setText("");
             checkBedrijf.setSelected(false);
         }
-        else {
+        else 
+        {
           JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet.");  
         }
         
@@ -445,21 +448,21 @@ public class AanpassenKlant extends javax.swing.JFrame {
         if(d.checkAccount(Integer.parseInt(txtAccountnr.getText())))
         {
             int accountnr = Integer.parseInt(txtAccountnr.getText());
-        Account a = d.getAccount(accountnr);
+            Account a = d.getAccount(accountnr);
         
-        txtNaam.setText(a.getNaam());
-        txtEmail.setText(a.getEmail());
-        txtAdres.setText(a.getAdres());
-        if(a.isBedrijf())
-        {
-            txtBtwnummer.setText(a.getBtwnummer());
-            checkBedrijf.setSelected(true);
-        }
-        else{
-            txtBtwnummer.setText("");
-            checkBedrijf.setSelected(false);
-        }
-        
+            txtNaam.setText(a.getNaam());
+            txtEmail.setText(a.getEmail());
+            txtAdres.setText(a.getAdres());
+            if(a.isBedrijf())
+            {
+                txtBtwnummer.setText(a.getBtwnummer());
+                checkBedrijf.setSelected(true);
+            }
+            else
+            {
+                txtBtwnummer.setText("");
+                checkBedrijf.setSelected(false);
+            }
         }
         else
         {
@@ -467,8 +470,6 @@ public class AanpassenKlant extends javax.swing.JFrame {
             txtAccountnr.setText("");
             txtAccountnr.requestFocus();
         }
-        
-        
     }//GEN-LAST:event_knopVulinActionPerformed
 
     private void menuknopHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuknopHomeMouseClicked

@@ -22,8 +22,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     
     public ToevoegenWinkel2(JFrame caller) {
         initComponents();
-        myCaller = caller;
-        
+        myCaller = caller;  
     }
 
     
@@ -151,8 +150,7 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAdresActionPerformed
 
     private void knopGaVerderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopGaVerderActionPerformed
-        
-        
+  
             ToevoegenWinkel3 s = new ToevoegenWinkel3(this);
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
@@ -170,10 +168,12 @@ public class ToevoegenWinkel2 extends javax.swing.JFrame {
         String winkelnaam = actief.getWinkelnaam();
         String vestigingid = txtVestigingid.getText();
         Vestiging v = new Vestiging(vestigingid, winkelnaam, txtAdres.getText());
-        if(d.checkVestiging(vestigingid, winkelnaam)){
+        if(d.checkVestiging(vestigingid, winkelnaam))
+        {
             JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
         }
-        else{
+        else
+        {
             d.addVestiging(v);
             t = d.naarTabel("select vestigingid,adres from vestiging where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelVestigingen.setModel(t);

@@ -590,29 +590,35 @@ public class AanpassenArtikel extends javax.swing.JFrame {
     private void knopVulinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopVulinActionPerformed
         
         int artikelnr = Integer.parseInt(txtArtikelnummer1.getText());
-        if(!d.checkArtikel(artikelnr, actief.getWinkelnaam())){
+        if(!d.checkArtikel(artikelnr, actief.getWinkelnaam()))
+        {
             JOptionPane.showMessageDialog(null, "Dit productnummer bestaat niet voor deze winkel.");
         }
-        else{
+        else
+        {
             Artikel a = d.getArtikel(artikelnr, actief.getWinkelnaam());
         
             txtArtikelnr2.setText(Integer.toString(a.getArtikelnr()));
             txtArtikelnaam.setText(a.getArtikelnaam());
             txtPrijs.setText(Double.toString(a.getPrijs()));
 
-            if(a.getPtnwinst()>0){
+            if(a.getPtnwinst()>0)
+            {
                 txtPuntenplus.setText(Integer.toString(a.getPtnwinst()));
                 checkGeeftpunten.setSelected(true);
             }
-            if(a.getPtnkost()>0){
+            if(a.getPtnkost()>0)
+            {
                 txtPuntenmin.setText(Integer.toString(a.getPtnkost()));
                 checkKostpunten.setSelected(true);
             }
-            if(a.getMinimumaantal()>0){
+            if(a.getMinimumaantal()>0)
+            {
                 txtMinimumartikelen.setText(Integer.toString(a.getMinimumaantal()));
                 checkMinimumartikelen.setSelected(true);
             }
-            if(a.getMinimumbedrag()>0){
+            if(a.getMinimumbedrag()>0)
+            {
                 txtMinimumbedrag.setText(Integer.toString(a.getMinimumbedrag()));
                 checkMinimumaankoopbedrag.setSelected(true);
             }

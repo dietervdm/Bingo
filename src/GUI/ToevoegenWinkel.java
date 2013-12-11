@@ -133,13 +133,15 @@ public class ToevoegenWinkel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void knopAnnulerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAnnulerenActionPerformed
-        if (actief == null){
+        if (actief == null)
+        {
             InlogScherm s = new InlogScherm();
             s.setLocationRelativeTo(null);
             s.setVisible(true);
             setVisible(false);
         }
-        else{
+        else
+        {
             d.deleteWinkel(actief);
             InlogScherm s = new InlogScherm();
             s.setLocationRelativeTo(null);

@@ -15,14 +15,12 @@ public class RapportVestiging extends javax.swing.JFrame {
     public JFrame myCaller;
     public Winkel actief = InlogScherm.getInstance().getActief();
     public Database d = new Database();
-    //DefaultTableModel t = d.naarTabel("select * from artikelaankoop");
     
     private Database db = new Database();
     DefaultTableModel t = db.naarTabel("SELECT * FROM artikelaankoop WHERE transactienr IN (SELECT transactienr FROM aankoop WHERE vestigingid = 99999)");
     
     public RapportVestiging() {
         initComponents();
-        
     }
     
     public RapportVestiging(JFrame caller) {

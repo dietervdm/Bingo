@@ -39,8 +39,6 @@ import javax.swing.border.Border;
     private static Spaarkaart actieveSpaarkaart = null;
     private static int spaarkaartHouder;
     
-//    private static Account acc;
-//    private static Spaarkaart s;
     
     static JFrame f = new JFrame();
     static JPanel topPanel = new JPanel();
@@ -69,11 +67,8 @@ import javax.swing.border.Border;
     
     
     static JLabel naamKlant = new JLabel("Naam van de klant: ");
-    //naamKlant.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
     static JLabel naamAccount = new JLabel("Naam account: ");
-    //naamAccount.setFont(new java.awt.Font("Tahoma", 1, 18)); // Lettertype aanpassen
     static JLabel aantalPunten = new JLabel("Aantal punten verzameld: ");
-        //aantalPunten.setFont(new java.awt.Font("Tahoma", 1, 14)); // Lettertype aanpassen
 
     public PopUpSpaarkaart(int seconds, Vestiging vest, Spaarkaart sk) {
         timer = new Timer();
@@ -82,18 +77,13 @@ import javax.swing.border.Border;
         this.setActieveVest(vest);
         initComponents();
          
-//        s = new Spaarkaart(spaarkaartHouder);
-//        acc = new Account(s.getAccountnr);
-        // is dit een goeie oplossing?
 	}
 
     public static void initComponents() {
         String path1 = afbeeldingMajor();
-        //String path1 = "src\\GUI\\Badge\\MajorBlack.png";
         String path2 = afbeeldingBigSpender();
-        //String path2 = "src\\GUI\\Badge\\BigSpender.png";
         String path3 = afbeeldingWolverine();
-        //String path3 = "src\\GUI\\Badge\\Wolverine.png";
+        
         File file1 = new File(path1);
         File file2 = new File(path2);
         File file3 = new File(path3);
@@ -103,11 +93,9 @@ import javax.swing.border.Border;
         BufferedImage image2 = ImageIO.read(file2);
         BufferedImage image3 = ImageIO.read(file3);
         
-        
         ImageIcon icon1 = new ImageIcon(image1);
         ImageIcon icon2 = new ImageIcon(image2);
         ImageIcon icon3 = new ImageIcon(image3);
-        
         
         Image img1 = icon1.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
         Image img2 = icon2.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
@@ -117,31 +105,16 @@ import javax.swing.border.Border;
         ImageIcon imic2 = new ImageIcon(img2);
         ImageIcon imic3 = new ImageIcon(img3);
         
-            
-//        //major.setImage((Icon)img1);
-//        //bigSpender.setImage(img2);
-//        //wolverine.setImage(img3);
-//        //major.setIcon((Icon) imic1);
-//        //major = new ImageIcon(img1);
-//        bigSpender = new ImageIcon(img2);
-//        wolverine = new ImageIcon(img3);
-        
         maj.setIcon((Icon)imic1);
-        //maj = new JLabel(major);
         bs.setIcon((Icon) imic2);
-        //bs = new JLabel(bigSpender);
         wol.setIcon((Icon) imic3);
-        //wol = new JLabel(wolverine);
         
         String acc = db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam();
         account.setText(acc);
-        //account.setText(db.getAccount(actieveSpaarkaart.getAccountnr()).getNaam());
         String sk = actieveSpaarkaart.getNaamhouder();
         spaarkaart.setText(sk);
-        //spaarkaart.setText(actieveSpaarkaart.getNaamhouder());
         String pt = Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten());
         punten.setText("  " + pt + "  ");
-        //punten.setText(Integer.toString(db.getAccount(actieveSpaarkaart.getAccountnr()).getPunten()));
         
         if(db.getAccount(actieveSpaarkaart.getAccountnr()).isBedrijf())
         {
@@ -167,16 +140,11 @@ import javax.swing.border.Border;
         puntenBalk.add(aantalPunten);
         puntenBalk.add(punten);
         Border compound = BorderFactory.createLineBorder(Color.black, 2, false); // true voor ronde hoeken
-        //BorderLayout bl = new BorderLayout(5,5);
         punten.setBorder(compound);
-//        punten.setAlignmentX(20);
-//        punten.setAlignmentY(40);
         
-        //topPanel.add(leegBoven);
         topPanel.add(spaarkaartBalk);
         topPanel.add(accountBalk);
         topPanel.add(puntenBalk);
-        //topPanel.add(leegBoven);
         
         downPanel.add(maj);
         downPanel.add(bs);
@@ -236,8 +204,6 @@ import javax.swing.border.Border;
             f.setVisible(false);
             
             VerkopenAfrekening s = new VerkopenAfrekening(actieveSpaarkaart, actieveVest);
-            //s.setActieveSpaarkaart(actieveSpaarkaart);
-            //s.setActieveVest(actieveVest);
             
                 s.setLocationRelativeTo(null);
                 s.setVisible(true);
@@ -246,7 +212,6 @@ import javax.swing.border.Border;
     }
 
     public static void main(String args[]) {
-        //new PopUpSpaarkaart(5);
         initComponents();
         f.setVisible(true);
     }
@@ -256,7 +221,6 @@ import javax.swing.border.Border;
         Account acc = db.getAccount(actieveSpaarkaart.getAccountnr());
         db.getAccount(actieveSpaarkaart.getAccountnr());
         acc.isMajorWorden(actief.getWinkelnaam());
-        System.out.println("controleer major");
         if (db.getWinkel(actief.getWinkelnaam()).getAccount() == db.getAccount(actieveSpaarkaart.getAccountnr()).getAccountnr())
             return "src\\GUI\\Badge\\Major.png";
         else
@@ -265,7 +229,6 @@ import javax.swing.border.Border;
     
     public static String afbeeldingBigSpender(){
         db.getAccount(actieveSpaarkaart.getAccountnr()).isBigSpenderWorden();
-        System.out.println("controleer bigspender");
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isBigspender())
             return "src\\GUI\\Badge\\BigSpender.png";
         else
@@ -274,7 +237,6 @@ import javax.swing.border.Border;
     
     public static String afbeeldingWolverine(){
         db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverineWorden();
-        System.out.println("controleer wolverine");
         if (db.getAccount(actieveSpaarkaart.getAccountnr()).isWolverine())
             return "src\\GUI\\Badge\\Wolverine.png";
         else

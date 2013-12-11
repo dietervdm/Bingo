@@ -395,7 +395,6 @@ public class ToevoegenKlant extends javax.swing.JFrame {
     private void knopToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopToevoegenActionPerformed
         String winkelnaam = InlogScherm.getInstance().getActief().getWinkelnaam();
         
-        
         java.util.Date jstartw = new java.util.Date(100,00,01);
         java.sql.Date startw = new java.sql.Date(jstartw.getTime());
         java.util.Date jstartb = new java.util.Date(100,00,01);
@@ -408,21 +407,26 @@ public class ToevoegenKlant extends javax.swing.JFrame {
         String btwnummer = null;
         int accountnr = d.maxAccounts() + 1;
         
-        if(checkBedrijf.isSelected()){
-            if (txtBtwnummer.getText() != ""){
+        if(checkBedrijf.isSelected())
+        {
+            if (txtBtwnummer.getText() != "")
+            {
                 btwnummer = txtBtwnummer.getText();
             }
-            else JOptionPane.showMessageDialog(null, "Een bedrijf moet een btwnummer hebben");
+            else
+                JOptionPane.showMessageDialog(null, "Een bedrijf moet een btwnummer hebben");
         }
-        else btwnummer = null;
+        else
+            btwnummer = null;
         
         Account a = new Account(accountnr, naam, email, adres, 0, false, null, false, null, checkBedrijf.isSelected(), btwnummer);
         
-        if(d.checkAccount(accountnr)){
-            //JOptionPane.showMessageDialog(null, "Deze vestigingsid bestaat al voor deze winkel");
+        if(d.checkAccount(accountnr))
+        {
             JOptionPane.showMessageDialog(null, "Deze account bestaat al.");
         }
-        else{
+        else
+        {
             d.addAccount(a);
             t = d.naarTabel("select * from account");
             tabelKlanten.setModel(t);
@@ -432,11 +436,7 @@ public class ToevoegenKlant extends javax.swing.JFrame {
             txtAdres.setText("");
             txtEmail.setText("");
             txtNaam.setText("");
-        }
-        
-        
-        
-            
+        }     
         
     }//GEN-LAST:event_knopToevoegenActionPerformed
 

@@ -363,14 +363,16 @@ public class AanpassenWinkel extends javax.swing.JFrame {
     }//GEN-LAST:event_knopTerugActionPerformed
 
     private void knopAanpassenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassenActionPerformed
-        if(txtPaswoord.getText().equals(txtPaswoord2.getText())){
+        if(txtPaswoord.getText().equals(txtPaswoord2.getText()))
+        {
             Winkel nieuw = new Winkel(actief.getWinkelnaam(),actief.getAccount() ,txtPaswoord.getText());
             
             d.updateWinkel(actief, nieuw);
             InlogScherm.getInstance().setActief(nieuw);
             JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "De wachtwoorden moeten identiek zijn!");
         }
     }//GEN-LAST:event_knopAanpassenActionPerformed
@@ -521,19 +523,23 @@ public class AanpassenWinkel extends javax.swing.JFrame {
 
     private void knopAanpassen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knopAanpassen1ActionPerformed
       
-        if(!txtNaam.getText().equals("")){
+        if(!txtNaam.getText().equals(""))
+        {
             Winkel nieuw = new Winkel(txtNaam.getText(),actief.getAccount() ,actief.getPaswoord());
             
-            if(d.checkWinkel(nieuw.getWinkelnaam())){
+            if(d.checkWinkel(nieuw.getWinkelnaam()))
+            {
                 JOptionPane.showMessageDialog(null, "Deze winkelnaam bestaat al.");
             }
-            else {
+            else
+            {
                 d.updateWinkel(actief, nieuw);
                 InlogScherm.getInstance().setActief(nieuw);
                 JOptionPane.showMessageDialog(null, "Gegevens aangepast!");
             }
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Er moet een naam ingevuld worden");
         }
     }//GEN-LAST:event_knopAanpassen1ActionPerformed

@@ -381,23 +381,26 @@ public class ToevoegenSpaarkaart extends javax.swing.JFrame {
         
         Spaarkaart s = new Spaarkaart(kaartnr, accountnr, naamhouder);
         
-        if(!d.checkAccount(accountnr)){
+        if(!d.checkAccount(accountnr))
+        {
             JOptionPane.showMessageDialog(null, "Dit accountnummer bestaat niet");
         }
-        else{
-        
-        if(d.checkSpaarkaart(kaartnr)){
-            JOptionPane.showMessageDialog(null, "Dit spaarkaartnummer bestaat al voor deze account");
-        }
-        else{
-            d.addSpaarkaart(s);
-            t = d.naarTabel("select * from spaarkaart where accountnr = '" + accountnr + "'");
-            tabelSpaarkaarten.setModel(t);
-            int kaartnr2 = d.maxSpaarkaarten() + 1;
-            txtKaartnr.setText("" + kaartnr2);
-        }
-        txtNaamhouder.setText("");
-        txtNaamhouder.requestFocus();
+        else
+        {
+            if(d.checkSpaarkaart(kaartnr))
+            {
+                JOptionPane.showMessageDialog(null, "Dit spaarkaartnummer bestaat al voor deze account");
+            }
+            else
+            {
+                d.addSpaarkaart(s);
+                t = d.naarTabel("select * from spaarkaart where accountnr = '" + accountnr + "'");
+                tabelSpaarkaarten.setModel(t);
+                int kaartnr2 = d.maxSpaarkaarten() + 1;
+                txtKaartnr.setText("" + kaartnr2);
+            }
+            txtNaamhouder.setText("");
+            txtNaamhouder.requestFocus();
         }
     }//GEN-LAST:event_knopVoegtoeActionPerformed
 

@@ -332,7 +332,8 @@ public class VerwijderenKlant extends javax.swing.JFrame {
 
         int accountnr = Integer.parseInt(txtKlantnr.getText());
 
-        if(d.checkAccount(accountnr)){
+        if(d.checkAccount(accountnr))
+        {
             Account a = d.getAccount(accountnr);
             d.deleteAccount(a);
             t = d.naarTabel("select accountnr, naam, email, adres, btwnummer from account");

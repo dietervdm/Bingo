@@ -26,7 +26,6 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         myCaller = caller;
     }
     
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -255,15 +254,18 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         
         boolean toevoegen = true;
         
-        if(d.aantalVestigingen(actief.getWinkelnaam()) == 0){
+        if(d.aantalVestigingen(actief.getWinkelnaam()) == 0)
+        {
             JOptionPane.showMessageDialog(null, "Er moet minstens 1 vestiging zijn.");
             toevoegen = false;
         }
-        if(!Artikel.minstensArtikelPlus(actief.getWinkelnaam()) || !Artikel.minstensArtikelMin(actief.getWinkelnaam()) || d.aantalArtikelen(actief.getWinkelnaam()) == 0){
+        if(!Artikel.minstensArtikelPlus(actief.getWinkelnaam()) || !Artikel.minstensArtikelMin(actief.getWinkelnaam()) || d.aantalArtikelen(actief.getWinkelnaam()) == 0)
+        {
             JOptionPane.showMessageDialog(null, "Er moet minstens 1 artikel zijn dat punten geeft en 1 artikel dat punten kost.");
             toevoegen = false;
         }
-        if(toevoegen){
+        if(toevoegen)
+        {
             JOptionPane.showMessageDialog(null, "Winkel toegevoegd, u kan nu inloggen.");
             InlogScherm s = new InlogScherm();
                 s.setLocationRelativeTo(null);
@@ -292,18 +294,22 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         String artikelnaam = txtNaam.getText();
         boolean toevoegen = true;
         
-        if(txtPrijs.getText().equals("") || Double.parseDouble(txtPrijs.getText())<0){
+        if(txtPrijs.getText().equals("") || Double.parseDouble(txtPrijs.getText())<0)
+        {
             toevoegen = false;
             JOptionPane.showMessageDialog(null, "De prijs moet groter dan of gelijk aan nul zijn.");
         }
-        else{
+        else
+        {
             prijs = Double.parseDouble(txtPrijs.getText());
             pr = (int) Math.round(prijs * 100);
             prijsAfgerond = pr / 100.00 ;
         }
         
-        if(checkGeeftpunten.isSelected()){
-            if(txtPuntenplus.getText().equals("")){
+        if(checkGeeftpunten.isSelected())
+        {
+            if(txtPuntenplus.getText().equals(""))
+            {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "Puntenkost niet ingevuld");
             }
@@ -311,14 +317,18 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
             }
-            else {
+            else 
+            {
                puntenplus = Integer.parseInt(txtPuntenplus.getText());
-               if(checkMinimumartikelen.isSelected()){
-                    if(txtMinimumartikelen.getText().equals("")){
+               if(checkMinimumartikelen.isSelected())
+               {
+                    if(txtMinimumartikelen.getText().equals(""))
+                    {
                         toevoegen = false;
                         JOptionPane.showMessageDialog(null, "Aantal minimumartikelen niet ingevuld");
                     }
-                    else {
+                    else
+                    {
                        minimumartikelen = Integer.parseInt(txtMinimumartikelen.getText()); 
                     }
                 }
@@ -326,7 +336,8 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         }
         
         if(checkKostpunten.isSelected()){
-            if(txtPuntenmin.getText().equals("")){
+            if(txtPuntenmin.getText().equals(""))
+            {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "Puntenkost niet ingevuld");
             }
@@ -334,14 +345,18 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
                 toevoegen = false;
                 JOptionPane.showMessageDialog(null, "De punten per eenheid van de prijs moeten tussen de 0,25 en 2 punten.");
             }
-            else {
+            else
+            {
                puntenmin = Integer.parseInt(txtPuntenmin.getText());
-               if(checkMinimumaankoopbedrag.isSelected()){
-                    if(txtMinimumbedrag.getText().equals("")){
+               if(checkMinimumaankoopbedrag.isSelected())
+               {
+                    if(txtMinimumbedrag.getText().equals(""))
+                    {
                         toevoegen = false;
                         JOptionPane.showMessageDialog(null, "Minimumbedrag niet ingevuld");
                     }
-                    else {
+                    else
+                    {
                        minimumbedrag = Integer.parseInt(txtMinimumbedrag.getText()); 
                     }
                 }
@@ -355,8 +370,8 @@ public class ToevoegenWinkel3 extends javax.swing.JFrame {
         
         Artikel q = new Artikel(artikelnr, winkelnaam, artikelnaam, prijsAfgerond, puntenplus, minimumartikelen, puntenmin, minimumbedrag);
         
-        if(toevoegen){
-            
+        if(toevoegen)
+        {
             d.addArtikel(q);
             t = d.naarTabel("select artikelnr, artikelnaam, prijs, ptnwinst, minimumaantal, ptnkost, minimumbedrag from artikel where winkelnaam = '" + actief.getWinkelnaam() + "'");
             tabelArtikelen.setModel(t);

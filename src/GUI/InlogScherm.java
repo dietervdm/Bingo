@@ -117,7 +117,8 @@ public class InlogScherm extends javax.swing.JFrame {
         String naam = txtNaam.getText();
         String paswoord = txtPaswoord.getText();
         
-        if(d.checkWinkel(naam)){
+        if(d.checkWinkel(naam))
+        {
             if(paswoord.equals(d.getWinkel(naam).getPaswoord())){
                 w = d.getWinkel(naam);
                 inlogscherm.setActief(w);
@@ -157,8 +158,10 @@ public class InlogScherm extends javax.swing.JFrame {
         String naam = txtNaam.getText();
         String paswoord = txtPaswoord.getText();
         
-        if(d.checkWinkel(naam)){
-            if(paswoord.equals(d.getWinkel(naam).getPaswoord())){
+        if(d.checkWinkel(naam))
+        {
+            if(paswoord.equals(d.getWinkel(naam).getPaswoord()))
+            {
                 w = d.getWinkel(naam);
                 inlogscherm.setActief(w);
                 inlogscherm.setLocationRelativeTo(null);
@@ -167,13 +170,15 @@ public class InlogScherm extends javax.swing.JFrame {
                 s.setVisible(true);
                 setVisible(false);
             }
-            else{
+            else
+            {
                 JOptionPane.showMessageDialog(null, "Incorrect paswoord. Probeer opnieuw het wachtwoord in te vullen.");
                 txtPaswoord.setText("");
                 txtPaswoord.requestFocus();
             }
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Deze winkel bestaat nog niet, je kan hem aanmaken via de knop 'Nieuwe Winkel'.");
             txtNaam.setText("");
             txtPaswoord.setText("");
