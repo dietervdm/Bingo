@@ -285,29 +285,39 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="afbeeldingBingo" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="afbeeldingBingo" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="545" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNaam" min="-2" pref="713" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="67" max="32767" attributes="0"/>
+                      <Component id="txtNaam" min="-2" pref="713" max="-2" attributes="0"/>
+                      <EmptySpace pref="77" max="32767" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="601" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="txtNaam" min="-2" pref="63" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="afbeeldingBingo" pref="461" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Component id="knopTerug" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="afbeeldingBingo" pref="409" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="knopTerug" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -345,6 +355,14 @@
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//String path = &quot;src\\GUI\\Logo\\bingo.png&quot;;&#xa;//File file = new File(path);&#xa;&#xa;//try&#xa;//{&#xa;//        BufferedImage image = ImageIO.read(file);&#xa;//        ImageIcon icon = new ImageIcon(image);&#xa;//        Image img = icon.getImage().getScaledInstance(600, 400, java.awt.Image.SCALE_SMOOTH);&#xa;//        ImageIcon icim = new ImageIcon(img);&#xa;//        afbeeldingBingo.setIcon((Icon) icim);&#xa;&#xa;//}&#xa;//catch(IOException ex)&#xa;//{&#xa;//        System.out.println(ex.getMessage());&#xa;//}"/>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel()"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Rage Italic" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="those who say you can&apos;t buy happiness don&apos;t know where to shop..."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
