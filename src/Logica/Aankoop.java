@@ -13,7 +13,6 @@ public class Aankoop
     private String winkelnaam;
     private Date datum;
     //private int ptnplus;
-    //private int ptnmin;
     //private int totprijs;
     
     
@@ -27,7 +26,6 @@ public class Aankoop
         this.vestigingid = vestigingid;
         this.winkelnaam = winkelnaam;
         //this.ptnplus = ptnplus;
-        //this.ptnmin = ptnmin;
         //this.totprijs = totprijs;
     }
     
