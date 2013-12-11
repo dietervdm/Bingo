@@ -356,27 +356,33 @@ public class Account
         
         if(this.isVip(this.getAccountnr()))
         {
-            if(db.getAantalVerschillendeWinkels(this) > 19)
-                    // 5 MOET NOG VERVANGEN WORDEN DOOR 19
+            if(this.isWolverine())
             {
-                if(db.getDatumVoorWolverine(accountnr))
-                {
-                    int nieuwepunten = acc.getPunten() + 600;  // Wolverine krijgt 100 punten bij.
-                    db.updateAantalpunten(acc, nieuwepunten);
-                    this.sendMailGoed("Wolverine", "600");
-                    Date vandaag = new Date();
-                    this.setStartw(vandaag);
-                    db.updateWolverineAccountDatum(accountnr);
-                }
-                else
-                {
-                    this.sendMailGoed("Wolverine", "0");
-                }
-                this.setWolverine(true);
-                
+                // Doe niets, is al Wolverine
             }
             else
-                this.setWolverine(false);
+            {
+                if(db.getAantalVerschillendeWinkels(this) > 19)
+                {
+                    if(db.getDatumVoorWolverine(accountnr))
+                    {
+                        int nieuwepunten = acc.getPunten() + 600;  // Wolverine krijgt 100 punten bij.
+                        db.updateAantalpunten(acc, nieuwepunten);
+                        this.sendMailGoed("Wolverine", "600");
+                        Date vandaag = new Date();
+                        this.setStartw(vandaag);
+                        db.updateWolverineAccountDatum(accountnr);
+                    }
+                    else
+                    {
+                        this.sendMailGoed("Wolverine", "0");
+                    }
+                    this.setWolverine(true);
+
+                }
+                else
+                    this.setWolverine(false);
+            }
         }
         else
             this.setWolverine(false);
@@ -391,29 +397,35 @@ public class Account
         Account acc = db.getAccount(accountnr);
         if(this.isVip(this.getAccountnr()))
         {
-            if(this.totaalGeldJaar(this.accountnr) > 5000)
+            if(this.isBigspender())
             {
-                this.setBigspender(true);
-                if(db.getDatumVoorBigspender(accountnr))
-                {
-                    int nieuwepunten = acc.getPunten() + 500;  // Wolverine krijgt 100 punten bij.
-                    db.updateAantalpunten(acc, nieuwepunten);
-                    
-                    this.sendMailGoed("Bigspender", "600");
-                    Date vandaag = new Date();
-                    this.setStartw(vandaag);
-                    db.updateBigSpenderAccountDatum(accountnr);
-                }
-                else
-                {
-                    this.sendMailGoed("Bigspender", "0");
-                    
-                }
-                
+                // niets doen, is al Big Spender
             }
             else
             {
-                this.setBigspender(false);
+               if(this.totaalGeldJaar(this.accountnr) > 5000)
+                {
+                    this.setBigspender(true);
+                    if(db.getDatumVoorBigspender(accountnr))
+                    {
+                        int nieuwepunten = acc.getPunten() + 500;  // Wolverine krijgt 100 punten bij.
+                        db.updateAantalpunten(acc, nieuwepunten);
+
+                        this.sendMailGoed("Bigspender", "600");
+                        Date vandaag = new Date();
+                        this.setStartw(vandaag);
+                        db.updateBigSpenderAccountDatum(accountnr);
+                    }
+                    else
+                    {
+                        this.sendMailGoed("Bigspender", "0");
+                    }
+                
+                }
+                else
+                {
+                    this.setBigspender(false);
+                } 
             }
         }
         else
