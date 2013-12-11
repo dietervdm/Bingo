@@ -504,9 +504,9 @@ public class Account
 			message.setSubject(badge + "-badge verworven!");
 			message.setText("Beste " + this.getNaam() + ", \n\n"
                           + "Bedankt om bij Bingo klant te zijn. \n"
-                          + "Proficiat, u bent " + badge + " geworden.\n"
+                          + "Proficiat, u bent " + badge + " geworden.\n\n"
                           + "U krijgt " + Integer.parseInt(ptn) + " punten bij op uw account. \n"
-                          + "U heeft nu " + this.getPunten() + " punten"
+                          + "U heeft nu " + this.getPunten() + " punten."
                                 
                           + "met vriendelijke groet, \n"
                           + "uw Bingo-team");
