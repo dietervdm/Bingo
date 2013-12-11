@@ -382,7 +382,7 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                     System.out.println("test 2");
                     if(puntenOver >= art.getPtnkost()*aantal)
                     {
-                        if(art.getMinimumbedrag() > totaalPrijs)
+                        if(art.getMinimumbedrag() < totaalPrijs)
                         {
                             System.out.println("test 3");
                             totaalPuntenMin = totaalPuntenMin + art.getPtnkost() * aantal;
@@ -393,18 +393,42 @@ public class VerkopenAfrekening extends javax.swing.JFrame {
                         else
                         {
                             System.out.println("test 4");
-                            totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
-                            totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
+//                            totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
+//                            totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                             artAk.setMetPuntenBetaald(false);
+                            if(aantal >= art.getMinimumaantal())
+                            {
+                                //System.out.println(Integer.toString(aantal));
+                                totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
+                                totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
+                            }
+                            else
+                            {
+                                System.out.println("wordt deze gebruikt?");
+                                //System.out.println(Integer.toString(aantal));
+                                totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
+                            }
                         }
 
                     }
                     //System.out.println("dit product kan met punten betaald worden");
                     else
                     {
-                        totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
-                        totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
+//                        totaalPrijs = totaalPrijs + art.getPtnwinst() * aantal;
+//                        totaalPuntenPlus = totaalPuntenPlus + art.getPtnwinst() * aantal;
                         artAk.setMetPuntenBetaald(false);
+                        if(aantal >= art.getMinimumaantal())
+                        {
+                            //System.out.println(Integer.toString(aantal));
+                            totaalPrijs = totaalPrijs + (art.getPrijs() * aantal);
+                            totaalPuntenPlus = totaalPuntenPlus + (art.getPtnwinst() * aantal);
+                        }
+                        else
+                        {
+                            System.out.println("wordt deze gebruikt?");
+                            //System.out.println(Integer.toString(aantal));
+                            totaalPrijs = totaalPrijs + art.getPrijs() * aantal;
+                        }
                     }
                 }
             db.addArtikelaankoop(artAk);

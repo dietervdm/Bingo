@@ -1411,7 +1411,7 @@ public class Database {
     
         public Boolean getDatumVoorWolverine(int accountnr){
         try{
-            String sql = "SELECT * FROM account WHERE (accountnr = " + accountnr + " and (account.startw < (CURDATE() - INTERVAL '1'YEAR) or account.startw IS NULL);";
+            String sql = "SELECT * FROM account WHERE accountnr = " + accountnr + " and (account.startw < (CURDATE() - INTERVAL '1'YEAR) or account.startw IS NULL);";
             ResultSet srs = getData(sql);
             if(srs.next()){
                 this.closeConnection();
