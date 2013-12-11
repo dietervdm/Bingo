@@ -419,7 +419,7 @@ public class AanpassenKlant extends javax.swing.JFrame {
         }
         else
         {
-            btwnummer = "";     // of NULL
+            btwnummer = null;     // of NULL
         }
             
         if(d.checkAccount(Integer.parseInt(txtAccountnr.getText())))

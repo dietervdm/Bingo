@@ -589,11 +589,6 @@ public class Database {
             stmt.executeUpdate("UPDATE account SET naam = '" + nieuw.getNaam() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET email = '" + nieuw.getEmail() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET adres = '" + nieuw.getAdres() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET punten = " + nieuw.getPunten() + " WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET wolverine = " + nieuw.isWolverine() + " WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET startw = '" + nieuw.getStartw() + "' WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET bigspender = " + nieuw.isBigspender() + " WHERE accountnr = " + oud.getAccountnr());
-            stmt.executeUpdate("UPDATE account SET startb = '" + nieuw.getStartb() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET bedrijf = " + nieuw.isBedrijf() + " WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET btwnummer = '" + nieuw.getBtwnummer() + "' WHERE accountnr = " + oud.getAccountnr());
             stmt.executeUpdate("UPDATE account SET accountnr = " + nieuw.getAccountnr() + " WHERE accountnr = " + oud.getAccountnr());
